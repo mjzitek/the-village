@@ -1,0 +1,33 @@
+
+
+body {
+	background-color: #fff;
+	color: #000;
+	font-family: Verdana, Arial, sans-serif;
+}
+
+#main {
+	margin-top: 10px;
+	width: 1200px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#game-header {
+	height: 20px;
+	margin-bottom: 10px;
+}
+
+#area-left {
+	float: left;
+	background-color: #fff;
+	width: 600px;
+	padding: 5px;
+}
+
+#area-right {
+	width: 550px;
+	border-left: 1px solid #999;
+	float: left;
+	padding: 5px;
+}
