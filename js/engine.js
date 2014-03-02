@@ -11,7 +11,7 @@ var Engine = {
 			Engine.outputInventory();
 			Engine.outputBuildings();
 			Engine.checkButtons();
-			console.log("add wood");
+			//console.log("add wood");
 
 
 		}, 60 * 1000);
@@ -21,15 +21,9 @@ var Engine = {
 
 	setInitialInventory: function()
 	{
-		Inventory = {};
+		
 
-
-		Inventory["wood"] = 5;
-		Inventory["food"] = 5;
-		Inventory["leather"] = 0;
-		Inventory["rock"] = 0;
-
-		Engine.outputInventory();
+		Engine.outputInventory(Inventory);
 	},
 
 	addItems: function(key, amount)
@@ -49,7 +43,7 @@ var Engine = {
 		}
 
 
-		Engine.outputInventory();
+		Engine.outputInventory(Inventory);
 		Engine.outputBuildings();
 		Engine.checkButtons();
 	},
@@ -69,19 +63,19 @@ var Engine = {
 			//alert(costItem);
 
 			Engine.outputBuildings();
-			Engine.outputInventory();
+			Engine.outputInventory(Inventory);
 		} else {
 			alert("Not enough "  + costItem[0]);
 		}
 	},
 
 
-	outputInventory: function()
+	outputInventory: function(inventory)
 	{
 		var output = "";
 
-		for(var key in Inventory) {
-			output += key + ": " + Inventory[key] + "<br />";
+		for(var key in inventory) {
+			output += key + ": " + inventory[key] + "<br />";
 
 		}
 
@@ -129,6 +123,28 @@ var Engine = {
 
 
 			Buttons.DisplayButtons();
+	},
+
+	goMining: function() {
+		var mining = new Mining(Ores);
+
+		var itemMined = mining.GetMinedItem();	
+		console.log('Mined: ' + itemMined);
+		Engine.addItems(itemMined, 1);
+
+	},
+
+	chopWood: function() {
+		var numOfMiningCamps = Buildings.Items.woodshack.cnt;
+		var woodChopped = 0;
+
+		if(numOfMiningCamps == 0) {
+			woodChopped = 5;
+		} else {
+			woodChopped = 5 * (numOfMiningCamps + 1);
+		}
+		console.log('Chopped: ' + woodChopped);
+		Engine.addItems('wood', woodChopped);
 	}
 
 

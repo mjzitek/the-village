@@ -1,17 +1,33 @@
 
 
-var Mining = {
 
-
-	Ores: {
-		'rock': {
-			value: 1
-		},
-		'coal': {
-			value: 1
-		}
-	}
-
-
-
+var Mining = function(Ores) {
+    this.minedItem = 'rock';
+    this.ores = Ores;
 }
+
+Mining.prototype.GetMinedItem = function() {
+
+    oresTotal = 0;
+    oresArray = [];
+    
+    $.each(this.ores, function(t, v) {
+
+        var oValue = v.value;
+        var oTimes = Math.floor(100 / oValue);
+        for(var i = 0; i < oTimes; i++)
+        {
+            oresArray.push(v.name);
+            oresTotal++;
+        }
+        
+    });
+    
+    var rand = Math.floor((Math.random()*oresTotal)+1);
+    this.minedItem = oresArray[rand];
+    
+    return this.minedItem;   
+    
+}
+
+

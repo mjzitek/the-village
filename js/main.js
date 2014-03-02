@@ -6,28 +6,28 @@ $(function() {
 
 
 	$('#button-area').on('click', '#btnAddWood', function() {
-			Engine.addItems("wood", 5);
+			Engine.chopWood();
 
 	});
 
 	$('#button-area').on('click', '#btnHuntFood', function() {
 			Engine.addItems("food", 5);
-			//alert("Hunting");
+
 	});
 
 
 	$('#button-area').on('click', '#btnBuildWoodShack', function() {
 			Engine.addBuilding("woodshack", 1);
-			//alert("Hunting");
+
 	});
 
 	$('#button-area').on('click', '#btnBuildMiningCamp', function() {
 			Engine.addBuilding("miningCamp", 1);
-			//alert("Hunting");
+
 	});
 
 	$('#button-area').on('click', '#btnMineRock', function() {
-			Engine.addItems("rock", 1);
-			//alert("Hunting");
+			Engine.goMining();
+
 	});
 });
