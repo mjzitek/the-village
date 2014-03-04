@@ -1,14 +1,6 @@
 
 var Inventory = {
 
-/*
-		Inventory["wood"] = 500;
-		Inventory["food"] = 500;
-		Inventory["leather"] = 500;
-		Inventory["rock"] = 0;
-
-		*/
-
 
 		wood: 500,
 		food: 500,

@@ -23,7 +23,7 @@ Mining.prototype.GetMinedItem = function() {
         
     });
     
-    var rand = Math.floor((Math.random()*oresTotal)+1);
+    var rand = Math.floor((Math.random()*oresTotal));
     this.minedItem = oresArray[rand];
     
     return this.minedItem;   

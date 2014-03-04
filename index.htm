@@ -22,7 +22,15 @@
 			<div id="game-output">
 				<div id="area-left">
 					<div id="button-area">
-						<input type="button" id="btnBuyWoodShack" value="Buy Wood Shack" />
+						<div id="button-area-tasks" class="button-area-section">
+							<input type="button" id="btnBuyWoodShack" value="Buy Wood Shack" />
+						</div>
+						<div id="button-area-buildings" class="button-area-section">
+							
+						</div>
+						<div id="button-area-other" class="button-area-section">
+							
+						</div>
 					</div>
 				</div>
 				<div id="area-right">
@@ -32,6 +40,14 @@
 					<p>Buildings</p>
 
 					<div id="buildings"></div>
+				</div>
+				<div id="area-debug">
+					<input type='text' id='debug-interval'></input>
+					<input type='button' id='set-interval' value='Set Interval' />
+					<p>
+						<input type='button' id='master-reset' value='Reset' />
+					</p>
+
 				</div>
 
 			</div>
