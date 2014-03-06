@@ -50,6 +50,11 @@ $(function() {
 			location.reload();
 			console.log('** RESET **');
 	});
+
+	$('#area-debug').on('click', '#send-notification', function() {
+		Engine.sendNotification($('#debug-notification').val());
+			
+	});
 });
 
 

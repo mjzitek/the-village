@@ -1,5 +1,6 @@
 var App = {
 	intervalTime: 30,
+	castIntervalTime: 10,
 	refreshIntervalId: null
 };
 
@@ -11,6 +12,13 @@ var Engine = {
 		//alert("foobar");
 
 		Engine.setAutoInterval();
+
+		// Send data to cast
+		var castInterval = setInterval(function() {
+			Engine.sendDataToCast();
+		}, App.castIntervalTime * 1000);
+		
+		
 
 		Buttons.DisplayButtons(1);
 	},
@@ -24,14 +32,32 @@ var Engine = {
 			Engine.outputBuildings();
 			Engine.checkButtons();
 			//console.log("add wood");
-
+			
 		}, App.intervalTime * 1000);
+	},
+
+	sendDataToCast: function() {
+  		var input = {};
+  		input.wood = Inventory["wood"];
+  		input.food = Inventory["food"];
+  		input.stone  = Inventory["stone"];
+
+  		console.log(input);
+
+		update(input);
 	},
 
 	setInitialInventory: function()
 	{
 
 		Engine.outputInventory(Inventory);
+	},
+
+	sendNotification: function(notificationMsg) {
+		console.log("Notification: " + notificationMsg);
+		$('#notifications').html(notificationMsg);
+
+		//update(notificationMsg);
 	},
 
 	addItems: function(key, amount)
