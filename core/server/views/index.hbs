@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Village</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		{{>head-assests}}
+</head>
+<body>
+<div class='top-nav'></div>
+<header class='site-header'>
+</header>
+<div class='site-body'>
+	<div id="main">
+		<div id="game-header">The Village</div>
+		<div id="game-main">
+			<div id="notifications"></div>
+			<div id="game-output">
+				<div id="area-left">
+					<div id="button-area">
+						<div id="button-area-tasks" class="button-area-section">
+							<input type="button" id="btnBuyWoodShack" value="Buy Wood Shack" />
+						</div>
+						<div id="button-area-buildings" class="button-area-section">
+							
+						</div>
+						<div id="button-area-other" class="button-area-section">
+							
+						</div>
+					</div>
+				</div>
+				<div id="area-right">
+
+					<div id="inventory"></div>
+					<hr>
+					<p>Buildings</p>
+
+					<div id="buildings"></div>
+				</div>
+				<div id="area-debug">
+					<input type='text' id='debug-interval'></input>
+					<input type='button' id='set-interval' value='Set Interval' />
+					<p>
+						<input type='button' id='master-reset' value='Reset' />
+					</p>
+					<p>
+						<input type='text' id='debug-notification'></input>
+						<input type='button' id='send-notification' value='Send Notfication' />
+					</p>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+<footer class='site-footer'>
+{{>footer}}
+</footer>
+
+</body>
+</html>

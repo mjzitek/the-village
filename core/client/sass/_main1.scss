@@ -1,0 +1,45 @@
+body {
+	background-color: $backgroundColor1;
+	color: #000;
+	font-family: Verdana, Arial, sans-serif;
+}
+
+#main {
+	margin-top: 10px;
+	width: 1200px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#game-header {
+	font-family: 'Oxygen',Arial, sans-serif;
+	font-size: 3em;
+	height: 35px;
+	margin-bottom: 10px;
+}
+
+#area-left {
+	float: left;
+	background-color: #fff;
+	width: 600px;
+	padding: 5px;
+}
+
+#area-right {
+	width: 550px;
+	/*border-left: 1px solid #999; */
+	float: left;
+	padding: 5px;
+}
+
+#area-debug {
+	clear: both;
+	border: 2px solid #faa;
+	background-color: #fdd;
+	padding: 4px;
+	margin: 4px;
+	width: 400px;
+	height: 200px;
+}
+
+
