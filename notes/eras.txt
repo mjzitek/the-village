@@ -1,0 +1,8 @@
+
+- village
+- small town
+- medium town
+- large town
+- small city
+- medium city
+- large city

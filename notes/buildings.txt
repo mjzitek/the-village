@@ -1,0 +1,33 @@
+
+
+- buildingId
+- itemId
+- requirementId
+- maxOccupants
+- type
+- efficiency
+
+
+=======================================================
+
+- max allowed in town
+- max people allowed per
+- effiencey
+	- wood shack less "efficient" than stone house
+- type
+	- housing, civil, shop
+- requirements to build
+	- town type (era)
+	- items needed to build
+		- quantity
+	- what other buildings are needed
+		- i.e. large bakery requires flour mill?
+
+
+
+===================================
+
+- wood shack
+- stone house
+- granary
+- 

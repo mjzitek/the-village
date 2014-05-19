@@ -1,0 +1,4 @@
+ { buildingId: 1, itemId: 7, requiremendId: 1, maxOccupants: 5, type: "housing", efficiency: 1  }
+{ buildingId: 2, itemId: 8, requiremendId: 2, maxOccupants: 5, type: "logging", efficiency: 1  }
+{ buildingId: 3, itemId: 9, requiremendId: 1, maxOccupants: 5, type: "hunting", efficiency: 1 }
+{ buildingId: 4, itemId: 10, requiremendId: 1, maxOccupants: 5, type: "mining", efficiency: 1  }

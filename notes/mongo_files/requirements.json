@@ -1,0 +1,1 @@
+{ reqId: 1, reqType: "building", itemsNeeded: [{ itemId: 1, quantity: 50, payment: true}], skillRequired: [ { skillId: 1, skillLevel: 1}]}

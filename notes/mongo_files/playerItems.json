@@ -1,0 +1,5 @@
+{ userId: 1, itemName: "wood", quantity: 10  }
+{ userId: 1, itemName: "food", quantity: 10  }
+{ userId: 1, itemName: "stone", quantity: 10  }
+{ userId: 1, itemName: "woodshack", quantity: 1 }
+{ userId: 1, itemName: "huntingcamp", quantity: 1 }

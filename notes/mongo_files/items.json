@@ -1,0 +1,9 @@
+{ itemId: 1, name: "wood", commonName: "wood", type: "wood", value: 1, limit: 0 }
+{ itemId: 2, name: "food", commonName: "food", type: "food", value: 1, limit: 0  }
+{ itemId: 3, name: "stone", commonName: "stone", type: "ore", value: 1, limit: 0  }
+{ itemId: 4, name: "iron", commonName: "iron", type: "ore", value: 5, limit: 0  }
+{ itemId: 5, name: "coal", commonName: "coal", type: "ore", value: 3, limit: 0  }
+{ itemId: 6, name: "diamond", commonName: "diamond", type: "ore", value: 10, limit: 0  }
+{ itemId: 7, name: "woodshack", commonName: "wood shack", type: "building", value: 50, limit: 0  }
+{ itemId: 8, name: "huntingcamp", commonName: "hunting camp", type: "building", value: 50, limit: 0  }
+{ itemId: 9, name: "miningcamp", commonName: "mining camp", type: "building", value: 50, limit: 0  }

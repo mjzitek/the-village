@@ -1,0 +1,1 @@
+{ skillId: 1, skillName: "Hunting", skillDescription: "Hunt animals for food", maxLevel: 5, previousSkillsRequired: [ {skillId: 0, skillLevel: 0}]}

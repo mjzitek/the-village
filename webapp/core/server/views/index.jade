@@ -1,0 +1,45 @@
+
+extends layout
+
+block content
+    div#content 
+
+    div#main
+       
+
+
+
+      div#area-left
+        div#village-name
+           p. #{village[0].name}	
+        div#village-population
+           p Population: 
+                span#population-total
+                    #{village[0].population.total}
+           input(id='village-id',type='hidden', value='#{village[0]._id}')
+        div#message-area
+          div#message-area-messages
+        
+
+        div#button-area
+          div.button-area-section
+            input(type="button",id="btnBuildWoodShack",class="btn btn-build",value="Build Woodshack ") 
+            input(type="button",id="btnBuildWoodCamp",class="btn btn-build", value="Build Wood Chopping Camp") 
+            input(type="button",id="btnBuildHuntingCamp",class="btn btn-build", value="Build Hunting Camp")             
+            input(type="button",id="btnBuildMiningCamp",class="btn btn-build", value="Build Mining Camp") 
+
+      div#area-right
+          div#inventory
+            block inventory-content   
+
+                div.inventory-box
+                    div.inventory-box-title Inventory
+                    div.inventory-box-items
+                        div#inventory-items
+                div.inventory-box
+                    div.inventory-box-title Buildings
+                    div.inventory-box-items
+                        div#inventory-buildings
+
+block append scripts
+      script(src="js/data.js")                             

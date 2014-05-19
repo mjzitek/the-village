@@ -1,0 +1,35 @@
+
+
+
+======================
+
+- Country
+	- Region
+		- City
+
+- User can have one city
+- Form regions and coutries with other players
+- Trading
+- Conflicts / battles
+- Voting (region, country)
+- A city can be capitol for region and country
+	- special powers
+
+
+- "AI" (Simulated) towns
+- rouge camps (barbarians)
+
+
+======================
+
+- Skills?
+	- woodworker, stonecutter, baker
+	- levels
+	- basic level for having certain type of building (bakery, etc)?
+	- levels increase as more of type of buildings, items produced?
+
+
+======================
+
+- need some way to "micro"-manage early on but make it less so as the population and city grows
+	- assign workforce to tasks early on, but have AI handle it more later on

@@ -1,0 +1,22 @@
+var me = "532b22bbdf59d1c81040c357";
+Mikesville = ObjectId("531e31aa897073c968e8afe7")
+
+
+var woodId = "532a1f8e05e7e28a6593dd1a";
+var stoneId = "532a1f8e05e7e28a6593dd1c";
+var foodId = "532a1f8e05e7e28a6593dd1b;
+
+// Resources - mining
+iron = ObjectId("532c5332ad3a53fc4ba30a01")
+coal = ObjectId("532c5332ad3a53fc4ba30a02")
+diamond = ObjectId("532c5332ad3a53fc4ba30a03")
+
+// Housing
+woodshack = ObjectId("532c5332ad3a53fc4ba30a04")
+
+// Resource gathering
+huntingcamp = ObjectId("532c5332ad3a53fc4ba30a05")
+woodcamp = ObjectId("532f179e897073c968e8b05b")
+miningcamp = "532c5332ad3a53fc4ba30a06"
+
+

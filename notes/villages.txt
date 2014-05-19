@@ -1,0 +1,11 @@
+- villageId
+- ownerId
+- name
+- eraId
+- regionId
+- population
+	- total
+	- farmer
+	- logger
+	- hunter
+	- miner

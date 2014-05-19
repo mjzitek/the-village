@@ -1,0 +1,1 @@
+{ villageId: 1, ownerId: 1, name: "Mikesville", regionId: 0, population: { total: 0, farmer: 0, hunter: 0, miner: 0, logger: 0} }

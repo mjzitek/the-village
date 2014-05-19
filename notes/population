@@ -1,0 +1,23 @@
+
+
+- limits
+	- housing
+	- food
+	- jobs
+
+- people can move in / leave
+- people can be "born"
+- people can die
+
+- track people's life?  born to death?
+	- age?
+	- probably too hard for large population so will need some sort of algorithm to simulate
+		- averages
+
+- jobs
+	- how many people are hunters, soilders, miners, etc
+	- job categories
+
+- would be great to track individuals but would probably be too difficult/resource intensive for large popluations
+  (see comment above)
+

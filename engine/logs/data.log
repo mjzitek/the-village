@@ -1,0 +1,577 @@
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T00:20:12.408Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T00:20:12.411Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T01:02:01.056Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T01:02:01.059Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T01:12:07.702Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T01:12:07.703Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T01:18:09.462Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T01:18:09.463Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T01:18:09.679Z"}
+{"level":"info","message":"handshake authorized WLxDMuMSRfZkUCztqosQ","timestamp":"2014-03-24T01:18:16.610Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T01:41:35.135Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T01:41:35.135Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T01:41:35.356Z"}
+{"level":"info","message":"handshake authorized x_mQyyKrpKEzFAgmv_39","timestamp":"2014-03-24T01:41:38.628Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-24T01:41:41.277Z"}
+{"level":"info","message":"handshake authorized zx2-MNTX2zTtgT6Jv_3-","timestamp":"2014-03-24T01:41:42.873Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T01:56:31.451Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T01:56:31.451Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T01:56:31.694Z"}
+{"level":"info","message":"handshake authorized eNxyWfXqFTYeCqIOzatP","timestamp":"2014-03-24T01:56:32.842Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T19:08:46.604Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T19:08:46.605Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T19:08:47.513Z"}
+{"level":"info","message":"handshake authorized Mt30054Nh8oFNFjafrwa","timestamp":"2014-03-24T19:09:18.194Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T19:09:57.870Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T19:09:57.871Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T19:09:58.049Z"}
+{"level":"info","message":"handshake authorized FDY68XM4oH_kUQHuf8-i","timestamp":"2014-03-24T19:09:59.745Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T19:14:03.729Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T19:14:03.730Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T19:14:03.895Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T19:14:48.475Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T19:14:48.475Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T19:14:48.651Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T19:15:10.067Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T19:15:10.067Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T19:15:10.250Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T19:15:55.914Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T19:15:55.914Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T19:15:56.098Z"}
+{"level":"info","message":"handshake authorized lKfqXTLimUrK2Da6hUZD","timestamp":"2014-03-24T19:16:04.922Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T19:20:56.261Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T19:20:56.262Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T19:20:56.462Z"}
+{"level":"info","message":"handshake authorized _q-q7w0M_Of6hMYSiduO","timestamp":"2014-03-24T19:21:01.953Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T19:23:52.952Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T19:23:52.954Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T19:23:53.141Z"}
+{"level":"info","message":"handshake authorized TKWXBrh2ioEDT2NXjI21","timestamp":"2014-03-24T19:23:56.813Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T19:41:26.578Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T19:41:26.581Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T19:41:29.438Z"}
+{"level":"info","message":"handshake authorized EF2l17jQXwXxn5-qnKvf","timestamp":"2014-03-24T19:41:33.920Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T22:23:49.909Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T22:23:49.910Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T22:23:50.561Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T22:25:45.305Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T22:25:45.305Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T22:25:45.543Z"}
+{"level":"info","message":"handshake authorized bl6SvFYWyzTpZH-IMxBI","timestamp":"2014-03-24T22:25:56.605Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:33:22.356Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:33:22.358Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:33:22.559Z"}
+{"level":"info","message":"handshake authorized 1q8eHQbyqqZMSQ4PcPf_","timestamp":"2014-03-24T23:33:31.022Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:34:54.404Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:34:54.405Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:34:54.599Z"}
+{"level":"info","message":"handshake authorized 7uZpe4a_lP7qix4jcl-I","timestamp":"2014-03-24T23:34:57.256Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:38:06.556Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:38:06.557Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:38:06.746Z"}
+{"level":"info","message":"handshake authorized gp8y4Wnm8awn4h0edU4b","timestamp":"2014-03-24T23:38:10.396Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:38:29.546Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:38:29.547Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:38:29.784Z"}
+{"level":"info","message":"handshake authorized 4xPBD7-jFBygtg8zdagZ","timestamp":"2014-03-24T23:38:34.084Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:39:19.202Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:39:19.202Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:39:19.366Z"}
+{"level":"info","message":"handshake authorized COS_YOHygQybbIIqdmnH","timestamp":"2014-03-24T23:39:20.352Z"}
+{"level":"info","message":"handshake authorized mOJ-u1kJoMcii43AdmnI","timestamp":"2014-03-24T23:39:24.797Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:40:20.961Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:40:20.962Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:40:21.167Z"}
+{"level":"info","message":"handshake authorized gZ3y1wnK0MsO0h59d1sw","timestamp":"2014-03-24T23:40:24.268Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:41:32.864Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:41:32.865Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:41:33.088Z"}
+{"level":"info","message":"handshake authorized CMJP2h5i8UUXKCr3eHQg","timestamp":"2014-03-24T23:41:36.279Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:43:34.735Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:43:34.735Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:43:34.932Z"}
+{"level":"info","message":"handshake authorized ssJSiBAv8igpdabMelAU","timestamp":"2014-03-24T23:43:55.952Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:48:30.782Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:48:30.783Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:48:30.974Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:48:53.699Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:48:53.700Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:48:53.880Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:52:35.796Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:52:35.797Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:52:35.989Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:53:11.905Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:53:11.906Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:53:12.092Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-24T23:54:58.371Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-24T23:54:58.372Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-24T23:54:58.571Z"}
+{"level":"info","message":"handshake authorized JEwJ5rFmEaHYP9PfhL6M","timestamp":"2014-03-24T23:55:18.758Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:09:25.346Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:09:25.347Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:09:25.545Z"}
+{"level":"info","message":"handshake authorized SiIXrQx5Fkr-ZNbNkfkq","timestamp":"2014-03-25T00:09:31.363Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:10:31.878Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:10:31.879Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:10:32.084Z"}
+{"level":"info","message":"handshake authorized uptqpT7mh4kqjxmbkv0V","timestamp":"2014-03-25T00:10:37.367Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:11:30.016Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:11:30.017Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:11:30.189Z"}
+{"level":"info","message":"handshake authorized XtbviAbuJwiMXU1ok-AN","timestamp":"2014-03-25T00:11:32.956Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:12:52.101Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:12:52.102Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:12:52.305Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:17:59.553Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:17:59.554Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:17:59.818Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:18:50.658Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:18:50.659Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:18:50.879Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:19:20.598Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:19:20.599Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:19:20.802Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:19:46.275Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:19:46.278Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:19:46.470Z"}
+{"level":"info","message":"handshake authorized PQAx8zZ0cMy9Z2ODm3Kn","timestamp":"2014-03-25T00:19:49.847Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:25:01.633Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:25:01.636Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:25:01.835Z"}
+{"level":"info","message":"handshake authorized 6evuuOYv5ECBktJLoEKM","timestamp":"2014-03-25T00:25:05.084Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:26:05.117Z"}
+{"level":"info","message":"handshake authorized F7okjEN5O29Fw6DToEKN","timestamp":"2014-03-25T00:26:32.041Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:27:01.468Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:27:01.468Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:27:01.666Z"}
+{"level":"info","message":"handshake authorized 0sAcWLn2HeSXpoVRohai","timestamp":"2014-03-25T00:27:03.224Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:27:04.753Z"}
+{"level":"info","message":"handshake authorized nE1IAWllQvHZTw1Xohaj","timestamp":"2014-03-25T00:27:06.823Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:27:36.853Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:28:23.692Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:28:23.693Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:28:23.896Z"}
+{"level":"info","message":"handshake authorized cFxhMo9ctMTA3uBHo1fZ","timestamp":"2014-03-25T00:28:37.244Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:29:10.603Z"}
+{"level":"info","message":"handshake authorized 67TmWe3DxiSYNT2mo1fa","timestamp":"2014-03-25T00:29:11.150Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:29:19.681Z"}
+{"level":"info","message":"handshake authorized W_dmMAKoQDrKqEIko1fb","timestamp":"2014-03-25T00:29:20.376Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:29:32.431Z"}
+{"level":"info","message":"handshake authorized RImsVSPfcLN4_MsEo1fc","timestamp":"2014-03-25T00:29:32.913Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:30:23.422Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:30:23.424Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:30:23.612Z"}
+{"level":"info","message":"handshake authorized RIvHkJmbOyq8N8JmpSt9","timestamp":"2014-03-25T00:30:28.248Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:30:53.347Z"}
+{"level":"info","message":"handshake authorized MXzcXbPGNVWBpvVvpSt-","timestamp":"2014-03-25T00:30:53.849Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:31:12.755Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:31:12.755Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:31:13.001Z"}
+{"level":"info","message":"handshake authorized z7zLw6uBXSpH3e_opexq","timestamp":"2014-03-25T00:31:13.180Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:31:14.194Z"}
+{"level":"info","message":"handshake authorized _jRfU7WsNNqdBr40pexr","timestamp":"2014-03-25T00:31:15.443Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:31:54.380Z"}
+{"level":"info","message":"handshake authorized rcV24iS8cgp3_MqEpexs","timestamp":"2014-03-25T00:31:54.943Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:32:41.055Z"}
+{"level":"info","message":"handshake authorized HgQ-OvdVTyUlFGrjpext","timestamp":"2014-03-25T00:33:45.958Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:34:03.278Z"}
+{"level":"info","message":"handshake authorized daHppsjdvk2g-uRypexu","timestamp":"2014-03-25T00:34:03.828Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:34:40.425Z"}
+{"level":"info","message":"handshake authorized FN_cTQQRGUzqxYg_pexv","timestamp":"2014-03-25T00:34:40.900Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:34:54.863Z"}
+{"level":"info","message":"handshake authorized 1rFUf7UmIIf8ILoZpexw","timestamp":"2014-03-25T00:34:55.399Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:35:01.992Z"}
+{"level":"info","message":"handshake authorized uLmrJUhT9H1Qra4Xpexx","timestamp":"2014-03-25T00:35:02.531Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:35:16.989Z"}
+{"level":"info","message":"handshake authorized ZAICuRD_ZmZz83SZpexy","timestamp":"2014-03-25T00:35:17.499Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:35:30.911Z"}
+{"level":"info","message":"handshake authorized xOhzlCNKfTKNbGujpexz","timestamp":"2014-03-25T00:35:31.591Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:35:38.548Z"}
+{"level":"info","message":"handshake authorized elf2FxA0qgy7SAKlpex0","timestamp":"2014-03-25T00:35:39.123Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:36:05.693Z"}
+{"level":"info","message":"handshake authorized l0YT63kG95o7Ra-0pex1","timestamp":"2014-03-25T00:36:06.155Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T00:37:16.298Z"}
+{"level":"info","message":"handshake authorized As5--Sp6UedQHNrCpex2","timestamp":"2014-03-25T00:37:16.810Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:42:20.039Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:42:20.040Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:42:20.251Z"}
+{"level":"info","message":"handshake authorized K5RhbrF2T1BjPF6HsBrc","timestamp":"2014-03-25T00:42:22.206Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:58:21.660Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:58:21.662Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:58:21.887Z"}
+{"level":"info","message":"handshake authorized aaBMSEIQ94l0agc0vsdA","timestamp":"2014-03-25T00:58:24.798Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T00:58:56.392Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T00:58:56.394Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T00:58:56.646Z"}
+{"level":"info","message":"handshake authorized 4_e97p9G1oVjqEYav08H","timestamp":"2014-03-25T00:59:19.230Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T01:07:15.247Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T01:07:15.247Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T01:07:15.441Z"}
+{"level":"info","message":"handshake authorized soRxSQdml50hZLdhxuty","timestamp":"2014-03-25T01:07:19.142Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T01:08:54.018Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T01:08:54.018Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T01:08:54.214Z"}
+{"level":"info","message":"handshake authorized OBLXzT3eSAfgUE7syG1H","timestamp":"2014-03-25T01:08:55.983Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T01:08:56.779Z"}
+{"level":"info","message":"handshake authorized 7C3YZU0wzAeEpikkyG1I","timestamp":"2014-03-25T01:08:57.994Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T01:11:02.823Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T01:11:02.826Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T01:11:03.044Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T01:24:41.277Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T01:24:41.278Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T01:24:42.245Z"}
+{"level":"info","message":"handshake authorized rPX_PM2j3N8557RL1uSF","timestamp":"2014-03-25T01:24:45.377Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T01:25:27.873Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T01:25:27.874Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T01:25:28.088Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T01:25:51.674Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T01:25:51.675Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T01:25:51.882Z"}
+{"level":"info","message":"handshake authorized FVhClrki300lWkWj1_SK","timestamp":"2014-03-25T01:25:55.627Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T01:26:05.341Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T01:26:05.342Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T01:26:05.554Z"}
+{"level":"info","message":"handshake authorized 0sASsde0VzoPc-xm2Cnz","timestamp":"2014-03-25T01:26:07.186Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T01:26:07.518Z"}
+{"level":"info","message":"handshake authorized y9-iDU1x-GBeq5hw2Cn0","timestamp":"2014-03-25T01:26:08.832Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T01:26:53.426Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T01:26:53.427Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T01:26:53.649Z"}
+{"level":"info","message":"handshake authorized QcTInYO4xO0htctV2OXS","timestamp":"2014-03-25T01:27:20.150Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T01:27:46.559Z"}
+{"level":"info","message":"handshake authorized -huyS8KrOPHPufei2OXT","timestamp":"2014-03-25T01:27:47.831Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T01:37:56.930Z"}
+{"level":"info","message":"handshake authorized dDDZal1S7BzjITHV2OXU","timestamp":"2014-03-25T01:37:57.495Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T01:39:52.428Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T01:39:52.429Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T01:39:52.613Z"}
+{"level":"info","message":"handshake authorized eMAClCF3kJWuT6yg5Mim","timestamp":"2014-03-25T01:39:53.969Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T01:40:37.882Z"}
+{"level":"info","message":"handshake authorized -bPZc6qSuKZu4Am15Min","timestamp":"2014-03-25T01:40:39.178Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T01:56:35.881Z"}
+{"level":"info","message":"handshake authorized NvGoX93m5sqH8a_Q5Mio","timestamp":"2014-03-25T01:56:36.878Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T01:58:01.071Z"}
+{"level":"info","message":"handshake authorized 6MVHhiW7M03K6ifN5Mip","timestamp":"2014-03-25T01:58:52.169Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T01:59:33.147Z"}
+{"level":"info","message":"handshake authorized M16kjXmuM6fk3qpL5Miq","timestamp":"2014-03-25T01:59:33.654Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T02:02:39.304Z"}
+{"level":"info","message":"handshake authorized auw53h957xjtQPz55Mir","timestamp":"2014-03-25T02:02:39.815Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T02:08:40.194Z"}
+{"level":"info","message":"handshake authorized OUtRtQ_Q9EGh_Fwx5Mis","timestamp":"2014-03-25T02:08:40.817Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T02:09:26.569Z"}
+{"level":"info","message":"handshake authorized k1fLcpHBsVN1q47g5Mit","timestamp":"2014-03-25T02:09:27.149Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T02:18:26.659Z"}
+{"level":"info","message":"handshake authorized gtbb2T9IsMRU4Thx5Miu","timestamp":"2014-03-25T02:18:27.231Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T02:36:55.088Z"}
+{"level":"info","message":"handshake authorized LUIT4FJQ0TGhV-wL5Miv","timestamp":"2014-03-25T02:36:55.764Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T02:51:00.111Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T02:51:00.113Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T02:51:00.472Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-25T02:51:19.490Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-25T02:51:19.491Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-25T02:51:19.693Z"}
+{"level":"info","message":"handshake authorized yQ_Cc5CrlQQt1JoAJjMO","timestamp":"2014-03-25T02:51:24.634Z"}
+{"level":"info","message":"transport end (heartbeat timeout)","timestamp":"2014-03-25T13:36:44.885Z"}
+{"level":"info","message":"handshake authorized 466T4kM6qApmAiBrJjMP","timestamp":"2014-03-25T13:39:45.535Z"}
+{"level":"info","message":"transport end (heartbeat timeout)","timestamp":"2014-03-25T13:47:57.584Z"}
+{"level":"info","message":"handshake authorized wXriJRzI9sqN9qj6JjMQ","timestamp":"2014-03-25T13:48:39.478Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T17:45:53.269Z"}
+{"level":"info","message":"handshake authorized CouqE1G7i9B4GeLzJjMR","timestamp":"2014-03-25T17:46:20.397Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-25T17:58:37.077Z"}
+{"level":"info","message":"handshake authorized 2EyRlPt4qVaUi0BKJjMS","timestamp":"2014-03-25T17:58:37.755Z"}
+{"level":"info","message":"socket error Error: read ECONNRESET\n    at errnoException (net.js:946:11)\n    at TCP.onread (net.js:548:19)","timestamp":"2014-03-25T23:24:32.225Z"}
+{"level":"info","message":"transport end (close timeout)","timestamp":"2014-03-25T23:25:22.088Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T15:17:08.524Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-26T15:17:08.525Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T15:17:09.669Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T15:18:01.391Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-26T15:18:01.392Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T15:18:01.565Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T15:20:32.241Z"}
+{"answer":42,"level":"info","message":"","timestamp":"2014-03-26T15:20:32.243Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T15:20:32.449Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T15:24:00.565Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T15:24:00.747Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T15:24:40.015Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T15:24:40.173Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T15:26:00.177Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T15:26:00.341Z"}
+{"level":"info","message":"handshake authorized wm6vK_AL3Aj_2KOU_3yW","timestamp":"2014-03-26T15:26:12.126Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T15:39:42.861Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T15:39:43.654Z"}
+{"level":"info","message":"handshake authorized 1Pzxp_deB8QzUW_iDAyn","timestamp":"2014-03-26T15:39:58.940Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T15:48:46.339Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T15:48:47.664Z"}
+{"level":"info","message":"handshake authorized LT1RLtnOUPmXVGTJFFmw","timestamp":"2014-03-26T15:48:49.426Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T15:53:05.054Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T15:53:05.206Z"}
+{"level":"info","message":"handshake authorized IG8XIPWdB-bmTxOwGEe3","timestamp":"2014-03-26T15:53:05.879Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T15:54:04.766Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T15:54:04.950Z"}
+{"level":"info","message":"handshake authorized jt6_OT9GiHT3bfflGTEX","timestamp":"2014-03-26T15:54:05.383Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T15:54:17.598Z"}
+{"level":"info","message":"handshake authorized L6H8RXQBL7VPH2PUGTEY","timestamp":"2014-03-26T15:54:20.640Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T16:07:58.387Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T16:08:00.073Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T16:15:07.320Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T16:15:07.502Z"}
+{"level":"info","message":"handshake authorized J2VpcDJj-paLMe6yLHTu","timestamp":"2014-03-26T16:16:20.856Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T16:25:52.918Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T16:25:53.298Z"}
+{"level":"info","message":"handshake authorized A6Ic7noGRU9FKQmqNk-T","timestamp":"2014-03-26T16:25:53.633Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T16:30:08.210Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T16:30:08.391Z"}
+{"level":"info","message":"handshake authorized KHsI_cMprKBRpyp8OjQI","timestamp":"2014-03-26T16:30:12.311Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T16:36:59.947Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T16:37:00.147Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T16:37:35.768Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T16:37:35.948Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T16:37:46.716Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T16:37:46.927Z"}
+{"level":"info","message":"handshake authorized A0jGCUAnFJ-PzFjdQTMv","timestamp":"2014-03-26T16:37:54.121Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T16:38:04.563Z"}
+{"level":"info","message":"handshake authorized Y768BKfT7k6hylAkQTMw","timestamp":"2014-03-26T16:38:06.472Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T16:51:43.596Z"}
+{"level":"info","message":"handshake authorized Q1PyjS2rBcjx3STBQTMx","timestamp":"2014-03-26T16:51:45.107Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T16:51:59.717Z"}
+{"level":"info","message":"handshake authorized YvY7POIO-YoBRsUJQTMy","timestamp":"2014-03-26T16:52:00.228Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T16:54:10.206Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T16:54:10.980Z"}
+{"level":"info","message":"handshake authorized GHgYQdcjldb17zXtUDck","timestamp":"2014-03-26T16:54:17.730Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T16:57:24.840Z"}
+{"level":"info","message":"handshake authorized Z2WE_wxCJz_BOWzgUDcl","timestamp":"2014-03-26T16:57:26.141Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T16:58:02.479Z"}
+{"level":"info","message":"handshake authorized CDCh4kJtr0WnXpdCUDcm","timestamp":"2014-03-26T16:58:03.048Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:09:44.528Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T17:26:43.206Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T17:26:45.172Z"}
+{"level":"info","message":"handshake authorized cp4_Z-5jLfp27t8bbgi1","timestamp":"2014-03-26T17:26:51.526Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T17:34:38.683Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T17:34:38.856Z"}
+{"level":"info","message":"handshake authorized skS8YWNI1MtsEQmbdUMI","timestamp":"2014-03-26T17:34:40.748Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:34:43.659Z"}
+{"level":"info","message":"handshake authorized 5plH52fLacSkWK2MdUMJ","timestamp":"2014-03-26T17:34:44.709Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T17:35:16.420Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T17:35:16.577Z"}
+{"level":"info","message":"handshake authorized Z6y2bbL5O-RQcmGsddZi","timestamp":"2014-03-26T17:35:17.202Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:35:18.257Z"}
+{"level":"info","message":"handshake authorized wTVSQxGKxj0bvnyPddZj","timestamp":"2014-03-26T17:35:19.349Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:35:38.033Z"}
+{"level":"info","message":"handshake authorized 1IUyDnKOaDjn6lo9ddZk","timestamp":"2014-03-26T17:35:38.543Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:36:48.599Z"}
+{"level":"info","message":"handshake authorized trUijU2YBAUJ7ZkVddZl","timestamp":"2014-03-26T17:36:49.041Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:38:00.553Z"}
+{"level":"info","message":"handshake authorized HUkkM7YlLyFBD92NddZm","timestamp":"2014-03-26T17:38:01.072Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:38:38.464Z"}
+{"level":"info","message":"handshake authorized UKbXTIFPg_IuhpN9ddZn","timestamp":"2014-03-26T17:38:38.964Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:39:00.259Z"}
+{"level":"info","message":"handshake authorized 9LZ4AiThrDoFaef6ddZo","timestamp":"2014-03-26T17:39:00.760Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:39:51.360Z"}
+{"level":"info","message":"handshake authorized 7XeqZaCC-2E8bpk3ddZp","timestamp":"2014-03-26T17:39:51.846Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:40:36.307Z"}
+{"level":"info","message":"handshake authorized DGv3HU2wD5iVhe0xddZq","timestamp":"2014-03-26T17:40:36.910Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:40:56.313Z"}
+{"level":"info","message":"handshake authorized kU9yyVu2yS7Y-tNRddZr","timestamp":"2014-03-26T17:40:56.862Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:41:25.032Z"}
+{"level":"info","message":"handshake authorized l-uKtY6oJyN9XkZKddZs","timestamp":"2014-03-26T17:41:25.556Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:41:41.370Z"}
+{"level":"info","message":"handshake authorized dfZwOvEE-zjKq9pmddZt","timestamp":"2014-03-26T17:41:41.908Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:41:59.270Z"}
+{"level":"info","message":"handshake authorized -3Gb03dMgxvYCoVcddZu","timestamp":"2014-03-26T17:41:59.864Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:42:09.190Z"}
+{"level":"info","message":"handshake authorized A86aJqQPKUU1P7r-ddZv","timestamp":"2014-03-26T17:42:09.727Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:42:15.148Z"}
+{"level":"info","message":"handshake authorized K4nzaPV42DGtK2X7ddZw","timestamp":"2014-03-26T17:42:15.675Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:42:44.716Z"}
+{"level":"info","message":"handshake authorized aPo1Sjncq9kj7RTtddZx","timestamp":"2014-03-26T17:42:45.242Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:43:22.705Z"}
+{"level":"info","message":"handshake authorized OJMpLVKmYMH82i93ddZy","timestamp":"2014-03-26T17:43:23.256Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:43:45.241Z"}
+{"level":"info","message":"handshake authorized jbFBW4o7zz__SS21ddZz","timestamp":"2014-03-26T17:43:45.687Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:43:51.937Z"}
+{"level":"info","message":"handshake authorized 9nalIyAC18zOtbi-ddZ0","timestamp":"2014-03-26T17:43:52.441Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:44:09.181Z"}
+{"level":"info","message":"handshake authorized TMwsMgOhppoAIVQ1ddZ1","timestamp":"2014-03-26T17:44:09.649Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:44:13.229Z"}
+{"level":"info","message":"handshake authorized 48hc1bLuVg2CUJmYddZ2","timestamp":"2014-03-26T17:44:13.686Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T17:53:09.796Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T17:53:09.968Z"}
+{"level":"info","message":"handshake authorized 1VB5WxYz27QPbt-QhjdQ","timestamp":"2014-03-26T17:53:11.780Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T17:53:13.348Z"}
+{"level":"info","message":"handshake authorized IvMGS4inY9xonrwrhjdR","timestamp":"2014-03-26T17:53:14.343Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T18:01:36.347Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T18:01:36.529Z"}
+{"level":"info","message":"handshake authorized DSPg4sb9daSAPTXsjfIS","timestamp":"2014-03-26T18:01:36.635Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T18:01:38.339Z"}
+{"level":"info","message":"handshake authorized 9wHHls248nZCqxzyjfIT","timestamp":"2014-03-26T18:01:39.585Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T18:02:55.317Z"}
+{"level":"info","message":"handshake authorized ZaI_nuDzKISZCEl3jfIU","timestamp":"2014-03-26T18:02:55.758Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T18:05:19.276Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T18:05:19.426Z"}
+{"level":"info","message":"handshake authorized b6zKUHRc6MS0eiuakVjD","timestamp":"2014-03-26T18:05:22.089Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T18:08:02.568Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T18:08:02.773Z"}
+{"level":"info","message":"handshake authorized CP4SKboAJ0PzgPugk9bW","timestamp":"2014-03-26T18:08:04.367Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T18:10:34.739Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T18:10:34.939Z"}
+{"level":"info","message":"handshake authorized fkR01cE98icgaMSNlik8","timestamp":"2014-03-26T18:10:37.068Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T18:11:01.178Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T18:11:01.367Z"}
+{"level":"info","message":"handshake authorized nAKhN9Q2lcvFca-VlpB4","timestamp":"2014-03-26T18:11:02.221Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T18:11:03.277Z"}
+{"level":"info","message":"handshake authorized UzbgYkSOpEzPa1qDlpB5","timestamp":"2014-03-26T18:11:04.474Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T18:31:41.196Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T18:31:41.393Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T18:32:14.648Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T18:32:14.836Z"}
+{"level":"info","message":"handshake authorized uzgjhPSjfk967Evuqf71","timestamp":"2014-03-26T18:32:17.980Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T18:33:27.384Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T18:33:27.598Z"}
+{"level":"info","message":"handshake authorized 9DpjtR4B16lM-BXXqxsv","timestamp":"2014-03-26T18:33:29.295Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T18:33:43.063Z"}
+{"level":"info","message":"handshake authorized Df16QHmyWIFU8gqYqxsw","timestamp":"2014-03-26T18:33:44.170Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T18:52:16.082Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T18:52:16.288Z"}
+{"level":"info","message":"handshake authorized dPe0FEWiBfoHP9xPvFQh","timestamp":"2014-03-26T18:52:17.763Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T18:59:35.751Z"}
+{"level":"info","message":"handshake authorized Unjfrs2c4FxjK2omvFQi","timestamp":"2014-03-26T18:59:37.011Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T19:14:47.745Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T19:14:47.958Z"}
+{"level":"info","message":"handshake authorized HdarWLLdmD2euTSP0PQX","timestamp":"2014-03-26T19:14:51.413Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T19:30:43.644Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T19:30:43.820Z"}
+{"level":"info","message":"handshake authorized QM4g5FZftga7zBWT34ns","timestamp":"2014-03-26T19:30:46.172Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T19:31:26.685Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T19:31:26.861Z"}
+{"level":"info","message":"handshake authorized H-JpVBEspI8rPnOz4DIN","timestamp":"2014-03-26T19:31:29.184Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T19:32:41.404Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T19:32:41.572Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T19:32:48.856Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T19:32:49.057Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T19:33:05.517Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T19:33:05.684Z"}
+{"level":"info","message":"handshake authorized e9Wq4-0UyDmFRy9s4bQV","timestamp":"2014-03-26T19:33:07.816Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T20:33:51.304Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T20:33:51.527Z"}
+{"level":"info","message":"handshake authorized 5FION1dspTddPFVnGVWo","timestamp":"2014-03-26T20:33:52.987Z"}
+{"level":"info","message":"handshake authorized LVnZ_iyRgiEdIV9CGVWp","timestamp":"2014-03-26T20:35:02.472Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T20:37:58.098Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T20:37:58.253Z"}
+{"level":"info","message":"handshake authorized gfNfFlVS_bwE_kAJHRlu","timestamp":"2014-03-26T20:37:59.157Z"}
+{"level":"info","message":"handshake authorized TBQ4bRrJS64BOYSpHRlv","timestamp":"2014-03-26T20:38:04.995Z"}
+{"level":"info","message":"transport end (close timeout)","timestamp":"2014-03-26T20:39:19.293Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T21:01:35.265Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T21:01:35.513Z"}
+{"level":"info","message":"handshake authorized Xxp---RhyAzyh289Mrma","timestamp":"2014-03-26T21:01:37.153Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T21:10:24.564Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T21:10:24.749Z"}
+{"level":"info","message":"handshake authorized _DDSjlw0vcPpAOpjOszu","timestamp":"2014-03-26T21:10:25.612Z"}
+{"level":"info","message":"handshake authorized cWnrU-9a_CnY7B28Oszv","timestamp":"2014-03-26T21:10:29.915Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T21:11:44.229Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T21:11:44.487Z"}
+{"level":"info","message":"handshake authorized 7IPED52VqAlLjHSzPARn","timestamp":"2014-03-26T21:11:56.652Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T21:22:32.177Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T21:22:32.408Z"}
+{"level":"info","message":"handshake authorized Y6N47ftC8uLtOhfeRedZ","timestamp":"2014-03-26T21:22:43.540Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T21:43:29.762Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T21:43:29.998Z"}
+{"level":"info","message":"handshake authorized fLj4bs54XmCT18pnWRfP","timestamp":"2014-03-26T21:43:32.996Z"}
+{"level":"info","message":"handshake authorized JKd19uEr88_RmNIvWRfQ","timestamp":"2014-03-26T21:43:36.254Z"}
+{"level":"info","message":"transport end (close timeout)","timestamp":"2014-03-26T21:44:53.124Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T22:08:15.361Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T22:08:15.679Z"}
+{"level":"info","message":"handshake authorized 5Vi0S0VIbyFuBEW1b8NA","timestamp":"2014-03-26T22:08:15.973Z"}
+{"level":"info","message":"handshake authorized llLq-4j9sY8Ra87zb8NB","timestamp":"2014-03-26T22:08:20.685Z"}
+{"level":"info","message":"transport end (close timeout)","timestamp":"2014-03-26T22:09:36.100Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T22:26:54.633Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T22:26:54.861Z"}
+{"level":"info","message":"handshake authorized 70SsN3_6M85ZFZXMgNcO","timestamp":"2014-03-26T22:26:55.833Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T22:26:59.783Z"}
+{"level":"info","message":"handshake authorized GQVEiGsTSWOJxnrYgNcP","timestamp":"2014-03-26T22:27:01.280Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T22:48:29.049Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T22:48:29.261Z"}
+{"level":"info","message":"handshake authorized Dq6g0aFKAHk2vWVAlJdO","timestamp":"2014-03-26T22:48:30.945Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T22:48:34.236Z"}
+{"level":"info","message":"handshake authorized 2K7FceGrYh8vzBKqlJdP","timestamp":"2014-03-26T22:48:35.643Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-26T23:20:49.409Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-26T23:20:49.571Z"}
+{"level":"info","message":"handshake authorized v14duPvbDH5nSY_YsjKk","timestamp":"2014-03-26T23:20:50.193Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-26T23:20:56.153Z"}
+{"level":"info","message":"handshake authorized HQ6y-RW486zqzrwTsjKl","timestamp":"2014-03-26T23:20:57.458Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T14:00:53.851Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T14:00:54.637Z"}
+{"level":"info","message":"handshake authorized OWVjSfVHKZXyHHA91_Bu","timestamp":"2014-03-27T14:00:55.108Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-27T14:00:59.745Z"}
+{"level":"info","message":"handshake authorized lP-8TxVL2_ru1pwk1_Bv","timestamp":"2014-03-27T14:01:01.097Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-27T16:55:03.082Z"}
+{"level":"info","message":"handshake authorized jZv3TI8lCWEHE4YB1_Bw","timestamp":"2014-03-27T16:55:16.175Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:16:53.033Z"}
+{"level":"info","message":"Database Logging set up OK!","timestamp":"2014-03-27T17:16:53.034Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:16:53.951Z"}
+{"level":"info","message":"handshake authorized RAxzRM027KHcjXu_i19A","timestamp":"2014-03-27T17:19:01.706Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:19:16.514Z"}
+{"level":"info","message":"Database Logging set up OK!","timestamp":"2014-03-27T17:19:16.514Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:19:16.725Z"}
+{"level":"info","message":"handshake authorized SWTuK-5_EihuFnyrjYz2","timestamp":"2014-03-27T17:19:19.649Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:20:16.307Z"}
+{"level":"info","message":"Database Logging set up OK!","timestamp":"2014-03-27T17:20:16.308Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:20:16.464Z"}
+{"level":"info","message":"handshake authorized n95DGny3XNQeFcfojnZR","timestamp":"2014-03-27T17:20:17.744Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:21:35.076Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:21:35.244Z"}
+{"level":"info","message":"handshake authorized hkHhSaH8wHgB4Y3lj6oN","timestamp":"2014-03-27T17:21:35.657Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:22:23.829Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:22:23.976Z"}
+{"level":"info","message":"handshake authorized 68OsoX1P5IhngjXYkGhp","timestamp":"2014-03-27T17:22:25.687Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:23:06.607Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:23:06.778Z"}
+{"level":"info","message":"handshake authorized dvB58Ve1HDxZR_TSkQ-b","timestamp":"2014-03-27T17:23:07.796Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:24:33.326Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:24:33.482Z"}
+{"level":"info","message":"handshake authorized 4lgLWVXktfTPAetJkmJL","timestamp":"2014-03-27T17:24:41.633Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:26:49.906Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:26:50.086Z"}
+{"level":"info","message":"handshake authorized MC8xCsEzO3IcdtkblHfm","timestamp":"2014-03-27T17:26:50.709Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:28:54.909Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:28:55.073Z"}
+{"level":"info","message":"handshake authorized m3PcGRN0wDO_541flmAi","timestamp":"2014-03-27T17:28:55.667Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:29:28.565Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:29:28.756Z"}
+{"level":"info","message":"handshake authorized dftynMAD0DTNoTYEluO1","timestamp":"2014-03-27T17:29:29.669Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:31:02.046Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:31:02.179Z"}
+{"level":"info","message":"handshake authorized BLZ878OJAlY2UyUgmFCk","timestamp":"2014-03-27T17:31:02.643Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:35:29.566Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:35:31.043Z"}
+{"level":"info","message":"handshake authorized AX2O3iTBFe9S1yk8nGrk","timestamp":"2014-03-27T17:35:32.660Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:37:30.622Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:37:30.767Z"}
+{"level":"info","message":"handshake authorized Ps9DozRXcIidXGsknj6Q","timestamp":"2014-03-27T17:37:38.614Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-27T17:39:42.375Z"}
+{"level":"info","message":"handshake authorized pEkfpVp0uJZSv8KLnj6R","timestamp":"2014-03-27T17:39:44.766Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T17:48:17.425Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T17:48:17.559Z"}
+{"level":"info","message":"handshake authorized dDt_z2A_2vRMFKuVqB0Y","timestamp":"2014-03-27T17:48:44.357Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-27T18:06:57.831Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-27T18:06:58.737Z"}
+{"level":"info","message":"handshake authorized GN7bnvu76ktouVY3uTix","timestamp":"2014-03-27T18:06:59.684Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-27T18:07:08.676Z"}
+{"level":"info","message":"handshake authorized 5ZVBA27ideU7gV8buTiy","timestamp":"2014-03-27T18:07:10.381Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-27T19:14:10.991Z"}
+{"level":"info","message":"handshake authorized NY-hDsRNkuoaU6IeuTiz","timestamp":"2014-03-27T19:14:12.105Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-28T00:27:12.893Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-28T00:27:13.842Z"}
+{"level":"info","message":"handshake authorized iHTA-QH7vb3_LrMaFVoz","timestamp":"2014-03-28T00:27:19.317Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-28T00:27:29.776Z"}
+{"level":"info","message":"handshake authorized E0iv1RjI4eFq8pVPFVo0","timestamp":"2014-03-28T00:27:35.357Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-28T00:28:41.852Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-28T00:28:42.052Z"}
+{"level":"info","message":"handshake authorized ExVD0s8Gtj_aiwX_FrLF","timestamp":"2014-03-28T00:28:46.118Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-28T00:28:49.815Z"}
+{"level":"info","message":"handshake authorized a89SbNnQ7WV-Yn4_FrLG","timestamp":"2014-03-28T00:28:51.121Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-28T00:29:29.154Z"}
+{"level":"info","message":"socket.io started","timestamp":"2014-03-28T00:29:29.351Z"}
+{"level":"info","message":"handshake authorized KnZdnyjfrraFJ9AjF2uH","timestamp":"2014-03-28T00:29:32.493Z"}
+{"level":"info","message":"transport end (socket end)","timestamp":"2014-03-28T00:29:38.138Z"}
+{"level":"info","message":"handshake authorized dVj_OTCqBZaJnJYbF2uI","timestamp":"2014-03-28T00:29:39.474Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-31T17:54:25.096Z"}

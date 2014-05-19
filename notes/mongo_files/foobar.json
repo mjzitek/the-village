@@ -1,0 +1,3 @@
+{ fooId: 1, fooName: "Foo Foo", amount: 5 }
+{ fooId: 2, fooName: "Foo Foo", amount: 5 }
+{ fooId: 3, fooName: "Foo Foo", amount: 5 }

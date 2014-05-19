@@ -1,0 +1,14 @@
+
+- skillId
+- skillName
+- skillDescription
+- maxLevel
+- previousSkillsRequired []
+	- skillId
+	- skillLevel
+
+========
+
+- skillId
+- villageId
+- skillLevel

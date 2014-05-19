@@ -1,0 +1,13 @@
+- reqId
+- reqType: "building"
+- itemsNeeded:
+	- itemId
+	- quantity
+	- payment: true/false  
+		-- detirmines if the player will pay the item
+			-- generally true for items such as wood, stone, etc but
+			   can be false if the player just needs to have certain building(s)
+			   to construct this building
+- skillRequired []
+	- skillId 
+	- skillLevel
