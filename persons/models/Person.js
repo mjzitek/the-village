@@ -2,18 +2,17 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var PersonSchema = new mongoose.Schema({
-	
+	familyId:   	{ type: Schema.Types.ObjectId, ref: 'families' },
+	firstName:  	String,
+	middleName: 	String,
+	lastName:   	String,
+	gender: 		String,
+	dateOfBirth:  	Date,
+	placeOfBirth: 	{ type: Schema.Types.ObjectId, ref: 'villages' },
+	headOfFamily:   Number,
+	fatherId:       { type: Schema.Types.ObjectId, ref: 'persons' },
+	motherId:       { type: Schema.Types.ObjectId, ref: 'persons' }
 });
 
-var Persons = mongoose.model('persons', PersonSchema);
+mongoose.model('persons', PersonSchema);
 
-
-
-exports.getAllPeople = function(callback) {
-
-	Persons.find({}, function(err,doc) {
-			callback(doc);
-			//console.log(doc);
-	});
-
-};

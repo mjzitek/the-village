@@ -21,3 +21,56 @@
 - would be great to track individuals but would probably be too difficult/resource intensive for large popluations
   (see comment above)
 
+Things people can do
+====================
+- be born
+- work
+- play
+- get sick
+- die
+- learn (schooling and skills)
+- fight
+- marry
+- have children
+- be hot/cold
+- be hungry
+- be tired
+- be bored
+- worship
+- hobbies/interests
+
+
+
+===============================
+
+Person
+======
+- lastname
+- firstname
+- family  -- how to map family trees/ relationships?
+- relationships (other than family..so like friends?)
+- gender
+- age (birthdate)
+- job
+- skills [{}]
+- housing
+- current activity
+
+- alive
+- hunger
+- health
+
+
+
+===================================
+Related tables
+--------------
+- Jobs
+- Family
+- PersonInventory
+
+
+- Skills
+- Village
+- Items
+- Buildings

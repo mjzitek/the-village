@@ -575,3 +575,4 @@
 {"level":"info","message":"transport end (socket end)","timestamp":"2014-03-28T00:29:38.138Z"}
 {"level":"info","message":"handshake authorized dVj_OTCqBZaJnJYbF2uI","timestamp":"2014-03-28T00:29:39.474Z"}
 {"level":"info","message":"Data Logging set up OK!","timestamp":"2014-03-31T17:54:25.096Z"}
+{"level":"info","message":"Data Logging set up OK!","timestamp":"2014-05-19T04:47:37.219Z"}

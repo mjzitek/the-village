@@ -1,0 +1,12 @@
+{
+    "familyId" : ObjectId("53826061b77b80b59d2c4c4c"),
+    "firstName" : "Mary",
+    "middleName" : null,
+    "lastName" : "Williams",
+    "gender" : "F",
+    "dateOfBirth" : "1994-05-08",
+    "placeOfBirth" : null,
+    "headOfFamily" : 0,
+    "fatherId" : null,
+    "motherId" : null
+}
