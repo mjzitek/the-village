@@ -7,6 +7,7 @@
 var mongoose = require('mongoose');
 //var colors = require('colors');
 var fs = require('fs');
+var moment = require('moment');
 
 var config = require('./config/config');
 
@@ -52,8 +53,8 @@ var persons = require('./controllers/persons');
 
 var App = {
 	intervalTime: 10,
-	models: null
-
+	models: null,
+	gameClock: moment("Jan 1, 1900")
 };
 
 
@@ -87,6 +88,9 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 	console.log('=======================================');
 
+	console.log(App.gameClock.format('MMM D, YYYY'));
+	App.gameClock.add('y', 1);
+
 	persons.totalPopulation(function(c) {
 		console.log('Total Population: ' + c);
 	});
@@ -96,9 +100,21 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 		//console.log(users);
 
 		pers.forEach(function(p) {
-			console.log(p.firstName + ' ' + p.lastName);			
+			//console.log(p.firstName + ' ' + p.lastName);	
+			// if(p.headOfFamily == 1)
+			// {
+			// 	persons.giveBirth( 
+			// 					   p.familyInfo._id,
+			// 					   p.familyInfo.familyName, 
+			// 					   p._id,	// fatherId
+			// 					   '53825c9cb77b80b59d2c4c49'
+			// 					  );
+
+			// }		
 		});
 	});
+
+	
 }
 
 

@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var PersonSchema = new mongoose.Schema({
-	familyId:   	{ type: Schema.Types.ObjectId, ref: 'families' },
+	familyInfo:   	{ type: Schema.Types.ObjectId, ref: 'families' },
 	firstName:  	String,
 	middleName: 	String,
 	lastName:   	String,
@@ -10,8 +10,8 @@ var PersonSchema = new mongoose.Schema({
 	dateOfBirth:  	Date,
 	placeOfBirth: 	{ type: Schema.Types.ObjectId, ref: 'villages' },
 	headOfFamily:   Number,
-	fatherId:       { type: Schema.Types.ObjectId, ref: 'persons' },
-	motherId:       { type: Schema.Types.ObjectId, ref: 'persons' }
+	fatherInfo:       { type: Schema.Types.ObjectId, ref: 'persons' },
+	motherInfo:       { type: Schema.Types.ObjectId, ref: 'persons' }
 });
 
 mongoose.model('persons', PersonSchema);

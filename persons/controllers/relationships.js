@@ -11,6 +11,11 @@ exports.getCouples = function(callback) {
 
 
 // Actions
-exports.performMarriage = function(callback) {
+exports.performMarriage = function(personId1, personId2, headId, callback) {
+
+	// Check if people are already married
+
+
+	// Marry them
 
 }
