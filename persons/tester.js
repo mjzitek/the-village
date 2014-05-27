@@ -1,10 +1,16 @@
+ // var mongoose = require('mongoose'),
+// 	Building = mongoose.model('buildings'),
+// 	Item = mongoose.model('items'),
+// 	Inventory = mongoose.model('playeritems'),
+// 	Requirement = mongoose.model('requirements');
+
 var mongoose = require('mongoose');
 //var colors = require('colors');
 var fs = require('fs');
 var moment = require('moment');
 
-
 var config = require('./config/config');
+var tMoment = require('./helpers/time.js');
 
 // var logging = require('./config/logger');
 // var debuglogger = logging.Logging().get('debug');
@@ -43,53 +49,110 @@ walk(models_path);
 // var users = require('./controllers/users');
 // var villages = require('./controllers/villages');
 var persons = require('./controllers/persons');
-var families = require('./controllers/families');
+var gamesetting = require('./controllers/gamesettings');
+
+/////////////////////////////////
+
+var App = {
+	intervalTime: 10,
+	models: null,
+	gameClock: moment("Jan 1, 1900")
+};
 
 
-
-////////////////////////////////////////////////////////
-//
-//	Variables
-
-var gameClock = moment("Jan 1, 1900");
-
-////////////////////////////////////////////////////////
-
-
-
-// persons.getPersons(function (pers){
-// 		//console.log(users);
-
-// 		pers.forEach(function(p) {
-// 			console.log(p.firstName + ' ' + p.lastName);	
-// 			if(p.headOfFamily == 1)
-// 			{
-// 				persons.giveBirth( 
-// 								   p.familyInfo._id,
-// 								   p.familyInfo.familyName, 
-// 								   p._id,	// fatherId
-// 								   '53825c9cb77b80b59d2c4c49'
-// 								  );
-
-// 			}		
-// 		});
-// });
-
-persons.getChildrenByFather('5382617ab77b80b59d2c4c52', function(pers) {
-	console.log(gameClock.format('MMM d, YYYY'));
-
-	pers.forEach(function(c) {
-		console.log(c.firstName + ' ' + c.lastName);
-	});
-});
-
-
-
-
-
-
-
-
-function updateGameCal() {
+function PersonsEngine() {
 
 }
+
+
+PersonsEngine.prototype.init = function() {
+	console.log('Engine started...');
+	that = this;
+	//this.models = models;
+	that.setAutoInterval();
+	//console.log(models);
+}
+
+PersonsEngine.prototype.setAutoInterval = function() {
+		that = this;
+
+		//clearInterval(App.refreshIntervalId);
+		that.automatedWorkers(that.models);
+		App.refreshIntervalId = setInterval(function() {
+			that.automatedWorkers(that.models);
+			//console.log("Engine tick");
+		}, App.intervalTime * 1000);
+} 
+
+PersonsEngine.prototype.automatedWorkers = function(models) {
+
+	var that = this;
+
+	console.log('=======================================');
+
+	console.log("Game Clock: " + App.gameClock.format('MMM D, YYYY'));
+	App.gameClock.add('y', 1);
+
+	gamesetting.setValueByKey('time', App.gameClock, function() {});
+
+	diff = tMoment.getDifference(App.gameClock,new Date());
+
+	console.log('Y: ' + diff.years + ' / M: ' + diff.months + ' / D: ' + diff.days);
+
+	persons.totalPopulation(function(c) {
+		console.log('Total Population: ' + c);
+	});
+
+	testId = '5382617ab77b80b59d2c4c52'
+
+	// console.log("====================================");
+
+	// persons.getPerson(testId, function(per) {
+	// 	console.log(per);
+	// 	console.log(per.dateOfBirth);
+	// });
+
+
+	//ObjectId("5382617ab77b80b59d2c4c52")
+	persons.getAge(testId,1, function(age) {
+		console.log("ZZ AGE: ");
+		console.log(age);		
+	});
+
+	console.log("====================================");
+
+	persons.breed(testId, function(d) {
+		console.log("OE: " + d.oldEnough);
+	});
+
+	console.log("====================================");
+
+	// persons.getPersons(function (pers){
+	// 	//console.log(users);
+
+	// 	pers.forEach(function(p) {
+	// 		//console.log(p.firstName + ' ' + p.lastName);	
+	// 		// if(p.headOfFamily == 1)
+	// 		// {
+	// 		// 	persons.giveBirth( 
+	// 		// 					   p.familyInfo._id,
+	// 		// 					   p.familyInfo.familyName, 
+	// 		// 					   p._id,	// fatherId
+	// 		// 					   '53825c9cb77b80b59d2c4c49'
+	// 		// 					  );
+
+	// 		// }		
+	// 	});
+	// });
+
+	
+}
+
+
+
+
+var personsEngine = new PersonsEngine();
+
+
+
+personsEngine.init();

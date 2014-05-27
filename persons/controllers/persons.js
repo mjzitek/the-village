@@ -1,7 +1,16 @@
 var fs = require('fs');
+var moment = require('moment');
+var async = require('async');
+
+var settings = require('../config/settings.js');
+var tMoment = require('../helpers/time.js');
+
 
  var mongoose = require('mongoose'),
 	Person = mongoose.model('persons');
+
+var gameSettings = require('./gamesettings');
+
 
 /***************************************************************************************
  *	
@@ -17,8 +26,15 @@ exports.getPersons = function(callback) {
 
 }
 
+exports.getPerson = function(personId, callback) {
+	Person.findOne({_id: personId}).populate('familyInfo').exec(function(err, doc) {
+		callback (doc);
+	});
+
+}
+
+
 exports.totalPopulation = function(callback) {
-	// userModel.count({name: 'anand'}, function(err, c)
 	Person.count({}, function(err, c) { callback(c); });
 }
 
@@ -38,8 +54,87 @@ exports.getChildrenByMother = function(motherId, callback) {
 }
 
 
+exports.getAge = function(personId, yearsOld, callback) {
+	Person.findOne({_id: personId}, function(err, per) {
+		// Get current game datetime
+
+		gameSettings.getValueByKey('time', function(time) {
+			curGameTime = moment(time.setvalue);
+			birthDate = moment(per.dateOfBirth);
+			//console.log(time);
+			console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
+			console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
+			curAge = tMoment.getDifference(curGameTime, birthDate);
+
+			callback(curAge);
+
+		});
+	});
+}
 
 
+// exports.breed = function(personId, callback) {
+// 	var minAge = settings.minBreedAge;
+// 	var age;
+// 	var oldEnough;
+
+// 	// Person.findOne({ _id: personId }, function(err, per) {
+// 	// 	exports.getAge(personId, 1, function (perAge){ 
+				
+// 	// 		console.log("Min age: " + minAge);
+// 	// 		console.log("Per age: " + perAge.years);
+	
+// 	// 		if(perAge.years >= minAge) {
+// 	// 			oldEnough = true;
+// 	// 		} else {
+// 	// 			oldEnough = false;
+// 	// 		}
+			
+// 	// 		callback(oldEnough);
+// 	// 	});
+// 	// });
+
+// 	// persons.getAge(testId,1, function(age) {
+// 	// 	console.log("ZZ AGE: ");
+// 	// 	console.log(age);		
+// 	// });
+
+
+// 	exports.getAge(personId, 1, function(age) {
+// 		callback("blue");
+// 	});
+// }
+
+exports.breed = function(personId, callback) {
+
+	var age;
+	var minAge = settings.minBreedAge;
+	var oldEnough;
+	var r;
+
+	async.series({
+		age: function(callback) {
+			exports.getAge(personId, 1, function(a) {
+				age = a.years;
+				callback(null, age);
+			})
+			
+		},
+		oldEnough: function(callback) {
+			if(age >= minAge) {
+				oldEnough = true;
+			} else {
+				oldEnough = false;
+			}
+			callback(null, oldEnough);
+		} 
+	},
+	function(err, results) {
+
+    	console.log(results);
+    	callback(results);
+	});
+}
 
 /***************************************************************************************
  *	
@@ -54,7 +149,7 @@ exports.giveBirth = function(familyId, familyName, fatherId, motherId, callback)
 
 						gender = 'M';
 
-						name = getName(pickGender());
+						name = GetName(PickGender());
   						
 					
 
@@ -103,7 +198,7 @@ exports.giveBirth = function(familyId, familyName, fatherId, motherId, callback)
 
 }
 
-function pickGender()
+function PickGender()
 {
 	var ranNum = (Math.floor(Math.random() * 100));
 
@@ -117,7 +212,7 @@ function pickGender()
 
 
 
-function getRandomName(filename, line_no) {
+function GetRandomName(filename, line_no) {
     var data = fs.readFileSync(filename, 'utf8');
     var lines = data.split("\n");
 
@@ -131,7 +226,7 @@ function getRandomName(filename, line_no) {
 }
 
 
-function getName(gender) {
+function GetName(gender) {
 
 	var nameFile;
 
@@ -152,3 +247,38 @@ function getName(gender) {
 }
 
 
+function OldEnoughToBreed(curAge)
+{
+	var minAge = settings.minBreedAge;
+
+	var oldEnough;
+
+	if(curAge >= minAge) {
+		oldEnough = true;
+	} else {
+		oldEnough = false;
+	}
+
+	return oldEnough;
+
+}
+
+var GetAge = function(personId, yearsOld, callback) {
+
+	Person.findOne({_id: personId}, function(err, per) {
+		// Get current game datetime
+
+		gameSettings.getValueByKey('time', function(time) {
+			curGameTime = moment(time.setvalue);
+			birthDate = moment(per.dateOfBirth);
+			//console.log(time);
+			console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
+			console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
+			curAge = tMoment.getDifference(curGameTime, birthDate);
+
+			callback(curAge);
+
+		});
+	});
+
+}
