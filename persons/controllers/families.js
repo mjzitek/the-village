@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 
 exports.getFamilyName = function(familyId, callback) {
 
-	Family.find({_id: familyId}, function(err, doc) {
+	Family.findOne({_id: familyId}, function(err, doc) {
 		callback (doc.familyName);
 	});
 }
+

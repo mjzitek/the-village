@@ -9,8 +9,10 @@ var tMoment = require('../helpers/time.js');
  var mongoose = require('mongoose'),
 	Person = mongoose.model('persons');
 
-var gameSettings = require('./gamesettings');
 
+
+var gameSettings = require('./gamesettings');
+var families = require('./families');
 
 /***************************************************************************************
  *	
@@ -61,10 +63,13 @@ exports.getAge = function(personId, yearsOld, callback) {
 		gameSettings.getValueByKey('time', function(time) {
 			curGameTime = moment(time.setvalue);
 			birthDate = moment(per.dateOfBirth);
-			//console.log(time);
+			
+			console.log("XX " + personId);
 			console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
 			console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
+
 			curAge = tMoment.getDifference(curGameTime, birthDate);
+			console.log("XX " + curAge.years);
 
 			callback(curAge);
 
@@ -105,28 +110,45 @@ exports.getAge = function(personId, yearsOld, callback) {
 // 	});
 // }
 
-exports.breed = function(personId, callback) {
+exports.breed = function(fatherId, motherId, callback) {
 
-	var age;
-	var minAge = settings.minBreedAge;
+	var frAge;
+	var mrAge;
+	var minAge = settings.minBreedAgeMake;
+	var maxAge = settings.maxBreedAgeFemale;
 	var oldEnough;
 	var r;
 
 	async.series({
-		age: function(callback) {
-			exports.getAge(personId, 1, function(a) {
-				age = a.years;
-				callback(null, age);
-			})
+		fatherAge: function(callback) {
+			exports.getAge(fatherId, 1, function(a) {
+				frAge = a.years;
+				callback(null, frAge);
+			});
 			
 		},
+		motherAge: function(callback) {
+			exports.getAge(motherId, 1, function(a) {
+				mrAge = a.years;
+				callback(null, mrAge);
+			});
+		},
 		oldEnough: function(callback) {
-			if(age >= minAge) {
+			if((frAge >= minAge) && (mrAge >= minAge)) {
 				oldEnough = true;
 			} else {
 				oldEnough = false;
 			}
 			callback(null, oldEnough);
+		},
+		haveKid: function(callback) {
+			if(oldEnough) {
+				giveBirth(fatherId, motherId, function() {
+					callback();
+				
+				});
+				callback(null, '** New Baby **');
+			}
 		} 
 	},
 	function(err, results) {
@@ -144,58 +166,48 @@ exports.breed = function(personId, callback) {
  ***************************************************************************************/
 
 
+//giveBirth = function(familyId, familyName, fatherId, motherId, callback) {
+giveBirth = function(fatherId, motherId, callback) {
 
-exports.giveBirth = function(familyId, familyName, fatherId, motherId, callback) {
+	gender = PickGender();
 
-						gender = 'M';
+	name = GetName(gender);
 
-						name = GetName(PickGender());
+	exports.getPerson(fatherId, function(father) {
   						
-					
+			families.getFamilyName(father.familyInfo._id, function(famName) {				
 
 						//console.log(name);
-
-						var per = new Person({ familyInfo: familyId, 
-											   firstName: name.first,
-											   middleName:  name.middle,
-											   lastName: familyName,
-											   gender: gender,
-											   dateOfBirth: new Date(),
-											   placeOfBirth: null,
-											   headOfFamily: 0,
-											   fatherInfo: fatherId, 
-											   motherInfo: motherId
-										     });
-
-						//console.log("U:" + u);
-						//console.log("I:" + i);
-						//console.log("inv: " + inv);
-						//self = this;
-
-						per.save(function (err) {
-
-							// if (err) {
-							//  	//console.log("Error Code: " + err);
-							//  	// Unique key violation
-			    // 				if (11001 === err.code || 11000 === err.code) {
-
-			    // 					Inventory.update({villageInfo: villageId, itemInfo: i._id}, 
-							// 			{'$inc': { quantity: amount }, lastUpdated: new Date()}, function( err, doc) {
-							// 			//console.log('Updating ' + itemName + ' for ' + u.username);
-							// 			callback({messageType: "Updated", message: ""});
-							// 		});
-
-									
-			    // 				}
-			    			
-			    // 			} else {
-			    // 				//console.log('Added ' + itemName + ' for ' + u.username);
-							//	callback({messageType: "Added", message: ""});
-			    			//}
+						gameSettings.getValueByKey('time', function(time) {
+						
+							curGameTime = moment(time.setvalue);
+							var per = new Person({ familyInfo: father.familyInfo._id, 
+												   firstName: name.first,
+												   middleName:  name.middle,
+												   lastName: famName,
+												   gender: gender,
+												   dateOfBirth: curGameTime,
+												   placeOfBirth: null,
+												   headOfFamily: 0,
+												   fatherInfo: fatherId, 
+												   motherInfo: motherId
+											     });
 
 
+							console.log("******************************************");
+							console.log(father.familyInfo._id);
+							console.log(famName);
+							console.log(gender);
+							console.log(name.first);
+							console.log("******************************************");
+
+							per.save(function (err) {});
+
+
+							
 						});
-
+			});	
+		});	
 }
 
 function PickGender()
@@ -238,8 +250,8 @@ function GetName(gender) {
 		nameFile = 'female_names.txt';
 	}
 
-	var first = getRandomName('./models/' + nameFile, (Math.floor(Math.random() * 100)));
-	var middle = getRandomName('./models/' + nameFile, (Math.floor(Math.random() * 100)));
+	var first = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 100)));
+	var middle = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 100)));
 
 	var name = { first: first, middle: middle };
 

@@ -5,6 +5,8 @@
 var settings = {};
 
 settings.minBreedAge = 18;
+settings.maxBreedAgeFemale = 40;
+settings.maxBreedAgeMale = 80;
 settings.maxAge = 80;
 
 

@@ -1,12 +1,89 @@
+/* 0 */
 {
-    "familyId" : ObjectId("53826061b77b80b59d2c4c4c"),
+    "_id" : ObjectId("5382617ab77b80b59d2c4c52"),
+    "familyInfo" : ObjectId("53826061b77b80b59d2c4c4c"),
+    "firstName" : "Mark",
+    "middleName" : null,
+    "lastName" : "Williams",
+    "gender" : "M",
+    "dateOfBirth" : "1900-05-08",
+    "placeOfBirth" : null,
+    "headOfFamily" : 1,
+    "fatherInfo" : null,
+    "motherInfo" : null
+}
+
+/* 1 */
+{
+    "_id" : ObjectId("538261a8b77b80b59d2c4c53"),
+    "familyInfo" : ObjectId("53826061b77b80b59d2c4c4c"),
     "firstName" : "Mary",
     "middleName" : null,
     "lastName" : "Williams",
     "gender" : "F",
+    "dateOfBirth" : "1902-05-08",
+    "placeOfBirth" : null,
+    "headOfFamily" : 0,
+    "fatherInfo" : null,
+    "motherInfo" : null
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("53826100b77b80b59d2c4c50"),
+    "familyInfo" : ObjectId("53826054b77b80b59d2c4c4b"),
+    "firstName" : "Henry",
+    "middleName" : null,
+    "lastName" : "Jones",
+    "gender" : "M",
+    "dateOfBirth" : "1994-05-08",
+    "placeOfBirth" : null,
+    "headOfFamily" : 1,
+    "fatherInfo" : null,
+    "motherInfo" : null
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("5382612eb77b80b59d2c4c51"),
+    "familyInfo" : ObjectId("53826054b77b80b59d2c4c4b"),
+    "firstName" : "Alice",
+    "middleName" : null,
+    "lastName" : "Jones",
+    "gender" : "F",
     "dateOfBirth" : "1994-05-08",
     "placeOfBirth" : null,
     "headOfFamily" : 0,
-    "fatherId" : null,
-    "motherId" : null
+    "fatherInfo" : null,
+    "motherInfo" : null
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("53825d53b77b80b59d2c4c4a"),
+    "familyInfo" : ObjectId("53825c9cb77b80b59d2c4c49"),
+    "firstName" : "John",
+    "middleName" : null,
+    "lastName" : "Smith",
+    "gender" : "M",
+    "dateOfBirth" : "1994-04-08",
+    "placeOfBirth" : null,
+    "headOfFamily" : 1,
+    "fatherInfo" : null,
+    "motherInfo" : null
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("538260c2b77b80b59d2c4c4f"),
+    "familyInfo" : ObjectId("53825c9cb77b80b59d2c4c49"),
+    "firstName" : "Jane",
+    "middleName" : null,
+    "lastName" : "Smith",
+    "gender" : "F",
+    "dateOfBirth" : "1994-04-08",
+    "placeOfBirth" : null,
+    "headOfFamily" : 0,
+    "fatherInfo" : null,
+    "motherInfo" : null
 }
