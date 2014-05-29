@@ -97,7 +97,7 @@
         success: function (response) {
         	console.log( response );
 
-        	var gameClock = moment("Jan 1, 1950")	
+        	var gameClock = moment("Jan 1, 2000")	
 
         	var output = "";
 

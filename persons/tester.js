@@ -11,6 +11,7 @@ var moment = require('moment');
 
 var config = require('./config/config');
 var tMoment = require('./helpers/time.js');
+var settings = require('./config/settings');
 
 // var logging = require('./config/logger');
 // var debuglogger = logging.Logging().get('debug');
@@ -59,7 +60,8 @@ var gamesetting = require('./controllers/gamesettings');
 var App = {
 	intervalTime: 1,
 	models: null,
-	gameClock: moment("Jan 1, 1918")
+	gameClock: moment("Jan 1, 1900"),
+	maxRunYears: '2000'
 };
 
 
@@ -97,7 +99,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	console.log("Game Clock: " + App.gameClock.format('MMM D, YYYY'));
 	App.gameClock.add('M', 1);
 
-	if(App.gameClock.format('YYYY') == "1950")
+	if(App.gameClock.format('YYYY') == App.maxRunYears)
 	{
 		process.kill(0);
 	}
@@ -129,7 +131,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 			if(ranNum > 485)
 			{
 				persons.breed(c.person1, c.person2, function(d) {
-					console.log("OE: " + d.haveKid);
+					//console.log("OE: " + d.haveKid);
 				});
 			}
  		});
@@ -139,12 +141,24 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	/////////////////////////////////////////////////////////////
 	// Get Married
 
-
 	persons.getSingles('M', function(singleMales) {
-	console.log("Single Males: " + singleMales.length);
-			
 		persons.getSingles('F', function(singleFemales) {
-		console.log("Single Females: " + singleFemales.length);
+			persons.getMarriageEligibleSingles(App.gameClock,'M', function(smeMales) {
+				persons.getMarriageEligibleSingles(App.gameClock,'F', function(smeFemales) {
+					console.log("Single Males: " + singleMales.length + " / " + smeMales.length);
+					console.log("Single Females: " + singleFemales.length + " / " + smeFemales.length);
+				});
+			});
+		});
+	});	
+
+
+	persons.getMarriageEligibleSingles(App.gameClock, 'M', function(singleMales) {
+		//console.log("Single Eligible Males: " + singleMales.length);
+			
+		persons.getMarriageEligibleSingles(App.gameClock, 'F', function(singleFemales) {
+			//console.log(singleFemales);
+			//console.log("Single Eligible Females: " + singleFemales.length);
 
  			if((Math.floor(Math.random() * 10)) > 5)
  			{
@@ -152,28 +166,39 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 				{
 					var ranNumM = (Math.floor(Math.random() * singleMales.length));
 					var ranNumF = (Math.floor(Math.random() * singleFemales.length));
-
+					//console.log("Trying marriage...");
 
 					selMale = singleMales[ranNumM];
 					selFemale = singleFemales[ranNumF];
 
-					console.log("++ MARRIAGE ++");
-					console.log(selMale.firstName + " " + selMale.lastName);
-					console.log(selFemale.firstName + " " + selFemale.lastName);
+					//console.log(selMale._id + ' => ' + selFemale._id);
+					//console.log("F: " + selMale.familyInfo._id + ' => ' + selFemale.familyInfo._id);
+
+					if(selMale.familyInfo._id != selFemale.familyInfo._id) // Prevent brother and sister marriage
+					{
+						var selMaleAge = GetAge(selMale.dateOfBirth);
+						var selFemaleAge = GetAge(selFemale.dateOfBirth);
+
+						//console.log(selMale._id + " => " + selMaleAge.years + " " + settings.minMarriageAge);
 
 
-					relationships.performMarriage(selMale._id, selFemale._id, selMale._id, function() {
-						console.log("Performing marriage and creating new family...");
-						families.createNewFamily(selMale._id, selFemale._id, function(familyId) {
-							
-							persons.setMarried(selMale._id, familyId, function(d) { });	
-							persons.setMarried(selFemale._id, familyId, function(d) { });
+						if((selMaleAge.years >= settings.minMarriageAge) && (selFemaleAge.years >= settings.minMarriageAge) 
+							&& (Math.abs(selMaleAge.years - selFemaleAge.years) <= 10)) // Make sure they are no older than 10 years apart
+						{
+							relationships.performMarriage(selMale._id, selFemale._id, selMale._id, function() {
+								console.log("++ MARRIAGE ++ " + selMale.firstName + " " + selMale.lastName + " & " + selFemale.firstName + " " + selFemale.lastName);
+								console.log("Performing marriage and creating new family...");
+								families.createNewFamily(selMale._id, selFemale._id, function(familyId) {
+									
+									persons.setMarried(selMale._id, familyId, function(d) { });	
+									persons.setMarried(selFemale._id, familyId, function(d) { });
 
-						});	
+								});	
 
 
-					});	
-
+							});	
+						}
+					}
 				}
 			}	
 		});
@@ -199,7 +224,15 @@ personsEngine.init();
 
 
 
+function GetAge(birthDate)
+{
+	curGameTime = moment(App.gameClock);
+	birthDate = moment(birthDate);
+			
+	curAge = tMoment.getDifference(curGameTime, birthDate);
 
+	return curAge;
+}
 
 
 

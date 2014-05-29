@@ -94,11 +94,31 @@ exports.getChildrenByMother = function(motherId, callback) {
 }
 
 exports.getSingles = function(gender, callback) {
-	Person.find({ gender: gender, attributes: {married: false}}, function(err, singles) {
+	Person.find({ gender: gender, attributes: {married: false}}).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, singles) {
+
 		callback(singles);
 	})
 }
 
+exports.getMarriageEligibleSingles = function(gameClock, gender, callback) {
+	Person.find({ gender: gender, attributes: {married: false}}).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec( function(err, sme) {
+		var age = 0;
+		var meSingles = [];
+		if(sme) {
+			sme.forEach(function(sngl) {
+				age = GetAge(gameClock, sngl.dateOfBirth);
+				//console.log(sngl._id + " => " + age.years + " / " + settings.minMarriageAge)	
+				if(age.years >= settings.minMarriageAge)
+				{
+					meSingles.push(sngl);
+				}
+			});
+
+		}	
+		callback(meSingles);
+		
+	})
+}
 
 
 // exports.breed = function(personId, callback) {
@@ -186,7 +206,7 @@ exports.breed = function(fatherId, motherId, callback) {
 	},
 	function(err, results) {
 
-    	console.log(results);
+    	//console.log(results);
     	callback(results);
 	});
 }
@@ -230,12 +250,9 @@ giveBirth = function(fatherId, motherId, callback) {
 											     });
 
 
-							console.log("******************************************");
-							console.log(father.familyInfo._id);
-							console.log(famName);
-							console.log(gender);
-							console.log(name.first);
-							console.log("******************************************");
+							console.log("***************************************************");
+							console.log("** NEW BABY: " + name.first + " " + famName + " / " + gender);
+							console.log("***************************************************");
 
 							per.save(function (err) {});
 
@@ -326,22 +343,32 @@ function OldEnoughToBreed(curAge)
 
 }
 
-var GetAge = function(personId, yearsOld, callback) {
+var GetAge = function(gameClock, birthDate)
+{
+	curGameTime = moment(gameClock);
+	birthDate = moment(birthDate);
+			
+	curAge = tMoment.getDifference(curGameTime, birthDate);
 
-	Person.findOne({_id: personId}, function(err, per) {
-		// Get current game datetime
-
-		gameSettings.getValueByKey('time', function(time) {
-			curGameTime = moment(time.setvalue);
-			birthDate = moment(per.dateOfBirth);
-			//console.log(time);
-			console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
-			console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
-			curAge = tMoment.getDifference(curGameTime, birthDate);
-
-			callback(curAge);
-
-		});
-	});
-
+	return curAge;
 }
+
+// var GetAge = function(personId, yearsOld, callback) {
+
+// 	Person.findOne({_id: personId}, function(err, per) {
+// 		// Get current game datetime
+
+// 		gameSettings.getValueByKey('time', function(time) {
+// 			curGameTime = moment(time.setvalue);
+// 			birthDate = moment(per.dateOfBirth);
+// 			//console.log(time);
+// 			//console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
+// 			//console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
+// 			curAge = tMoment.getDifference(curGameTime, birthDate);
+
+// 			callback(curAge);
+
+// 		});
+// 	});
+// }
+
