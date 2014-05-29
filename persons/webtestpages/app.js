@@ -1,13 +1,31 @@
  $(function() {
-
+ 	//$('input:radio[name="filter-rows"]').val('showall').prop('checked',true);
  	GetPeople();
 
+
+ 	$('input:radio[name="filter-rows"]').change(function() {
+ 		
+		
+		if ($(this).is(':checked') && $(this).val() == 'filter') {
+ 			$('#personlist tbody tr').each(function (i, row) {
+ 				if(!$(row).hasClass('selected'))
+ 				{
+	 					$(row).hide();
+	 			}
+	 		});
+	 	} else {
+	 		$('#personlist tbody tr').show();
+	 	}
+ 	});
 
  	$('#main').on('click','.details', function() {
 
  		$('#details-part1').html("");
  		$('#details-part2').html("");
  		$('#details-part3').html("");
+
+ 		$('#personlist tbody tr').show();
+ 		//$('input:radio[name="filter-rows"]').val('showall').prop('checked',true);
 
  		var data = $(this).data("key");
 
@@ -33,6 +51,7 @@
 	        			}
 	        			GetChildren(res._id, res.gender);
 
+
 	        	//});
 
 	        	$("#details-part1").html(output);
@@ -49,13 +68,18 @@
 
   		// $('.authors-list tr').each(function (i, row) {
  		$('#personlist tbody tr').each(function (i, row) {
- 			// var a = $('td:first', $(this).parents('tr')).text();
- 			//var datakey = $('td:first .details', $(this).parents('tr')).data("key");
- 			var col = $('td.data-td').parents(row);
- 			console.log(col);
- 			var datakey = $(col).data("key");
- 			console.log(datakey);
- 			$(row).addClass('sel-person');
+ 			$(row).removeClass('selected');
+ 			$(row).removeClass('sel-person');
+ 			$(row).removeClass('sel-person-spouse');
+ 			$(row).removeClass('sel-person-children');
+
+ 			var rdata = $(row).find('td:first-child').find('.details').data('key');
+ 			
+ 			if(rdata == data) {
+ 				console.log(rdata);
+ 				$(row).addClass('sel-person');
+ 				$(row).addClass('selected');
+ 			}
  		});
 
  	})
@@ -80,11 +104,12 @@
         	response.forEach(function(p) {
         		var bd =  moment(p.dateOfBirth);
         		output += "<tr><td class='details-td'><span class='details' data-key='" + p._id + "'>Details</span>" 
-        		+"<td>" + p.firstName + "</td><td>" + p.lastName + "</td><td style='width: 160px'>" 
+        		+"<td>" + p.firstName + "</td><td>" + p.lastName + "</td><td style='width: 55px; text-align: center'>" + p.gender + "</td><td style='width: 170px'>" 
         		+ bd.format("MMM D, YYYY") + " (" + getDifference(gameClock, bd).years +")" +"</td><td>" + p.attributes.married + "</td></tr>";
         	});
 
-        	output = "<table id='personlist'><thead><tr><th></th><th>First Name</th><th>Last Name</th><th>Birth Date</th><th>Married</th>" +
+        	output = "<table id='personlist'><thead><tr><th></th><th>First Name</th><th>Last Name</th><th >Gender</th>" +
+        			 "<th >Birth Date</th><th>Married</th>" +
         			 "</tr></thead><tbody>" + output + "</tbody></table>";
 
             $("#main").html(output);
@@ -115,6 +140,19 @@ function GetSpouse(personId, gender) {
 
         	$("#details-part2").html("Spouse: " + res.firstName + " " + res.lastName);
 
+        	var rdata = null;
+
+        	$('#personlist tbody tr').each(function (i, row) {
+
+ 				rdata = $(row).find('td:first-child').find('.details').data('key');
+ 			
+ 				if(rdata == res._id) {
+ 					console.log(rdata + " => " + res._id);
+ 					$(row).addClass('sel-person-spouse');
+ 					$(row).addClass('selected');
+ 				}
+ 			});
+
         },
     	error: function( xhr, status, errorThrown ) {
         	alert( "Sorry, there was a problem!" );
@@ -141,6 +179,20 @@ function GetChildren(personId, gender) {
 
         	res.forEach(function(c) {
         		output += "<div>- " + c.firstName + " " + c.lastName + "</div>";
+
+        		var rdata = null;
+
+        		$('#personlist tbody tr').each(function (i, row) {
+
+ 					rdata = $(row).find('td:first-child').find('.details').data('key');
+ 			
+ 					if(rdata == c._id) {
+ 						console.log(rdata + " => " + c._id);
+ 						$(row).addClass('sel-person-children');
+ 						$(row).addClass('selected');
+ 					}
+
+ 				});
         	});
 
         	$("#details-part3").html(output);
@@ -209,3 +261,7 @@ function getDifference(olderDate, newerDate) {
   }
 
 
+function filterSelected() {
+
+
+}

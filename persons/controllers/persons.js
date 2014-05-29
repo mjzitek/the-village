@@ -66,7 +66,7 @@ exports.getSurname = function(personId, callback) {
 /* Group */
 
 exports.getPersons = function(callback) {
-	Person.find({}).populate('familyInfo').exec(function(err, doc) {
+	Person.find({}).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, doc) {
 		callback (doc);
 	});
 

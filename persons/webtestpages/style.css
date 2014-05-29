@@ -5,18 +5,22 @@
 
  #main {
  	float: left;
- 	width: 600px;
+ 	width: 650px;
  }
 
  #details {
  	border: 2px solid #559;
  	padding: 10px;
- 	float: right;
+ 	position: fixed;
+ 	top: 10px;
+ 	right: 10px;
  	width: 500px;
  	height: 500px;
+ 	z-index: 1000;
  }
 
 table {
+	width: 640px;
 	border: 2px solid #555;
 }
 
@@ -44,5 +48,14 @@ td .details:hover {
 
 
 .sel-person {
-	background-color: #fee;
+	background-color: #8FD0F7;
+	font-weight: bold;
+}
+
+.sel-person-spouse {
+	background-color: #E0BF77;
+}
+
+.sel-person-children {
+	background-color:  #AFDEBB;
 }
