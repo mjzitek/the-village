@@ -8,7 +8,7 @@ settings.minBreedAge = 18;
 settings.maxBreedAgeFemale = 40;
 settings.maxBreedAgeMale = 80;
 settings.maxAge = 80;
-
+settings.minMarriageAge = 14;
 
 
 

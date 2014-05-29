@@ -5,14 +5,14 @@ exports.getDifference = function(olderDate, newerDate) {
 	var then = moment(olderDate);
 	var to = moment(newerDate);
 
-	console.log('Then: ' + then);
+	//console.log('Then: ' + then);
 
 	var timeDiff = {};
 
     // get the difference from now to then in ms
     ms = then.diff(to, 'milliseconds', true);
 
-    console.log('ms: ' + ms);
+    //console.log('ms: ' + ms);
 
     // Years
     timeDiff.years = Math.floor(moment.duration(ms).asYears());

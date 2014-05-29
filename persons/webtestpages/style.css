@@ -1,0 +1,48 @@
+ body {
+
+ 	padding: 10px;
+ }
+
+ #main {
+ 	float: left;
+ 	width: 600px;
+ }
+
+ #details {
+ 	border: 2px solid #559;
+ 	padding: 10px;
+ 	float: right;
+ 	width: 500px;
+ 	height: 500px;
+ }
+
+table {
+	border: 2px solid #555;
+}
+
+  td {
+  	border: 1px solid #555;
+ 	width: 110px;
+ 	padding: 2px;
+ }
+
+th {
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+}
+
+td .details {
+ 	color: #0000aa;
+ 	padding-left: 15px;
+ }
+
+td .details:hover {
+	text-decoration: underline;
+	cursor: default;
+}
+
+
+.sel-person {
+	background-color: #fee;
+}

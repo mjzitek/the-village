@@ -11,7 +11,10 @@ var PersonSchema = new mongoose.Schema({
 	placeOfBirth: 	{ type: Schema.Types.ObjectId, ref: 'villages' },
 	headOfFamily:   Number,
 	fatherInfo:       { type: Schema.Types.ObjectId, ref: 'persons' },
-	motherInfo:       { type: Schema.Types.ObjectId, ref: 'persons' }
+	motherInfo:       { type: Schema.Types.ObjectId, ref: 'persons' },
+	attributes:     {
+						married: Boolean
+					}
 });
 
 mongoose.model('persons', PersonSchema);

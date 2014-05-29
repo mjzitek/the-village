@@ -21,12 +21,9 @@ var families = require('./families');
  *
  ***************************************************************************************/
 
-exports.getPersons = function(callback) {
-	Person.find({}).populate('familyInfo').exec(function(err, doc) {
-		callback (doc);
-	});
+/* Individuals */
 
-}
+
 
 exports.getPerson = function(personId, callback) {
 	Person.findOne({_id: personId}).populate('familyInfo').exec(function(err, doc) {
@@ -36,9 +33,50 @@ exports.getPerson = function(personId, callback) {
 }
 
 
+
+
+
+exports.getAge = function(personId, yearsOld, callback) {
+	Person.findOne({_id: personId}, function(err, per) {
+		// Get current game datetime
+
+		gameSettings.getValueByKey('time', function(time) {
+			curGameTime = moment(time.setvalue);
+			birthDate = moment(per.dateOfBirth);
+			
+			// console.log("XX " + personId);
+			// console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
+			// console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
+
+			curAge = tMoment.getDifference(curGameTime, birthDate);
+
+			callback(curAge);
+
+		});
+	});
+}
+
+exports.getSurname = function(personId, callback) {
+	Person.findOne({_id: personId}).populate('familyInfo').exec(function(err, doc) {
+		callback (doc.lastName);
+	});
+
+}
+
+/* Group */
+
+exports.getPersons = function(callback) {
+	Person.find({}).populate('familyInfo').exec(function(err, doc) {
+		callback (doc);
+	});
+
+}
+
 exports.totalPopulation = function(callback) {
 	Person.count({}, function(err, c) { callback(c); });
 }
+
+
 
 
 exports.getChildrenByFather = function(fatherId, callback) {
@@ -50,32 +88,17 @@ exports.getChildrenByFather = function(fatherId, callback) {
 
 
 exports.getChildrenByMother = function(motherId, callback) {
-	Person.find({ motherId: motherId}, function(err, children) {
+	Person.find({ motherInfo: motherId}, function(err, children) {
 		callback(children);
 	});
 }
 
-
-exports.getAge = function(personId, yearsOld, callback) {
-	Person.findOne({_id: personId}, function(err, per) {
-		// Get current game datetime
-
-		gameSettings.getValueByKey('time', function(time) {
-			curGameTime = moment(time.setvalue);
-			birthDate = moment(per.dateOfBirth);
-			
-			console.log("XX " + personId);
-			console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
-			console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
-
-			curAge = tMoment.getDifference(curGameTime, birthDate);
-			console.log("XX " + curAge.years);
-
-			callback(curAge);
-
-		});
-	});
+exports.getSingles = function(gender, callback) {
+	Person.find({ gender: gender, attributes: {married: false}}, function(err, singles) {
+		callback(singles);
+	})
 }
+
 
 
 // exports.breed = function(personId, callback) {
@@ -114,9 +137,10 @@ exports.breed = function(fatherId, motherId, callback) {
 
 	var frAge;
 	var mrAge;
-	var minAge = settings.minBreedAgeMake;
+	var minAge = settings.minBreedAge;
 	var maxAge = settings.maxBreedAgeFemale;
 	var oldEnough;
+	var tooOld;
 	var r;
 
 	async.series({
@@ -141,8 +165,17 @@ exports.breed = function(fatherId, motherId, callback) {
 			}
 			callback(null, oldEnough);
 		},
+		tooOld: function(callback) {
+			if(mrAge <= maxAge)
+			{
+				tooOld = false;
+			} else {
+				tooOld = true;
+			}
+			callback(null, tooOld);
+		},
 		haveKid: function(callback) {
-			if(oldEnough) {
+			if(oldEnough && !tooOld) {
 				giveBirth(fatherId, motherId, function() {
 					callback();
 				
@@ -190,7 +223,10 @@ giveBirth = function(fatherId, motherId, callback) {
 												   placeOfBirth: null,
 												   headOfFamily: 0,
 												   fatherInfo: fatherId, 
-												   motherInfo: motherId
+												   motherInfo: motherId,
+												   attributes: {
+												   					married: false
+												   			   }
 											     });
 
 
@@ -210,11 +246,24 @@ giveBirth = function(fatherId, motherId, callback) {
 		});	
 }
 
+exports.setMarried = function(personId, familyId, callback) {
+
+	console.log("Setting married: " + personId + "(" + familyId + ")");
+	Person.update({_id: personId }, { attributes: { married: true}, familyInfo: familyId }, function(err,doc) {
+		if(err) {
+			console.log("Error updating married: " + err)
+		} else {
+			callback('updated');
+		}
+	});
+
+}
+
 function PickGender()
 {
 	var ranNum = (Math.floor(Math.random() * 100));
 
-	if(ranNum < 60) {
+	if(ranNum < 50) {
 		return 'M';
 	} else
 	{
@@ -228,11 +277,13 @@ function GetRandomName(filename, line_no) {
     var data = fs.readFileSync(filename, 'utf8');
     var lines = data.split("\n");
 
-    if(+line_no > lines.length){
-      throw new Error('File end reached without finding line');
-    }
-
     line_no = line_no - 1;
+    if(line_no < 0) line_no = 0;
+
+    // if(lines[line_no] == '') 
+    // {
+    // 	GetRandomName()
+    // }
 
     return lines[line_no];
 }
@@ -250,8 +301,8 @@ function GetName(gender) {
 		nameFile = 'female_names.txt';
 	}
 
-	var first = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 100)));
-	var middle = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 100)));
+	var first = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 200)));
+	var middle = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 200)));
 
 	var name = { first: first, middle: middle };
 
