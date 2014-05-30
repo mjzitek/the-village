@@ -13,8 +13,13 @@ var PersonSchema = new mongoose.Schema({
 	fatherInfo:       { type: Schema.Types.ObjectId, ref: 'persons' },
 	motherInfo:       { type: Schema.Types.ObjectId, ref: 'persons' },
 	attributes:     {
-						married: Boolean
-					}
+						married: Boolean,
+					},
+	pregnancy: {
+        			pregnant: Boolean,
+        			pregnancyDate: Date,
+        			babyFatherId : { type: Schema.Types.ObjectId, ref: 'persons' }  
+    },
 });
 
 mongoose.model('persons', PersonSchema);

@@ -7,18 +7,40 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" scr="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 </head>
 <body>
+<div id='summary'>Total: <span id='summary-total'></span></div>
+<div>
 <input type='radio' name='filter-rows' value='filter' /> Filter selected<br />
 <input type='radio' name='filter-rows' value='showall' /> Show all rows<br />
+</div>
 <div id="main"></div>
 
 <div id="details">
-	<div id="details-part1"></div>
-	<div id="details-part2"></div>
-	<div id="details-part3"></div>
+	<div id='details-body'>
+		<div id="details-part1" class="details-section"></div>
+		<div id="details-part2" class="details-section"></div>
+		<div id="details-part3" class="details-section"></div>
+		<div id="details-part4" class="details-section"></div>
+		<div id="legend">
+			<table class='table-legend'>
+				<tr><td class='sel-person'>Selected Person</td></tr>		
+				<tr><td class='sel-person-spouse'>Spouse</td></tr>	
+				<tr><td class='sel-person-children'>Children</td></tr>	
+				<tr><td class='sel-person-siblings'>Sibling</td></tr>																
+			</table>
+
+		</div>
+	</div>
+</div>
+<div id="chart_div">
 </div>
 <script src="app.js"></script>
+    <script type='text/javascript'>
+          google.load('visualization', '1', {packages:['orgchart']});
+      
+    </script>
 <body>
 </html>

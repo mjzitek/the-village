@@ -60,7 +60,7 @@ var gamesetting = require('./controllers/gamesettings');
 var App = {
 	intervalTime: 1,
 	models: null,
-	gameClock: moment("Jan 1, 1900"),
+	gameClock: moment("Jan 1, 1918"),
 	maxRunYears: '2000'
 };
 
@@ -124,6 +124,23 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	/////////////////////////////////////////////////////////////
 	// Have Babies
 
+	// Check if any preg women are ready to pop
+	persons.getPregnantWomen(function(preg) {
+		console.log("Pregnant Women: " + preg.length);
+
+		preg.forEach(function(p) {
+		 	var gestationTime = GetAge(p.pregnancy.pregnancyDate);
+		 	if(gestationTime.months >= 9) {
+		 		console.log(p._id + " => it's been 9 months!!");
+		 		persons.giveBirth(p.pregnancy.babyFatherId, p._id, function(pp) {
+		 			console.log(pp);
+		 		});
+		 	}		
+		});
+
+	});
+
+	// Make some babies
  	relationships.getCouples(function (couples) {
  		couples.forEach(function(c) {
 

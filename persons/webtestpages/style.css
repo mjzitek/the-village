@@ -9,39 +9,41 @@
  }
 
  #details {
+ 	display: none;
+
  	border: 2px solid #559;
  	padding: 10px;
  	position: fixed;
  	top: 10px;
  	right: 10px;
  	width: 500px;
- 	height: 500px;
+ 	min-height: 500px;
  	z-index: 1000;
  }
 
-table {
+table#personlist {
 	width: 640px;
 	border: 2px solid #555;
 }
 
-  td {
+table#personlist  td {
   	border: 1px solid #555;
  	width: 110px;
  	padding: 2px;
  }
 
-th {
+table#personlist th {
 	background-color: #555;
 	color: #fff;
 	text-align: center;
 }
 
-td .details {
+table#personlist td .details {
  	color: #0000aa;
  	padding-left: 15px;
  }
 
-td .details:hover {
+table#personlist td .details:hover {
 	text-decoration: underline;
 	cursor: default;
 }
@@ -58,4 +60,34 @@ td .details:hover {
 
 .sel-person-children {
 	background-color:  #AFDEBB;
+}
+
+.sel-person-siblings { 
+	background-color: #CBB0CF;
+}
+
+.sel-person-spouse-sibling-warning {
+	color: #f00;
+}
+
+#chart_div {
+	margin: 15px;
+}
+
+
+.details-section {
+	padding: 4px;
+	margin: 2px;
+	border-bottom: 1px solid #aaa;
+}
+
+.table-legend {
+	border: 1px solid #000;
+	margin: 5px;
+	padding: 3px;
+}
+
+.table-legend td {
+	border: 1px solid #000;
+	padding: 2px;
 }

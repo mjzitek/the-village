@@ -20,6 +20,7 @@
 
  	$('#main').on('click','.details', function() {
 
+        $('#details').show(); 
  		$('#details-part1').html("");
  		$('#details-part2').html("");
  		$('#details-part3').html("");
@@ -40,16 +41,18 @@
 
 	        	var output = "";
 
+                var bd =  moment(res.dateOfBirth);
+
 	        	//response.forEach(function(p) {
 	        		output = 
-	        			"<div>First Name: " + res.firstName + "</div>" +
-	        			"<div>Middle Name: " + (res.middleName == null ? "" : res.middleName) + "<div>" +
-	        			"<div>Last Name: " + res.lastName + "</div>";
-	        			console.log("Married: " + res.attributes.married);
-	        			if(res.attributes.married == true) {
-	        				var spouse = GetSpouse(res._id, res.gender);	
-	        			}
+	        			"<div>Name: " + res.firstName + " " + (res.middleName == null ? "" : res.middleName) + " " + res.lastName + "</div>" +
+	        			"<div>Birthdate: " + bd.format("MMM D, YYYY") + "<div>" +
+	        			"<div>Married: " + (res.attributes.married == true ? "Yes" : "") + "</div>";
+	        			//console.log("Married: " + res.attributes.married);
+                        
+                        GetSpouse(res._id, res.gender);	
 	        			GetChildren(res._id, res.gender);
+                        GetSiblings(res._id);
 
 
 	        	//});
@@ -72,6 +75,7 @@
  			$(row).removeClass('sel-person');
  			$(row).removeClass('sel-person-spouse');
  			$(row).removeClass('sel-person-children');
+            $(row).removeClass('sel-person-siblings');
 
  			var rdata = $(row).find('td:first-child').find('.details').data('key');
  			
@@ -101,17 +105,22 @@
 
         	var output = "";
 
+            var total = 0;
+
         	response.forEach(function(p) {
+                total++;
         		var bd =  moment(p.dateOfBirth);
         		output += "<tr><td class='details-td'><span class='details' data-key='" + p._id + "'>Details</span>" 
         		+"<td>" + p.firstName + "</td><td>" + p.lastName + "</td><td style='width: 55px; text-align: center'>" + p.gender + "</td><td style='width: 170px'>" 
-        		+ bd.format("MMM D, YYYY") + " (" + getDifference(gameClock, bd).years +")" +"</td><td>" + p.attributes.married + "</td></tr>";
+        		+ bd.format("MMM D, YYYY") + " (" + getDifference(gameClock, bd).years +")"
+                + "</td><td style='text-align: center'>" + (p.attributes.married == true ? "Yes" : "") + "</td></tr>";
         	});
 
         	output = "<table id='personlist'><thead><tr><th></th><th>First Name</th><th>Last Name</th><th >Gender</th>" +
         			 "<th >Birth Date</th><th>Married</th>" +
         			 "</tr></thead><tbody>" + output + "</tbody></table>";
 
+            $('#summary-total').html(total);
             $("#main").html(output);
         },
     	error: function( xhr, status, errorThrown ) {
@@ -138,7 +147,17 @@ function GetSpouse(personId, gender) {
         success: function (res) {
         	console.log( res );
 
-        	$("#details-part2").html("Spouse: " + res.firstName + " " + res.lastName);
+            var output = "";
+
+            output = "Spouse: "
+
+            if(res)
+            {
+                output += res.firstName + " " + res.lastName
+            }
+
+
+        	$("#details-part2").html(output);
 
         	var rdata = null;
 
@@ -208,6 +227,56 @@ function GetChildren(personId, gender) {
     });
 }
 
+function GetSiblings(personId) {
+    // /siblings/sameparents/:id
+
+        $.ajax({
+        dataType: 'jsonp',
+        data: '',
+        type: "GET",
+        //jsonp: 'jsonp_callback',
+        url: 'http://localhost:8989/siblings/sameparents/' + personId,
+        success: function (res) {
+            console.log( res );
+
+            var output = "<div>Siblings:</div>";
+
+            res.forEach(function(c) {
+                if(c.fatherInfo != null)
+                {
+                    output += "<div>- " + c.firstName + " " + c.lastName + "</div>";
+
+                    var rdata = null;
+
+                    $('#personlist tbody tr').each(function (i, row) {
+
+                        rdata = $(row).find('td:first-child').find('.details').data('key');
+                
+                        if(rdata == c._id) {
+                            console.log(rdata + " => " + c._id);
+                            if(rdata != personId)
+                            {
+                                $(row).addClass('sel-person-siblings');
+                                $(row).addClass('selected');
+                            }
+                        }
+
+                    });
+                }
+            });
+
+            $("#details-part4").html(output);
+
+        },
+        error: function( xhr, status, errorThrown ) {
+            alert( "Sorry, there was a problem!" );
+            console.log( "Error: " + errorThrown );
+            console.log( "Status: " + status );
+            console.dir( xhr );
+        } 
+
+    });
+}
 
 function getDifference(olderDate, newerDate) {
 
@@ -265,3 +334,26 @@ function filterSelected() {
 
 
 }
+
+
+function LoadChart() {
+
+      google.setOnLoadCallback(drawChart);
+}
+
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Manager');
+        data.addColumn('string', 'ToolTip');
+        data.addRows([
+          [{v:'Mike', f:'Mike<div style="color:red; font-style:italic">President</div>'}, '', 'The President'],
+          [{v:'Jim', f:'Jim<div style="color:red; font-style:italic">Vice President</div>'}, 'Mike', 'VP'],
+          ['Alice', 'Mike', ''],
+          ['Bob', 'Jim', 'Bob Sponge'],
+          ['Carol', 'Bob', '']
+        ]);
+        var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+        chart.draw(data, {allowHtml:true});
+    }

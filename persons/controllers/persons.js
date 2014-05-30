@@ -78,6 +78,11 @@ exports.totalPopulation = function(callback) {
 
 
 
+exports.getPregnantWomen = function(callback) {
+	Person.find({ "pregnancy.pregnant" : true }).populate('familyInfo').exec(function(err, preg) {
+		callback(preg);
+	});
+}
 
 exports.getChildrenByFather = function(fatherId, callback) {
 	Person.find({ fatherInfo: fatherId }, function(err, children) {
@@ -118,6 +123,15 @@ exports.getMarriageEligibleSingles = function(gameClock, gender, callback) {
 		callback(meSingles);
 		
 	})
+}
+
+
+exports.getSiblingsSameParents = function(personId, callback) {
+	Person.findOne({ _id: personId}, function(err, per) {
+		Person.find( { $or: [ { fatherInfo: per.fatherInfo, motherInfo: per.motherInfo }, { $ne: {fatherInfo: null }}]}, function(err, sibs) {
+			callback(sibs);
+		});
+	});
 }
 
 
@@ -196,10 +210,16 @@ exports.breed = function(fatherId, motherId, callback) {
 		},
 		haveKid: function(callback) {
 			if(oldEnough && !tooOld) {
-				giveBirth(fatherId, motherId, function() {
-					callback();
+				// giveBirth(fatherId, motherId, function() {
+				// 	callback();
 				
+				// });
+
+				// Get pregnant
+				setPregnant(fatherId, motherId, function() {
+					callback();
 				});
+
 				callback(null, '** New Baby **');
 			}
 		} 
@@ -218,9 +238,19 @@ exports.breed = function(fatherId, motherId, callback) {
  *
  ***************************************************************************************/
 
+setPregnant = function(fatherId, motherId, callback) {
+	gameSettings.getValueByKey('time', function(time) {
+		console.log()				
+		curGameTime = moment(time.setvalue);
+
+		Person.update({_id: motherId }, { pregnancy: { pregnant: true, pregnancyDate: curGameTime, babyFatherId: fatherId }}, function(err, doc) {
+			callback('pregnant');
+		});
+	});
+}
 
 //giveBirth = function(familyId, familyName, fatherId, motherId, callback) {
-giveBirth = function(fatherId, motherId, callback) {
+exports.giveBirth = function(fatherId, motherId, callback) {
 
 	gender = PickGender();
 
@@ -246,7 +276,12 @@ giveBirth = function(fatherId, motherId, callback) {
 												   motherInfo: motherId,
 												   attributes: {
 												   					married: false
-												   			   }
+												   			   },
+												   pregnancy: {
+												   					pregnant: false,
+												   					pregnancyDate: null,
+												   					babyFatherId: null
+												   }
 											     });
 
 
@@ -254,8 +289,19 @@ giveBirth = function(fatherId, motherId, callback) {
 							console.log("** NEW BABY: " + name.first + " " + famName + " / " + gender);
 							console.log("***************************************************");
 
-							per.save(function (err) {});
+							per.save(function (err) {
 
+
+							});
+
+								Person.update({_id: motherId }, { pregnancy: { pregnant: false, pregnancyDate: null, babyFatherId: null }}, function(err, doc) {
+									if(err)
+									{
+										console.log(err);
+									} else {
+										callback(motherId + ' no longer pregnant');
+									}
+								});
 
 							
 						});

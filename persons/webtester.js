@@ -101,6 +101,13 @@ app.get('/details/children/:data/:gender', function(req, res) {
 });
 
 
+app.get('/siblings/sameparents/:id', function(req, res) {
+	persons.getSiblingsSameParents(req.params.id, function(sibs) {
+		return res.jsonp(sibs);
+	});
+});
+
+
 /////////////////////////
 var server = app.listen(8989, function() {
 console.log('Listening on port 8989');

@@ -78,13 +78,19 @@ exports.getWife = function(husbandId, callback) {
 	Relationship.findOne( { $or: [ {person1: husbandId }, { person2: husbandId}], relationtype: 'marriage', enddate: null }, function(err, wife) {
 
 		var wifeId;
-		 
-		if(wife.person2role == "wife") {
- 			wifeId = wife.person2;
- 		} else 
- 		{
- 			wifeId = wife.person1;
- 		}
+		
+		if(wife)
+			{
+			if(wife.person2role == "wife") {
+ 				wifeId = wife.person2;
+ 			} else 
+ 			{
+ 				wifeId = wife.person1;
+ 			}
+
+
+		}
+
 		callback(wifeId);
-	} );
+	});
 }
