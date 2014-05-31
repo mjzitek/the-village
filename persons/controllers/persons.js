@@ -39,20 +39,25 @@ exports.getPerson = function(personId, callback) {
 exports.getAge = function(personId, yearsOld, callback) {
 	Person.findOne({_id: personId}, function(err, per) {
 		// Get current game datetime
+		//console.log('getAge: ' + personId);
+		//console.log('getAge: ' + yearsOld);
+		//if(per)
+		//{
+			gameSettings.getValueByKey('time', function(time) {
+				curGameTime = moment(time.setvalue);
+				birthDate = moment(per.dateOfBirth);
+				
+				// console.log("XX " + personId);
+				// console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
+				// console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
 
-		gameSettings.getValueByKey('time', function(time) {
-			curGameTime = moment(time.setvalue);
-			birthDate = moment(per.dateOfBirth);
-			
-			// console.log("XX " + personId);
-			// console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
-			// console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
+				curAge = tMoment.getDifference(curGameTime, birthDate);
 
-			curAge = tMoment.getDifference(curGameTime, birthDate);
+				callback(curAge);
 
-			callback(curAge);
-
-		});
+			});
+		//}
+		//callback();
 	});
 }
 
@@ -72,14 +77,21 @@ exports.getPersons = function(callback) {
 
 }
 
+exports.getPersonsAlive = function(callback) {
+	Person.find({ dateOfDeath: null }).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, doc) {
+		callback (doc);
+	});
+
+}
+
 exports.totalPopulation = function(callback) {
-	Person.count({}, function(err, c) { callback(c); });
+	Person.count({ dateOfDeath: null }, function(err, c) { callback(c); });
 }
 
 
 
 exports.getPregnantWomen = function(callback) {
-	Person.find({ "pregnancy.pregnant" : true }).populate('familyInfo').exec(function(err, preg) {
+	Person.find({ "pregnancy.pregnant" : true, dateOfDeath: null }).populate('familyInfo').exec(function(err, preg) {
 		callback(preg);
 	});
 }
@@ -99,14 +111,14 @@ exports.getChildrenByMother = function(motherId, callback) {
 }
 
 exports.getSingles = function(gender, callback) {
-	Person.find({ gender: gender, attributes: {married: false}}).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, singles) {
+	Person.find({ gender: gender, attributes: {married: false}, dateOfDeath: null }).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, singles) {
 
 		callback(singles);
 	})
 }
 
 exports.getMarriageEligibleSingles = function(gameClock, gender, callback) {
-	Person.find({ gender: gender, attributes: {married: false}}).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec( function(err, sme) {
+	Person.find({ gender: gender, attributes: {married: false}, dateOfDeath: null }).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec( function(err, sme) {
 		var age = 0;
 		var meSingles = [];
 		if(sme) {
@@ -175,15 +187,26 @@ exports.breed = function(fatherId, motherId, callback) {
 	var maxAge = settings.maxBreedAgeFemale;
 	var oldEnough;
 	var tooOld;
+	var fatherAlive = false;
+	var motherAlive = false;
 	var r;
 
 	async.series({
 		fatherAge: function(callback) {
 			exports.getAge(fatherId, 1, function(a) {
+				//console.log("breed: " + fatherId);
+				//console.log("breed: ");
+				//console.log(a);
 				frAge = a.years;
 				callback(null, frAge);
 			});
 			
+		},
+		fatherAlive: function(callback) {
+			exports.getPerson(fatherId, function(f) {
+				if(f.dateOfDeath == null) { fatherAlive = true; callback(null, true);}
+				else { callback(null, false);}
+			});
 		},
 		motherAge: function(callback) {
 			exports.getAge(motherId, 1, function(a) {
@@ -191,6 +214,12 @@ exports.breed = function(fatherId, motherId, callback) {
 				callback(null, mrAge);
 			});
 		},
+		motherAlive: function(callback) {
+			exports.getPerson(motherId, function(m) {
+				if(m.dateOfDeath == null) { motherAlive = true; callback(null, true);}
+				else { callback(null, false);}
+			});
+		},		
 		oldEnough: function(callback) {
 			if((frAge >= minAge) && (mrAge >= minAge)) {
 				oldEnough = true;
@@ -209,7 +238,7 @@ exports.breed = function(fatherId, motherId, callback) {
 			callback(null, tooOld);
 		},
 		haveKid: function(callback) {
-			if(oldEnough && !tooOld) {
+			if(oldEnough && !tooOld && fatherAlive && motherAlive) {
 				// giveBirth(fatherId, motherId, function() {
 				// 	callback();
 				
@@ -271,6 +300,7 @@ exports.giveBirth = function(fatherId, motherId, callback) {
 												   gender: gender,
 												   dateOfBirth: curGameTime,
 												   placeOfBirth: null,
+												   dateOfDeath: null,
 												   headOfFamily: 0,
 												   fatherInfo: fatherId, 
 												   motherInfo: motherId,
@@ -320,6 +350,17 @@ exports.setMarried = function(personId, familyId, callback) {
 		}
 	});
 
+}
+
+exports.killOff = function(personId, callback) {
+	gameSettings.getValueByKey('time', function(time) {
+						
+		curGameTime = moment(time.setvalue);
+		Person.update( { _id: personId} , { dateOfDeath: curGameTime}, function (err, doc) {
+			if(err) console.log(err);
+			callback(personId + ' has died at ' + curGameTime);
+		});
+	});
 }
 
 function PickGender()

@@ -3,10 +3,38 @@
  	padding: 10px;
  }
 
+#header {
+	top: 0;
+	left: 0;
+	margin: 0;
+
+	width: 100%;
+	position: fixed;
+	height: 100px;
+	z-index: 1001;
+	background-color: #565656;
+	color: #fff;
+	border-bottom: 3px solid #000;
+}
+
+
  #main {
+ 	position: relative;
  	float: left;
- 	width: 650px;
+ 	top: 110px;
+ 	width: 690px;
  }
+
+#header-2 {
+	padding: 3px 0 5px 14px;
+}
+
+#header-1 {
+	padding: 5px;
+	font-size: 1.2em;
+	font-weight: bold;
+	background-color: #000;
+}
 
  #details {
  	display: none;
@@ -14,7 +42,7 @@
  	border: 2px solid #559;
  	padding: 10px;
  	position: fixed;
- 	top: 10px;
+ 	top: 110px;
  	right: 10px;
  	width: 500px;
  	min-height: 500px;
@@ -22,7 +50,7 @@
  }
 
 table#personlist {
-	width: 640px;
+	width: 680px;
 	border: 2px solid #555;
 }
 
@@ -33,7 +61,7 @@ table#personlist  td {
  }
 
 table#personlist th {
-	background-color: #555;
+	background-color: #234D6B;
 	color: #fff;
 	text-align: center;
 }
@@ -56,6 +84,7 @@ table#personlist td .details:hover {
 
 .sel-person-spouse {
 	background-color: #E0BF77;
+	font-style: italic;
 }
 
 .sel-person-children {

@@ -11,31 +11,36 @@
 
 </head>
 <body>
-<div id='summary'>Total: <span id='summary-total'></span></div>
-<div>
-<input type='radio' name='filter-rows' value='filter' /> Filter selected<br />
-<input type='radio' name='filter-rows' value='showall' /> Show all rows<br />
-</div>
-<div id="main"></div>
 
-<div id="details">
-	<div id='details-body'>
-		<div id="details-part1" class="details-section"></div>
-		<div id="details-part2" class="details-section"></div>
-		<div id="details-part3" class="details-section"></div>
-		<div id="details-part4" class="details-section"></div>
-		<div id="legend">
-			<table class='table-legend'>
-				<tr><td class='sel-person'>Selected Person</td></tr>		
-				<tr><td class='sel-person-spouse'>Spouse</td></tr>	
-				<tr><td class='sel-person-children'>Children</td></tr>	
-				<tr><td class='sel-person-siblings'>Sibling</td></tr>																
-			</table>
-
-		</div>
+<div id="header">
+	<div id="header-1">The Village</div>
+	<div id="header-2">
+	<div id='summary'>Total: <span id='summary-total'></span> | End Date: <span id='game-clock'></span></div>
+	<input type='radio' name='filter-rows' value='filter' /> Filter selected<br />
+	<input type='radio' name='filter-rows' value='showall' /> Show all rows<br />
 	</div>
 </div>
-<div id="chart_div">
+<div id="main">
+	<div id="persons-listing"></div>
+	<div id="details">
+		<div id='details-body'>
+			<div id="details-part1" class="details-section"></div>
+			<div id="details-part2" class="details-section"></div>
+			<div id="details-part3" class="details-section"></div>
+			<div id="details-part4" class="details-section"></div>
+			<div id="legend">
+				<table class='table-legend'>
+					<tr><td class='sel-person'>Selected Person</td></tr>		
+					<tr><td class='sel-person-spouse'>Spouse</td></tr>	
+					<tr><td class='sel-person-children'>Children</td></tr>	
+					<tr><td class='sel-person-siblings'>Sibling</td></tr>																
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<div id="chart_div">
+	</div>
 </div>
 <script src="app.js"></script>
     <script type='text/javascript'>

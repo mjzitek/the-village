@@ -9,6 +9,7 @@ var PersonSchema = new mongoose.Schema({
 	gender: 		String,
 	dateOfBirth:  	Date,
 	placeOfBirth: 	{ type: Schema.Types.ObjectId, ref: 'villages' },
+	dateOfDeath: 	Date, 
 	headOfFamily:   Number,
 	fatherInfo:       { type: Schema.Types.ObjectId, ref: 'persons' },
 	motherInfo:       { type: Schema.Types.ObjectId, ref: 'persons' },

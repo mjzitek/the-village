@@ -18,7 +18,7 @@
 	 	}
  	});
 
- 	$('#main').on('click','.details', function() {
+ 	$('#persons-listing').on('click','.details', function() {
 
         $('#details').show(); 
  		$('#details-part1').html("");
@@ -101,7 +101,12 @@
         success: function (response) {
         	console.log( response );
 
-        	var gameClock = moment("Jan 1, 2000")	
+            var endTime = "Jan 1, 2100"
+
+        	var gameClock = moment(endTime);
+
+            $("#game-clock").html(endTime);
+
 
         	var output = "";
 
@@ -111,17 +116,19 @@
                 total++;
         		var bd =  moment(p.dateOfBirth);
         		output += "<tr><td class='details-td'><span class='details' data-key='" + p._id + "'>Details</span>" 
-        		+"<td>" + p.firstName + "</td><td>" + p.lastName + "</td><td style='width: 55px; text-align: center'>" + p.gender + "</td><td style='width: 170px'>" 
-        		+ bd.format("MMM D, YYYY") + " (" + getDifference(gameClock, bd).years +")"
-                + "</td><td style='text-align: center'>" + (p.attributes.married == true ? "Yes" : "") + "</td></tr>";
+        		+"<td>" + p.firstName + "</td><td>" + p.lastName + "</td><td style='width: 55px; text-align: center'>" + p.gender 
+                + "</td><td style='width: 150px'>" + bd.format("MMM D, YYYY") + "</td>"
+                + "<td style='width: 55px'>" + (p.dateOfDeath == null ? getDifference(gameClock, bd).years : getDifference(p.dateOfDeath, bd).years )  + "</td>"
+                + "<td style='width: 55px; text-align: center'>" + (p.dateOfDeath == null ? "Yes" : "")
+                + "</td><td style='width: 70px; text-align: center'>" + (p.attributes.married == true ? "Yes" : "") + "</td></tr>";
         	});
 
         	output = "<table id='personlist'><thead><tr><th></th><th>First Name</th><th>Last Name</th><th >Gender</th>" +
-        			 "<th >Birth Date</th><th>Married</th>" +
+        			 "<th >Birth Date</th><th>Age</th><th>Alive</th><th>Married</th>" +
         			 "</tr></thead><tbody>" + output + "</tbody></table>";
 
             $('#summary-total').html(total);
-            $("#main").html(output);
+            $("#persons-listing").html(output);
         },
     	error: function( xhr, status, errorThrown ) {
         	alert( "Sorry, there was a problem!" );

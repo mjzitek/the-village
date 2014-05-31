@@ -61,14 +61,17 @@ exports.getHusband = function(wifeId, callback) {
 
 		var husbandId;
 		 
-		if(husband.person2role == "husband") {
- 			husbandId = husband.person2;
- 		} else 
- 		{
- 			husbandId = husband.person1;
+		if(husband)
+			{
+			if(husband.person2role == "husband") {
+	 			husbandId = husband.person2;
+	 		} else 
+	 		{
+	 			husbandId = husband.person1;
+	 		}
  		}
 		callback(husbandId);
-	} );
+	});
 
 
 }

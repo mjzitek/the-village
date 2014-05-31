@@ -61,7 +61,7 @@ var App = {
 	intervalTime: 1,
 	models: null,
 	gameClock: moment("Jan 1, 1918"),
-	maxRunYears: '2000'
+	maxRunYears: '2100'
 };
 
 
@@ -221,7 +221,33 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 		});
 	});
 	
+ 	///////////////////////////////////////////////
+ 	// Kill off people
 
+ 	persons.getPersonsAlive(function(pers) {
+ 		//console.log(pers.length);
+ 		if(pers)
+ 		{
+ 			pers.forEach(function(p) {
+
+ 				var age = GetAge(p.dateOfBirth).years;
+ 				var kill = false;
+ 				var rndNum = (Math.floor(Math.random() * 1000))
+ 				//console.log('d: ' + rndNum);
+ 				if(age > 110) { kill = true;}
+ 				else if(age > 90) { if(rndNum > 950) { kill = true; } }
+	 			else if(age > 70) { if(rndNum > 900) { kill = true; } }
+ 				else if (age > 35) { if(rndNum > 850 ) { kill = true; } }
+ 				//else { if(rndNum > 995 ) { kill = true; } }
+
+ 				if(kill) {
+ 					persons.killOff(p._id, function(r) {
+ 						console.log(r);
+ 					});
+ 				}
+ 			});
+ 		}
+ 	});
 
 
 
