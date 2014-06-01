@@ -108,6 +108,15 @@ app.get('/siblings/sameparents/:id', function(req, res) {
 });
 
 
+
+app.get('/gameclock/', function(req, res) {
+	gamesetting.getValueByKey('time', function(time) {
+		console.log(time);
+		return res.jsonp(time);
+	});
+});
+
+
 /////////////////////////
 var server = app.listen(8989, function() {
 console.log('Listening on port 8989');

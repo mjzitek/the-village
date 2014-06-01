@@ -232,12 +232,12 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
  				var age = GetAge(p.dateOfBirth).years;
  				var kill = false;
- 				var rndNum = (Math.floor(Math.random() * 1000))
+ 				var rndNum = (Math.floor(Math.random() * 200))
  				//console.log('d: ' + rndNum);
  				if(age > 110) { kill = true;}
- 				else if(age > 90) { if(rndNum > 950) { kill = true; } }
-	 			else if(age > 70) { if(rndNum > 900) { kill = true; } }
- 				else if (age > 35) { if(rndNum > 850 ) { kill = true; } }
+ 				else if(age > 90) { if(rndNum > 120 ) { kill = true; } }
+	 			else if(age > 70) { if(rndNum > 180 ) { kill = true; } }
+ 				else if (age > 35) { if(rndNum > 199 ) { kill = true; } }
  				//else { if(rndNum > 995 ) { kill = true; } }
 
  				if(kill) {

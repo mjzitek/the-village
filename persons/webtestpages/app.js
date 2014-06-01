@@ -1,7 +1,7 @@
  $(function() {
  	//$('input:radio[name="filter-rows"]').val('showall').prop('checked',true);
- 	GetPeople();
-
+ 	getPeople();
+    getGameClock();
 
  	$('input:radio[name="filter-rows"]').change(function() {
  		
@@ -29,6 +29,8 @@
  		//$('input:radio[name="filter-rows"]').val('showall').prop('checked',true);
 
  		var data = $(this).data("key");
+
+
 
 	    $.ajax({
 	        dataType: 'jsonp',
@@ -91,7 +93,7 @@
  });
 
 
- function GetPeople() {
+ function getPeople() {
     $.ajax({
         dataType: 'jsonp',
         data: '',
@@ -101,15 +103,10 @@
         success: function (response) {
         	console.log( response );
 
-            var endTime = "Jan 1, 2100"
-
-        	var gameClock = moment(endTime);
-
-            $("#game-clock").html(endTime);
-
-
         	var output = "";
+            var gameClock = $("#game-clock").html();
 
+            if(gameClock === "") { gameClock = "Jan 1, 2000"; }
             var total = 0;
 
         	response.forEach(function(p) {
@@ -118,7 +115,7 @@
         		output += "<tr><td class='details-td'><span class='details' data-key='" + p._id + "'>Details</span>" 
         		+"<td>" + p.firstName + "</td><td>" + p.lastName + "</td><td style='width: 55px; text-align: center'>" + p.gender 
                 + "</td><td style='width: 150px'>" + bd.format("MMM D, YYYY") + "</td>"
-                + "<td style='width: 55px'>" + (p.dateOfDeath == null ? getDifference(gameClock, bd).years : getDifference(p.dateOfDeath, bd).years )  + "</td>"
+                + "<td style='text-align: center; width: 55px'>" + (p.dateOfDeath == null ? getDifference(gameClock, bd).years : getDifference(p.dateOfDeath, bd).years )  + "</td>"
                 + "<td style='width: 55px; text-align: center'>" + (p.dateOfDeath == null ? "Yes" : "")
                 + "</td><td style='width: 70px; text-align: center'>" + (p.attributes.married == true ? "Yes" : "") + "</td></tr>";
         	});
@@ -284,6 +281,35 @@ function GetSiblings(personId) {
 
     });
 }
+
+function getGameClock() {
+    // var endTime = "Jan 1, 2100"
+    $.ajax({
+        dataType: 'jsonp',
+        data: '',
+        type: "GET",
+        //jsonp: 'jsonp_callback',
+        url: 'http://localhost:8989/gameclock/',
+        success: function (res) {
+            console.log( res );
+
+            var gc = moment(res.setvalue);
+            console.log(gc);
+            $("#game-clock").html(gc.format("MMM D, YYYY"));
+
+        },
+        error: function( xhr, status, errorThrown ) {
+            alert( "Sorry, there was a problem!" );
+            console.log( "Error: " + errorThrown );
+            console.log( "Status: " + status );
+            console.dir( xhr );
+        } 
+
+    });
+
+
+}
+
 
 function getDifference(olderDate, newerDate) {
 
