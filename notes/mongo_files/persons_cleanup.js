@@ -3,3 +3,5 @@ db.persons.update({}, { $set: {dateOfDeath : null, pregnancy : { pregnant : fals
 
 db.relationships.remove({ __v : 0 })
 db.families.remove({ __v : 0 })
+
+db.gamesettings.update({ setkey : "time"}, { $set :  { setvalue : "1900-01-01" }}, { multi : false })

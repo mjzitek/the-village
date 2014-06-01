@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 //var colors = require('colors');
 var fs = require('fs');
 var moment = require('moment');
+var argv = require('optimist').argv;
+var memwatch = require('memwatch');
 
 var config = require('./config/config');
 var tMoment = require('./helpers/time.js');
@@ -58,12 +60,16 @@ var gamesetting = require('./controllers/gamesettings');
 /////////////////////////////////
 
 var App = {
-	intervalTime: 1,
+	intervalTime: argv.clockinv || 1 * 1000,
 	models: null,
-	gameClock: moment("Jan 1, 1918"),
-	maxRunYears: '2100'
+	gameClock: moment(argv.gamestart)  || moment("Jan 1, 1918"),
+	maxRunYears: argv.maxrun || '2100'
+
 };
 
+console.log("CLOCKINV: " + argv.clockinv);
+console.log("GAMESTART: " + argv.gamestart);
+console.log("MAXRUN: " + argv.maxrun);
 
 function PersonsEngine() {
 
@@ -87,10 +93,22 @@ PersonsEngine.prototype.setAutoInterval = function() {
 			that.automatedWorkers(that.models);
 
 			//console.log("Engine tick");
-		}, App.intervalTime * 1000);
+		}, App.intervalTime);
 } 
 
+var countm = 0
+
 PersonsEngine.prototype.automatedWorkers = function(models) {
+
+	var stats = memwatch.gc();
+
+	memwatch.on('leak', function(info) { 
+		console.log(countm);
+		console.log(info); 
+		countm++;
+	});
+
+    //var hd = new memwatch.HeapDiff();
 
 	var that = this;
 
@@ -101,6 +119,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 	if(App.gameClock.format('YYYY') == App.maxRunYears)
 	{
+	//	console.log(hd.end());
 		process.kill(0);
 	}
 
@@ -232,12 +251,12 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
  				var age = GetAge(p.dateOfBirth).years;
  				var kill = false;
- 				var rndNum = (Math.floor(Math.random() * 200))
+ 				var rndNum = (Math.floor(Math.random() * 1000))
  				//console.log('d: ' + rndNum);
  				if(age > 110) { kill = true;}
- 				else if(age > 90) { if(rndNum > 120 ) { kill = true; } }
-	 			else if(age > 70) { if(rndNum > 180 ) { kill = true; } }
- 				else if (age > 35) { if(rndNum > 199 ) { kill = true; } }
+ 				else if(age > 90) { if(rndNum > 800 ) { kill = true; } }
+	 			else if(age > 70) { if(rndNum > 980 ) { kill = true; } }
+ 				else if (age > 35) { if(rndNum > 998 ) { kill = true; } }
  				//else { if(rndNum > 995 ) { kill = true; } }
 
  				if(kill) {

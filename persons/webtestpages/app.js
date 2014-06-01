@@ -158,23 +158,25 @@ function GetSpouse(personId, gender) {
             if(res)
             {
                 output += res.firstName + " " + res.lastName
+
+                $("#details-part2").html(output);
+
+                var rdata = null;
+
+                $('#personlist tbody tr').each(function (i, row) {
+
+                    rdata = $(row).find('td:first-child').find('.details').data('key');
+                
+                    if(rdata == res._id) {
+                        console.log(rdata + " => " + res._id);
+                        $(row).addClass('sel-person-spouse');
+                        $(row).addClass('selected');
+                    }
+                });
             }
 
 
-        	$("#details-part2").html(output);
 
-        	var rdata = null;
-
-        	$('#personlist tbody tr').each(function (i, row) {
-
- 				rdata = $(row).find('td:first-child').find('.details').data('key');
- 			
- 				if(rdata == res._id) {
- 					console.log(rdata + " => " + res._id);
- 					$(row).addClass('sel-person-spouse');
- 					$(row).addClass('selected');
- 				}
- 			});
 
         },
     	error: function( xhr, status, errorThrown ) {
