@@ -10,8 +10,9 @@ var tMoment = require('../helpers/time.js');
 	Person = mongoose.model('persons');
 
 
-
+// Controllers
 var gameSettings = require('./gamesettings');
+var time = require('./time');
 var families = require('./families');
 
 /***************************************************************************************
@@ -32,6 +33,13 @@ exports.getPerson = function(personId, callback) {
 
 }
 
+exports.getPersonFiltered = getPersonFiltered
+function getPersonFiltered(query, fields, callback) {
+	Person.findOne(query, fields).populate('familyInfo').exec(function(err, doc) {
+		callback (doc);
+	});
+
+}
 
 
 
@@ -77,6 +85,68 @@ exports.getPersons = function(callback) {
 
 }
 
+exports.getRandomPerson = getRandomPerson;
+function getRandomPerson(query, fields, callback) {
+
+	//console.log(query);
+
+	populationCountFiltered(query, function (persCount) {
+
+
+			var ranNum = (Math.floor(Math.random() * persCount))
+			//console.log(ranNum);
+			Person.find(query, fields).skip(ranNum).limit(1).exec(function(err, per) {
+					callback(per);
+			});
+
+	});
+
+}
+
+
+// Return a random marriage eligible single person based on gender given
+exports.getMarriageEligibleSingle = getMarriageEligibleSingle
+function getMarriageEligibleSingle(gender, familyId, callback) {
+	//console.log(gender);
+	//console.log(familyId);
+
+	var query = {};
+	var fields = {};
+
+	query["gender"] = gender;
+	query["attributes"] = { married: false };
+	query["dateOfDeath"] = null;
+
+	if(familyId != "") {
+		query["familyInfo"] = { "$ne" : familyId };
+	}
+
+	fields["firstName"] = 1;
+	fields["lastName"] = 1;
+	fields["familyInfo"] = 1;
+
+
+
+	time.getGameClock(function(gClock) {
+
+		var gC = moment(gClock);
+		var minMarriageDate = gC.subtract("y", settings.minMarriageAge).format('YYYY-MM-DD');
+
+		query["dateOfBirth"] = { "$lt" : minMarriageDate }
+		//console.log(query);
+
+		populationCountFiltered(query, function(persCount) {
+			var ranNum = (Math.floor(Math.random() * persCount))
+			//console.log(ranNum);
+			Person.findOne(query, fields).skip(ranNum).exec(function(err, per) {
+				callback(per);
+			});
+		});
+	});
+
+
+}
+
 exports.getPersonsAlive = function(callback) {
 	Person.find({ dateOfDeath: null }).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, doc) {
 		callback (doc);
@@ -84,8 +154,20 @@ exports.getPersonsAlive = function(callback) {
 
 }
 
-exports.totalPopulation = function(callback) {
+exports.populationCountTotal = populationCountTotal
+function populationCountTotal(callback) {
 	Person.count({ dateOfDeath: null }, function(err, c) { callback(c); });
+}
+
+
+exports.populationCountAlive = populationCountAlive
+function populationCountAlive(callback) {
+	Person.count( { dateOfDeath: null }, function(err, c) { callback(c); });
+}
+
+exports.populationCountFiltered = populationCountFiltered;
+function populationCountFiltered(filter, callback) {
+	Person.count(filter, function(err, c) { callback(c); });
 }
 
 
@@ -117,7 +199,8 @@ exports.getSingles = function(gender, callback) {
 	})
 }
 
-exports.getMarriageEligibleSingles = function(gameClock, gender, callback) {
+exports.getMarriageEligibleSingles = function(gender, callback) {
+
 	Person.find({ gender: gender, attributes: {married: false}, dateOfDeath: null }).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec( function(err, sme) {
 		var age = 0;
 		var meSingles = [];
@@ -136,6 +219,8 @@ exports.getMarriageEligibleSingles = function(gameClock, gender, callback) {
 		
 	})
 }
+
+
 
 
 exports.getSiblingsSameParents = function(personId, callback) {
@@ -339,7 +424,8 @@ exports.giveBirth = function(fatherId, motherId, callback) {
 		});	
 }
 
-exports.setMarried = function(personId, familyId, callback) {
+exports.setMarried = setMarried;
+function setMarried(personId, familyId, callback) {
 
 	console.log("Setting married: " + personId + "(" + familyId + ")");
 	Person.update({_id: personId }, { attributes: { married: true}, familyInfo: familyId }, function(err,doc) {
@@ -349,6 +435,28 @@ exports.setMarried = function(personId, familyId, callback) {
 			callback('updated');
 		}
 	});
+
+}
+
+exports.getMarried = getMarried;
+function getMarried() {
+	getMarriageEligibleSingle("M", "", function(mPer) {
+		getMarriageEligibleSingle("F", mPer.familyInfo, function(fPer) {
+			//relationships.performMarriage(selMale._id, selFemale._id, selMale._id, function() {
+								console.log("++ MARRIAGE ++ " + mPer.firstName + " " + mPer.lastName + " & " + fPer.firstName + " " + fPer.lastName);
+								console.log("Performing marriage and creating new family...");
+
+								// families.createNewFamily(selMale._id, selFemale._id, function(familyId) {
+									
+								// 	setMarried(selMale._id, familyId, function(d) { 
+								// 		persons.setMarried(selFemale._id, familyId, function(d) { callback() });
+								// 	});	
+									
+		
+
+		});
+	});
+
 
 }
 

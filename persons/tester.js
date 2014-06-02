@@ -15,6 +15,12 @@ var config = require('./config/config');
 var tMoment = require('./helpers/time.js');
 var settings = require('./config/settings');
 
+require('nodetime').profile({
+	accountKey: '1205486b4221354f8721bb0ba0a64539f6e8c0e2',
+	appName: 'village-person-tester'
+});
+
+
 // var logging = require('./config/logger');
 // var debuglogger = logging.Logging().get('debug');
 // var datalogger = logging.Logging().get('data');
@@ -100,13 +106,13 @@ var countm = 0
 
 PersonsEngine.prototype.automatedWorkers = function(models) {
 
-	var stats = memwatch.gc();
+	// var stats = memwatch.gc();
 
-	memwatch.on('leak', function(info) { 
-		console.log(countm);
-		console.log(info); 
-		countm++;
-	});
+	// memwatch.on('leak', function(info) { 
+	// 	console.log(countm);
+	// 	console.log(info); 
+	// 	countm++;
+	// });
 
     //var hd = new memwatch.HeapDiff();
 
@@ -135,10 +141,10 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 
 	//ObjectId("538261a8b77b80b59d2c4c53")
-	fatherId = '5382617ab77b80b59d2c4c52';
-	motherId = '538261a8b77b80b59d2c4c53';
+	//fatherId = '5382617ab77b80b59d2c4c52';
+	//motherId = '538261a8b77b80b59d2c4c53';
 
-	testId = fatherId;
+	//testId = fatherId;
 
 	/////////////////////////////////////////////////////////////
 	// Have Babies
@@ -177,16 +183,16 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	/////////////////////////////////////////////////////////////
 	// Get Married
 
-	persons.getSingles('M', function(singleMales) {
-		persons.getSingles('F', function(singleFemales) {
-			persons.getMarriageEligibleSingles(App.gameClock,'M', function(smeMales) {
-				persons.getMarriageEligibleSingles(App.gameClock,'F', function(smeFemales) {
-					console.log("Single Males: " + singleMales.length + " / " + smeMales.length);
-					console.log("Single Females: " + singleFemales.length + " / " + smeFemales.length);
-				});
-			});
-		});
-	});	
+	// persons.getSingles('M', function(singleMales) {
+	// 	persons.getSingles('F', function(singleFemales) {
+	// 		persons.getMarriageEligibleSingles(App.gameClock,'M', function(smeMales) {
+	// 			persons.getMarriageEligibleSingles(App.gameClock,'F', function(smeFemales) {
+	// 				console.log("Single Males: " + singleMales.length + " / " + smeMales.length);
+	// 				console.log("Single Females: " + singleFemales.length + " / " + smeFemales.length);
+	// 			});
+	// 		});
+	// 	});
+	// });	
 
 
 	persons.getMarriageEligibleSingles(App.gameClock, 'M', function(singleMales) {

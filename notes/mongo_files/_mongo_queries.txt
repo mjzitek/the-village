@@ -1,0 +1,1 @@
+random record: db.yourCollection.find().limit(-1).skip(yourRandomNumber).next()
