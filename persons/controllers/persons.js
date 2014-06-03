@@ -14,6 +14,8 @@ var tMoment = require('../helpers/time.js');
 var gameSettings = require('./gamesettings');
 var time = require('./time');
 var families = require('./families');
+var relationships = require('./relationships');
+
 
 /***************************************************************************************
  *	
@@ -95,7 +97,7 @@ function getRandomPerson(query, fields, callback) {
 
 			var ranNum = (Math.floor(Math.random() * persCount))
 			//console.log(ranNum);
-			Person.find(query, fields).skip(ranNum).limit(1).exec(function(err, per) {
+			Person.findOne(query, fields).skip(ranNum).limit(1).exec(function(err, per) {
 					callback(per);
 			});
 
@@ -144,8 +146,51 @@ function getMarriageEligibleSingle(gender, familyId, callback) {
 		});
 	});
 
+}
+
+
+exports.getRandomBabyReadyWomen = getRandomBabyReadyWomen;
+function getRandomBabyReadyWomen(married, persCount, callback) {
+	var query = {};
+	var fields = {};
+
+	query["attributes"] = { married: married };
+	query["dateOfDeath"] = null;
+	query["gender"] = "F";
+
+	fields["firstName"] = 1;
+	fields["lastName"] = 1;
+	fields["familyInfo"] = 1;
+
+
+
+	time.getGameClock(function(gClock) {
+
+		var gC = moment(gClock);
+		var gC2 = moment(gClock);
+		console.log(gC.format('YYYY-MM-DD'));
+		console.log(settings.minBreedAge);
+		console.log(settings.maxBreedAgeFemale);
+		var minBirthDate = gC.subtract("y", settings.minBreedAge).format('YYYY-MM-DD');
+		var maxBirthDate = gC2.subtract("y", settings.maxBreedAgeFemale).format('YYYY-MM-DD');
+
+		// db.posts.find({"created_on": {"$gte": start, "$lt": end}})
+
+		query["dateOfBirth"] = { "$gte" : maxBirthDate, "$lte" : minBirthDate }
+		console.log(query);
+
+		populationCountFiltered(query, function(persCount) {
+			var ranNum = (Math.floor(Math.random() * persCount))
+			
+			// Person.find(query, fields).skip(ranNum).limit(persCount).exec(function(err, per) {
+			// 	callback(per);
+			// });
+		});
+	});	
+
 
 }
+
 
 exports.getPersonsAlive = function(callback) {
 	Person.find({ dateOfDeath: null }).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, doc) {
@@ -156,7 +201,7 @@ exports.getPersonsAlive = function(callback) {
 
 exports.populationCountTotal = populationCountTotal
 function populationCountTotal(callback) {
-	Person.count({ dateOfDeath: null }, function(err, c) { callback(c); });
+	Person.count({}, function(err, c) { callback(c); });
 }
 
 
@@ -264,7 +309,8 @@ exports.getSiblingsSameParents = function(personId, callback) {
 // 	});
 // }
 
-exports.breed = function(fatherId, motherId, callback) {
+exports.breed = breed;
+function breed(fatherId, motherId, callback) {
 
 	var frAge;
 	var mrAge;
@@ -272,9 +318,9 @@ exports.breed = function(fatherId, motherId, callback) {
 	var maxAge = settings.maxBreedAgeFemale;
 	var oldEnough;
 	var tooOld;
-	var fatherAlive = false;
-	var motherAlive = false;
-	var r;
+	var fatherStatus = false;
+	var motherStatus = false;
+	//var r;
 
 	async.series({
 		fatherAge: function(callback) {
@@ -287,9 +333,9 @@ exports.breed = function(fatherId, motherId, callback) {
 			});
 			
 		},
-		fatherAlive: function(callback) {
+		fatherStatus: function(callback) {
 			exports.getPerson(fatherId, function(f) {
-				if(f.dateOfDeath == null) { fatherAlive = true; callback(null, true);}
+				if(f.dateOfDeath === null) { fatherStatus = true; callback(null, true);}
 				else { callback(null, false);}
 			});
 		},
@@ -299,9 +345,13 @@ exports.breed = function(fatherId, motherId, callback) {
 				callback(null, mrAge);
 			});
 		},
-		motherAlive: function(callback) {
+		motherStatus: function(callback) {
 			exports.getPerson(motherId, function(m) {
-				if(m.dateOfDeath == null) { motherAlive = true; callback(null, true);}
+				if(m.dateOfDeath === null && m.pregnancy.pregnant === false) 
+				{ motherStatus = true; 
+
+					callback(null, true);
+				}
 				else { callback(null, false);}
 			});
 		},		
@@ -320,16 +370,21 @@ exports.breed = function(fatherId, motherId, callback) {
 			} else {
 				tooOld = true;
 			}
+
 			callback(null, tooOld);
 		},
 		haveKid: function(callback) {
-			if(oldEnough && !tooOld && fatherAlive && motherAlive) {
+			console.log("oldEnough: " + oldEnough + " | tooOld: " + tooOld + 
+						" | fatherStatus : " + fatherStatus + " | motherStatus: " + motherStatus)
+			if(oldEnough && !tooOld && fatherStatus && motherStatus) {
 				// giveBirth(fatherId, motherId, function() {
 				// 	callback();
 				
 				// });
 
 				// Get pregnant
+				console.log(motherId + " => is pregnant!!");
+				
 				setPregnant(fatherId, motherId, function() {
 					callback();
 				});
@@ -353,12 +408,12 @@ exports.breed = function(fatherId, motherId, callback) {
  ***************************************************************************************/
 
 setPregnant = function(fatherId, motherId, callback) {
-	gameSettings.getValueByKey('time', function(time) {
-		console.log()				
+	gameSettings.getValueByKey('time', function(time) {				
 		curGameTime = moment(time.setvalue);
 
 		Person.update({_id: motherId }, { pregnancy: { pregnant: true, pregnancyDate: curGameTime, babyFatherId: fatherId }}, function(err, doc) {
-			callback('pregnant');
+			
+			callback();
 		});
 	});
 }
@@ -439,24 +494,29 @@ function setMarried(personId, familyId, callback) {
 }
 
 exports.getMarried = getMarried;
-function getMarried() {
+function getMarried(callback) {
 	getMarriageEligibleSingle("M", "", function(mPer) {
-		getMarriageEligibleSingle("F", mPer.familyInfo, function(fPer) {
-			//relationships.performMarriage(selMale._id, selFemale._id, selMale._id, function() {
-								console.log("++ MARRIAGE ++ " + mPer.firstName + " " + mPer.lastName + " & " + fPer.firstName + " " + fPer.lastName);
-								console.log("Performing marriage and creating new family...");
+		if(mPer)
+		{
+			getMarriageEligibleSingle("F", mPer.familyInfo, function(fPer) {
+				if(fPer)
+				{
+					relationships.performMarriage(mPer._id, fPer._id, mPer._id, function() {
+										console.log("++ MARRIAGE ++ " + mPer.firstName + " " 
+													+ mPer.lastName + " & " + fPer.firstName + " " + fPer.lastName);
+										console.log("Performing marriage and creating new family...");
 
-								// families.createNewFamily(selMale._id, selFemale._id, function(familyId) {
-									
-								// 	setMarried(selMale._id, familyId, function(d) { 
-								// 		persons.setMarried(selFemale._id, familyId, function(d) { callback() });
-								// 	});	
-									
-		
-
-		});
+										families.createNewFamily(mPer._id, fPer._id, function(familyId) {
+											
+											setMarried(mPer._id, familyId, function(d) { 
+												setMarried(fPer._id, familyId, function(d) {callback(d);});
+											});	
+										});						
+				});
+				}
+			});
+		}
 	});
-
 
 }
 
@@ -466,7 +526,10 @@ exports.killOff = function(personId, callback) {
 		curGameTime = moment(time.setvalue);
 		Person.update( { _id: personId} , { dateOfDeath: curGameTime}, function (err, doc) {
 			if(err) console.log(err);
-			callback(personId + ' has died at ' + curGameTime);
+			relationships.endRelationship(personId, 'death of spouse', function(c) {
+				callback(personId + ' has died at ' + curGameTime);
+			});
+			
 		});
 	});
 }

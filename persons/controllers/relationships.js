@@ -8,15 +8,50 @@ var families = require('./families'),
 
 
 // Retrieve Info
-exports.getCouples = function(callback) {
-	Relationship.find({ relationtype: 'marriage', enddate: null}, function(err, couples) {
-		callback(couples);
+exports.getCouples = getCouples;
+function getCouples(numOfCouples, callback) {
+
+	getCouplesCountActive(function(rCount) { 
+		var ranNum = (Math.floor(Math.random() * rCount))
+
+		Relationship.find({ relationtype: 'marriage'}).exec(function(err, couples) {
+			callback(couples);
+		})
+	});
+}
+
+exports.getCouplesRandomActive = getCouplesRandomActive;
+function getCouplesRandomActive(numOfCouples, callback) {
+
+	getCouplesCountActive(function(rCount) { 
+		var ranNum = (Math.floor(Math.random() * rCount))
+
+		Relationship.find({ relationtype: 'marriage', enddate: null}).skip(ranNum).limit(numOfCouples).exec(function(err, couples) {
+			callback(couples);
+		})
 	});
 }
 
 
+exports.getCouplesCountActive = getCouplesCountActive;
+function getCouplesCountActive(callback)
+{
+	Relationship.count({ relationtype: 'marriage', enddate: null}, function(err, c) { callback(c); });
+}
+
 
 // Actions
+
+exports.endRelationship = endRelationship;
+function endRelationship(personId, notes, callback) {
+
+	Relationship.update({ "$or" : [{ person1 : personId }, { person2: personId }]}, { active: false, enddate: new Date(), notes: notes}, 
+		function(err, doc) {
+			callback(doc);
+		});
+
+}
+
 exports.performMarriage = function(personId1, personId2, headId, callback) {
 
 // var inv = new Inventory({villageInfo: villageId, itemInfo: i._id, quantity: amount, level: 0 });

@@ -9,7 +9,8 @@ var RelationshipSchema = new mongoose.Schema({
     person2role:        String,
 	begindate:         Date,
     enddate:           Date,
-    active:            Boolean
+    active:            Boolean,
+    notes: 			   String, 
 });
 
 mongoose.model('relationships', RelationshipSchema);

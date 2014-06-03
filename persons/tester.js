@@ -51,12 +51,6 @@ var walk = function(path) {
 
 walk(models_path);
 
-
-// var items = require('./controllers/items');
-// var inventory = require('./controllers/inventory');
-// var buildings = require('./controllers/buildings');
-// var users = require('./controllers/users');
-// var villages = require('./controllers/villages');
 var persons = require('./controllers/persons');
 var families = require('./controllers/families');
 var relationships = require('./controllers/relationships');
@@ -66,11 +60,13 @@ var gamesetting = require('./controllers/gamesettings');
 /////////////////////////////////
 
 var App = {
-	intervalTime: argv.clockinv || 1 * 1000,
+	intervalTime: argv.clockinv || 1000,
 	models: null,
 	gameClock: moment(argv.gamestart)  || moment("Jan 1, 1918"),
-	maxRunYears: argv.maxrun || '2100'
-
+	maxRunYears: argv.maxrun || '2100',
+	babyRatioNum: 450, // Used with random number...rand num need 
+					   // to be more than this (too tired for better name)
+    numOfCouples: 1    // Num of couples to pull to try to make a baby
 };
 
 console.log("CLOCKINV: " + argv.clockinv);
@@ -120,8 +116,9 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 	console.log('=======================================');
 
-	console.log("Game Clock: " + App.gameClock.format('MMM D, YYYY'));
 	App.gameClock.add('M', 1);
+	console.log("Game Clock: " + App.gameClock.format('MMM D, YYYY'));
+
 
 	if(App.gameClock.format('YYYY') == App.maxRunYears)
 	{
@@ -135,16 +132,10 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 	//console.log('Y: ' + diff.years + ' / M: ' + diff.months + ' / D: ' + diff.days);
 
-	persons.totalPopulation(function(c) {
+	persons.populationCountAlive(function(c) {
 		console.log('Total Population: ' + c);
 	});
 
-
-	//ObjectId("538261a8b77b80b59d2c4c53")
-	//fatherId = '5382617ab77b80b59d2c4c52';
-	//motherId = '538261a8b77b80b59d2c4c53';
-
-	//testId = fatherId;
 
 	/////////////////////////////////////////////////////////////
 	// Have Babies
@@ -165,86 +156,29 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 	});
 
+	///////////////////////////////////////////////
 	// Make some babies
- 	relationships.getCouples(function (couples) {
- 		couples.forEach(function(c) {
 
+	relationships.getCouplesRandomActive(1, function (couples) {
+ 		
+ 		couples.forEach(function(c) {
+ 			
  			var ranNum = (Math.floor(Math.random() * 500));
-			if(ranNum > 485)
+
+			if(ranNum > App.babyRatioNum)
 			{
-				persons.breed(c.person1, c.person2, function(d) {
-					//console.log("OE: " + d.haveKid);
+				console.log(c.person1 + " -> " + c.person2);
+				persons.breed(c.person1, c.person2, function(p) {
 				});
 			}
  		});
  	});
 	
 
-	/////////////////////////////////////////////////////////////
-	// Get Married
+ 	///////////////////////////////////////////////
+ 	// Marriage
 
-	// persons.getSingles('M', function(singleMales) {
-	// 	persons.getSingles('F', function(singleFemales) {
-	// 		persons.getMarriageEligibleSingles(App.gameClock,'M', function(smeMales) {
-	// 			persons.getMarriageEligibleSingles(App.gameClock,'F', function(smeFemales) {
-	// 				console.log("Single Males: " + singleMales.length + " / " + smeMales.length);
-	// 				console.log("Single Females: " + singleFemales.length + " / " + smeFemales.length);
-	// 			});
-	// 		});
-	// 	});
-	// });	
-
-
-	persons.getMarriageEligibleSingles(App.gameClock, 'M', function(singleMales) {
-		//console.log("Single Eligible Males: " + singleMales.length);
-			
-		persons.getMarriageEligibleSingles(App.gameClock, 'F', function(singleFemales) {
-			//console.log(singleFemales);
-			//console.log("Single Eligible Females: " + singleFemales.length);
-
- 			if((Math.floor(Math.random() * 10)) > 5)
- 			{
-				if((singleMales.length > 0) && (singleFemales.length > 0))
-				{
-					var ranNumM = (Math.floor(Math.random() * singleMales.length));
-					var ranNumF = (Math.floor(Math.random() * singleFemales.length));
-					//console.log("Trying marriage...");
-
-					selMale = singleMales[ranNumM];
-					selFemale = singleFemales[ranNumF];
-
-					//console.log(selMale._id + ' => ' + selFemale._id);
-					//console.log("F: " + selMale.familyInfo._id + ' => ' + selFemale.familyInfo._id);
-
-					if(selMale.familyInfo._id != selFemale.familyInfo._id) // Prevent brother and sister marriage
-					{
-						var selMaleAge = GetAge(selMale.dateOfBirth);
-						var selFemaleAge = GetAge(selFemale.dateOfBirth);
-
-						//console.log(selMale._id + " => " + selMaleAge.years + " " + settings.minMarriageAge);
-
-
-						if((selMaleAge.years >= settings.minMarriageAge) && (selFemaleAge.years >= settings.minMarriageAge) 
-							&& (Math.abs(selMaleAge.years - selFemaleAge.years) <= 10)) // Make sure they are no older than 10 years apart
-						{
-							relationships.performMarriage(selMale._id, selFemale._id, selMale._id, function() {
-								console.log("++ MARRIAGE ++ " + selMale.firstName + " " + selMale.lastName + " & " + selFemale.firstName + " " + selFemale.lastName);
-								console.log("Performing marriage and creating new family...");
-								families.createNewFamily(selMale._id, selFemale._id, function(familyId) {
-									
-									persons.setMarried(selMale._id, familyId, function(d) { });	
-									persons.setMarried(selFemale._id, familyId, function(d) { });
-
-								});	
-
-
-							});	
-						}
-					}
-				}
-			}	
-		});
-	});
+	persons.getMarried(function(d) {});
 	
  	///////////////////////////////////////////////
  	// Kill off people
@@ -303,72 +237,3 @@ function GetAge(birthDate)
 }
 
 
-
-	// console.log("====================================");
-
-	// persons.getPerson(testId, function(per) {
-	// 	console.log(per);
-	// 	console.log(per.dateOfBirth);
-	// });
-
-
-	//ObjectId("5382617ab77b80b59d2c4c52")
-	// persons.getAge(fatherId,1, function(age) {
-	// 	console.log("ZZ AGE: ");
-	// 	console.log(age);		
-	// });
-
- 	// families.getFamilyName('53826061b77b80b59d2c4c4c', function(fn) {
- 	// 	console.log('Family Name: ' + fn);
- 	// });
- 	
-
-
-	//console.log("====================================");
-
-
-	// var ranNum = (Math.floor(Math.random() * 100));
-	// if(ranNum > 95)
-	// {
-	// 	persons.breed(fatherId, motherId, function(d) {
-	// 		console.log("OE: " + d.oldEnough);
-	// 		console.log("OE: " + d.haveKid);
-	// 	});
-	// }
-
-
-
-	//console.log("====================================");
-
-
-	// var ranNum = (Math.floor(Math.random() * 100));
-	// if(ranNum > 95)
-	// {
-	// 	persons.breed(fatherId, motherId, function(d) {
-	// 		//console.log("OE: " + d.oldEnough);
-	// 		//console.log("OE: " + d.haveKid);
-	// 	});
-	// }
-
-
-
-	// persons.getPersons(function (pers){
-	// 	//console.log(users);
-
-	// 	pers.forEach(function(p) {
-
-
-
-	// 		//console.log(p.firstName + ' ' + p.lastName);	
-	// 		// if(p.headOfFamily == 1)
-	// 		// {
-	// 		// 	persons.giveBirth( 
-	// 		// 					   p.familyInfo._id,
-	// 		// 					   p.familyInfo.familyName, 
-	// 		// 					   p._id,	// fatherId
-	// 		// 					   '53825c9cb77b80b59d2c4c49'
-	// 		// 					  );
-
-	// 		// }		
-	// 	});
-	// });

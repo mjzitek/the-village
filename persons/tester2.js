@@ -66,10 +66,12 @@ var gamesetting = require('./controllers/gamesettings');
 /////////////////////////////////
 
 var App = {
-	intervalTime: argv.clockinv || 1 * 10,
+	intervalTime: argv.clockinv || 100,
 	models: null,
 	gameClock: moment(argv.gamestart)  || moment("Jan 1, 1918"),
-	maxRunYears: argv.maxrun || '2100'
+	maxRunYears: argv.maxrun || '2100',
+	babyRatioNum: 400  // Used with random number...rand num need 
+					   // to be more than this (too tired for better name)
 
 };
 
@@ -103,8 +105,13 @@ PersonsEngine.prototype.setAutoInterval = function() {
 } 
 
 
+var counter1 = 0;
+var counter2 = 0;
+
 PersonsEngine.prototype.automatedWorkers = function(models) {
-					
+		
+
+	///////////////////////////////////////////////////////////////////////////////////////////			
 	var query = {};
 	var fields = {};
 
@@ -114,52 +121,26 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	fields["firstName"] = 1;
 	fields["lastName"] = 1;
 
-	gender = "";
-	aliveStatus = "Alive";
-
-	persons.getMarried(function(d) {
-
-	});
-
-	// Gender
-	// if(gender === "M") { query["gender"] = "M"; }
-	// else if(gender === "F") { query["gender"] = "F"; }
-
-	// if(aliveStatus === "Alive") { query["dateOfDeath"] = null; }
-	// else if(aliveStatus === "Dead") { query["dateOfDeath"] = {"$ne" : null }; }
+	aliveStatus = "";
 
 
-	// query["gender"] = "M";
+	persons.getRandomBabyReadyWomen(true, 1, function (pers) {
+ 	 	console.log("_______________________________________________")	
+ 		pers.forEach(function(p) {
 
-	// 					     // gender
-	// persons.getRandomPerson(query, fields, function(perMale) {
-	// 	var outputMale = "";
-	// 	var outputFemale = "";
-	// 	if(perMale)
-	// 	{
+ 			console.log(p._id);
+ 		// 	var ranNum = (Math.floor(Math.random() * 500));
 
-	// 		perMale.forEach(function (pMale) {
-	//  			outputMale = pMale.firstName + " " + pMale.lastName;
-	//  		});
+			// if(ranNum > 480)
+			// {
+			// 	
+			// 	persons.breed(c.person1, c.person2, function(p) {
+			// 	});				
+			// }
+ 		});
+ 	});
 
-	// 		query["gender"] = "F";
-	// 		persons.getRandomPerson(query, fields, function(perFemale) {
-	// 			if(perFemale)
-	// 			{
-	// 				perFemale.forEach(function (pFemale) {
-	// 					outputFemale = pFemale.firstName + " " + pFemale.lastName;
 
-	// 				});
-
-	// 				console.log(new Date().getTime() + ": " + outputMale + " => " + outputFemale);
-	// 			}
-	// 		});
-	// 	}
-	// });
-
-  	// persons.totalPopulationAlive(function(c) {
-  	// 	console.log(c);
-  	// })
 }
 
 
