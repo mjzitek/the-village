@@ -149,7 +149,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 		 	if(gestationTime.months >= 9) {
 		 		console.log(p._id + " => it's been 9 months!!");
 		 		persons.giveBirth(p.pregnancy.babyFatherId, p._id, function(pp) {
-		 			console.log(pp);
+		 			//console.log(pp);
 		 		});
 		 	}		
 		});

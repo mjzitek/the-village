@@ -95,6 +95,10 @@ table#personlist td .details:hover {
 	background-color: #CBB0CF;
 }
 
+.sel-person-parents {
+	background-color: #E6F299;
+}
+
 .sel-person-spouse-sibling-warning {
 	color: #f00;
 }

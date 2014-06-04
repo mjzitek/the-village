@@ -100,6 +100,12 @@ app.get('/details/children/:data/:gender', function(req, res) {
 	}
 });
 
+app.get('/details/parents/:id', function (req, res) {
+	persons.getParents(req.params.id, function(parents) {
+		console.log(parents);
+		return res.json(parents);
+	})
+});
 
 app.get('/siblings/sameparents/:id', function(req, res) {
 	persons.getSiblingsSameParents(req.params.id, function(sibs) {

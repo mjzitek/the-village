@@ -66,7 +66,7 @@ var gamesetting = require('./controllers/gamesettings');
 /////////////////////////////////
 
 var App = {
-	intervalTime: argv.clockinv || 100,
+	intervalTime: argv.clockinv || 10,
 	models: null,
 	gameClock: moment(argv.gamestart)  || moment("Jan 1, 1918"),
 	maxRunYears: argv.maxrun || '2100',
@@ -111,10 +111,25 @@ var counter2 = 0;
 PersonsEngine.prototype.automatedWorkers = function(models) {
 		
 	//persons.getMarriageEligibleSingle("M", "", function(pers) {});
+	var query = {};
+	var fields = {};
 
-	persons.getRandomBabyReadyWomen(true, 1, function (pers) {
- 	 	console.log("_______________________________________________")	
- 	});
+// ObjectId("538e93acbe5366ff75b9ffab")
+// ObjectId("538e93adbe5366ff75b9ffaf")
+
+	query["gender"] = "M";
+
+	persons.getRandomPerson(query, fields, function(f) {
+
+		query["gender"] = "F";
+		persons.getRandomPerson(query, fields, function(m) {
+			persons.giveBirth(f._id, m._id, function(p) {
+
+
+			});
+		});
+
+	});
 
 
 

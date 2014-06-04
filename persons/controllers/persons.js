@@ -27,8 +27,8 @@ var relationships = require('./relationships');
 /* Individuals */
 
 
-
-exports.getPerson = function(personId, callback) {
+exports.getPerson = getPerson;
+function getPerson(personId, callback) {
 	Person.findOne({_id: personId}).populate('familyInfo').exec(function(err, doc) {
 		callback (doc);
 	});
@@ -276,6 +276,13 @@ exports.getSiblingsSameParents = function(personId, callback) {
 }
 
 
+exports.getParents = getParents
+function getParents(personId, callback) {
+	Person.findOne({ _id: personId}, { fatherInfo: 1, motherInfo : 1}, function(err, per) {
+		callback(per);
+	});
+}
+
 // exports.breed = function(personId, callback) {
 // 	var minAge = settings.minBreedAge;
 // 	var age;
@@ -420,62 +427,109 @@ setPregnant = function(fatherId, motherId, callback) {
 //giveBirth = function(familyId, familyName, fatherId, motherId, callback) {
 exports.giveBirth = function(fatherId, motherId, callback) {
 
-	gender = PickGender();
+	var gender = "";
+	var name;
+	var mother;
+	var familyName;
+	var curDate;
+	//console.log("++++++++++++++++++++++++++++++")
+	//console.log("Giving birth");
 
-	name = GetName(gender);
+	async.series({
+		gender: function(callback) {
+			gender = PickGender();
+			console.log(gender);
+			callback(null,gender);
+		},
+		name: function(callback) {
 
-	exports.getPerson(fatherId, function(father) {
-  						
-			families.getFamilyName(father.familyInfo._id, function(famName) {				
-
-						//console.log(name);
-						gameSettings.getValueByKey('time', function(time) {
-						
-							curGameTime = moment(time.setvalue);
-							var per = new Person({ familyInfo: father.familyInfo._id, 
-												   firstName: name.first,
-												   middleName:  name.middle,
-												   lastName: famName,
-												   gender: gender,
-												   dateOfBirth: curGameTime,
-												   placeOfBirth: null,
-												   dateOfDeath: null,
-												   headOfFamily: 0,
-												   fatherInfo: fatherId, 
-												   motherInfo: motherId,
-												   attributes: {
-												   					married: false
-												   			   },
-												   pregnancy: {
-												   					pregnant: false,
-												   					pregnancyDate: null,
-												   					babyFatherId: null
-												   }
-											     });
-
-
-							console.log("***************************************************");
-							console.log("** NEW BABY: " + name.first + " " + famName + " / " + gender);
-							console.log("***************************************************");
-
-							per.save(function (err) {
-
+			name = GetName(gender);
+			console.log(name);
+			callback(null, name);
+		},
+		mother: function(callback) {
+			getPerson(motherId, function(mom) {
+				//console.log(mom._id + " " + mom.firstName + " " + mom.lastName);
+				if(mom)
+				{
+					mother = mom;
+					callback(null, mom);
+				} else
+				{
+					callback(null, null);
+				}
+			});
+		},
+		familyName: function(callback) {
+			families.getFamilyName(mother.familyInfo._id, function(famName) {
+				//console.log(famName);
+				if(famName)
+				{
+					callback(null, famName)
+				} else
+				{
+					callback(null, null);
+				}
+			});
+		},
+		curDate: function(callback) {
+			time.getGameClock(function(gameTime) {
+				if(gameTime)
+				{
+					callback(null, gameTime);
+				} else
+				{
+					callback(null, null);
+				}
+			});
+		},
+		motherStatus : function(callback) {
+			Person.update({_id: motherId }, { pregnancy: { pregnant: false, pregnancyDate: null, babyFatherId: null }}, function(err, doc) {
+				if(err)
+				{
+					callback(null, err)
+				} else {
+					callback(null, motherId + ' no longer pregnant');
+				}
+			});
+		}
+	},
+	function(err, results) {
+		//console.log(results);
+		var per = new Person({ 
+							   familyInfo: results.mother.familyInfo._id, 
+							   firstName: results.name.first,
+							   middleName:  results.name.middle,
+							   lastName: results.familyName,
+							   gender: results.gender,
+							   dateOfBirth: results.curDate,
+							   placeOfBirth: null,
+							   dateOfDeath: null,
+							   headOfFamily: 0,
+							   fatherInfo: fatherId, 
+							   motherInfo: motherId,
+							   attributes: {
+							   					married: false
+							   			   },
+							   pregnancy: {
+							   					pregnant: false,
+							   					pregnancyDate: null,
+							   					babyFatherId: null
+							   }
 
 							});
 
-								Person.update({_id: motherId }, { pregnancy: { pregnant: false, pregnancyDate: null, babyFatherId: null }}, function(err, doc) {
-									if(err)
-									{
-										console.log(err);
-									} else {
-										callback(motherId + ' no longer pregnant');
-									}
-								});
+		console.log("***************************************************");
+		console.log("** NEW BABY: " + results.name.first + " " + results.familyName + " / " + gender);
+		console.log("***************************************************");
 
-							
-						});
-			});	
-		});	
+		per.save(function (err) {});
+
+    	//console.log(results);
+    	callback(results);
+	});
+
+	
 }
 
 exports.setMarried = setMarried;

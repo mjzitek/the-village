@@ -24,6 +24,7 @@
  		$('#details-part1').html("");
  		$('#details-part2').html("");
  		$('#details-part3').html("");
+        /* $('#details-part4').html(""); */
 
  		$('#personlist tbody tr').show();
  		//$('input:radio[name="filter-rows"]').val('showall').prop('checked',true);
@@ -50,11 +51,14 @@
 	        			"<div>Name: " + res.firstName + " " + (res.middleName == null ? "" : res.middleName) + " " + res.lastName + "</div>" +
 	        			"<div>Birthdate: " + bd.format("MMM D, YYYY") + "<div>" +
 	        			"<div>Married: " + (res.attributes.married == true ? "Yes" : "") + "</div>";
-	        			//console.log("Married: " + res.attributes.married);
+	        		
+                        //console.log("Married: " + res.attributes.married);
                         
-                        GetSpouse(res._id, res.gender);	
-	        			GetChildren(res._id, res.gender);
-                        GetSiblings(res._id);
+                        getSpouse(res._id, res.gender);	
+	        			getChildren(res._id, res.gender);
+                        getSiblings(res._id);
+                        getParents(res);
+                
 
 
 	        	//});
@@ -71,22 +75,26 @@
 
 	    });
 
-  		// $('.authors-list tr').each(function (i, row) {
- 		$('#personlist tbody tr').each(function (i, row) {
- 			$(row).removeClass('selected');
- 			$(row).removeClass('sel-person');
- 			$(row).removeClass('sel-person-spouse');
- 			$(row).removeClass('sel-person-children');
+        // $('.authors-list tr').each(function (i, row) {
+        $('#personlist tbody tr').each(function (i, row) {
+            $(row).removeClass('selected');
+            $(row).removeClass('sel-person');
+            $(row).removeClass('sel-person-spouse');
+            $(row).removeClass('sel-person-children');
             $(row).removeClass('sel-person-siblings');
+            $(row).removeClass('sel-person-parents');            
 
- 			var rdata = $(row).find('td:first-child').find('.details').data('key');
- 			
- 			if(rdata == data) {
- 				console.log(rdata);
- 				$(row).addClass('sel-person');
- 				$(row).addClass('selected');
- 			}
- 		});
+            var rdata = $(row).find('td:first-child').find('.details').data('key');
+            
+            if(rdata == data) {
+                console.log(rdata);
+                $(row).addClass('sel-person');
+                $(row).addClass('selected');
+            }
+        });
+
+
+
 
  	})
 
@@ -141,7 +149,7 @@
 
  }
 
-function GetSpouse(personId, gender) {
+function getSpouse(personId, gender) {
 	$.ajax({
         dataType: 'jsonp',
         data: '',
@@ -189,7 +197,7 @@ function GetSpouse(personId, gender) {
     });
 }
 
-function GetChildren(personId, gender) {
+function getChildren(personId, gender) {
 	// /details/children
 	$.ajax({
         dataType: 'jsonp',
@@ -233,7 +241,7 @@ function GetChildren(personId, gender) {
     });
 }
 
-function GetSiblings(personId) {
+function getSiblings(personId) {
     // /siblings/sameparents/:id
 
         $.ajax({
@@ -282,6 +290,20 @@ function GetSiblings(personId) {
         } 
 
     });
+}
+
+
+function getParents(person) {
+        $('#personlist tbody tr').each(function (i, row)  {         
+
+            var rdata = $(row).find('td:first-child').find('.details').data('key');
+            
+            if(rdata === person.fatherInfo || rdata === person.motherInfo) {
+                console.log(rdata);
+                $(row).addClass('sel-person-parents');
+                $(row).addClass('selected');
+            }
+        });
 }
 
 function getGameClock() {
