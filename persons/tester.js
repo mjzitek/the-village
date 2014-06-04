@@ -159,20 +159,35 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	///////////////////////////////////////////////
 	// Make some babies
 
-	relationships.getCouplesRandomActive(1, function (couples) {
- 		
- 		couples.forEach(function(c) {
- 			
- 			var ranNum = (Math.floor(Math.random() * 500));
+	persons.getRandomBabyReadyWomen(true, 1, function(pers) {
+		pers.forEach(function(p) {
+			//console.log(pers);
+			relationships.getCouple(p._id, function(c) {
+				console.log("making babies: " + p._id);
+				if(c)
+				{
+					persons.breed(c.person1, c.person2, function(d) {
+					//console.log("OE: " + d.haveKid);
+					});
+				}
+			});
+		});
+	})
 
-			if(ranNum > App.babyRatioNum)
-			{
-				console.log(c.person1 + " -> " + c.person2);
-				persons.breed(c.person1, c.person2, function(p) {
-				});
-			}
- 		});
- 	});
+	// relationships.getCouplesRandomActive(1, function (couples) {
+ 		
+ // 		couples.forEach(function(c) {
+ 			
+ // 			var ranNum = (Math.floor(Math.random() * 500));
+
+	// 		if(ranNum > App.babyRatioNum)
+	// 		{
+	// 			console.log(c.person1 + " -> " + c.person2);
+	// 			persons.breed(c.person1, c.person2, function(p) {
+	// 			});
+	// 		}
+ // 		});
+ // 	});
 	
 
  	///////////////////////////////////////////////

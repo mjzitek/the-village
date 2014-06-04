@@ -8,6 +8,20 @@ var families = require('./families'),
 
 
 // Retrieve Info
+exports.getCouple = getCouple;
+function getCouple(personId, callback) {
+
+	getCouplesCountActive(function(rCount) { 
+		var ranNum = (Math.floor(Math.random() * rCount))
+
+		Relationship.findOne({ "$or" : [{ person1 : personId }, { person2: personId }], 
+							  relationtype: 'marriage', enddate: null}).limit(1).exec(function(err, couple) {
+			callback(couple);
+		})
+	});
+}
+
+
 exports.getCouples = getCouples;
 function getCouples(numOfCouples, callback) {
 

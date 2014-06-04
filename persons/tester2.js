@@ -110,35 +110,13 @@ var counter2 = 0;
 
 PersonsEngine.prototype.automatedWorkers = function(models) {
 		
-
-	///////////////////////////////////////////////////////////////////////////////////////////			
-	var query = {};
-	var fields = {};
-
-	var gender = "";
-	var aliveStatus = "";
-
-	fields["firstName"] = 1;
-	fields["lastName"] = 1;
-
-	aliveStatus = "";
-
+	//persons.getMarriageEligibleSingle("M", "", function(pers) {});
 
 	persons.getRandomBabyReadyWomen(true, 1, function (pers) {
  	 	console.log("_______________________________________________")	
- 		pers.forEach(function(p) {
-
- 			console.log(p._id);
- 		// 	var ranNum = (Math.floor(Math.random() * 500));
-
-			// if(ranNum > 480)
-			// {
-			// 	
-			// 	persons.breed(c.person1, c.person2, function(p) {
-			// 	});				
-			// }
- 		});
  	});
+
+
 
 
 }

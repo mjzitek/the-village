@@ -134,7 +134,7 @@ function getMarriageEligibleSingle(gender, familyId, callback) {
 		var gC = moment(gClock);
 		var minMarriageDate = gC.subtract("y", settings.minMarriageAge).format('YYYY-MM-DD');
 
-		query["dateOfBirth"] = { "$lt" : minMarriageDate }
+		query["dateOfBirth"] = { $lt : minMarriageDate }
 		//console.log(query);
 
 		populationCountFiltered(query, function(persCount) {
@@ -150,7 +150,7 @@ function getMarriageEligibleSingle(gender, familyId, callback) {
 
 
 exports.getRandomBabyReadyWomen = getRandomBabyReadyWomen;
-function getRandomBabyReadyWomen(married, persCount, callback) {
+function getRandomBabyReadyWomen(married, persAmount, callback) {
 	var query = {};
 	var fields = {};
 
@@ -168,23 +168,21 @@ function getRandomBabyReadyWomen(married, persCount, callback) {
 
 		var gC = moment(gClock);
 		var gC2 = moment(gClock);
-		console.log(gC.format('YYYY-MM-DD'));
-		console.log(settings.minBreedAge);
-		console.log(settings.maxBreedAgeFemale);
+
 		var minBirthDate = gC.subtract("y", settings.minBreedAge).format('YYYY-MM-DD');
 		var maxBirthDate = gC2.subtract("y", settings.maxBreedAgeFemale).format('YYYY-MM-DD');
 
-		// db.posts.find({"created_on": {"$gte": start, "$lt": end}})
+	
+		query["dateOfBirth"] = { '$lt' :  minBirthDate, '$gte' : maxBirthDate }
+		///console.log(query);
 
-		query["dateOfBirth"] = { "$gte" : maxBirthDate, "$lte" : minBirthDate }
-		console.log(query);
-
-		populationCountFiltered(query, function(persCount) {
+		Person.count(query).exec(function(err, persCount) {
 			var ranNum = (Math.floor(Math.random() * persCount))
-			
-			// Person.find(query, fields).skip(ranNum).limit(persCount).exec(function(err, per) {
-			// 	callback(per);
-			// });
+			//console.log("PC " + persCount);
+			Person.find(query, fields).skip(ranNum).limit(persAmount).exec(function(err, per) {
+				//console.log(per);
+				callback(per);
+			});
 		});
 	});	
 
@@ -212,6 +210,7 @@ function populationCountAlive(callback) {
 
 exports.populationCountFiltered = populationCountFiltered;
 function populationCountFiltered(filter, callback) {
+	//console.log(filter);
 	Person.count(filter, function(err, c) { callback(c); });
 }
 
@@ -576,8 +575,8 @@ function GetName(gender) {
 		nameFile = 'female_names.txt';
 	}
 
-	var first = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 200)));
-	var middle = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 200)));
+	var first = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 900)));
+	var middle = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 900)));
 
 	var name = { first: first, middle: middle };
 
