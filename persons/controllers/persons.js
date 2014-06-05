@@ -26,7 +26,7 @@ var relationships = require('./relationships');
 
 /* Individuals */
 
-
+exports.get = getPerson;
 exports.getPerson = getPerson;
 function getPerson(personId, callback) {
 	Person.findOne({_id: personId}).populate('familyInfo').exec(function(err, doc) {
@@ -44,30 +44,18 @@ function getPersonFiltered(query, fields, callback) {
 }
 
 
-
-
-exports.getAge = function(personId, yearsOld, callback) {
+exports.age = getAge;
+exports.getAge = getAge;
+exports.getAge = function(personId, callback) {
 	Person.findOne({_id: personId}, function(err, per) {
-		// Get current game datetime
-		//console.log('getAge: ' + personId);
-		//console.log('getAge: ' + yearsOld);
-		//if(per)
-		//{
 			gameSettings.getValueByKey('time', function(time) {
 				curGameTime = moment(time.setvalue);
 				birthDate = moment(per.dateOfBirth);
-				
-				// console.log("XX " + personId);
-				// console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
-				// console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
 
 				curAge = tMoment.getDifference(curGameTime, birthDate);
 
 				callback(curAge);
-
 			});
-		//}
-		//callback();
 	});
 }
 
@@ -283,37 +271,7 @@ function getParents(personId, callback) {
 	});
 }
 
-// exports.breed = function(personId, callback) {
-// 	var minAge = settings.minBreedAge;
-// 	var age;
-// 	var oldEnough;
 
-// 	// Person.findOne({ _id: personId }, function(err, per) {
-// 	// 	exports.getAge(personId, 1, function (perAge){ 
-				
-// 	// 		console.log("Min age: " + minAge);
-// 	// 		console.log("Per age: " + perAge.years);
-	
-// 	// 		if(perAge.years >= minAge) {
-// 	// 			oldEnough = true;
-// 	// 		} else {
-// 	// 			oldEnough = false;
-// 	// 		}
-			
-// 	// 		callback(oldEnough);
-// 	// 	});
-// 	// });
-
-// 	// persons.getAge(testId,1, function(age) {
-// 	// 	console.log("ZZ AGE: ");
-// 	// 	console.log(age);		
-// 	// });
-
-
-// 	exports.getAge(personId, 1, function(age) {
-// 		callback("blue");
-// 	});
-// }
 
 exports.breed = breed;
 function breed(fatherId, motherId, callback) {
@@ -330,7 +288,7 @@ function breed(fatherId, motherId, callback) {
 
 	async.series({
 		fatherAge: function(callback) {
-			exports.getAge(fatherId, 1, function(a) {
+			exports.getAge(fatherId, function(a) {
 				//console.log("breed: " + fatherId);
 				//console.log("breed: ");
 				//console.log(a);
@@ -346,7 +304,7 @@ function breed(fatherId, motherId, callback) {
 			});
 		},
 		motherAge: function(callback) {
-			exports.getAge(motherId, 1, function(a) {
+			exports.getAge(motherId, function(a) {
 				mrAge = a.years;
 				callback(null, mrAge);
 			});
@@ -425,7 +383,8 @@ setPregnant = function(fatherId, motherId, callback) {
 }
 
 //giveBirth = function(familyId, familyName, fatherId, motherId, callback) {
-exports.giveBirth = function(fatherId, motherId, callback) {
+exports.giveBirth = giveBirth;
+function giveBirth(fatherId, motherId, callback) {
 
 	var gender = "";
 	var name;
@@ -573,7 +532,9 @@ function getMarried(callback) {
 
 }
 
-exports.killOff = function(personId, callback) {
+exports.kill = killOff;
+exports.killOff = killOff;
+function killOff(personId, callback) {
 	gameSettings.getValueByKey('time', function(time) {
 						
 		curGameTime = moment(time.setvalue);
@@ -587,6 +548,7 @@ exports.killOff = function(personId, callback) {
 	});
 }
 
+exports.pickGender = PickGender;
 function PickGender()
 {
 	var ranNum = (Math.floor(Math.random() * 100));
@@ -599,8 +561,7 @@ function PickGender()
 	}
 }
 
-
-
+exports.getRandomName = GetRandomName;
 function GetRandomName(filename, line_no) {
     var data = fs.readFileSync(filename, 'utf8');
     var lines = data.split("\n");
@@ -664,22 +625,19 @@ var GetAge = function(gameClock, birthDate)
 	return curAge;
 }
 
-// var GetAge = function(personId, yearsOld, callback) {
+// Creates a new perons and returns _id;
+// params:  person - JSON formatted Person object
+exports.create = createPerson
+exports.createPerson = createPerson
+function createPerson(person, callback) {
 
-// 	Person.findOne({_id: personId}, function(err, per) {
-// 		// Get current game datetime
+		var per = new Person(person);
+		var personId = per._id;
 
-// 		gameSettings.getValueByKey('time', function(time) {
-// 			curGameTime = moment(time.setvalue);
-// 			birthDate = moment(per.dateOfBirth);
-// 			//console.log(time);
-// 			//console.log("XX Birth Date: " + per.dateOfBirth + ' | ' + birthDate);
-// 			//console.log("XX Current Game Time: " +  time.setvalue + ' | ' + curGameTime);
-// 			curAge = tMoment.getDifference(curGameTime, birthDate);
+		per.save(function (err) {
+			callback(personId);
+		});
 
-// 			callback(curAge);
 
-// 		});
-// 	});
-// }
 
+}

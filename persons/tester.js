@@ -1,15 +1,10 @@
- // var mongoose = require('mongoose'),
-// 	Building = mongoose.model('buildings'),
-// 	Item = mongoose.model('items'),
-// 	Inventory = mongoose.model('playeritems'),
-// 	Requirement = mongoose.model('requirements');
 
 var mongoose = require('mongoose');
 //var colors = require('colors');
 var fs = require('fs');
 var moment = require('moment');
 var argv = require('optimist').argv;
-var memwatch = require('memwatch');
+//var memwatch = require('memwatch');
 
 var config = require('./config/config');
 var tMoment = require('./helpers/time.js');
@@ -102,16 +97,6 @@ var countm = 0
 
 PersonsEngine.prototype.automatedWorkers = function(models) {
 
-	// var stats = memwatch.gc();
-
-	// memwatch.on('leak', function(info) { 
-	// 	console.log(countm);
-	// 	console.log(info); 
-	// 	countm++;
-	// });
-
-    //var hd = new memwatch.HeapDiff();
-
 	var that = this;
 
 	console.log('=======================================');
@@ -122,15 +107,11 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 	if(App.gameClock.format('YYYY') == App.maxRunYears)
 	{
-	//	console.log(hd.end());
 		process.kill(0);
 	}
 
 	gamesetting.setValueByKey('time', App.gameClock, function() {});
 
-	//diff = tMoment.getDifference(App.gameClock,new Date());
-
-	//console.log('Y: ' + diff.years + ' / M: ' + diff.months + ' / D: ' + diff.days);
 
 	persons.populationCountAlive(function(c) {
 		console.log('Total Population: ' + c);
@@ -173,21 +154,6 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 			});
 		});
 	})
-
-	// relationships.getCouplesRandomActive(1, function (couples) {
- 		
- // 		couples.forEach(function(c) {
- 			
- // 			var ranNum = (Math.floor(Math.random() * 500));
-
-	// 		if(ranNum > App.babyRatioNum)
-	// 		{
-	// 			console.log(c.person1 + " -> " + c.person2);
-	// 			persons.breed(c.person1, c.person2, function(p) {
-	// 			});
-	// 		}
- // 		});
- // 	});
 	
 
  	///////////////////////////////////////////////
@@ -227,17 +193,10 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 }
 
-
-
-
 var personsEngine = new PersonsEngine();
 
-
-
+// Start the engine
 personsEngine.init();
-
-
-
 
 
 

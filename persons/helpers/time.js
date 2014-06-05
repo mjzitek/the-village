@@ -1,6 +1,7 @@
 var moment = require('moment');
 
-exports.getDifference = function(olderDate, newerDate) {
+exports.getDifference = getDifference;
+function getDifference(olderDate, newerDate) {
 
 	var then = moment(olderDate);
 	var to = moment(newerDate);

@@ -89,6 +89,7 @@ PersonsEngine.prototype.init = function() {
 	that = this;
 	//this.models = models;
 	that.setAutoInterval();
+	that.tester();
 	//console.log(models);
 }
 
@@ -114,29 +115,63 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	var query = {};
 	var fields = {};
 
-// ObjectId("538e93acbe5366ff75b9ffab")
-// ObjectId("538e93adbe5366ff75b9ffaf")
+		// var per = new Person({ 
+		// 					   familyInfo: results.mother.familyInfo._id, 
+		// 					   firstName: results.name.first,
+		// 					   middleName:  results.name.middle,
+		// 					   lastName: results.familyName,
+		// 					   gender: results.gender,
+		// 					   dateOfBirth: results.curDate,
+		// 					   placeOfBirth: null,
+		// 					   dateOfDeath: null,
+		// 					   headOfFamily: 0,
+		// 					   fatherInfo: fatherId, 
+		// 					   motherInfo: motherId,
+		// 					   attributes: {
+		// 					   					married: false
+		// 					   			   },
+		// 					   pregnancy: {
+		// 					   					pregnant: false,
+		// 					   					pregnancyDate: null,
+		// 					   					babyFatherId: null
+		// 					   }
 
-	query["gender"] = "M";
-
-	persons.getRandomPerson(query, fields, function(f) {
-
-		query["gender"] = "F";
-		persons.getRandomPerson(query, fields, function(m) {
-			persons.giveBirth(f._id, m._id, function(p) {
+		// 					});
 
 
-			});
-		});
 
-	});
 
 
 
 
 }
 
+PersonsEngine.prototype.tester = function(models)  {
+		var person = {};
 
+	person["familyInfo"] = null;
+	person["firstName"] = "Charles";
+	person["middleName"] = "Henry";
+	person["lastName"] = "Seiko";
+	person["gender"] = "M";
+	person["dateOfBirth"] = "1939-12-04";
+	person["dateOfDeath"] = null;
+	person["headOfFamily"] = 1;
+	person["fatherInfo"] = null;
+	person["motherInfo"] = null;
+	person["placeOfBirth"] = null;
+	person["attributes"] = { married : true };
+	person["pregnancy"] = { pregnant : false, pregnancyDate: null, babyFatherId: null}
+
+	console.log(person);
+
+
+	persons.createPerson(person, function(id) {
+		persons.get(id, function(per) {
+			console.log(per);
+		});
+	});
+}
 
 
 var personsEngine = new PersonsEngine();
