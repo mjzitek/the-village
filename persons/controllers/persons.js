@@ -46,7 +46,7 @@ function getPersonFiltered(query, fields, callback) {
 
 exports.age = getAge;
 exports.getAge = getAge;
-exports.getAge = function(personId, callback) {
+function getAge(personId, callback) {
 	Person.findOne({_id: personId}, function(err, per) {
 			gameSettings.getValueByKey('time', function(time) {
 				curGameTime = moment(time.setvalue);
@@ -61,7 +61,12 @@ exports.getAge = function(personId, callback) {
 
 exports.getSurname = function(personId, callback) {
 	Person.findOne({_id: personId}).populate('familyInfo').exec(function(err, doc) {
-		callback (doc.lastName);
+		if(doc)
+		{
+			callback(doc.lastName);
+		} else {
+			callback(personId + " not found");
+		}
 	});
 
 }
@@ -396,13 +401,13 @@ function giveBirth(fatherId, motherId, callback) {
 
 	async.series({
 		gender: function(callback) {
-			gender = PickGender();
+			gender = pickGender();
 			console.log(gender);
 			callback(null,gender);
 		},
 		name: function(callback) {
 
-			name = GetName(gender);
+			name = getRandomName(gender);
 			console.log(name);
 			callback(null, name);
 		},
@@ -462,7 +467,7 @@ function giveBirth(fatherId, motherId, callback) {
 							   lastName: results.familyName,
 							   gender: results.gender,
 							   dateOfBirth: results.curDate,
-							   placeOfBirth: null,
+				 			   placeOfBirth: null,
 							   dateOfDeath: null,
 							   headOfFamily: 0,
 							   fatherInfo: fatherId, 
@@ -548,8 +553,8 @@ function killOff(personId, callback) {
 	});
 }
 
-exports.pickGender = PickGender;
-function PickGender()
+exports.pickGender = pickGender;
+function pickGender()
 {
 	var ranNum = (Math.floor(Math.random() * 100));
 
@@ -561,24 +566,23 @@ function PickGender()
 	}
 }
 
-exports.getRandomName = GetRandomName;
-function GetRandomName(filename, line_no) {
-    var data = fs.readFileSync(filename, 'utf8');
-    var lines = data.split("\n");
+exports.getNameFromFile = getNameFromFile;
+function getNameFromFile(filename, line_no) {
+	try {
+	    var data = fs.readFileSync(filename, 'utf8');
+	    var lines = data.split("\n");
 
-    line_no = line_no - 1;
-    if(line_no < 0) line_no = 0;
+	    line_no = line_no - 1;
+	    if(line_no < 0) line_no = 0;
 
-    // if(lines[line_no] == '') 
-    // {
-    // 	GetRandomName()
-    // }
-
-    return lines[line_no];
+	    return lines[line_no];
+	} catch (e) {
+		return e;
+	}
 }
 
-
-function GetName(gender) {
+exports.getRandomName = getRandomName;
+function getRandomName(gender) {
 
 	var nameFile;
 
@@ -588,13 +592,22 @@ function GetName(gender) {
 	} else if (gender == "F")
 	{
 		nameFile = 'female_names.txt';
+	} else {
+		return("Error - no gender selected");
 	}
 
-	var first = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 900)));
-	var middle = GetRandomName('./models/' + nameFile, (Math.floor(Math.random() * 900)));
+	if(nameFile) 
+	{
+		try
+		{
+		var first = getNameFromFile('./models/' + nameFile, (Math.floor(Math.random() * 900)));
+		var middle = getNameFromFile('./models/' + nameFile, (Math.floor(Math.random() * 900)));
 
-	var name = { first: first, middle: middle };
-
+		var name = { first: first, middle: middle };
+		} catch(e) {
+			return e;
+		}
+	}
 	return name;
 }
 
@@ -640,4 +653,17 @@ function createPerson(person, callback) {
 
 
 
+}
+
+exports.remove = removePerson
+exports.removePerson = removePerson
+function removePerson(personId, callback) {
+	Person.remove( { _id : personId}, function(err, doc) {
+		if(err) {
+			callback(err);
+		} else
+		{
+			callback();
+		}
+	});
 }

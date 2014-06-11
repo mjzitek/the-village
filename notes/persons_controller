@@ -1,0 +1,35 @@
+persons controller
+==================
+
++ getPerson (get)
+- getPersonFiltered
+- getAge
++ getSurname
+- getPersons
+- getRandomPerson
+- getMarriageEligibleSingle
+- getRandomReadyWomen
+- getPersonsAlive
+- populationCountTotal
+- populationCountAlive
+- populationCountFiltered
+- getPregnantWomen
+- getChildrenByFather
+- getChildrenByMother
+- getSingles
+- getMarriageEligibleSingles
+- getSiblingsSameParents
+- getParents
+- breed
+- setPregnant
+- giveBirth
+- setMarried
+- getMarried
+- killOff (kill)
+- pickGender()
++ getNameFromFile
++ getRandomName
+- OldEnoughToBreed
+- GetAge
++ createPerson (create)
++ removePerson (remove)
