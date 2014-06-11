@@ -2,12 +2,13 @@ persons controller
 ==================
 
 + getPerson (get)
-- getPersonFiltered
-- getAge
++ getPersonFiltered
++ getAge
 + getSurname
 - getPersons
 - getRandomPerson
 - getMarriageEligibleSingle
+- getMarriageEligibleSingles
 - getRandomReadyWomen
 - getPersonsAlive
 - populationCountTotal
@@ -17,7 +18,6 @@ persons controller
 - getChildrenByFather
 - getChildrenByMother
 - getSingles
-- getMarriageEligibleSingles
 - getSiblingsSameParents
 - getParents
 - breed
@@ -30,6 +30,12 @@ persons controller
 + getNameFromFile
 + getRandomName
 - OldEnoughToBreed
-- GetAge
 + createPerson (create)
 + removePerson (remove)
+
+
+----------
+Legend
+----------
+- function with no test
++ function with test

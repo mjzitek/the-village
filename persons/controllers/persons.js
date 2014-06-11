@@ -59,6 +59,16 @@ function getAge(personId, callback) {
 	});
 }
 
+// var GetAge = function(gameClock, birthDate)
+// {
+// 	curGameTime = moment(gameClock);
+// 	birthDate = moment(birthDate);
+			
+// 	curAge = tMoment.getDifference(curGameTime, birthDate);
+
+// 	return curAge;
+// }
+
 exports.getSurname = function(personId, callback) {
 	Person.findOne({_id: personId}).populate('familyInfo').exec(function(err, doc) {
 		if(doc)
@@ -120,7 +130,44 @@ function getMarriageEligibleSingle(gender, familyId, callback) {
 	fields["lastName"] = 1;
 	fields["familyInfo"] = 1;
 
+	try {
 
+		time.getGameClock(function(gClock) {
+
+			var gC = moment(gClock);
+			var minMarriageDate = gC.subtract("y", settings.minMarriageAge).format('YYYY-MM-DD');
+
+			query["dateOfBirth"] = { $lt : minMarriageDate }
+			//console.log(query);
+
+			populationCountFiltered(query, function(persCount) {
+				var ranNum = (Math.floor(Math.random() * persCount))
+				//console.log(ranNum);
+				Person.findOne(query, fields).skip(ranNum).exec(function(err, per) {
+					callback(per);
+				});
+			});
+		});
+	}
+	catch (e) {
+		callback(e);
+	}
+}
+
+exports.getMarriageEligibleSingles = getMarriageEligibleSingles;
+function getMarriageEligibleSingles(gender, callback) {
+
+	var query = {};
+	var fields = {};
+
+	query["gender"] = gender;
+	query["attributes"] = { married: false };
+	query["dateOfDeath"] = null;
+
+
+	fields["firstName"] = 1;
+	fields["lastName"] = 1;
+	fields["familyInfo"] = 1;
 
 	time.getGameClock(function(gClock) {
 
@@ -131,14 +178,12 @@ function getMarriageEligibleSingle(gender, familyId, callback) {
 		//console.log(query);
 
 		populationCountFiltered(query, function(persCount) {
-			var ranNum = (Math.floor(Math.random() * persCount))
 			//console.log(ranNum);
-			Person.findOne(query, fields).skip(ranNum).exec(function(err, per) {
-				callback(per);
+			Person.find(query, fields).exec(function(err, pers) {
+				callback(pers);
 			});
 		});
 	});
-
 }
 
 
@@ -236,26 +281,7 @@ exports.getSingles = function(gender, callback) {
 	})
 }
 
-exports.getMarriageEligibleSingles = function(gender, callback) {
 
-	Person.find({ gender: gender, attributes: {married: false}, dateOfDeath: null }).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec( function(err, sme) {
-		var age = 0;
-		var meSingles = [];
-		if(sme) {
-			sme.forEach(function(sngl) {
-				age = GetAge(gameClock, sngl.dateOfBirth);
-				//console.log(sngl._id + " => " + age.years + " / " + settings.minMarriageAge)	
-				if(age.years >= settings.minMarriageAge)
-				{
-					meSingles.push(sngl);
-				}
-			});
-
-		}	
-		callback(meSingles);
-		
-	})
-}
 
 
 
@@ -628,15 +654,7 @@ function OldEnoughToBreed(curAge)
 
 }
 
-var GetAge = function(gameClock, birthDate)
-{
-	curGameTime = moment(gameClock);
-	birthDate = moment(birthDate);
-			
-	curAge = tMoment.getDifference(curGameTime, birthDate);
 
-	return curAge;
-}
 
 // Creates a new perons and returns _id;
 // params:  person - JSON formatted Person object

@@ -39,9 +39,10 @@ describe("Person", function() {
 
 	////////////////////////////////////////
 	describe("#getSurname()", function() {
-		it("should equal Jones", function() {
+		it("should equal Jones", function(done) {
 			persons.getSurname("538925c7b77b80b59d2c4c60", function(surname) {
 				expect(surname).to.equal("Jones");
+				done();
 			});
 		});
 	});
@@ -55,21 +56,22 @@ describe("Person", function() {
 	person["middleName"] = "T";
 	person["lastName"] = "Tester";
 	person["gender"] = "M";
-	person["dateOfBirth"] = "1900-01-01";
+	person["dateOfBirth"] = "1880-01-01";
 	person["dateOfDeath"] = null;
 	person["headOfFamily"] = 1;
 	person["fatherInfo"] = null;
 	person["motherInfo"] = null;
 	person["placeOfBirth"] = null;
-	person["attributes"] = { married : true };
+	person["attributes"] = { married : false };
 	person["pregnancy"] = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
 	////////////////////////////////////////
 	describe("#createPerson()", function() {
-		it("_id should not be empty", function() {
+		it("_id should not be empty", function(done) {
 			persons.create(person, function(id) {
 				personId = id;
 				expect(id).to.not.be.empty;
+				done();
 			});
 
 		});
@@ -77,40 +79,90 @@ describe("Person", function() {
 
 	////////////////////////////////////////
 	describe("#getPerson()", function() {
-		it("should equal Tester", function() {
+		it("should equal Tester", function(done) {
 			persons.get(personId, function(per) {
 				expect(per.lastName).to.equal("Tester");
+				done();
 			});
 		});
 	});
 
 	////////////////////////////////////////
-	describe("#removePerson()", function() {
-		it("should not return error", function() {
-			persons.remove(personId, function(doc) {
-				expect(doc).to.be.empty;
+	describe("#getPersonFiltered()", function() {
+		it("should return Tester", function(done) {
+			var query = {};
+			query["_id"] = personId;
+			var fields = {};
+			persons.getPersonFiltered(query,fields, function(per) {
+				expect(per.lastName).to.equal("Tester");
+				done();
 			});
-		});
-	});
+		})
+	})
 
 	////////////////////////////////////////
 	describe("#getRandomName()", function() {
-		it("should not be empty", function() {
+		it("should not be empty", function(done) {
 			var name = persons.getRandomName("M");
 			expect(name.first).to.not.be.empty;
+			done();
 		});
 	});
 
 	////////////////////////////////////////
 	describe("#getNameFromFile()", function() {
-		it("should equal John", function() {
+		it("should equal John", function(done) {
 			var fileName = __dirname + "/test_names.txt";
 			var lineNo = 1;
 			var name = persons.getNameFromFile(fileName, lineNo);
 			expect(name).to.equal("John");
+			done();
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#getMarriageEligibleSingle()", function() {
+		it("should return a person", function(done) {
+			persons.getMarriageEligibleSingle("M", "", function(per) {
+				expect(per.firstName).to.equal("Test");
+				done();
+			});
+		});
+	});
+
+
+	describe("#getMarriageEligibleSingles()", function() {
+		it("should return persons", function(done) {
+			persons.getMarriageEligibleSingles("M", function(pers) {
+				expect(pers).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
+	describe("#getAge()", function() {
+		it("should return 20", function(done) {
+			persons.getAge(personId, function(age) {
+				expect(age.years).to.equal(20);
+				done();
+			})
 		})
 	})
 
+
+
+	////////////////////////////////////////
+	////////////////////////////////////////
+	describe("#removePerson()", function() {
+		it("should not return error", function(done) {
+			persons.remove(personId, function(doc) {
+				expect(doc).to.be.empty;
+				done();
+			});
+		});
+	});
+
+/////////////////////////////
 });
 
 
