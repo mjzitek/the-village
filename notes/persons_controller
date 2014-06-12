@@ -5,12 +5,12 @@ persons controller
 + getPersonFiltered
 + getAge
 + getSurname
-- getPersons
-- getRandomPerson
++ getPersons
++ getRandomPerson
 - getMarriageEligibleSingle
 - getMarriageEligibleSingles
 - getRandomReadyWomen
-- getPersonsAlive
++ getPersonsAlive
 - populationCountTotal
 - populationCountAlive
 - populationCountFiltered
@@ -26,7 +26,7 @@ persons controller
 - setMarried
 - getMarried
 - killOff (kill)
-- pickGender()
++ pickGender
 + getNameFromFile
 + getRandomName
 - OldEnoughToBreed

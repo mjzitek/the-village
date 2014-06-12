@@ -97,8 +97,40 @@ describe("Person", function() {
 				expect(per.lastName).to.equal("Tester");
 				done();
 			});
-		})
-	})
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#getPersons()", function() {
+		it("should not be empty", function(done) {
+			persons.getPersons(function(pers) {
+				expect(pers).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#getRandomPerson()", function() {
+		it("should not be empty", function(done) {
+			var query = {};
+			var fields = {};
+			persons.getRandomPerson(query, fields, function(per) {
+				expect(per.firstName).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#getPersonsAlive()", function() {
+		it("should not be empty", function(done) {
+			persons.getPersonsAlive(function(pers) {
+				expect(pers).to.not.be.empty;
+				done();
+			});
+		});
+	});
 
 	////////////////////////////////////////
 	describe("#getRandomName()", function() {
@@ -130,7 +162,7 @@ describe("Person", function() {
 		});
 	});
 
-
+	////////////////////////////////////////
 	describe("#getMarriageEligibleSingles()", function() {
 		it("should return persons", function(done) {
 			persons.getMarriageEligibleSingles("M", function(pers) {
@@ -140,15 +172,24 @@ describe("Person", function() {
 		});
 	});
 
+	////////////////////////////////////////
 	describe("#getAge()", function() {
 		it("should return 20", function(done) {
 			persons.getAge(personId, function(age) {
 				expect(age.years).to.equal(20);
 				done();
-			})
-		})
-	})
+			});
+		});
+	});
 
+	////////////////////////////////////////
+	describe("#pickGender()", function() {
+		it("should be M or F", function(done) {
+			var gender = persons.pickGender();
+			expect(gender).to.match(/M|F/);
+			done();
+		});
+	});
 
 
 	////////////////////////////////////////
