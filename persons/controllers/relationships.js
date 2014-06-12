@@ -96,7 +96,7 @@ exports.performMarriage = function(personId1, personId2, headId, callback) {
 		if(err) {
 			console.log('marriage err: ' + err)
 		} else {
-			console.log("marriage id: " + marriage._id);
+			//console.log("marriage id: " + marriage._id);
 			callback(marriage._id);
 		}
 	});

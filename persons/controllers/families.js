@@ -18,7 +18,7 @@ exports.createNewFamily = function(husbandId, wifeId, callback) {
 	// familyDateFrom: Date,
 	// familyDateTo:   Date,
 	// OtherFamilyDetails: String 
-	console.log("Creating new family for " + husbandId + " & " + wifeId);
+	//console.log("Creating new family for " + husbandId + " & " + wifeId);
 
 	persons.getSurname(husbandId, function(surname) {
 		var family = new Family(
@@ -38,7 +38,7 @@ exports.createNewFamily = function(husbandId, wifeId, callback) {
 			if(err) {
 				console.log("err: " + err);
 			} else {
-				console.log("** NEW FAMILY ** " + family._id + " | " + surname);
+				//console.log("** NEW FAMILY ** " + family._id + " | " + surname);
 				callback(family._id);
 			}
 		});

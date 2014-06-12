@@ -7,29 +7,28 @@ persons controller
 + getSurname
 + getPersons
 + getRandomPerson
-- getMarriageEligibleSingle
-- getMarriageEligibleSingles
-- getRandomReadyWomen
++ getMarriageEligibleSingle
++ getMarriageEligibleSingles
++ getRandomBabyReadyWomen
 + getPersonsAlive
-- populationCountTotal
-- populationCountAlive
-- populationCountFiltered
-- getPregnantWomen
++ populationCountTotal
++ populationCountAlive
++ populationCountFiltered
 - getChildrenByFather
 - getChildrenByMother
-- getSingles
++ getSingles
 - getSiblingsSameParents
-- getParents
++ getParents
 - breed
-- setPregnant
-- giveBirth
-- setMarried
-- getMarried
-- killOff (kill)
++ setPregnant
++ getPregnantWomen
++ giveBirth
++ setMarried
++ performMarriage
++ killOff (kill)
 + pickGender
 + getNameFromFile
 + getRandomName
-- OldEnoughToBreed
 + createPerson (create)
 + removePerson (remove)
 

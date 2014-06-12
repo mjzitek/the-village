@@ -402,13 +402,19 @@ function breed(fatherId, motherId, callback) {
  *
  ***************************************************************************************/
 
-setPregnant = function(fatherId, motherId, callback) {
+exports.setPregnant = setPregnant;
+function setPregnant(fatherId, motherId, callback) {
 	gameSettings.getValueByKey('time', function(time) {				
 		curGameTime = moment(time.setvalue);
 
 		Person.update({_id: motherId }, { pregnancy: { pregnant: true, pregnancyDate: curGameTime, babyFatherId: fatherId }}, function(err, doc) {
-			
-			callback();
+			if(err)
+			{
+				callback(err)
+			} else {
+				callback();
+			}
+
 		});
 	});
 }
@@ -428,13 +434,13 @@ function giveBirth(fatherId, motherId, callback) {
 	async.series({
 		gender: function(callback) {
 			gender = pickGender();
-			console.log(gender);
+			//console.log(gender);
 			callback(null,gender);
 		},
 		name: function(callback) {
 
 			name = getRandomName(gender);
-			console.log(name);
+			//console.log(name);
 			callback(null, name);
 		},
 		mother: function(callback) {
@@ -485,7 +491,6 @@ function giveBirth(fatherId, motherId, callback) {
 		}
 	},
 	function(err, results) {
-		//console.log(results);
 		var per = new Person({ 
 							   familyInfo: results.mother.familyInfo._id, 
 							   firstName: results.name.first,
@@ -509,14 +514,20 @@ function giveBirth(fatherId, motherId, callback) {
 
 							});
 
-		console.log("***************************************************");
-		console.log("** NEW BABY: " + results.name.first + " " + results.familyName + " / " + gender);
-		console.log("***************************************************");
+		// console.log("***************************************************");
+		// console.log("** NEW BABY: " + results.name.first + " " + results.familyName + " / " + gender);
+		// console.log("***************************************************");
 
-		per.save(function (err) {});
 
-    	//console.log(results);
-    	callback(results);
+
+		per.save(function (err) {
+			if(err) {
+				callback(err);
+			} else {
+    			callback(per._id);				
+			}
+		});
+
 	});
 
 	
@@ -525,10 +536,11 @@ function giveBirth(fatherId, motherId, callback) {
 exports.setMarried = setMarried;
 function setMarried(personId, familyId, callback) {
 
-	console.log("Setting married: " + personId + "(" + familyId + ")");
+	//console.log("Setting married: " + personId + "(" + familyId + ")");
 	Person.update({_id: personId }, { attributes: { married: true}, familyInfo: familyId }, function(err,doc) {
 		if(err) {
 			console.log("Error updating married: " + err)
+			callback(err);
 		} else {
 			callback('updated');
 		}
@@ -536,8 +548,8 @@ function setMarried(personId, familyId, callback) {
 
 }
 
-exports.getMarried = getMarried;
-function getMarried(callback) {
+exports.performMarriage = performMarriage;
+function performMarriage(callback) {
 	getMarriageEligibleSingle("M", "", function(mPer) {
 		if(mPer)
 		{
@@ -545,9 +557,9 @@ function getMarried(callback) {
 				if(fPer)
 				{
 					relationships.performMarriage(mPer._id, fPer._id, mPer._id, function() {
-										console.log("++ MARRIAGE ++ " + mPer.firstName + " " 
-													+ mPer.lastName + " & " + fPer.firstName + " " + fPer.lastName);
-										console.log("Performing marriage and creating new family...");
+										//console.log("++ MARRIAGE ++ " + mPer.firstName + " " 
+										//			+ mPer.lastName + " & " + fPer.firstName + " " + fPer.lastName);
+										//console.log("Performing marriage and creating new family...");
 
 										families.createNewFamily(mPer._id, fPer._id, function(familyId) {
 											
@@ -555,10 +567,15 @@ function getMarried(callback) {
 												setMarried(fPer._id, familyId, function(d) {callback(d);});
 											});	
 										});						
-				});
+					});
+				} else {
+					callback('marriage not performed - no female');
 				}
 			});
+		} else {
+			callback('marriage not performed - no male');			
 		}
+
 	});
 
 }
@@ -570,10 +587,17 @@ function killOff(personId, callback) {
 						
 		curGameTime = moment(time.setvalue);
 		Person.update( { _id: personId} , { dateOfDeath: curGameTime}, function (err, doc) {
-			if(err) console.log(err);
-			relationships.endRelationship(personId, 'death of spouse', function(c) {
-				callback(personId + ' has died at ' + curGameTime);
-			});
+			if(err)
+			{
+				console.log(err);
+				callback(err);
+			} else 
+			{
+
+				relationships.endRelationship(personId, 'death of spouse', function(c) {
+					callback(personId + ' has died at ' + curGameTime);
+				});
+			}
 			
 		});
 	});
@@ -638,24 +662,6 @@ function getRandomName(gender) {
 }
 
 
-function OldEnoughToBreed(curAge)
-{
-	var minAge = settings.minBreedAge;
-
-	var oldEnough;
-
-	if(curAge >= minAge) {
-		oldEnough = true;
-	} else {
-		oldEnough = false;
-	}
-
-	return oldEnough;
-
-}
-
-
-
 // Creates a new perons and returns _id;
 // params:  person - JSON formatted Person object
 exports.create = createPerson
@@ -668,8 +674,6 @@ function createPerson(person, callback) {
 		per.save(function (err) {
 			callback(personId);
 		});
-
-
 
 }
 

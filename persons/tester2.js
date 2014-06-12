@@ -176,19 +176,13 @@ PersonsEngine.prototype.tester = function(models)  {
   	// 	console.log(per);
   	// })
 
-  	var query = {};
-	var fields = {};
-	var personId = '53863e89b77b80b59d2c4c5b';
-
-	query["_id"] = personId;
-
-	persons.getPersonFiltered(query, fields, function(pers) {
-		console.log(pers);
-	})
-}
+		persons.getRandomBabyReadyWomen(false, 1, function(per) {
+			console.log(per);
+		});
+  	}
 
 
-var personsEngine = new PersonsEngine();
+	var personsEngine = new PersonsEngine();
 
 
 

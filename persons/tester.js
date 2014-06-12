@@ -159,7 +159,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
  	///////////////////////////////////////////////
  	// Marriage
 
-	persons.getMarried(function(d) {});
+	persons.performMarriage(function(d) {});
 	
  	///////////////////////////////////////////////
  	// Kill off people

@@ -37,6 +37,45 @@ var persons = require('../controllers/persons');
 
 describe("Person", function() {
 
+	var person2Id;
+	var person3Id;
+
+	before(function(done){    
+		/////
+		var person2 = {};
+
+
+		person2["familyInfo"] = "53825c9cb77b80b59d2c4c49";
+		person2["firstName"] = "Test2";
+		person2["middleName"] = "T2";
+		person2["lastName"] = "Tester2";
+		person2["gender"] = "M";
+		person2["dateOfBirth"] = "1880-01-01";
+		person2["dateOfDeath"] = null;
+		person2["headOfFamily"] = 1;
+		person2["fatherInfo"] = null;
+		person2["motherInfo"] = null;
+		person2["placeOfBirth"] = null;
+		person2["attributes"] = { married : false };
+		person2["pregnancy"] = { pregnant : false, pregnancyDate: null, babyFatherId: null}
+
+
+		persons.createPerson(person2, function(id) {
+			person2Id = id;
+			done();
+		}); 
+  	}); 
+  	
+  	after(function(done){    
+		persons.remove(person2Id, function(doc) {
+//			done();
+		});	
+		persons.remove(person3Id, function(doc) {
+			done();
+		});	  
+  	}); 
+
+
 	////////////////////////////////////////
 	describe("#getSurname()", function() {
 		it("should equal Jones", function(done) {
@@ -51,11 +90,11 @@ describe("Person", function() {
 	var person = {};
 	var personId;
 
-	person["familyInfo"] = null;
+	person["familyInfo"] = "5382607bb77b80b59d2c4c4e";
 	person["firstName"] = "Test";
 	person["middleName"] = "T";
 	person["lastName"] = "Tester";
-	person["gender"] = "M";
+	person["gender"] = "F";
 	person["dateOfBirth"] = "1880-01-01";
 	person["dateOfDeath"] = null;
 	person["headOfFamily"] = 1;
@@ -64,6 +103,9 @@ describe("Person", function() {
 	person["placeOfBirth"] = null;
 	person["attributes"] = { married : false };
 	person["pregnancy"] = { pregnant : false, pregnancyDate: null, babyFatherId: null}
+
+
+
 
 	////////////////////////////////////////
 	describe("#createPerson()", function() {
@@ -155,7 +197,7 @@ describe("Person", function() {
 	////////////////////////////////////////
 	describe("#getMarriageEligibleSingle()", function() {
 		it("should return a person", function(done) {
-			persons.getMarriageEligibleSingle("M", "", function(per) {
+			persons.getMarriageEligibleSingle("F", "", function(per) {
 				expect(per.firstName).to.equal("Test");
 				done();
 			});
@@ -165,8 +207,18 @@ describe("Person", function() {
 	////////////////////////////////////////
 	describe("#getMarriageEligibleSingles()", function() {
 		it("should return persons", function(done) {
-			persons.getMarriageEligibleSingles("M", function(pers) {
+			persons.getMarriageEligibleSingles("F", function(pers) {
 				expect(pers).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#getRandomBabyReadyWomen()", function() {
+		it("should return Tester", function(done) {
+			persons.getRandomBabyReadyWomen(false, 1, function(per) {
+				expect(per[0].lastName).to.equal("Tester");
 				done();
 			});
 		});
@@ -188,6 +240,120 @@ describe("Person", function() {
 			var gender = persons.pickGender();
 			expect(gender).to.match(/M|F/);
 			done();
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#populationCountTotal()", function () {
+		it("should be greater than 0", function(done) {
+			persons.populationCountTotal(function(popCount) {
+				expect(popCount).to.be.least(1);
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#populationCountAlive()", function () {
+		it("should be greater than 0", function(done) {
+			persons.populationCountAlive(function(popCount) {
+				expect(popCount).to.be.least(1);
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#populationCountFiltered()", function () {
+		it("should be greater than 0", function(done) {
+			var filter = {};
+			persons.populationCountFiltered(filter, function(popCount) {
+				expect(popCount).to.be.least(1);
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#setPregnant()", function() {
+		it("should not return error", function(done) {
+			persons.setPregnant("538925c7b77b80b59d2c4c60", personId, function(doc) {
+				expect(doc).to.be.empty;
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#getPregnantWomen()", function() {
+		it("should not be empty", function(done) {
+			persons.getPregnantWomen(function(pers) {
+				expect(pers).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#getSingles()", function() {
+		it("should return at least 1", function(done) {
+			persons.getSingles("F", function(pers) {
+				expect(pers).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#giveBirth()", function() {
+		it("should not be empty", function(done) {
+			persons.giveBirth(person2Id, personId, function(per) {
+				person3Id = per;
+				expect(per).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
+	describe("#getParents()", function() {
+		it("should equal person3Id", function(done) {
+			persons.getParents(person3Id, function(per) {
+				expect(per.motherInfo).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#performMarriage()", function() {
+		//this.timeout(15000);
+		it("should not return error", function(done) {
+			persons.performMarriage(function(doc) {
+				expect(doc).to.equal('updated');
+				done();
+			});
+		});
+	});
+
+
+	////////////////////////////////////////
+	describe("#setMarried()", function() {
+		it("should return 'updated'", function(done) {
+			persons.setMarried(personId, "53825c9cb77b80b59d2c4c49", function(doc) {
+				expect(doc).to.equal('updated');
+				done();
+			});
+		});
+	});
+
+
+	////////////////////////////////////////
+	describe("#kill()", function() {
+		it("should not return error", function(done) {
+			persons.kill(personId, function(doc) {
+				expect(doc).match(new RegExp(personId + " has died at"));
+				done();
+			});
 		});
 	});
 
