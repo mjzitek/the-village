@@ -288,8 +288,14 @@ exports.getSingles = function(gender, callback) {
 
 exports.getSiblingsSameParents = function(personId, callback) {
 	Person.findOne({ _id: personId}, function(err, per) {
-		Person.find( { $or: [ { fatherInfo: per.fatherInfo, motherInfo: per.motherInfo }, { $ne: {fatherInfo: null }}]}, function(err, sibs) {
-			callback(sibs);
+		Person.find( { $or: [ { fatherInfo: per.fatherInfo, motherInfo: per.motherInfo }, 
+					 { $ne: {fatherInfo: null }}]}, function(err, sibs) {
+			if(err) {
+				callback(err);
+			} else {
+				callback(sibs);
+			}		 	 
+			
 		});
 	});
 }
@@ -369,8 +375,8 @@ function breed(fatherId, motherId, callback) {
 			callback(null, tooOld);
 		},
 		haveKid: function(callback) {
-			console.log("oldEnough: " + oldEnough + " | tooOld: " + tooOld + 
-						" | fatherStatus : " + fatherStatus + " | motherStatus: " + motherStatus)
+			//console.log("oldEnough: " + oldEnough + " | tooOld: " + tooOld + 
+			//			" | fatherStatus : " + fatherStatus + " | motherStatus: " + motherStatus)
 			if(oldEnough && !tooOld && fatherStatus && motherStatus) {
 				// giveBirth(fatherId, motherId, function() {
 				// 	callback();
@@ -378,10 +384,10 @@ function breed(fatherId, motherId, callback) {
 				// });
 
 				// Get pregnant
-				console.log(motherId + " => is pregnant!!");
+				//console.log(motherId + " => is pregnant!!");
 				
 				setPregnant(fatherId, motherId, function() {
-					callback();
+					//callback();
 				});
 
 				callback(null, '** New Baby **');
@@ -391,7 +397,13 @@ function breed(fatherId, motherId, callback) {
 	function(err, results) {
 
     	//console.log(results);
-    	callback(results);
+    	if(err) {
+    		callback(err);
+    	} else
+    	{
+    		callback(results);    		
+    	}
+
 	});
 }
 

@@ -14,12 +14,12 @@ persons controller
 + populationCountTotal
 + populationCountAlive
 + populationCountFiltered
-- getChildrenByFather
-- getChildrenByMother
++ getChildrenByFather
++ getChildrenByMother
 + getSingles
-- getSiblingsSameParents
++ getSiblingsSameParents
 + getParents
-- breed
++ breed
 + setPregnant
 + getPregnantWomen
 + giveBirth

@@ -38,7 +38,7 @@ var persons = require('../controllers/persons');
 describe("Person", function() {
 
 	var person2Id;
-	var person3Id;
+	var personKidId;
 
 	before(function(done){    
 		/////
@@ -70,7 +70,7 @@ describe("Person", function() {
 		persons.remove(person2Id, function(doc) {
 //			done();
 		});	
-		persons.remove(person3Id, function(doc) {
+		persons.remove(personKidId, function(doc) {
 			done();
 		});	  
   	}); 
@@ -308,7 +308,7 @@ describe("Person", function() {
 	describe("#giveBirth()", function() {
 		it("should not be empty", function(done) {
 			persons.giveBirth(person2Id, personId, function(per) {
-				person3Id = per;
+				personKidId = per;
 				expect(per).to.not.be.empty;
 				done();
 			});
@@ -316,8 +316,8 @@ describe("Person", function() {
 	});
 
 	describe("#getParents()", function() {
-		it("should equal person3Id", function(done) {
-			persons.getParents(person3Id, function(per) {
+		it("should equal personKidId", function(done) {
+			persons.getParents(personKidId, function(per) {
 				expect(per.motherInfo).to.not.be.empty;
 				done();
 			});
@@ -346,6 +346,45 @@ describe("Person", function() {
 		});
 	});
 
+	////////////////////////////////////////
+	describe("#breed()", function() {
+		it("should not be empty", function(done) {
+			persons.breed(person2Id, personId, function(per) {
+				//console.log(per);
+				expect(per.haveKid).to.equal("** New Baby **");
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#getChildrenByFather", function() {
+		it("should not be empty", function(done) {
+			persons.getChildrenByFather(person2Id, function(pers) {
+				expect(pers).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
+	////////////////////////////////////////
+	describe("#getChildrenByMother", function() {
+		it("should not be empty", function(done) {
+			persons.getChildrenByMother(personId, function(pers) {
+				expect(pers).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
+	describe("#getSiblingsSameParents()", function() {
+		it("should not be empty", function(done) {
+			persons.getSiblingsSameParents(personKidId, function(pers) {
+				expect(pers).to.not.be.empty;
+				done();
+			});
+		});
+	});
 
 	////////////////////////////////////////
 	describe("#kill()", function() {
@@ -358,8 +397,8 @@ describe("Person", function() {
 	});
 
 
-	////////////////////////////////////////
-	////////////////////////////////////////
+	//////////////////////////////////////
+	//////////////////////////////////////
 	describe("#removePerson()", function() {
 		it("should not return error", function(done) {
 			persons.remove(personId, function(doc) {
