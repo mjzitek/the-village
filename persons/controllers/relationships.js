@@ -66,12 +66,15 @@ function endRelationship(personId, notes, callback) {
 
 }
 
-exports.performMarriage = function(personId1, personId2, headId, callback) {
+
+exports.performMarriage = performMarriage;
+function performMarriage(personId1, personId2, callback) {
+
 
 	// Marry them
 	var marriage = new Relationship(
 										{   person1: personId1, 
-											person2: personId2, 
+											person2: personId2,
 											relationtype: "marriage", 
 											person1role: "husband", 
 											person2role: "wife", 
@@ -81,7 +84,7 @@ exports.performMarriage = function(personId1, personId2, headId, callback) {
 										});
 	marriage.save(function(err) {
 		if(err) {
-			console.log('marriage err: ' + err)
+			console.log('Error: ' + err)
 		} else {
 			//console.log("marriage id: " + marriage._id);
 			callback(marriage._id);
@@ -91,8 +94,8 @@ exports.performMarriage = function(personId1, personId2, headId, callback) {
 }
 
 
-
-exports.getHusband = function(wifeId, callback) {
+exports.getHusband = getHusband;
+function getHusband(wifeId, callback) {
 	Relationship.findOne( { $or: [ {person1: wifeId }, { person2: wifeId}], relationtype: 'marriage', enddate: null }, function(err, husband) {
 
 		var husbandId;
@@ -112,8 +115,8 @@ exports.getHusband = function(wifeId, callback) {
 
 }
 
-
-exports.getWife = function(husbandId, callback) {
+exports.getWife = getWife;
+function getWife(husbandId, callback) {
 	Relationship.findOne( { $or: [ {person1: husbandId }, { person2: husbandId}], relationtype: 'marriage', enddate: null }, function(err, wife) {
 
 		var wifeId;
@@ -131,5 +134,29 @@ exports.getWife = function(husbandId, callback) {
 		}
 
 		callback(wifeId);
+	});
+}
+
+exports.remove = removeRelationship;
+exports.removeRelationship = removeRelationship;
+function removeRelationship(relationshipId, callback) {
+	Relationship.remove({ _id: relationshipId}, function(err, doc) {
+		if(err) {
+			callback(err);
+		} else {
+			callback(doc);
+		}
+	});
+}
+
+exports.removeAll = removeAllRelationships;
+exports.removeAllRelationships = removeAllRelationships;
+function removeAllRelationships(callback) {
+	Relationship.remove({}, function(err, doc) {
+		if(err) {
+			callback(err);
+		} else {
+			callback(doc);
+		}
 	});
 }

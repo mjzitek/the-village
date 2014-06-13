@@ -75,3 +75,17 @@ function removeFamilyRecord(familyId, callback) {
 
 }
 
+
+exports.removeAll = removeAllFamilyRecords;
+exports.removeAllFamilyRecords = removeAllFamilyRecords;
+function removeAllFamilyRecords(callback) {
+	Family.remove({}, function(err, doc) {
+		if(err) {
+			callback("Error: " + err);
+		} else
+		{
+			callback();
+		}
+	});
+
+}

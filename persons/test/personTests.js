@@ -292,7 +292,7 @@ describe("Person", function() {
 	////////////////////////////////////////
 	describe("#giveBirth()", function() {
 		it("should not be empty", function(done) {
-			persons.giveBirth(person2Id, personId, function(per) {
+			persons.giveBirth(personId, function(per) {
 				personKidId = per;
 				expect(per).to.not.be.empty;
 				done();

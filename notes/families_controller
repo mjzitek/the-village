@@ -5,6 +5,7 @@ families controller
 + getFamilyName
 + createFamilyRecord (create)
 + removeFamilyRecord (remove)
+- removeAllFamilyRecords (removeAll)
 
 
 

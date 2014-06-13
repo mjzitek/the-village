@@ -242,6 +242,7 @@ function populationCountTotal(callback) {
 }
 
 
+exports.count = populationCountAlive;
 exports.populationCountAlive = populationCountAlive
 function populationCountAlive(callback) {
 	Person.count( { dateOfDeath: null }, function(err, c) { callback(c); });
@@ -289,6 +290,7 @@ exports.getSingles = function(gender, callback) {
 
 exports.getSiblingsSameParents = function(personId, callback) {
 	Person.findOne({ _id: personId}, function(err, per) {
+		//console.log(per);
 		Person.find( { $or: [ { fatherInfo: per.fatherInfo, motherInfo: per.motherInfo }, 
 					 { $ne: {fatherInfo: null }}]}, function(err, sibs) {
 			if(err) {
@@ -434,7 +436,7 @@ function setPregnant(fatherId, motherId, callback) {
 
 //giveBirth = function(familyId, familyName, fatherId, motherId, callback) {
 exports.giveBirth = giveBirth;
-function giveBirth(fatherId, motherId, callback) {
+function giveBirth(motherId, callback) {
 
 	var gender = "";
 	var name;
@@ -514,7 +516,7 @@ function giveBirth(fatherId, motherId, callback) {
 				 			   placeOfBirth: null,
 							   dateOfDeath: null,
 							   headOfFamily: 0,
-							   fatherInfo: fatherId, 
+							   fatherInfo: results.mother.pregnancy.babyFatherId, 
 							   motherInfo: motherId,
 							   attributes: {
 							   					married: false
@@ -657,5 +659,18 @@ function removePerson(personId, callback) {
 		{
 			callback();
 		}
+	});
+}
+
+exports.removeAll = removeAllPersons;
+exports.removeAllPersons = removeAllPersons;
+function removeAllPersons(callback) {
+	Person.remove({}, function(err, doc) {
+		if(err) {
+			callback(err);
+		} else
+		{
+			callback();
+		}		
 	});
 }
