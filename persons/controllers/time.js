@@ -10,7 +10,7 @@ var tMoment = require('../helpers/time.js');
 	GameSettings = mongoose.model('gamesettings');
 
 
-
+exports.get = getGameClock;
 exports.getGameClock = getGameClock;
 function getGameClock(callback) {
 
@@ -18,4 +18,16 @@ function getGameClock(callback) {
 		callback(gClock.setvalue);
 	});
 
+}
+
+exports.set = setGameClock;
+exports.setGameClock = setGameClock;
+function setGameClock(time, callback) {
+	GameSettings.update({ setkey: "time"}, { setvalue : time }, function(err, doc) {
+		if(err) {
+			callback("Error: " + err);
+		} else {
+			callback("updated");
+		}
+	});
 }

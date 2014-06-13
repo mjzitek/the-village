@@ -2,8 +2,9 @@ var fs = require('fs');
 var moment = require('moment');
 var async = require('async');
 
-var settings = require('../config/settings.js');
-var tMoment = require('../helpers/time.js');
+var settings = require('../config/settings');
+var tMoment = require('../helpers/time');
+var names = require('../helpers/names');
 
 
  var mongoose = require('mongoose'),
@@ -451,7 +452,7 @@ function giveBirth(fatherId, motherId, callback) {
 		},
 		name: function(callback) {
 
-			name = getRandomName(gender);
+			name = names.getRandomName(gender);
 			//console.log(name);
 			callback(null, name);
 		},
@@ -573,7 +574,7 @@ function performMarriage(callback) {
 										//			+ mPer.lastName + " & " + fPer.firstName + " " + fPer.lastName);
 										//console.log("Performing marriage and creating new family...");
 
-										families.createNewFamily(mPer._id, fPer._id, function(familyId) {
+										families.createFamilyRecord(mPer.lastName, function(familyId) {
 											
 											setMarried(mPer._id, familyId, function(d) { 
 												setMarried(fPer._id, familyId, function(d) {callback(d);});
@@ -628,50 +629,7 @@ function pickGender()
 	}
 }
 
-exports.getNameFromFile = getNameFromFile;
-function getNameFromFile(filename, line_no) {
-	try {
-	    var data = fs.readFileSync(filename, 'utf8');
-	    var lines = data.split("\n");
 
-	    line_no = line_no - 1;
-	    if(line_no < 0) line_no = 0;
-
-	    return lines[line_no];
-	} catch (e) {
-		return e;
-	}
-}
-
-exports.getRandomName = getRandomName;
-function getRandomName(gender) {
-
-	var nameFile;
-
-	if(gender == "M")
-	{
-		nameFile = 'male_names.txt';
-	} else if (gender == "F")
-	{
-		nameFile = 'female_names.txt';
-	} else {
-		return("Error - no gender selected");
-	}
-
-	if(nameFile) 
-	{
-		try
-		{
-		var first = getNameFromFile('./models/' + nameFile, (Math.floor(Math.random() * 900)));
-		var middle = getNameFromFile('./models/' + nameFile, (Math.floor(Math.random() * 900)));
-
-		var name = { first: first, middle: middle };
-		} catch(e) {
-			return e;
-		}
-	}
-	return name;
-}
 
 
 // Creates a new perons and returns _id;

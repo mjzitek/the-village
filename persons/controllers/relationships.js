@@ -68,19 +68,6 @@ function endRelationship(personId, notes, callback) {
 
 exports.performMarriage = function(personId1, personId2, headId, callback) {
 
-// var inv = new Inventory({villageInfo: villageId, itemInfo: i._id, quantity: amount, level: 0 });
-
-// 						//console.log("U:" + u);
-// 						//console.log("I:" + i);
-// 						//console.log("inv: " + inv);
-// 						//self = this;
-
-// 						inv.save(function (err) {
-
-
-	// Check if people are already married
-
-
 	// Marry them
 	var marriage = new Relationship(
 										{   person1: personId1, 

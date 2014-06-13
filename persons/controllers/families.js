@@ -3,78 +3,75 @@ var mongoose = require('mongoose'),
 
 var persons = require('./persons');
 
+var names = require('../helpers/names');
 
-exports.getFamilyName = function(familyId, callback) {
+exports.get = getFamilyRecord;
+exports.getFamilyRecord = getFamilyRecord;
+function getFamilyRecord(familyId, callback) {
+	Family.findOne({_id: familyId}, function(err, fam) {
+		callback (fam);
+	});
+}
+
+
+
+exports.getFamilyName = getFamilyName;
+function getFamilyName(familyId, callback) {
 
 	Family.findOne({_id: familyId}, function(err, doc) {
 		callback (doc.familyName);
 	});
 }
 
-exports.createNewFamily = function(husbandId, wifeId, callback) {
+exports.create = createFamilyRecord;
+exports.createFamilyRecord = createFamilyRecord;
+function createFamilyRecord(familyName, callback) {
 
-	// headOfFamily:   { type: Schema.Types.ObjectId, ref: 'persons' },
-	// familyName:     String,
-	// familyDateFrom: Date,
-	// familyDateTo:   Date,
-	// OtherFamilyDetails: String 
-	//console.log("Creating new family for " + husbandId + " & " + wifeId);
+	var name;
 
-	persons.getSurname(husbandId, function(surname) {
-		var family = new Family(
-								{
-									headOfFamily: husbandId,
-									familyName: surname,
-									familyDateFrom: new Date(),
-									familyDateTo: null,
-									OtherFamilyDetails: null
 
-								}
+	if(familyName === "")
+	{
+		name = names.getRandomName("S");
+	} else {
+		name= familyName;
+	}
 
-						   );
+	var family = new Family(
+							{
+								familyName: name,
+								familyDateFrom: new Date(),
+								familyDateTo: null,
+								OtherFamilyDetails: null
 
-		family.save(function(err) 
-		{
-			if(err) {
-				console.log("err: " + err);
-			} else {
-				//console.log("** NEW FAMILY ** " + family._id + " | " + surname);
-				callback(family._id);
-			}
-		});
+							}
+
+					   );
+
+	family.save(function(err) 
+	{
+		if(err) {
+			console.log("err: " + err);
+			callback("Error: " + err);
+		} else {
+			//console.log("** NEW FAMILY ** " + family._id + " | " + name);
+			callback(family);
+		}
 	});
 
-
-
-	// 	var marriage = new Relationship(
-	// 									{   person1: personId1, 
-	// 										person2: personId2, 
-	// 										relationtype: "marriage", 
-	// 										person1role: "husband", 
-	// 										person2role: "wife", 
-	// 										begindate: new Date()
-	// 										enddate: null
-	// 									});
-	// marriage.save(function(err) {});
 }
 
+exports.remove = removeFamilyRecord;
+exports.removeFamilyRecord = removeFamilyRecord;
+function removeFamilyRecord(familyId, callback) {
+	Family.remove( { _id : familyId}, function(err, doc) {
+		if(err) {
+			callback("Error: " + err);
+		} else
+		{
+			callback();
+		}
+	});
 
-
-function GetRandomSurname() {
-
-	var filename = './models/surnames.txt';
-
-	var data = fs.readFileSync(filename, 'utf8');
-    var lines = data.split("\n");
-    var line_no = Math.floor(Math.random() * 600);
-
-    line_no = line_no - 1;
-    if(line_no < 0) line_no = 0;
-
-    // if(lines[line_no] == '') 
-    // {
-    // 	GetRandomName()
-    // }
-
-    return lines[line_no];
 }
+

@@ -44,23 +44,22 @@ describe("Person", function() {
 		/////
 		var person2 = {};
 
+		person2.familyInfo = "53826054b77b80b59d2c4c4b";
+		person2.firstName = "Test2";
+		person2.middleName = "T2";
+		person2.lastName = "Tester2";
+		person2.gender = "M";
+		person2.dateOfBirth = "1879-12-04";
+		person2.dateOfDeath = null;
+		person2.headOfFamily = 1;
+		person2.fatherInfo = null;
+		person2.motherInfo = null;
+		person2.placeOfBirth = null;
+		person2.attributes = { married : false };
+		person2.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
-		person2["familyInfo"] = "53825c9cb77b80b59d2c4c49";
-		person2["firstName"] = "Test2";
-		person2["middleName"] = "T2";
-		person2["lastName"] = "Tester2";
-		person2["gender"] = "M";
-		person2["dateOfBirth"] = "1880-01-01";
-		person2["dateOfDeath"] = null;
-		person2["headOfFamily"] = 1;
-		person2["fatherInfo"] = null;
-		person2["motherInfo"] = null;
-		person2["placeOfBirth"] = null;
-		person2["attributes"] = { married : false };
-		person2["pregnancy"] = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
-
-		persons.createPerson(person2, function(id) {
+		persons.create(person2, function(id) {
 			person2Id = id;
 			done();
 		}); 
@@ -71,8 +70,14 @@ describe("Person", function() {
 //			done();
 		});	
 		persons.remove(personKidId, function(doc) {
-			done();
-		});	  
+
+		});
+
+		db.connection.close();
+
+		done();
+  
+
   	}); 
 
 
@@ -90,19 +95,19 @@ describe("Person", function() {
 	var person = {};
 	var personId;
 
-	person["familyInfo"] = "5382607bb77b80b59d2c4c4e";
-	person["firstName"] = "Test";
-	person["middleName"] = "T";
-	person["lastName"] = "Tester";
-	person["gender"] = "F";
-	person["dateOfBirth"] = "1880-01-01";
-	person["dateOfDeath"] = null;
-	person["headOfFamily"] = 1;
-	person["fatherInfo"] = null;
-	person["motherInfo"] = null;
-	person["placeOfBirth"] = null;
-	person["attributes"] = { married : false };
-	person["pregnancy"] = { pregnant : false, pregnancyDate: null, babyFatherId: null}
+	person.familyInfo = "53825c9cb77b80b59d2c4c49";
+	person.firstName = "Test";
+	person.middleName = "T";
+	person.lastName = "Tester";
+	person.gender = "F";
+	person.dateOfBirth = "1880-01-01";
+	person.dateOfDeath = null;
+	person.headOfFamily = 1;
+	person.fatherInfo = null;
+	person.motherInfo = null;
+	person.placeOfBirth = null;
+	person.attributes = { married : false };
+	person.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
 
 
@@ -175,28 +180,8 @@ describe("Person", function() {
 	});
 
 	////////////////////////////////////////
-	describe("#getRandomName()", function() {
-		it("should not be empty", function(done) {
-			var name = persons.getRandomName("M");
-			expect(name.first).to.not.be.empty;
-			done();
-		});
-	});
-
-	////////////////////////////////////////
-	describe("#getNameFromFile()", function() {
-		it("should equal John", function(done) {
-			var fileName = __dirname + "/test_names.txt";
-			var lineNo = 1;
-			var name = persons.getNameFromFile(fileName, lineNo);
-			expect(name).to.equal("John");
-			done();
-		});
-	});
-
-	////////////////////////////////////////
 	describe("#getMarriageEligibleSingle()", function() {
-		it("should return a person", function(done) {
+		it("should return 'Test'", function(done) {
 			persons.getMarriageEligibleSingle("F", "", function(per) {
 				expect(per.firstName).to.equal("Test");
 				done();

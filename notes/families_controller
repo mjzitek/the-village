@@ -1,0 +1,15 @@
+families controller
+====================
+
++ getFamilyRecord (get)
++ getFamilyName
++ createFamilyRecord (create)
++ removeFamilyRecord (remove)
+
+
+
+----------
+Legend
+----------
+- function with no test
++ function with test

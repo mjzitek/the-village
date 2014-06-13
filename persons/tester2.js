@@ -147,30 +147,30 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 }
 
 PersonsEngine.prototype.tester = function(models)  {
-	// 	var person = {};
+	var person = {};
 
-	// person["familyInfo"] = null;
-	// person["firstName"] = "Charles";
-	// person["middleName"] = "Henry";
-	// person["lastName"] = "Seiko";
-	// person["gender"] = "M";
-	// person["dateOfBirth"] = "1939-12-04";
-	// person["dateOfDeath"] = null;
-	// person["headOfFamily"] = 1;
-	// person["fatherInfo"] = null;
-	// person["motherInfo"] = null;
-	// person["placeOfBirth"] = null;
-	// person["attributes"] = { married : true };
-	// person["pregnancy"] = { pregnant : false, pregnancyDate: null, babyFatherId: null}
+	person.familyInfo = null;
+	person.firstName = "Charlesx";
+	person.middleName = "Henry";
+	person.lastName = "Seikox";
+	person.gender = "M";
+	person.dateOfBirth = "1939-12-04";
+	person.dateOfDeath = null;
+	person.headOfFamily = 1;
+	person.fatherInfo = null;
+	person.motherInfo = null;
+	person.placeOfBirth = null;
+	person.attributes = { married : true };
+	person.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
-	// console.log(person);
+	console.log(person);
 
 
-	// persons.createPerson(person, function(id) {
-	// 	persons.get(id, function(per) {
-	// 		console.log(per);
-	// 	});
-	// });
+	persons.createPerson(person, function(id) {
+		persons.get(id, function(per) {
+			console.log(per);
+		});
+	});
 
   	// persons.getMarriageEligibleSingle("M", "", function(per) {
   	// 	console.log(per);

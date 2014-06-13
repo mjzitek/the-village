@@ -33,8 +33,3 @@ persons controller
 + removePerson (remove)
 
 
-----------
-Legend
-----------
-- function with no test
-+ function with test
