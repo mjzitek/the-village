@@ -9,6 +9,7 @@ var fs = require("fs");
 var config = require('../config/config');
 var tMoment = require('../helpers/time.js');
 var settings = require('../config/settings');
+var names = require('../helpers/names');
 
 var models_path = __dirname + '/../models';
 

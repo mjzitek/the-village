@@ -47,4 +47,12 @@ describe("Time", function() {
 		});
 	});
 
+	describe("#randomDate()", function() {
+		it("should return a number", function(done) {
+			var randDate = tMoment.randomDate("1/1/1900", "1/1/1901");
+			expect(randDate).not.empty;
+			done();
+		})
+	});
+
 });

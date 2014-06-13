@@ -571,7 +571,7 @@ function performMarriage(callback) {
 			getMarriageEligibleSingle("F", mPer.familyInfo, function(fPer) {
 				if(fPer)
 				{
-					relationships.performMarriage(mPer._id, fPer._id, mPer._id, function() {
+					relationships.performMarriage(mPer._id, fPer._id, function() {
 										//console.log("++ MARRIAGE ++ " + mPer.firstName + " " 
 										//			+ mPer.lastName + " & " + fPer.firstName + " " + fPer.lastName);
 										//console.log("Performing marriage and creating new family...");

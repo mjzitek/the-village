@@ -15,6 +15,8 @@ var config = require('./config/config');
 var tMoment = require('./helpers/time.js');
 var settings = require('./config/settings');
 
+var createPeople = require('./runtests/createDefaultPeople');
+
 require('nodetime').profile({
 	accountKey: '1205486b4221354f8721bb0ba0a64539f6e8c0e2',
 	appName: 'village-person-tester'
@@ -140,49 +142,61 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 
 
-
+	//tMoment.randomDate("2/1/1900", "3/1/1900");
 
 
 
 }
 
 PersonsEngine.prototype.tester = function(models)  {
-	var person = {};
 
-	person.familyInfo = null;
-	person.firstName = "Charlesx";
-	person.middleName = "Henry";
-	person.lastName = "Seikox";
-	person.gender = "M";
-	person.dateOfBirth = "1939-12-04";
-	person.dateOfDeath = null;
-	person.headOfFamily = 1;
-	person.fatherInfo = null;
-	person.motherInfo = null;
-	person.placeOfBirth = null;
-	person.attributes = { married : true };
-	person.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
+	
+	persons.removeAll(function(doc) {});
+	families.removeAll(function(doc) {});
+	relationships.removeAll(function(doc) {});
 
-	console.log(person);
+	createPeople.createPeople(12,5,0, function(doc) {
+		console.log(doc);
+	})
 
+	//tMoment.randomDate("1/1/1900", "2/1/1900");
 
-	persons.createPerson(person, function(id) {
-		persons.get(id, function(per) {
-			console.log(per);
-		});
-	});
+	// var person = {};
 
-  	// persons.getMarriageEligibleSingle("M", "", function(per) {
-  	// 	console.log(per);
-  	// })
+	// person.familyInfo = null;
+	// person.firstName = "Charlesx";
+	// person.middleName = "Henry";
+	// person.lastName = "Seikox";
+	// person.gender = "M";
+	// person.dateOfBirth = "1939-12-04";
+	// person.dateOfDeath = null;
+	// person.headOfFamily = 1;
+	// person.fatherInfo = null;
+	// person.motherInfo = null;
+	// person.placeOfBirth = null;
+	// person.attributes = { married : true };
+	// person.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
-		persons.getRandomBabyReadyWomen(false, 1, function(per) {
-			console.log(per);
-		});
-  	}
+	// console.log(person);
 
 
-	var personsEngine = new PersonsEngine();
+	// persons.createPerson(person, function(id) {
+	// 	persons.get(id, function(per) {
+	// 		console.log(per);
+	// 	});
+	// });
+
+ //  	// persons.getMarriageEligibleSingle("M", "", function(per) {
+ //  	// 	console.log(per);
+ //  	// })
+
+	// 	persons.getRandomBabyReadyWomen(false, 1, function(per) {
+	// 		console.log(per);
+	// 	});
+ }
+
+
+var personsEngine = new PersonsEngine();
 
 
 

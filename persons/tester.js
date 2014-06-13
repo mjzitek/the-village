@@ -9,6 +9,7 @@ var argv = require('optimist').argv;
 var config = require('./config/config');
 var tMoment = require('./helpers/time.js');
 var settings = require('./config/settings');
+var createPeople = require('./runtests/createDefaultPeople');
 
 require('nodetime').profile({
 	accountKey: '1205486b4221354f8721bb0ba0a64539f6e8c0e2',
@@ -50,7 +51,7 @@ var persons = require('./controllers/persons');
 var families = require('./controllers/families');
 var relationships = require('./controllers/relationships');
 var gamesetting = require('./controllers/gamesettings');
-
+var time = require('./controllers/time');
 
 /////////////////////////////////
 
@@ -77,12 +78,27 @@ PersonsEngine.prototype.init = function() {
 	console.log('Engine started...');
 	that = this;
 	//this.models = models;
+
+
+
 	that.setAutoInterval();
 	//console.log(models);
 }
 
 PersonsEngine.prototype.setAutoInterval = function() {
 		that = this;
+
+		time.set(App.gameClock, function(doc) {
+			console.log("Setting game clock to " + App.gameClock);
+		});
+
+		persons.removeAll(function(doc) { console.log("Clearing old population...")});
+		families.removeAll(function(doc) {});
+		relationships.removeAll(function(doc) {});
+
+		createPeople.createPeople(12,5,0, function(doc) {
+			console.log("Creating initial population...");
+		});
 
 		//clearInterval(App.refreshIntervalId);
 		that.automatedWorkers(that.models);
@@ -129,7 +145,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 		 	var gestationTime = GetAge(p.pregnancy.pregnancyDate);
 		 	if(gestationTime.months >= 9) {
 		 		console.log(p._id + " => it's been 9 months!!");
-		 		persons.giveBirth(p.pregnancy.babyFatherId, p._id, function(pp) {
+		 		persons.giveBirth(p._id, function(pp) {
 		 			//console.log(pp);
 		 		});
 		 	}		

@@ -53,7 +53,32 @@ function getDifference(olderDate, newerDate) {
   }
 
 
-exports.getAge = function(birthDate)
+
+// Needs some work to ensure not past min and max dates
+exports.randomDate = randomDate;
+function randomDate(minDate, maxDate)
 {
+    var randDate;
+
+    minDate = moment(minDate);
+    maxDate = moment(maxDate);
+
+    diffDate = getDifference(maxDate, minDate);
+
+    diffYears = Math.abs(diffDate.years);
+    //console.log(diffDate);
+
+
+    var randNumMonths = (Math.floor(Math.random() * (diffYears * 12)));
+    var randNumDays = (Math.floor(Math.random() * 31));
+    randDate = minDate.add("M", (randNumMonths < 2 ? randNumMonths : randNumMonths - 1));
+    randDate = randDate.add("d", randNumDays);
+    randDate = randDate.add("h", (Math.floor(Math.random() * 23)));
+    randDate = randDate.add("m", (Math.floor(Math.random() * 59)))
+
+    //console.log(diffYears);
+    //console.log(randDate);
+
+    return randDate;
 
 }
