@@ -142,7 +142,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 
 
-	//tMoment.randomDate("2/1/1900", "3/1/1900");
+	console.log(tMoment.randomDate("2/1/1900", "3/1/2000").format("MMM DD, YYYY"));
 
 
 
@@ -151,13 +151,13 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 PersonsEngine.prototype.tester = function(models)  {
 
 	
-	persons.removeAll(function(doc) {});
-	families.removeAll(function(doc) {});
-	relationships.removeAll(function(doc) {});
+	// persons.removeAll(function(doc) {});
+	// families.removeAll(function(doc) {});
+	// relationships.removeAll(function(doc) {});
 
-	createPeople.createPeople(12,5,0, function(doc) {
-		console.log(doc);
-	})
+	// createPeople.createPeople(12,5,0, function(doc) {
+	// 	console.log(doc);
+	// })
 
 	//tMoment.randomDate("1/1/1900", "2/1/1900");
 

@@ -549,10 +549,18 @@ function giveBirth(motherId, callback) {
 }
 
 exports.setMarried = setMarried;
-function setMarried(personId, familyId, callback) {
+function setMarried(personId, familyId, familyName, callback) {
 
-	//console.log("Setting married: " + personId + "(" + familyId + ")");
-	Person.update({_id: personId }, { attributes: { married: true}, familyInfo: familyId }, function(err,doc) {
+	var updates = {};
+	updates.attributes = { married: true }
+	updates.familyInfo = familyId;
+
+	if(familyName != "") {
+		updates.lastName = familyName;
+	}
+
+	console.log("Setting married: " + personId + "(" + familyName + ")");
+	Person.update({_id: personId }, updates, function(err,doc) {
 		if(err) {
 			console.log("Error updating married: " + err)
 			callback(err);
@@ -578,8 +586,8 @@ function performMarriage(callback) {
 
 										families.createFamilyRecord(mPer.lastName, function(familyId) {
 											
-											setMarried(mPer._id, familyId, function(d) { 
-												setMarried(fPer._id, familyId, function(d) {callback(d);});
+											setMarried(mPer._id, familyId, "", function(d) { 
+												setMarried(fPer._id, familyId, mPer.lastName, function(d) {callback(d);});
 											});	
 										});						
 					});

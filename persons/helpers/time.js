@@ -76,6 +76,11 @@ function randomDate(minDate, maxDate)
     randDate = randDate.add("h", (Math.floor(Math.random() * 23)));
     randDate = randDate.add("m", (Math.floor(Math.random() * 59)))
 
+
+    if(randDate.isAfter(maxDate)) 
+    {
+        randDate = maxDate;
+    }
     //console.log(diffYears);
     //console.log(randDate);
 

@@ -59,10 +59,10 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 
 	for(var i = 0; i < numOfCouples; i++) 
 	{
-		var familyId;
-		var familyName;
-		var husbandId;
-		var wifeId;
+		var familyId = "";
+		var familyName = "";
+		var husbandId = "";
+		var wifeId = "";
 
 
 		async.series({
@@ -74,11 +74,10 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 					callback(null, familyId);
 				});
 			}, 
-			createPersons: function(callback)
+			createHusband: function(callback)
 			{
 				// Create Husband
 				var husbandName = names.getRandomName("M");
-				var husbandId;
 
 				var husband = {};
 
@@ -96,8 +95,13 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				husband.attributes = { married : true };
 				husband.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
-				persons.create(husband, function(per) { husbandId = per._id; });
-
+				persons.create(husband, function(perId) { 
+					husbandId = perId; 
+					callback(null, husbandId);
+				});
+			},
+			createWife: function(callback)
+			{
 				// Create Wife
 				var wifeName = names.getRandomName("F");
 
@@ -117,15 +121,12 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				wife.attributes = { married : true };
 				wife.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
-				persons.create(wife, function(per) {});
-
-				callback(null, husbandId);
-			},
-			createMarriage: function(callback)
-			{
-				relationships.performMarriage(husbandId, wifeId, function(doc) {
-					callback(null,doc);
+				persons.create(wife, function(perId) { 
+					wifeId = perId; 
+					callback(null, wifeId);
 				});
+
+				
 			}
 
 
@@ -137,7 +138,10 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 	    		callback(err);
 	    	} else
 	    	{
-	    		callback(results);    		
+				relationships.performMarriage(results.createHusband, results.createWife, function(doc) {
+					//console.log(husbandId + " => " + wifeId);
+					callback(doc);
+				});  		
 	    	}
 
 		});

@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var moment = require('moment');
 var argv = require('optimist').argv;
+var async = require('async');
 //var memwatch = require('memwatch');
 
 var config = require('./config/config');
@@ -79,26 +80,33 @@ PersonsEngine.prototype.init = function() {
 	that = this;
 	//this.models = models;
 
+	async.series({
+		setUp: function(callback) {
+			time.set(App.gameClock, function(doc) {
+				console.log("Setting game clock to " + App.gameClock);
+			});
+
+			persons.removeAll(function(doc) { console.log("Clearing old population...")});
+			families.removeAll(function(doc) {});
+			relationships.removeAll(function(doc) {});
+
+			createPeople.createPeople(12,5,0, function(doc) {
+				console.log("Creating initial population...");
+			});
+			callback(null,null);
+		},
+		setAutoInterval: function(callback) {
+			that.setAutoInterval();
+			callback(null, null);
+		}
+	});
 
 
-	that.setAutoInterval();
 	//console.log(models);
 }
 
 PersonsEngine.prototype.setAutoInterval = function() {
 		that = this;
-
-		time.set(App.gameClock, function(doc) {
-			console.log("Setting game clock to " + App.gameClock);
-		});
-
-		persons.removeAll(function(doc) { console.log("Clearing old population...")});
-		families.removeAll(function(doc) {});
-		relationships.removeAll(function(doc) {});
-
-		createPeople.createPeople(12,5,0, function(doc) {
-			console.log("Creating initial population...");
-		});
 
 		//clearInterval(App.refreshIntervalId);
 		that.automatedWorkers(that.models);
@@ -160,7 +168,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 		pers.forEach(function(p) {
 			//console.log(pers);
 			relationships.getCouple(p._id, function(c) {
-				console.log("making babies: " + p._id);
+				//console.log("making babies: " + p._id);
 				if(c)
 				{
 					persons.breed(c.person1, c.person2, function(d) {
