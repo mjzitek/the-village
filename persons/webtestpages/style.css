@@ -59,9 +59,15 @@ ul {
 
 #header-1 {
 	padding: 5px;
-	font-size: 1.2em;
+	font-size: 1.4em;
 	font-weight: bold;
 	background-color: #000;
+}
+
+#header-1 .title-text {
+	top: 6px;
+	position: relative;
+	padding-left: 3px;
 }
 
  #details {
