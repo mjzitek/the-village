@@ -17,6 +17,13 @@ var settings = require('./config/settings');
 
 var createPeople = require('./runtests/createDefaultPeople');
 
+<<<<<<< HEAD
+=======
+require('nodetime').profile({
+	accountKey: '',
+	appName: 'village-person-tester'
+});
+>>>>>>> 4de282bdb6023a6862bfabeb04b45f159da1f20e
 
 
 // var logging = require('./config/logger');
