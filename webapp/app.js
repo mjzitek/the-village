@@ -47,7 +47,7 @@ var dblogger = logging.Logging().get('db');
 //var mongoose = require("./core/server/models/db");
 var db = mongoose.connect(config.db);
 
-var models_path = __dirname + '/core/server/models';
+var models_path = __dirname + '/models';
 
 var walk = function(path) {
 	fs.readdirSync(path).forEach(function(file) {

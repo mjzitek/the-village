@@ -1,5 +1,5 @@
 
-var items = require('../controllers/items');
+var items = require('../../../controllers/items');
 
 
 

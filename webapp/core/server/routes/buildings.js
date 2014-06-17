@@ -1,7 +1,7 @@
 var colors = require("colors");
 
-var buildings = require('../controllers/buildings');
-var inventory = require('../controllers/inventory');
+var buildings = require('../../../controllers/buildings');
+var inventory = require('../../../controllers/inventory');
 
 function isLoggedIn(req, res, next) {
 

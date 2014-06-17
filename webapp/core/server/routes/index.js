@@ -1,4 +1,4 @@
-var index = require('../controllers/index');
+var index = require('../../../controllers/index');
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

@@ -113,6 +113,10 @@ table#personlist {
 	background-color: #fff;
 }
 
+table#personlist tr.per-dead {
+	color: #9c9c9c;
+}
+
 table#personlist  td {
   	border: 1px solid #555;
  	width: 110px;
@@ -126,7 +130,7 @@ table#personlist th, table.table-legend th  {
 }
 
 table#personlist td .details {
- 	color: #0000aa;
+ 	color: #383838;
  	padding-left: 15px;
  }
 
@@ -139,18 +143,28 @@ table#personlist td.details-td {
 	width: 54px;
 }
 
+#legend {
+	padding: 0px;
+ 	position: fixed;
+ 	top: 4px;
+ 	right: 0px;
+ 	width: 150px;
+ 	z-index: 1001;
+}
+
 table.table-legend {
-	top: 30px;
+	top: 0px;
 	font-size: 0.9em;
 	position: relative;
 	border-collapse: separate;
  	border-spacing: 0px;
  	border: 0;
+ 	margin: 0;
 
 }
 
 table.table-legend td {
-	padding: 5px;
+	padding: 0 10px;
 }
 
 

@@ -1,4 +1,4 @@
-var users = require('../controllers/users');
+var users = require('../../../controllers/users');
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

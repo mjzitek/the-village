@@ -1,4 +1,4 @@
-var inventory = require('../controllers/inventory');
+var inventory = require('../../../controllers/inventory');
 
 module.exports = function(app) {
 

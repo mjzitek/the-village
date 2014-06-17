@@ -17,13 +17,6 @@ var settings = require('./config/settings');
 
 var createPeople = require('./runtests/createDefaultPeople');
 
-<<<<<<< HEAD
-=======
-require('nodetime').profile({
-	accountKey: '',
-	appName: 'village-person-tester'
-});
->>>>>>> 4de282bdb6023a6862bfabeb04b45f159da1f20e
 
 
 // var logging = require('./config/logger');
@@ -145,7 +138,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 
 
-	console.log(tMoment.randomDate("2/1/1900", "3/1/2000").format("MMM DD, YYYY"));
+	//console.log(tMoment.randomDate("2/1/1900", "3/1/2000").format("MMM DD, YYYY"));
 
 
 
@@ -154,13 +147,13 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 PersonsEngine.prototype.tester = function(models)  {
 
 	
-	// persons.removeAll(function(doc) {});
-	// families.removeAll(function(doc) {});
-	// relationships.removeAll(function(doc) {});
+	persons.removeAll(function(doc) {});
+	families.removeAll(function(doc) {});
+	relationships.removeAll(function(doc) {});
 
-	// createPeople.createPeople(12,5,0, function(doc) {
-	// 	console.log(doc);
-	// })
+	createPeople.createPeople(120,50,0, function(doc) {
+		//console.log(doc);
+	});
 
 	//tMoment.randomDate("1/1/1900", "2/1/1900");
 

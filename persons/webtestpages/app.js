@@ -18,62 +18,74 @@
 	 	}
  	});
 
- 	$('#persons-listing').on('click','.details', function() {
+    $('#header-1').click(function() {
+        getGameClock();
+        getPeople();
 
-        $('#details').show(); 
- 		$('#details-part1').html("");
- 		$('#details-part2').html("");
- 		$('#details-part3').html("");
+    });
+
+ 	$('#persons-listing').on('click','.details', function() {
+        getDetails(this);
+    });
+    
+
+ });
+
+ function getDetails(row) {
+    $('#details').show(); 
+        $('#details-part1').html("");
+        $('#details-part2').html("");
+        $('#details-part3').html("");
         /* $('#details-part4').html(""); */
 
- 		$('#personlist tbody tr').show();
- 		//$('input:radio[name="filter-rows"]').val('showall').prop('checked',true);
+        $('#personlist tbody tr').show();
+        //$('input:radio[name="filter-rows"]').val('showall').prop('checked',true);
 
- 		var data = $(this).data("key");
+        var data = $(row).data("key");
 
 
 
-	    $.ajax({
-	        dataType: 'jsonp',
-	        //data: data,
-	        type: "GET",
-	        //jsonp: 'jsonp_callback',
-	        url: 'http://localhost:8989/details/' + data,
-	        success: function (res) {
-	        	//console.log( response );
+        $.ajax({
+            dataType: 'jsonp',
+            //data: data,
+            type: "GET",
+            //jsonp: 'jsonp_callback',
+            url: 'http://localhost:8989/details/' + data,
+            success: function (res) {
+                //console.log( response );
 
-	        	var output = "";
+                var output = "";
 
                 var bd =  moment(res.dateOfBirth);
 
-	        	//response.forEach(function(p) {
-	        		output = 
-	        			"<div><label>Name:</label> " + res.firstName + " " + (res.middleName == null ? "" : res.middleName) + " " + res.lastName + "</div>" +
-	        			"<div><label>Birthdate:</label> " + bd.format("MMM D, YYYY") + "<div>" +
-	        			"<div><label>Married:</label> " + (res.attributes.married == true ? "Yes" : "No") + "</div>";
-	        		
+                //response.forEach(function(p) {
+                    output = 
+                        "<div><label>Name:</label> " + res.firstName + " " + (res.middleName == null ? "" : res.middleName) + " " + res.lastName + "</div>" +
+                        "<div><label>Birthdate:</label> " + bd.format("MMM D, YYYY") + "<div>" +
+                        "<div><label>Married:</label> " + (res.attributes.married == true ? "Yes" : "No") + "</div>";
+                    
                         //console.log("Married: " + res.attributes.married);
                         
-                        getSpouse(res._id, res.gender);	
-	        			getChildren(res._id, res.gender);
+                        getSpouse(res._id, res.gender); 
+                        getChildren(res._id, res.gender);
                         getSiblings(res._id);
                         getParents(res);
                 
 
 
-	        	//});
+                //});
 
-	        	$("#details-part1").html(output);
-	            
-	        },
-	    	error: function( xhr, status, errorThrown ) {
-	        	alert( "Sorry, there was a problem!" );
-	        	console.log( "Error: " + errorThrown );
-	        	console.log( "Status: " + status );
-	        	console.dir( xhr );
-	    	} 
+                $("#details-part1").html(output);
+                
+            },
+            error: function( xhr, status, errorThrown ) {
+                alert( "Sorry, there was a problem!" );
+                console.log( "Error: " + errorThrown );
+                console.log( "Status: " + status );
+                console.dir( xhr );
+            } 
 
-	    });
+        });
 
         // $('.authors-list tr').each(function (i, row) {
         $('#personlist tbody tr').each(function (i, row) {
@@ -93,13 +105,7 @@
             }
         });
 
-
-
-
- 	})
-
- });
-
+ }
 
  function getPeople() {
     $.ajax({
@@ -120,7 +126,10 @@
         	response.forEach(function(p) {
                 total++;
         		var bd =  moment(p.dateOfBirth);
-        		output += "<tr><td class='details-td'><span class='details ' data-key='" + p._id + "'><i class='fa fa-search-plus'></i></span>" 
+                var alive = (p.dateOfDeath === null ? true : false);
+
+
+        		output += "<tr class='" + (alive === false ? "per-dead" : "") + "'><td class='details-td'><span class='details ' data-key='" + p._id + "'><i class='fa fa-search-plus'></i></span>" 
         		+"<td>" + p.firstName + "</td><td>" + p.lastName + "</td><td style='width: 55px; text-align: center'>" + p.gender 
                 + "</td><td style='width: 150px'>" + bd.format("MMM D, YYYY") + "</td>"
                 + "<td style='text-align: center; width: 55px'>" + (p.dateOfDeath == null ? getDifference(gameClock, bd).years : getDifference(p.dateOfDeath, bd).years )  + "</td>"

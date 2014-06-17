@@ -59,7 +59,9 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 
 	for(var i = 0; i < numOfCouples; i++) 
 	{
-		var familyId = "";
+
+
+		var family;
 		var familyName = "";
 		var husbandId = "";
 		var wifeId = "";
@@ -71,7 +73,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				families.create("", function(fam) {
 					familyId = fam._id;
 					familyName = fam.familyName;
-					callback(null, familyId);
+					callback(null, fam);
 				});
 			}, 
 			createHusband: function(callback)
@@ -92,7 +94,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				husband.fatherInfo = null;
 				husband.motherInfo = null;
 				husband.placeOfBirth = null;
-				husband.attributes = { married : true };
+				husband.attributes = { married : false };
 				husband.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
 				persons.create(husband, function(perId) { 
@@ -118,7 +120,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				wife.fatherInfo = null;
 				wife.motherInfo = null;
 				wife.placeOfBirth = null;
-				wife.attributes = { married : true };
+				wife.attributes = { married : false };
 				wife.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
 				persons.create(wife, function(perId) { 
@@ -133,14 +135,17 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 		},
 		function(err, results) {
 
-	    	//console.log(results);
+	    	console.log(results);
 	    	if(err) {
 	    		callback(err);
 	    	} else
 	    	{
 				relationships.performMarriage(results.createHusband, results.createWife, function(doc) {
-					//console.log(husbandId + " => " + wifeId);
-					callback(doc);
+					persons.setMarried(results.createHusband, results.familyInfo._id, "", function(d) { 
+						persons.setMarried(results.createWife, results.familyInfo._id, results.familyInfo.familyName, function(d) {callback(d);});
+							callback(doc);
+					});	
+					
 				});  		
 	    	}
 
