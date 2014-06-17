@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/united/bootstrap.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style.css">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -15,26 +15,32 @@
 <div id="header">
 	<div id="header-1">The Village</div>
 	<div id="header-2">
-	<div id='summary'>Total: <span id='summary-total'></span> | End Date: <span id='game-clock'></span></div>
-	<input type='radio' name='filter-rows' value='filter' /> Filter selected<br />
-	<input type='radio' name='filter-rows' value='showall' /> Show all rows<br />
+		<div id='summary'>Total: <span id='summary-total'></span> | End Date: <span id='game-clock'></span></div>
+		<hr />
+		<input type='radio' name='filter-rows' value='filter' /> Filter selected<br />
+		<input type='radio' name='filter-rows' value='showall' /> Show all rows<br />
 	</div>
 </div>
 <div id="main">
 	<div id="persons-listing"></div>
 	<div id="details">
 		<div id='details-body'>
-			<div id="details-part1" class="details-section"></div>
-			<div id="details-part2" class="details-section"></div>
-			<div id="details-part3" class="details-section"></div>
-			<div id="details-part4" class="details-section"></div>
+			<div class="details-section"><div id="details-part1"></div></div>
+			<div class="details-section"><div id="details-part2" class="details-section-info"></div></div>
+			<div class="details-section"><div id="details-part3" class="details-section-info"></div></div>
+			<div class="details-section"><div id="details-part4" class="details-section-info"></div></div>
 			<div id="legend">
 				<table class='table-legend'>
+				<thead>
+					<tr><th>Legend</th></tr>
+				</thead>
+				<tbody>
 					<tr><td class='sel-person'>Selected Person</td></tr>		
 					<tr><td class='sel-person-spouse'>Spouse</td></tr>	
 					<tr><td class='sel-person-children'>Children</td></tr>	
 					<tr><td class='sel-person-siblings'>Sibling</td></tr>
-					<tr><td class='sel-person-parents'>Parents</td></tr>																
+					<tr><td class='sel-person-parents'>Parents</td></tr>										
+				</tbody>	
 				</table>
 
 			</div>

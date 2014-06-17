@@ -48,9 +48,9 @@
 
 	        	//response.forEach(function(p) {
 	        		output = 
-	        			"<div>Name: " + res.firstName + " " + (res.middleName == null ? "" : res.middleName) + " " + res.lastName + "</div>" +
-	        			"<div>Birthdate: " + bd.format("MMM D, YYYY") + "<div>" +
-	        			"<div>Married: " + (res.attributes.married == true ? "Yes" : "") + "</div>";
+	        			"<div><label>Name:</label> " + res.firstName + " " + (res.middleName == null ? "" : res.middleName) + " " + res.lastName + "</div>" +
+	        			"<div><label>Birthdate:</label> " + bd.format("MMM D, YYYY") + "<div>" +
+	        			"<div><label>Married:</label> " + (res.attributes.married == true ? "Yes" : "No") + "</div>";
 	        		
                         //console.log("Married: " + res.attributes.married);
                         
@@ -120,7 +120,7 @@
         	response.forEach(function(p) {
                 total++;
         		var bd =  moment(p.dateOfBirth);
-        		output += "<tr><td class='details-td'><span class='details' data-key='" + p._id + "'>Details</span>" 
+        		output += "<tr><td class='details-td'><span class='details ' data-key='" + p._id + "'><i class='fa fa-search-plus'></i></span>" 
         		+"<td>" + p.firstName + "</td><td>" + p.lastName + "</td><td style='width: 55px; text-align: center'>" + p.gender 
                 + "</td><td style='width: 150px'>" + bd.format("MMM D, YYYY") + "</td>"
                 + "<td style='text-align: center; width: 55px'>" + (p.dateOfDeath == null ? getDifference(gameClock, bd).years : getDifference(p.dateOfDeath, bd).years )  + "</td>"
@@ -161,13 +161,13 @@ function getSpouse(personId, gender) {
 
             var output = "";
 
-            output = "Spouse: "
+            output = "<label>Spouse:</label> "
 
             if(res)
             {
                 output += res.firstName + " " + res.lastName
 
-                $("#details-part2").html(output);
+
 
                 var rdata = null;
 
@@ -183,7 +183,7 @@ function getSpouse(personId, gender) {
                 });
             }
 
-
+            $("#details-part2").html(output);
 
 
         },
@@ -208,10 +208,10 @@ function getChildren(personId, gender) {
         success: function (res) {
         	console.log( res );
 
-        	var output = "<div>Children:</div>";
+        	var output = "<div><label>Children:</label> </div><ul>";
 
         	res.forEach(function(c) {
-        		output += "<div>- " + c.firstName + " " + c.lastName + "</div>";
+        		output += "<li>" + c.firstName + " " + c.lastName + "</li>";
 
         		var rdata = null;
 
@@ -227,6 +227,8 @@ function getChildren(personId, gender) {
 
  				});
         	});
+
+            output += "</ul>";
 
         	$("#details-part3").html(output);
 
@@ -253,12 +255,12 @@ function getSiblings(personId) {
         success: function (res) {
             console.log( res );
 
-            var output = "<div>Siblings:</div>";
+            var output = "<div><label>Siblings:</label> </div><ul>";
 
             res.forEach(function(c) {
                 if(c.fatherInfo != null)
                 {
-                    output += "<div>- " + c.firstName + " " + c.lastName + "</div>";
+                    output += "<li> " + c.firstName + " " + c.lastName + "</li>";
 
                     var rdata = null;
 
@@ -278,6 +280,8 @@ function getSiblings(personId) {
                     });
                 }
             });
+
+            output += "</ul>"
 
             $("#details-part4").html(output);
 

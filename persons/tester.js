@@ -12,10 +12,7 @@ var tMoment = require('./helpers/time.js');
 var settings = require('./config/settings');
 var createPeople = require('./runtests/createDefaultPeople');
 
-require('nodetime').profile({
-	accountKey: '1205486b4221354f8721bb0ba0a64539f6e8c0e2',
-	appName: 'village-person-tester'
-});
+
 
 
 // var logging = require('./config/logger');
@@ -66,9 +63,9 @@ var App = {
     numOfCouples: 1    // Num of couples to pull to try to make a baby
 };
 
-console.log("CLOCKINV: " + argv.clockinv);
-console.log("GAMESTART: " + argv.gamestart);
-console.log("MAXRUN: " + argv.maxrun);
+console.log("CLOCKINV: " + App.intervalTime);
+console.log("GAMESTART: " + App.gameClock.format("MMM DD, YYYY"));
+console.log("MAXRUN: " + App.maxRunYears);
 
 function PersonsEngine() {
 
@@ -90,7 +87,7 @@ PersonsEngine.prototype.init = function() {
 			families.removeAll(function(doc) {});
 			relationships.removeAll(function(doc) {});
 
-			createPeople.createPeople(12,5,0, function(doc) {
+			createPeople.createPeople(120,50,0, function(doc) {
 				console.log("Creating initial population...");
 			});
 			callback(null,null);
