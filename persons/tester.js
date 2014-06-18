@@ -50,10 +50,13 @@ var time = require('./controllers/time');
 
 /////////////////////////////////
 
+var startTime = argv.gamestart  || "Jan 1, 1918";
+
+
 var App = {
 	intervalTime: argv.clockinv || 1000,
 	models: null,
-	gameClock: moment(argv.gamestart)  || moment("Jan 1, 1918"),
+	gameClock: moment(startTime),
 	maxRunYears: argv.maxrun || '2100',
 	babyRatioNum: 450, // Used with random number...rand num need 
 					   // to be more than this (too tired for better name)

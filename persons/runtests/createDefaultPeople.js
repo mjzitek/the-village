@@ -135,7 +135,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 		},
 		function(err, results) {
 
-	    	console.log(results);
+	    	//console.log(results);
 	    	if(err) {
 	    		callback(err);
 	    	} else

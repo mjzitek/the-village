@@ -18,8 +18,25 @@
 	<div id="header-2">
 		<div id='summary'>Total: <span id='summary-total'></span> | End Date: <span id='game-clock'></span></div>
 		<hr />
-		<input type='radio' name='filter-rows' value='filter' /> Filter selected<br />
-		<input type='radio' name='filter-rows' value='showall' /> Show all rows<br />
+		<nav class="navbar" role="navigation">
+  			<div class="navbar-inner">
+    			<div class="container">
+    				<div class="navbar-header">
+    					<span class="navbar-filter" href="#">Filters</span>
+    				</div>
+    				<div class="nav-collaspe">
+    					<ul class="nav navbar-nav">
+    						<li><a href="#" id="filter-rows"><span class="fa fa-filter fa-2x"></span></a></li>
+    						<li><a href="#" id="filter-show-all-rows"><span class="fa fa-users fa-2x"></span></a></li>
+    						<li><a href="#" id="filter-show-men"><span class="fa fa-male fa-2x"></span></a></li>
+    						<li><a href="#" id="filter-show-women"><span class="fa fa-female fa-2x"></span></a></li>    						    						
+    					</ul>
+    				</div>
+    			</div>
+    		</div>
+    	</nav>
+<!-- 		<input type='radio' name='filter-rows' value='filter' /> Filter selected<br />
+		<input type='radio' name='filter-rows' value='showall' /> Show all rows<br /> -->
 	</div>
 </div>
 <div id="main">

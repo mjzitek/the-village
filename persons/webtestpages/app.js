@@ -18,6 +18,43 @@
 	 	}
  	});
 
+    $('#filter-rows').click(function() {
+        $('#personlist tbody tr').each(function (i, row) {
+            if(!$(row).hasClass('selected'))
+            {
+                    $(row).hide();
+            }
+        });
+    });
+
+    $('#filter-show-all-rows').click(function() {
+        $('#personlist tbody tr').show();        
+    });
+
+    $('#filter-show-men').click(function() {
+        $('#personlist tbody tr').show();
+        
+        $('#personlist tbody tr').each(function (i) {
+            
+            if($('tr:nth-child('+(i+1)+')>td:nth-child(4)').html() == "F")
+            {
+                    $('tr:nth-child('+(i+1)+')').hide();
+            }
+        });
+    });
+
+    $('#filter-show-women').click(function() {
+        $('#personlist tbody tr').show();
+
+        $('#personlist tbody tr').each(function (i) {
+
+            if($('#personlist tbody tr:nth-child('+(i+1)+')>td:nth-child(4)').html() == "M")
+            {
+                    $('#personlist tbody tr:nth-child('+(i+1)+')').hide();
+            }
+        });
+    });
+
     $('#header-1').click(function() {
         getGameClock();
         getPeople();
@@ -26,6 +63,17 @@
 
  	$('#persons-listing').on('click','.details', function() {
         getDetails(this);
+    });
+
+
+    $('.navbar-nav li a').click(function() {
+        var that = this;
+        $('.navbar-nav li').each(function (index) {
+            $(this).children("a").removeClass("selected");
+        });
+
+        $(that).addClass("selected");
+
     });
     
 
