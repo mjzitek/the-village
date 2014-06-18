@@ -1,7 +1,8 @@
  $(function() {
  	//$('input:radio[name="filter-rows"]').val('showall').prop('checked',true);
- 	getPeople();
-    getGameClock();
+    refreshPage();
+
+    Engine.setAutoInterval();
 
  	$('input:radio[name="filter-rows"]').change(function() {
  		
@@ -33,7 +34,7 @@
 
     $('#filter-show-men').click(function() {
         $('#personlist tbody tr').show();
-        
+
         $('#personlist tbody tr').each(function (i) {
             
             if($('tr:nth-child('+(i+1)+')>td:nth-child(4)').html() == "F")
@@ -55,14 +56,17 @@
         });
     });
 
-    $('#header-1').click(function() {
-        getGameClock();
-        getPeople();
 
+
+    $('#header-1').click(function() {
+        refreshPage();
     });
 
+
  	$('#persons-listing').on('click','.details', function() {
+        App.selectedRow = this;
         getDetails(this);
+        App.offset = $(this).offset();
     });
 
 
@@ -137,8 +141,8 @@
 
         // $('.authors-list tr').each(function (i, row) {
         $('#personlist tbody tr').each(function (i, row) {
-            $(row).removeClass('selected');
-            $(row).removeClass('sel-person');
+            // $(row).removeClass('selected');
+            // $(row).removeClass('sel-person');
             $(row).removeClass('sel-person-spouse');
             $(row).removeClass('sel-person-children');
             $(row).removeClass('sel-person-siblings');
@@ -147,7 +151,7 @@
             var rdata = $(row).find('td:first-child').find('.details').data('key');
             
             if(rdata == data) {
-                console.log(rdata);
+                console.log("Selected: " + rdata);
                 $(row).addClass('sel-person');
                 $(row).addClass('selected');
             }
@@ -454,24 +458,41 @@ function filterSelected() {
 }
 
 
-function LoadChart() {
 
-      google.setOnLoadCallback(drawChart);
+
+function refreshPage() {
+    getGameClock();
+    getPeople();
+    if(App.selectedRow != null) {
+        getDetails(App.selectedRow);
+        $(App.selectedRow).addClass('sel-person');
+        $(App.selectedRow).addClass('selected');
+    }
 }
 
 
-      function drawChart() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Name');
-        data.addColumn('string', 'Manager');
-        data.addColumn('string', 'ToolTip');
-        data.addRows([
-          [{v:'Mike', f:'Mike<div style="color:red; font-style:italic">President</div>'}, '', 'The President'],
-          [{v:'Jim', f:'Jim<div style="color:red; font-style:italic">Vice President</div>'}, 'Mike', 'VP'],
-          ['Alice', 'Mike', ''],
-          ['Bob', 'Jim', 'Bob Sponge'],
-          ['Carol', 'Bob', '']
-        ]);
-        var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
-        chart.draw(data, {allowHtml:true});
+var App = {
+    intervalTime: 12,
+    refreshIntervalId: null,
+    selectedRow: null,
+    offset: null
+};
+
+
+
+var Engine = {
+    setAutoInterval: function () {
+        clearInterval(App.refreshIntervalId);
+
+        App.refreshIntervalId = setInterval(function() {
+            if($('#refresh').hasClass('selected')) {
+                refreshPage();
+                console.log('refresh');
+            }
+        }, App.intervalTime * 1000);
+    },
+    clearAutoInterval: function() {
+        clearInterval(App.refreshIntervalId);
     }
+
+}
