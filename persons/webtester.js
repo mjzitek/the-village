@@ -113,7 +113,11 @@ app.get('/siblings/sameparents/:id', function(req, res) {
 	});
 });
 
-
+app.get('/parents/:id', function(req, res) {
+	persons.getParents(req.params.id, function(parents) {
+		return res.jsonp(parents);
+	});
+});
 
 app.get('/gameclock/', function(req, res) {
 	gamesetting.getValueByKey('time', function(time) {

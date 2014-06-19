@@ -329,6 +329,10 @@ table.table-legend tr:last-child td:last-child {
 
 
 
-li.detail-child:hover {
+.details-section-info:hover {
 	cursor: pointer; 
+}
+
+.details-extra-search {
+	padding-left: 3px;
 }

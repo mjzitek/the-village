@@ -306,7 +306,8 @@ exports.getSiblingsSameParents = function(personId, callback) {
 
 exports.getParents = getParents
 function getParents(personId, callback) {
-	Person.findOne({ _id: personId}, { fatherInfo: 1, motherInfo : 1}, function(err, per) {
+	Person.findOne({ _id: personId}, { fatherInfo: 1, motherInfo : 1}).populate('fatherInfo motherInfo').exec(function(err, per) {
+		//console.log(per);
 		callback(per);
 	});
 }

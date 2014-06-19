@@ -65,7 +65,8 @@
 
  	$('#persons-listing').on('click','.details', function() {
         App.selectedRow = this;
-        getDetails(this);
+        var data = $(this).data("key");
+        getDetails(data);
         App.offset = $(this).offset();
     });
 
@@ -81,24 +82,30 @@
     });
 
 
-    $('#details-part3').on("mouseenter ", "li.detail-child", 
+    $('.details-section-info').on("mouseenter ", ".details-info", 
         function() {
             //alert("alert");
-            $( this ).append( $( "<span class='detail-extra-search fa fa-search-plus'></span>" ) );
+            $( this ).append("<span class='details-extra-search fa fa-search-plus'></span>");
           }
     );
 // 
-    $('#details-part3').on("mouseleave ", "li.detail-child", 
+    $('.details-section-info').on("mouseleave ", ".details-info", 
         function() {
            $( this ).find( "span:last" ).remove();
         }
     );
 
+    $('.details-section-info').on("click", ".details-info",
+        function() {
+            var id = $(this).data("personid");
+            getDetails(id);
+        }
 
+    );
 
  });
 
- function getDetails(row) {
+ function getDetails(personId) {
     $('#details').show(); 
         $('#details-part1').html("");
         $('#details-part2').html("");
@@ -108,7 +115,7 @@
         $('#personlist tbody tr').show();
         //$('input:radio[name="filter-rows"]').val('showall').prop('checked',true);
 
-        var data = $(row).data("key");
+        var data = personId;
 
         var gameClock = $("#game-clock").html();
 
@@ -247,7 +254,7 @@ function getSpouse(personId, gender) {
 
             if(res)
             {
-                output += res.firstName + " " + res.lastName
+                output += "<span  class='details-info' data-personid='" + res._id + "'>" + res.firstName + " " + res.lastName + " </span>";
 
 
 
@@ -293,7 +300,7 @@ function getChildren(personId, gender) {
         	var output = "<div><label>Children:</label> </div><ul>";
 
         	res.forEach(function(c) {
-        		output += "<li class='detail-child'>" + c.firstName + " " + c.lastName + " </li>";
+        		output += "<li class='details-info' data-personid='" + c._id + "'>" + c.firstName + " " + c.lastName + " </li>";
 
         		var rdata = null;
 
@@ -342,7 +349,7 @@ function getSiblings(personId) {
             res.forEach(function(c) {
                 if(c.fatherInfo != null)
                 {
-                    output += "<li> " + c.firstName + " " + c.lastName + "</li>";
+                    output += "<li  class='details-info' data-personid='" + c._id + "'> " + c.firstName + " " + c.lastName + "</li>";
 
                     var rdata = null;
 
@@ -390,6 +397,39 @@ function getParents(person) {
                 $(row).addClass('selected');
             }
         });
+
+
+
+        $.ajax({
+            dataType: 'jsonp',
+            data: '',
+            type: "GET",
+            //jsonp: 'jsonp_callback',
+            url: 'http://' + Config.hostserver +  ':8989/parents/' + person._id,
+            success: function (res) {
+                console.log( res );
+
+
+                var output = "<div><label>Parents:</label> </div><ul>";
+
+                if(res.fatherInfo) output += "<li  data-personid='" + res.fatherInfo._id + "' class='details-info'> " + res.fatherInfo.firstName + " " + res.fatherInfo.lastName + "</li> ";
+                if(res.motherInfo) output += "<li  data-personid='" + res.motherInfo._id + "' class='details-info'> " + res.motherInfo.firstName + " " + res.motherInfo.lastName + "</li> ";
+
+                // res.forEach(function(c) {
+                //         output += "<li> " + c.firstName + " " + c.lastName + "</li>";
+                // });
+                 output += "</ul>"
+                $("#details-part5").html(output);
+            }
+        });
+
+
+
+
+
+
+        
+
 }
 
 function getGameClock() {

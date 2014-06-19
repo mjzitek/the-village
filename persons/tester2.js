@@ -147,13 +147,15 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 PersonsEngine.prototype.tester = function(models)  {
 
 	
-	persons.removeAll(function(doc) {});
-	families.removeAll(function(doc) {});
-	relationships.removeAll(function(doc) {});
+	// persons.removeAll(function(doc) {});
+	// families.removeAll(function(doc) {});
+	// relationships.removeAll(function(doc) {});
 
-	createPeople.createPeople(120,50,0, function(doc) {
-		//console.log(doc);
-	});
+	// createPeople.createPeople(120,50,0, function(doc) {
+	// 	//console.log(doc);
+	// });
+
+    persons.getParents('53a1dbb48073b19a23d4cb2c', function(per){} );
 
 	//tMoment.randomDate("1/1/1900", "2/1/1900");
 
