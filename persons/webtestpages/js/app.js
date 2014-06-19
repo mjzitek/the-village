@@ -79,7 +79,22 @@
         $(that).addClass("selected");
 
     });
-    
+
+
+    $('#details-part3').on("mouseenter ", "li.detail-child", 
+        function() {
+            //alert("alert");
+            $( this ).append( $( "<span class='detail-extra-search fa fa-search-plus'></span>" ) );
+          }
+    );
+// 
+    $('#details-part3').on("mouseleave ", "li.detail-child", 
+        function() {
+           $( this ).find( "span:last" ).remove();
+        }
+    );
+
+
 
  });
 
@@ -95,6 +110,9 @@
 
         var data = $(row).data("key");
 
+        var gameClock = $("#game-clock").html();
+
+        if(gameClock === "") { gameClock = "Jan 1, 2000"; }
 
 
         $.ajax({
@@ -113,7 +131,10 @@
                 //response.forEach(function(p) {
                     output = 
                         "<div><label>Name:</label> " + res.firstName + " " + (res.middleName == null ? "" : res.middleName) + " " + res.lastName + "</div>" +
-                        "<div><label>Birthdate:</label> " + bd.format("MMM D, YYYY") + "<div>" +
+                        "<div><label>Birthdate:</label> " + bd.format("MMM D, YYYY") + 
+                            " (" + (res.dateOfDeath == null ? getDifference(gameClock, bd).years : getDifference(res.dateOfDeath, bd).years )  +
+                            (res.dateOfDeath != null ? " - Deceased" : "")
+                            +")<div>" +
                         "<div><label>Married:</label> " + (res.attributes.married == true ? "Yes" : "No") + "</div>";
                     
                         //console.log("Married: " + res.attributes.married);
@@ -141,8 +162,8 @@
 
         // $('.authors-list tr').each(function (i, row) {
         $('#personlist tbody tr').each(function (i, row) {
-            // $(row).removeClass('selected');
-            // $(row).removeClass('sel-person');
+            $(row).removeClass('selected');
+            $(row).removeClass('sel-person');
             $(row).removeClass('sel-person-spouse');
             $(row).removeClass('sel-person-children');
             $(row).removeClass('sel-person-siblings');
@@ -181,7 +202,7 @@
                 var alive = (p.dateOfDeath === null ? true : false);
 
 
-        		output += "<tr class='" + (alive === false ? "per-dead" : "") + "'><td class='details-td'><span class='details ' data-key='" + p._id + "'><i class='fa fa-search-plus'></i></span>" 
+        		output += "<tr class='" + (alive === false ? "per-dead" : "") + "'><td class='details-td'><span class='details ' data-key='" + p._id + "'><i class='get-details fa fa-search-plus'></i></span>" 
         		+"<td>" + p.firstName + "</td><td>" + p.lastName + "</td><td style='width: 55px; text-align: center'>" + p.gender 
                 + "</td><td style='width: 150px'>" + bd.format("MMM D, YYYY") + "</td>"
                 + "<td style='text-align: center; width: 55px'>" + (p.dateOfDeath == null ? getDifference(gameClock, bd).years : getDifference(p.dateOfDeath, bd).years )  + "</td>"
@@ -272,7 +293,7 @@ function getChildren(personId, gender) {
         	var output = "<div><label>Children:</label> </div><ul>";
 
         	res.forEach(function(c) {
-        		output += "<li>" + c.firstName + " " + c.lastName + "</li>";
+        		output += "<li class='detail-child'>" + c.firstName + " " + c.lastName + " </li>";
 
         		var rdata = null;
 

@@ -213,13 +213,15 @@ table#personlist th, table.table-legend th  {
 }
 
 table#personlist td .details {
- 	color: #383838;
+ 	color: #9c9c9c;
  	padding-left: 15px;
  }
+
 
 table#personlist td .details:hover {
 	text-decoration: underline;
 	cursor: default;
+	color: #1E3859;
 }
 
 table#personlist td.details-td {
@@ -327,4 +329,6 @@ table.table-legend tr:last-child td:last-child {
 
 
 
-
+li.detail-child:hover {
+	cursor: pointer; 
+}
