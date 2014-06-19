@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var moment = require('moment');
 var argv = require('optimist').argv;
-var memwatch = require('memwatch');
+//var memwatch = require('memwatch');
 
 var config = require('./config/config');
 var tMoment = require('./helpers/time.js');
