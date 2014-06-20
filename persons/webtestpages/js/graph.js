@@ -55,7 +55,7 @@ function loadGraph(data)
 	      .attr("dx", function(d) { return d.children ? 16 : 8; })
 	      .attr("dy", 13)
 	      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-	      .attr('class', 'blue')
+	      .attr('class', 'graph-relation')
 	      .text(function(d) { return d.relation; });    
 	//});
 
