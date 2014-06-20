@@ -46,8 +46,8 @@ function loadGraph(data)
 	      .attr("r", 4.5);
 
 	  node.append("text")
-	      .attr("dx", function(d) { return d.children ? -8 : 8; })
-	      .attr("dy", 3)
+	      .attr("dx", function(d) { return d.children ? 66 : 8; })
+	      .attr("dy", function(d) { return d.children ? -10 : 3; })
 	      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
 	      .text(function(d) { return d.name; });
 

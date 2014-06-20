@@ -4,3 +4,4 @@ webapp/node_modules
 persons/output.txt
 persons/_bak
 persons/webtestpages/js/config.js
+persons/npm-debug.log
