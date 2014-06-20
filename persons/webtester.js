@@ -127,6 +127,55 @@ app.get('/gameclock/', function(req, res) {
 });
 
 
+app.get('/graphdata/:data', function(req, res) {
+	// var data = { name: "flare", children: [ { name: "cluster", 
+	// 				children: [{ name: "AgglomerativeCluster", size: 3938}] }]};
+  		console.log('Getting graph data...');
+	var data = {}
+
+  	persons.getPerson(req.params.data, function(per) {
+  		data['name'] = per.firstName + ' ' + per.lastName;
+
+
+		
+		if(per.gender == "M")
+		{
+			console.log('Getting children...');
+			persons.getChildrenByFather(per._id, function(child) {
+				var children = [];
+				child.forEach(function(c) {
+					console.log('c: ' + c._id);
+					children.push({ 'name' : c.firstName + ' ' + c.lastName});
+				});
+
+				data['children'] = children;
+				console.log('xxyxyxyxyx');
+				console.log(data);
+				return res.jsonp(data)
+			});
+		} else if (per.gender == "F")
+		{
+			console.log('Getting children for ' + per._id);
+			persons.getChildrenByMother(per._id, function(child) {
+				console.log('Getting children...');
+				console.log(children);
+				var children = [];
+				child.forEach(function(c){ 
+					console.log(c);
+					children.push({ 'name' : c.firstName + ' ' + c.lastName, 'relation' : 'child'});
+				});
+
+				data['children'] = children;
+				console.log(data);
+				return res.jsonp(data);
+			});
+		} else {
+			return res.jsonp(data);
+		}
+
+    });
+});
+
 /////////////////////////
 var server = app.listen(8989, function() {
 console.log('Listening on port 8989');

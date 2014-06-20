@@ -155,7 +155,19 @@ PersonsEngine.prototype.tester = function(models)  {
 	// 	//console.log(doc);
 	// });
 
-    persons.getParents('53a1dbb48073b19a23d4cb2c', function(per){} );
+    //persons.getChildrenByMother('53a1e0c68073b19a23d4d943', function(per){ console.log(per)} );
+
+	persons.getChildrenByMother('53a1e0c68073b19a23d4d943', function(child) {
+		child.forEach(function(c) {
+			console.log(c);
+		});
+	});
+
+    // persons.getPersons(function(pers) {
+    // 	pers.forEach(function(p) {
+    // 		console.log(p._id);
+    // 	});
+    // });
 
 	//tMoment.randomDate("1/1/1900", "2/1/1900");
 

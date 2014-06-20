@@ -1,3 +1,3 @@
  {
- 	"ignore": ["webtestpages/*"]
+ 	"ignore": ["webtestpages/*", tester.js, tester2.js]
  }

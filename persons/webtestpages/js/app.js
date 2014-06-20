@@ -103,7 +103,43 @@
 
     );
 
+    // Go to family tree details
+    $('#details-part1').on("click", "#details-family-tree",
+        function() {
+            console.log('tree clicked');
+            getGraphData($(this).data("personid"));
+
+            $('#basic-modal-content').modal();
+
+        }
+    );
+
  });
+
+function getGraphData(id)
+{
+
+        $.ajax({
+            dataType: 'jsonp',
+            //data: data,
+            type: "GET",
+            //jsonp: 'jsonp_callback',
+            url: 'http://' + Config.hostserver +  ':8989/graphdata/' + id,
+            success: function (res) {
+                console.log(res);
+                loadGraph(res);
+            },
+            error: function( xhr, status, errorThrown ) {
+                alert( "Sorry, there was a problem!" );
+                console.log( "Error: " + errorThrown );
+                console.log( "Status: " + status );
+                console.dir( xhr );
+            } 
+
+        });
+
+
+}
 
  function getDetails(personId) {
     $('#details').show(); 
@@ -137,12 +173,14 @@
 
                 //response.forEach(function(p) {
                     output = 
+                        "<div id='details-family-tree' data-personid='" + res._id + "'><span class='fa fa-tree'></span></div>" +
                         "<div><label>Name:</label> " + res.firstName + " " + (res.middleName == null ? "" : res.middleName) + " " + res.lastName + "</div>" +
                         "<div><label>Birthdate:</label> " + bd.format("MMM D, YYYY") + 
                             " (" + (res.dateOfDeath == null ? getDifference(gameClock, bd).years : getDifference(res.dateOfDeath, bd).years )  +
                             (res.dateOfDeath != null ? " - Deceased" : "")
                             +")<div>" +
                         "<div><label>Married:</label> " + (res.attributes.married == true ? "Yes" : "No") + "</div>";
+
                     
                         //console.log("Married: " + res.attributes.married);
                         
@@ -349,8 +387,10 @@ function getSiblings(personId) {
             res.forEach(function(c) {
                 if(c.fatherInfo != null)
                 {
-                    output += "<li  class='details-info' data-personid='" + c._id + "'> " + c.firstName + " " + c.lastName + "</li>";
-
+                    if(c._id != personId)
+                    {
+                        output += "<li  class='details-info' data-personid='" + c._id + "'> " + c.firstName + " " + c.lastName + "</li>";
+                    }
                     var rdata = null;
 
                     $('#personlist tbody tr').each(function (i, row) {

@@ -329,10 +329,22 @@ table.table-legend tr:last-child td:last-child {
 
 
 
-.details-section-info:hover {
+.details-section-info:hover, #details-family-tree:hover {
 	cursor: pointer; 
+}
+
+#details-family-tree:hover {
+	color: #1E3859;
 }
 
 .details-extra-search {
 	padding-left: 3px;
 }
+
+#details-family-tree {
+	position: relative;
+	top: 0;
+	right: 0;
+	float: right;
+}
+
