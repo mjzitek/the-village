@@ -70,7 +70,8 @@ function getAge(personId, callback) {
 // 	return curAge;
 // }
 
-exports.getSurname = function(personId, callback) {
+exports.getSurname = getSurname;
+function getSurname(personId, callback) {
 	Person.findOne({_id: personId}).populate('familyInfo').exec(function(err, doc) {
 		if(doc)
 		{
@@ -84,7 +85,8 @@ exports.getSurname = function(personId, callback) {
 
 /* Group */
 
-exports.getPersons = function(callback) {
+exports.getPersons = getPersons;
+function getPersons(callback) {
 	Person.find({}).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, doc) {
 		callback (doc);
 	});
@@ -228,8 +230,8 @@ function getRandomBabyReadyWomen(married, persAmount, callback) {
 
 }
 
-
-exports.getPersonsAlive = function(callback) {
+exports.getPersonsAlive = getPersonsAlive
+function getPersonsAlive(callback) {
 	Person.find({ dateOfDeath: null }).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, doc) {
 		callback (doc);
 	});
@@ -255,28 +257,132 @@ function populationCountFiltered(filter, callback) {
 }
 
 
-
-exports.getPregnantWomen = function(callback) {
+exports.getPregnantWomen = getPregnantWomen;
+function getPregnantWomen(callback) {
 	Person.find({ "pregnancy.pregnant" : true, dateOfDeath: null }).populate('familyInfo').exec(function(err, preg) {
 		callback(preg);
 	});
 }
 
-exports.getChildrenByFather = function(fatherId, callback) {
+exports.getChildrenByFather = getChildrenByFather
+function getChildrenByFather(fatherId, callback) {
 	Person.find({ fatherInfo: fatherId }, function(err, children) {
 		callback(children);
 	});
 }
 
 
-
-exports.getChildrenByMother = function(motherId, callback) {
+exports.getChildrenByMother = getChildrenByMother;
+function getChildrenByMother(motherId, callback) {
 	Person.find({ motherInfo: motherId}, function(err, children) {
 		callback(children);
 	});
 }
 
-exports.getSingles = function(gender, callback) {
+exports.getChildrenGrandchildren = getChildrenGrandchildren;
+function getChildrenGrandchildren(personId, callback) {
+		var data = {}
+		var children = [];
+		console.log("Getting data for " + personId);
+		async.waterfall([
+			function(callback) {
+				  	getPerson(personId, function(per) {
+				  		callback(null, per);
+				  	});
+			},
+			function(per, callback)
+			{
+				var data = {}
+				data['id'] = per._id;
+				data['name'] = per.firstName + ' ' + per.lastName;
+				callback(null, per, data)
+			},
+			function(person, data, callback)
+			{
+
+				if(person.gender == "M")
+				{
+					getChildrenByFather(person._id, function(children) {
+						callback(null, person, children, data);
+					});
+				} else if (person.gender == "F")
+				{
+					getChildrenByMother(person._id, function(children) {
+						callback(null, person, children, data);
+					});
+				}
+			},
+			function(person, children, data, callback)
+			{
+				var waiting = 0;
+				var childrenArray = [];
+
+				children.forEach(function(c) {
+					waiting++;
+					var grandchildrenArray = [];
+					console.log("waiting++ " + waiting);
+					if(c.gender == "M")
+					{
+						getChildrenByFather(c._id, function(gc) {
+							
+							gc.forEach(function(gcc) {
+								console.log('gc: ' + gcc._id);
+								grandchildrenArray.push({ 'id' : gcc._id, 'name' : gcc.firstName + ' ' + gcc.lastName, 'gender' : gcc.gender, 
+														  'relation' : 'grandchild' });
+							});
+							waiting--;
+							console.log("waiting-- " + waiting);
+								childrenArray.push({ 'id' : c._id, 'name' : c.firstName + ' ' + c.lastName, 'gender' : c.gender, 
+												     'relation': 'child', 'children' : grandchildrenArray });
+							if(waiting == 0)
+							{
+								console.log(childrenArray);
+								callback(null, person, childrenArray, data);
+							}
+
+						});
+					} else if (c.gender == "F")
+					{
+						getChildrenByMother(c._id, function(gc) {
+							
+							gc.forEach(function(gcc) {
+								console.log('gc: ' + gcc._id);
+								grandchildrenArray.push({ 'id' : gcc._id, 'name' : gcc.firstName + ' ' + gcc.lastName, 'gender' : gcc.gender, 
+														  'relation' : 'grandchild' });
+							});
+							waiting--;
+							console.log("waiting-- " + waiting);
+								childrenArray.push({ 'id' : c._id, 'name' : c.firstName + ' ' + c.lastName, 'gender' : c.gender, 
+												     'relation': 'child', 'children' : grandchildrenArray });
+							if(waiting == 0)
+							{
+								console.log(childrenArray);
+								callback(null, person, childrenArray, data);
+							}
+
+						});
+					}
+				});
+
+			}
+		],
+		function(err, per, childrenArray, data) {
+
+			data['children'] = childrenArray;
+	    	if(err) {
+	    		callback(err);
+	    	} else
+	    	{
+	    		console.log(data);
+	    		callback(data);    		
+	    	}
+
+		});
+
+}
+
+exports.getSingles = getSingles;
+function getSingles(gender, callback) {
 	Person.find({ gender: gender, attributes: {married: false}, dateOfDeath: null }).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, singles) {
 
 		callback(singles);
@@ -287,8 +393,8 @@ exports.getSingles = function(gender, callback) {
 
 
 
-
-exports.getSiblingsSameParents = function(personId, callback) {
+exports.getSiblingsSameParents = getSiblingsSameParents;
+function getSiblingsSameParents(personId, callback) {
 	Person.findOne({ _id: personId}, function(err, per) {
 		//console.log(per);
 		Person.find( { $or: [ { fatherInfo: per.fatherInfo, motherInfo: per.motherInfo }, 
@@ -304,12 +410,82 @@ exports.getSiblingsSameParents = function(personId, callback) {
 }
 
 
-exports.getParents = getParents
+exports.getParents = getParents;
 function getParents(personId, callback) {
 	Person.findOne({ _id: personId}, { fatherInfo: 1, motherInfo : 1}).populate('fatherInfo motherInfo').exec(function(err, per) {
 		//console.log(per);
 		callback(per);
 	});
+}
+
+exports.getParentsGrandparents = getParentsGrandparents;
+function getParentsGrandparents(personId, callback) {
+
+		console.log("Getting Parent/Grandparent data for " + personId);
+		async.waterfall([
+			// Get Person
+			function(callback) {
+				getPerson(personId, function(per) {
+				  	callback(null, per);
+				});
+			},
+			// Get Person's Parents
+			function(person, callback)
+			{
+				getParents(personId, function(parents) {
+					callback(null, person, parents);
+				});
+			},
+
+			// Get Person's Father's Parents
+			function(person, parents, callback)
+			{
+				getParents(parents.fatherInfo._id, function(fatherParents) {
+					callback(null, person, parents, fatherParents);
+				});
+			},	
+
+			// Get Person's Mother's Parents
+			function(person, parents, fatherParents, callback)
+			{
+				getParents(parents.motherInfo._id, function(motherParents) {
+					callback(null, person, parents, fatherParents, motherParents);
+				});				
+			}
+
+		],
+		function(err, person, parents, fatherParents, motherParents) {
+		var data = {}
+		
+
+	    	if(err) {
+	    		console.log(err);
+	    		callback(err);
+	    	} else
+	    	{
+	    		// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+	    		// console.log("Person: ");
+	    		// console.log(person);
+	    		// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+	    		// console.log("Parents: ");
+	    		// console.log(parents);
+	    		// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+	    		// console.log("Father's Parents: ");
+	    		// console.log(fatherParents);
+	    		// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+	    		// console.log("Mother's Parents: ");
+	    		// console.log(motherParents);
+	    		// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");	
+
+	    		data["person"] = person;
+	    		data["parents"] = parents;
+	    		data["fatherParents"] = fatherParents;
+	    		data["motherParents"] = motherParents;
+
+	    		callback(data);    		
+	    	}
+
+		});
 }
 
 

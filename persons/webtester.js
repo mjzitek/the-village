@@ -133,7 +133,7 @@ app.get('/graphdata/:data', function(req, res) {
 	// 				children: [{ name: "AgglomerativeCluster", size: 3938}] }]};
   	console.log('Getting graph data...');
 
-  		getGraphData(req.params.data, function(data) {
+  		persons.getChildrenGrandchildren(req.params.data, function(data) {
   			return res.jsonp(data);
   		});			
 
@@ -165,24 +165,11 @@ function getGraphData(personId, callback) {
 				if(person.gender == "M")
 				{
 					persons.getChildrenByFather(person._id, function(childern) {
-						// var children = [];
-						// child.forEach(function(c) {
-						// 	//console.log('c: ' + c._id);
-						// 	children.push({ 'id' : c._id, 'name' : c.firstName + ' ' + c.lastName});
-						// });
-						// data['children'] = children;
 						callback(null, person, children, data);
 					});
 				} else if (person.gender == "F")
 				{
 					persons.getChildrenByMother(person._id, function(children) {
-						//var children = [];
-						//child.forEach(function(c) {
-							//console.log('c: ' + c._id);
-							//children.push({ 'id' : c._id, 'name' : c.firstName + ' ' + c.lastName, 'gender' : c.gender});
-						//});
-						//console.log(children);
-						//data['children'] = children;
 						callback(null, person, children, data);
 					});
 				}
@@ -211,9 +198,6 @@ function getGraphData(personId, callback) {
 
 							if(waiting == 0)
 							{
-								//console.log(data);
-								
-								//data['children'] = childrenArray;
 								console.log(childrenArray);
 								callback(null, person, childrenArray, data);
 							}
@@ -225,7 +209,8 @@ function getGraphData(personId, callback) {
 							
 							gc.forEach(function(gcc) {
 								console.log('gc: ' + gcc._id);
-								grandchildrenArray.push({ 'id' : gcc._id, 'name' : gcc.firstName + ' ' + gcc.lastName, 'relation' : 'grandchild' });
+								grandchildrenArray.push({ 'id' : gcc._id, 'name' : gcc.firstName + ' ' + gcc.lastName, 'gender' : gcc.gender, 
+														  'relation' : 'grandchild' });
 							});
 							waiting--;
 							console.log("waiting-- " + waiting);
@@ -233,9 +218,6 @@ function getGraphData(personId, callback) {
 												     'relation': 'child', 'children' : grandchildrenArray });
 							if(waiting == 0)
 							{
-								//console.log(data);
-
-								//data['children'] = childrenArray;
 								console.log(childrenArray);
 								callback(null, person, childrenArray, data);
 							}

@@ -4,6 +4,19 @@
   stroke-width: 1.5px;
 }
 
+.node-female circle {
+  fill: #fff;
+  stroke: pink;
+  stroke-width: 1.5px;
+}
+
+.node-male circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+
 .node {
   font: 10px sans-serif;
 }
@@ -15,5 +28,6 @@
 }
 
 .graph-relation {
-	fill: #2D68BA;
+	fill: #911F1F;
+	font-size: 9px;
 }

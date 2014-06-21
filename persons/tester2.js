@@ -155,13 +155,23 @@ PersonsEngine.prototype.tester = function(models)  {
 	// 	//console.log(doc);
 	// });
 
+  	persons.getParentsGrandparents('53a1e0c68073b19a23d4d943', function(per) { 
+  		console.log("Person: " + per.person.firstName + " "+  per.person.lastName);
+  		console.log("Father: " + per.parents.fatherInfo.firstName + " " + per.parents.fatherInfo.lastName); 
+  		console.log("Mother: " + per.parents.motherInfo.firstName + " " + per.parents.motherInfo.lastName); 
+  		console.log("Grandparents: " + per.fatherParents.fatherInfo.firstName + " & " + per.fatherParents.motherInfo.firstName + " " + per.fatherParents.fatherInfo.lastName);
+  		console.log("Grandparents: " + per.motherParents.fatherInfo.firstName + " & " + per.motherParents.motherInfo.firstName + " " + per.motherParents.fatherInfo.lastName);
+  	});
+
+
     //persons.getChildrenByMother('53a1e0c68073b19a23d4d943', function(per){ console.log(per)} );
 
-	persons.getChildrenByMother('53a1e0c68073b19a23d4d943', function(child) {
-		child.forEach(function(c) {
-			console.log(c);
-		});
-	});
+	// persons.getChildrenByMother('53a1e0c68073b19a23d4d943', function(child) {
+	// 	child.forEach(function(c) {
+	// 		console.log(c);
+	// 	});
+	// });
+
 
     // persons.getPersons(function(pers) {
     // 	pers.forEach(function(p) {

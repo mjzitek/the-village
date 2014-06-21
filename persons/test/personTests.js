@@ -371,6 +371,15 @@ describe("Person", function() {
 		});
 	});
 
+	describe("#getChildrenGrandchildren()", function() {
+		it("should not return empty", function(done) {
+			persons.getChildrenGrandchildren(personId, function(doc) {
+				expect(pers).to.not.be.empty;
+				done();
+			});
+		});
+	});
+
 	////////////////////////////////////////
 	describe("#kill()", function() {
 		it("should not return error", function(done) {
