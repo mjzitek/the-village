@@ -457,26 +457,11 @@ function getParentsGrandparents(personId, callback) {
 		function(err, person, parents, fatherParents, motherParents) {
 		var data = {}
 		
-
 	    	if(err) {
 	    		console.log(err);
 	    		callback(err);
 	    	} else
 	    	{
-	    		// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
-	    		// console.log("Person: ");
-	    		// console.log(person);
-	    		// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
-	    		// console.log("Parents: ");
-	    		// console.log(parents);
-	    		// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
-	    		// console.log("Father's Parents: ");
-	    		// console.log(fatherParents);
-	    		// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
-	    		// console.log("Mother's Parents: ");
-	    		// console.log(motherParents);
-	    		// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");	
-
 	    		data["person"] = person;
 	    		data["parents"] = parents;
 	    		data["fatherParents"] = fatherParents;
