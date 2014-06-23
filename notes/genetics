@@ -1,0 +1,30 @@
+
+
+
+
+
+
+genome : {
+	
+			bey2 : {
+						one: {
+								value: "blue",
+								dominiance: "b"
+						     },
+						two: {
+								value: "brown",
+								dominiance: "B"
+							 }
+				   },
+			gey :  {
+						one: {
+								value: "green",
+								dominiance: "G"
+						     },
+						two: {
+								value: "green",
+								dominiance: "G"
+							 }
+			       }
+
+		 }

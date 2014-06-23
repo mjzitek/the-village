@@ -46,7 +46,7 @@ var child2Id;
 var child3Id;
 var babyId;
 
-describe.only("Create A Family", function() {
+describe("Create A Family", function() {
 
 
 
