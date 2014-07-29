@@ -9,11 +9,28 @@
   </head>
 
   <body ng-controller="MainController">
-    <h1>{{message}}</h1>
-
     <div>
-    	{{data.firstName}} {{data.lastName}}
+    	Current Date/Time: {{summaryData.clock}}
     </div>
+    <div>
+    	Population: {{summaryData.population}}
+    </div>
+    <div>
+    	Total Men: {{summaryData.men}}
+    </div>
+    <div>
+    	Total Women: {{summaryData.women}}
+    </div>
+    <div>
+    	Dead: {{summaryData.dead}}
+    </div>
+    <div>
+    	Singles: {{summaryData.singles}}
+    </div>
+    <div>
+    	Married: {{summaryData.married}}
+    </div>    
+
     <table>
 
     </table>

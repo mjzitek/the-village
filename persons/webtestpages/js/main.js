@@ -8,14 +8,18 @@
 			$scope.data = response.data;
 		}
 
+		var onSummaryComplete = function(response) {
+			$scope.summaryData = response.data;
+		}
+
 		var onError = function(reason) {
 			$scope.error = reason;
 		}
 
-		var url = "http://localhost:8989/details/53a1db468073b19a23d4c9b1?callback=JSON_CALLBACK"
+		var url = "http://localhost:8989/summary/?callback=JSON_CALLBACK"
 
 		$http.jsonp(url)
-			 .then(onPersonComplete, onError);
+			 .then(onSummaryComplete, onError);
 
 		$scope.message = "Hello";
 

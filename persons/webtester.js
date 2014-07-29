@@ -250,21 +250,77 @@ function getGraphData(personId, callback) {
 
 }
 
-function getSummaryData() {
+function getSummaryData(callback) {
 	async.waterfall([
+		function(callback) {
+			gamesetting.getValueByKey('time', function(clock) {
+				callback(null,clock.setvalue);
+			});
+		},
+		function(clock, callback) {
+			persons.populationCountAlive(function(popCount) {
+				callback(null, clock, popCount);
+			});
+		},
+		function(clock, popCount, callback) {
+			var filter = {
+				gender: "M",
+				dateOfDeath: null
+			}
 
+			persons.populationCountFiltered(filter, function(popCountMales) {
+				callback(null, clock, popCount, popCountMales);
+			});
+		},
+		function(clock, popCount, popCountMales, callback) {
+			var filter = {
+				gender: "F",
+				dateOfDeath: null
+			}
 
+			persons.populationCountFiltered(filter, function(popCountFemales) {
+				callback(null, clock, popCount, popCountMales, popCountFemales);
+			});
+		},
+		function(clock, popCount, popCountMales, popCountFemales, callback) {
+			var filter = {
+				dateOfDeath: { $ne : null } 
+			}
+
+			persons.populationCountFiltered(filter, function(popCountDead) {
+				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead);
+			});
+		},
+		function(clock, popCount, popCountMales, popCountFemales, popCountDead, callback) {
+			var filter = {
+				attributes : { married : false },
+				dateOfDeath: null
+			}
+
+			persons.populationCountFiltered(filter, function(popSingle) {
+				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle);
+			});
+		},
+		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, callback) {
+			var filter = {
+				attributes : { married : true },
+				dateOfDeath: null
+			}
+
+			persons.populationCountFiltered(filter, function(popMarried) {
+				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried);
+			});
+		}													
 	],
-	function(err) {
+	function(err, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried) {
 		var data = {
-				clock: null,
-				population: null,
-				men: null,
-				woman: null,
-				alive: null,
-				dead: null
-				married: null,
-				single: null,
+				clock: clock,
+				population: popCount,
+				men: popCountMales,
+				women: popCountFemales,
+				dead: popCountDead,
+				married: popMarried,
+				singles: popSingle,
 				children: null,
 				adults: null,
 				recentBirths: null
@@ -272,7 +328,7 @@ function getSummaryData() {
 
 
 		callback(data);
-	}
+	});
 }
 
 
