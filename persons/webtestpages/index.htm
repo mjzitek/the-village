@@ -2,47 +2,68 @@
 <html ng-app="personsViewer">
 
   <head>
+	<link rel="stylesheet" href="./css/bootstrap.css">
+	<link rel="stylesheet" href="./css/bootstrap-theme.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Eagle+Lake">
+	<link href="http://fonts.googleapis.com/css?family=Happy+Monkey" rel="stylesheet">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css" />
 
-    <link rel="stylesheet" href="css/style.css" />
     <script  src="https://code.angularjs.org/1.3.0-beta.5/angular.js"></script>
     <script src="js/main.js"></script>
   </head>
 
   <body ng-controller="MainController">
-    <div>
-    	Current Date/Time: {{summaryData.clock}}
-    </div>
-    <div>
-    	Population: {{summaryData.population}}
-    </div>
-    <div>
-    	Total Men: {{summaryData.men}}
-    </div>
-    <div>
-    	Total Women: {{summaryData.women}}
-    </div>
-    <div>
-    	Dead: {{summaryData.dead}}
-    </div>
-    <div>
-    	Singles: {{summaryData.singles}}
-    </div>
-    <div>
-    	Married: {{summaryData.married}}
-    </div>    
-    <div>
-    	Children: {{summaryData.children}}
-    </div>    
-    <div>
-    	adults: {{summaryData.adults}}
-    </div>    
-    <div>
-    	Recent Births: {{summaryData.recentBirths}}
-    </div>    
-
-    <table>
-
-    </table>
+  <div class='main'>
+  	   <header>
+  	   <div class="header-1"><img src="img/house1-inverted.png" /><span class='title-text'>The Village</span></div>
+  	   </header>
+	   <div class='main-left col-md-2'>
+	   		<div class='main-left-header'>
+	   			Information
+	   		</div>
+		    <div class='main-left-section'>
+		    	Current Date: {{summaryData.clock}}
+		    </div>
+		    <div class='main-left-section'>
+		    	Population: {{summaryData.population}}
+		    </div>
+		    <div class='main-left-section'>
+		    	Total Men: {{summaryData.men}}
+		    </div>
+		    <div class='main-left-section'>
+		    	Total Women: {{summaryData.women}}
+		    </div>
+		    <div class='main-left-section'>
+		    	Dead: {{summaryData.dead}}
+		    </div>
+		    <div class='main-left-section'>
+		    	Singles: {{summaryData.singles}}
+		    </div>
+		    <div class='main-left-section'>
+		    	Married: {{summaryData.married}}
+		    </div>    
+		    <div class='main-left-section'>
+		    	Children: {{summaryData.children}}
+		    </div>    
+		    <div class='main-left-section'>
+		    	Adults: {{summaryData.adults}}
+		    </div>    
+		    <div class='main-left-section'>
+		    	Recent Births: {{summaryData.recentBirths}}
+		    </div>   
+	   </div>
+	   <div class='main-center col-md-8'>
+	   	<div class='main-center-data'>xx</div>
+	   </div>
+	   <div class='main-right col-md-2'>
+	   
+	   </div>
+	   <footer>
+	   	<div></div>
+	   </footer>
+   </div>
 
   </body>
 

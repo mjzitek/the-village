@@ -252,112 +252,135 @@ function getGraphData(personId, callback) {
 }
 
 function getSummaryData(callback) {
+	var data = {
+			clock: null,
+			population: null,
+			men: null,
+			women: null,
+			dead: null,
+			married: null,
+			singles: null,
+			children: null,
+			adults: null,
+			recentBirths: null,
+			childCutoffDate: null
+	};
+
+
 	async.waterfall([
 		// clock
 		function(callback) {
 			gamesetting.getValueByKey('time', function(clock) {
-				callback(null,moment(clock.setvalue));
+				data.clock = moment(clock.setvalue);
+				callback(null,data);
 			});
 		},
 		// population
-		function(clock, callback) {
+		function(data, callback) {
 			persons.populationCountAlive(function(popCount) {
-				callback(null, clock, popCount);
+				data.population = popCount;
+				callback(null, data);
 			});
 		},
 		// males
-		function(clock, popCount, callback) {
+		function(data, callback) {
 			var filter = {
 				gender: "M",
 				dateOfDeath: null
 			}
 
 			persons.populationCountFiltered(filter, function(popCountMales) {
-				callback(null, clock, popCount, popCountMales);
+				data.men = popCountMales;
+				callback(null, data);
 			});
 		},
 		// females
-		function(clock, popCount, popCountMales, callback) {
+		function(data, callback) {
 			var filter = {
 				gender: "F",
 				dateOfDeath: null
 			}
 
 			persons.populationCountFiltered(filter, function(popCountFemales) {
-				callback(null, clock, popCount, popCountMales, popCountFemales);
+				data.women = popCountFemales;
+				callback(null, data);
 			});
 		},
 		// dead
-		function(clock, popCount, popCountMales, popCountFemales, callback) {
+		function(data, callback) {
 			var filter = {
 				dateOfDeath: { $ne : null } 
 			}
 
 			persons.populationCountFiltered(filter, function(popCountDead) {
-				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead);
+				data.dead = popCountDead;
+				callback(null, data);
 			});
 		},
 		// single
-		function(clock, popCount, popCountMales, popCountFemales, popCountDead, callback) {
+		function(data, callback) {
 			var filter = {
 				attributes : { married : false },
 				dateOfDeath: null
 			}
 
 			persons.populationCountFiltered(filter, function(popSingle) {
-				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle);
+				data.singles = popSingle;
+				callback(null, data);
 			});
 		},
 		// married
-		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, callback) {
+		function(data, callback) {
 			var filter = {
 				attributes : { married : true },
 				dateOfDeath: null
 			}
 
 			persons.populationCountFiltered(filter, function(popMarried) {
-				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried);
+				data.married = popMarried;
+				callback(null, data);
 			});
 		},
 		// childCutoffDate
-		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, callback) {
-			var c2 = moment(clock);
+		function(data, callback) {
+			var c2 = moment(data.clock);
 
 			var childCutoffDate = c2.subtract("y", 12).format('YYYY-MM-DD');
-			callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, childCutoffDate)
+			data.childCutoffDate = childCutoffDate;
+			callback(null, data)
 		},
 		// children
-		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, childCutoffDate, callback) {
+		function(data, callback) {
 
 			var filter = {
 				dateOfDeath: null,
-				dateOfBirth: { $lt : childCutoffDate}
+				dateOfBirth: { $lt : data.childCutoffDate}
 			}
 
 			persons.populationCountFiltered(filter, function(children) {
-				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, childCutoffDate, children);
+				data.children = children;
+				callback(null, data);
 			});
 		},
 		// adults
-		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, childCutoffDate, children, callback) {
+		function(data, callback) {
 
 			var filter = {
 				dateOfDeath: null,
-				dateOfBirth: { $gte : childCutoffDate}
+				dateOfBirth: { $gte : data.childCutoffDate}
 			}
 
 			persons.populationCountFiltered(filter, function(adults) {
-				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, children, adults);
+				data.adults = adults;
+				callback(null, data);
 			});
 		},
 		// recentBirths
-		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, children, adults, callback) {
+		function(data, callback) {
 
-			var c2 = moment(clock);
+			var c2 = moment(data.clock);
 
 			var recentBirthCutoffDate = c2.subtract("y", 1).format('YYYY-MM-DD');			
-
-			console.log(recentBirthCutoffDate)
 
 			var filter = {
 				dateOfDeath: null,
@@ -365,24 +388,26 @@ function getSummaryData(callback) {
 			}
 
 			persons.populationCountFiltered(filter, function(recentBirths) {
-				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, children, adults, recentBirths);
+				data.recentBirths = recentBirths
+				callback(null, data);
 			});
 		}																						
 	],
-	function(err, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, children, adults, recentBirths) {
-		var data = {
-				clock: clock,
-				population: popCount,
-				men: popCountMales,
-				women: popCountFemales,
-				dead: popCountDead,
-				married: popMarried,
-				singles: popSingle,
-				children: children,
-				adults: adults,
-				recentBirths: recentBirths
-		};
+	function(err, data) {
+		// var data = {
+		// 		clock: clock,
+		// 		population: popCount,
+		// 		men: popCountMales,
+		// 		women: popCountFemales,
+		// 		dead: popCountDead,
+		// 		married: popMarried,
+		// 		singles: popSingle,
+		// 		children: children,
+		// 		adults: adults,
+		// 		recentBirths: recentBirths
+		// };
 
+		data.clock = data.clock.format('MMM DD, YYYY');
 
 		callback(data);
 	});
