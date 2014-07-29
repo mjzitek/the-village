@@ -35,6 +35,7 @@ var families = require('./controllers/families');
 var relationships = require('./controllers/relationships');
 var gamesetting = require('./controllers/gamesettings');
 
+
 /////////////////////////
 // Import the routes
 // fs.readdirSync('./core/server/routes').forEach(function(file) {
@@ -50,6 +51,14 @@ app.get('/', function(req, res) {
   persons.getPersons(function(persons) {
       return res.jsonp(persons);
   });
+});
+
+
+app.get('/summary', function(req, res) {
+	getSummaryData(function(data) {
+		return res.jsonp(data);
+	})
+
 });
 
 app.get('/details/:data', function(req, res) {
@@ -240,6 +249,32 @@ function getGraphData(personId, callback) {
 		});
 
 }
+
+function getSummaryData() {
+	async.waterfall([
+
+
+	],
+	function(err) {
+		var data = {
+				clock: null,
+				population: null,
+				men: null,
+				woman: null,
+				alive: null,
+				dead: null
+				married: null,
+				single: null,
+				children: null,
+				adults: null,
+				recentBirths: null
+		};
+
+
+		callback(data);
+	}
+}
+
 
 /////////////////////////
 var server = app.listen(8989, function() {

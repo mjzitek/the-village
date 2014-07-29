@@ -15,6 +15,7 @@ var PersonSchema = new mongoose.Schema({
 	motherInfo:       { type: Schema.Types.ObjectId, ref: 'persons' },
 	attributes:     {
 						married: Boolean,
+						job: { type: Schema.Types.ObjectId, ref: 'jobs' },
 					},
 	pregnancy: {
         			pregnant: Boolean,

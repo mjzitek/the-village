@@ -259,25 +259,7 @@ describe("Person", function() {
 		});
 	});
 
-	////////////////////////////////////////
-	describe("#setPregnant()", function() {
-		it("should not return error", function(done) {
-			persons.setPregnant("538925c7b77b80b59d2c4c60", personId, function(doc) {
-				expect(doc).to.be.empty;
-				done();
-			});
-		});
-	});
 
-	////////////////////////////////////////
-	describe("#getPregnantWomen()", function() {
-		it("should not be empty", function(done) {
-			persons.getPregnantWomen(function(pers) {
-				expect(pers).to.not.be.empty;
-				done();
-			});
-		});
-	});
 
 	////////////////////////////////////////
 	describe("#getSingles()", function() {
@@ -289,16 +271,6 @@ describe("Person", function() {
 		});
 	});
 
-	////////////////////////////////////////
-	describe("#giveBirth()", function() {
-		it("should not be empty", function(done) {
-			persons.giveBirth(personId, function(per) {
-				personKidId = per;
-				expect(per).to.not.be.empty;
-				done();
-			});
-		});
-	});
 
 	describe("#getParents()", function() {
 		it("should equal personKidId", function(done) {
@@ -331,16 +303,7 @@ describe("Person", function() {
 		});
 	});
 
-	////////////////////////////////////////
-	describe("#breed()", function() {
-		it("should not be empty", function(done) {
-			persons.breed(person2Id, personId, function(per) {
-				//console.log(per);
-				expect(per.haveKid).to.equal("** New Baby **");
-				done();
-			});
-		});
-	});
+
 
 	////////////////////////////////////////
 	describe("#getChildrenByFather", function() {

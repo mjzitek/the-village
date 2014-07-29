@@ -1,14 +1,14 @@
+/*
+
+	Functions used to set and get values having to do with the
+	"genetics" of a person....appearance, attributes, etc
+
+
+*/
+
 var fs = require('fs');
 var _ = require('underscore');
 
-
-
-// _.mixin({
-//   capitalize: function(string) {
-//     return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
-//   }
-// });
-// _("fabio").capitalize();
 
 _.mixin({
 	isCapital : function(char) {
@@ -41,7 +41,7 @@ function determineEyeColor(bey2, gey) {
 }
 
 
-exports.determineDominance = determineDominance
+exports.determineDominance = determineDominance;
 function determineDominance(input1, input2) {
 	if(_(input1).isCapital() && !_(input2).isCapital)
 	{
@@ -51,5 +51,21 @@ function determineDominance(input1, input2) {
 		return input2;
 	} else {
 		return input1;
+	}
+}
+
+/**
+*  Picks a random set given two inputs 
+*  @param {Object} set1 A gene object
+*  @param {Object} set2 A gene object
+*  @return {Object} Returns one of the two inputed objects
+*/
+exports.pickRandomGeneSet = pickRandomGeneSet;
+function pickRandomGeneSet(set1, set2) {
+	// var ranNum = (Math.floor(Math.random() * 100));
+	if((Math.floor(Math.random() * 2) === 1) {
+		return set1;
+	} else {
+		return set2;
 	}
 }
