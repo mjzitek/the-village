@@ -2,7 +2,8 @@
 var express = require('express'),
 	mongoose = require('mongoose'),
 	async = require('async'),
-	fs = require('fs');
+	fs = require('fs'),
+	moment = require('moment');
 
 
 var app = express();
@@ -252,16 +253,19 @@ function getGraphData(personId, callback) {
 
 function getSummaryData(callback) {
 	async.waterfall([
+		// clock
 		function(callback) {
 			gamesetting.getValueByKey('time', function(clock) {
-				callback(null,clock.setvalue);
+				callback(null,moment(clock.setvalue));
 			});
 		},
+		// population
 		function(clock, callback) {
 			persons.populationCountAlive(function(popCount) {
 				callback(null, clock, popCount);
 			});
 		},
+		// males
 		function(clock, popCount, callback) {
 			var filter = {
 				gender: "M",
@@ -272,6 +276,7 @@ function getSummaryData(callback) {
 				callback(null, clock, popCount, popCountMales);
 			});
 		},
+		// females
 		function(clock, popCount, popCountMales, callback) {
 			var filter = {
 				gender: "F",
@@ -282,6 +287,7 @@ function getSummaryData(callback) {
 				callback(null, clock, popCount, popCountMales, popCountFemales);
 			});
 		},
+		// dead
 		function(clock, popCount, popCountMales, popCountFemales, callback) {
 			var filter = {
 				dateOfDeath: { $ne : null } 
@@ -291,6 +297,7 @@ function getSummaryData(callback) {
 				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead);
 			});
 		},
+		// single
 		function(clock, popCount, popCountMales, popCountFemales, popCountDead, callback) {
 			var filter = {
 				attributes : { married : false },
@@ -301,6 +308,7 @@ function getSummaryData(callback) {
 				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle);
 			});
 		},
+		// married
 		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, callback) {
 			var filter = {
 				attributes : { married : true },
@@ -310,9 +318,58 @@ function getSummaryData(callback) {
 			persons.populationCountFiltered(filter, function(popMarried) {
 				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried);
 			});
-		}													
+		},
+		// childCutoffDate
+		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, callback) {
+			var c2 = moment(clock);
+
+			var childCutoffDate = c2.subtract("y", 12).format('YYYY-MM-DD');
+			callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, childCutoffDate)
+		},
+		// children
+		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, childCutoffDate, callback) {
+
+			var filter = {
+				dateOfDeath: null,
+				dateOfBirth: { $lt : childCutoffDate}
+			}
+
+			persons.populationCountFiltered(filter, function(children) {
+				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, childCutoffDate, children);
+			});
+		},
+		// adults
+		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, childCutoffDate, children, callback) {
+
+			var filter = {
+				dateOfDeath: null,
+				dateOfBirth: { $gte : childCutoffDate}
+			}
+
+			persons.populationCountFiltered(filter, function(adults) {
+				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, children, adults);
+			});
+		},
+		// recentBirths
+		function(clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, children, adults, callback) {
+
+			var c2 = moment(clock);
+
+			var recentBirthCutoffDate = c2.subtract("y", 1).format('YYYY-MM-DD');			
+
+			console.log(recentBirthCutoffDate)
+
+			var filter = {
+				dateOfDeath: null,
+				dateOfBirth: { $gte : recentBirthCutoffDate}
+			}
+
+			persons.populationCountFiltered(filter, function(recentBirths) {
+				callback(null, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, children, adults, recentBirths);
+			});
+		}																						
 	],
-	function(err, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried) {
+	function(err, clock, popCount, popCountMales, popCountFemales, popCountDead, popSingle, popMarried, children, adults, recentBirths) {
 		var data = {
 				clock: clock,
 				population: popCount,
@@ -321,9 +378,9 @@ function getSummaryData(callback) {
 				dead: popCountDead,
 				married: popMarried,
 				singles: popSingle,
-				children: null,
-				adults: null,
-				recentBirths: null
+				children: children,
+				adults: adults,
+				recentBirths: recentBirths
 		};
 
 
