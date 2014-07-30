@@ -22,7 +22,7 @@
 			$scope.error = reason;
 		}
 
-		var url = "http://192.168.0.10:8989/summary/?callback=JSON_CALLBACK"
+		var url = "http://" + Config.hostserver + ":" + Config.hostport + "/summary/?callback=JSON_CALLBACK"
 
 
 		var getSummary = function() {
@@ -40,16 +40,11 @@
 		var lastEventId = 0;
 		var limitAmount = 20;
 
-		var urlEvents = "http://192.168.0.10:8989/events/" + lastEventId + "/" + limitAmount + "?callback=JSON_CALLBACK"
+		var urlEvents = "http://" + Config.hostserver + ":" + Config.hostport + "/events/" + lastEventId + "/" + limitAmount + "?callback=JSON_CALLBACK"
 
 		$http.jsonp(urlEvents)
 			 .then(onEventsComplete, onError);
-
-
-
 	}
-
-
 
 	app.controller("MainController", ["$scope", "$http", "$interval", MainController]);
 
@@ -79,7 +74,7 @@ function getEvents() {
             //data: data,
             type: "GET",
             //jsonp: 'jsonp_callback',
-            url: "http://192.168.0.10:8989/events/" + lastEventId + "/" + limitAmount,
+            url: "http://" + Config.hostserver + ":" + Config.hostport + "/events/" + lastEventId + "/" + limitAmount,
             success: function (res) {
                // console.log(res.text);
                 loadEvents(res);
@@ -104,7 +99,6 @@ function loadEvents(events) {
 
 		$.each($('#eventsTable tr:lt(10)'), function(index, rows) {
 			if($(this).data("id") === event._id) {
-				console.log(event._id + " Found");
 				found = true;
 			} 
 		});
