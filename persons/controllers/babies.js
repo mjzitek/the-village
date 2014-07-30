@@ -13,9 +13,11 @@ var names = require('../helpers/names');
 
 // Controllers
 var gameSettings = require('./gamesettings');
+var persons = require('./persons');
 var time = require('./time');
 var families = require('./families');
 var relationships = require('./relationships');
+var personevents = require('./personevents');
 
 
 exports.getPregnantWomen = getPregnantWomen;
@@ -41,7 +43,7 @@ function breed(fatherId, motherId, callback) {
 
 	async.series({
 		fatherAge: function(callback) {
-			exports.getAge(fatherId, function(a) {
+			persons.getAge(fatherId, function(a) {
 				//console.log("breed: " + fatherId);
 				//console.log("breed: ");
 				//console.log(a);
@@ -51,19 +53,19 @@ function breed(fatherId, motherId, callback) {
 			
 		},
 		fatherStatus: function(callback) {
-			exports.getPerson(fatherId, function(f) {
+			persons.getPerson(fatherId, function(f) {
 				if(f.dateOfDeath === null) { fatherStatus = true; callback(null, true);}
 				else { callback(null, false);}
 			});
 		},
 		motherAge: function(callback) {
-			exports.getAge(motherId, function(a) {
+			persons.getAge(motherId, function(a) {
 				mrAge = a.years;
 				callback(null, mrAge);
 			});
 		},
 		motherStatus: function(callback) {
-			exports.getPerson(motherId, function(m) {
+			persons.getPerson(motherId, function(m) {
 				if(m.dateOfDeath === null && m.pregnancy.pregnant === false) 
 				{ motherStatus = true; 
 
@@ -134,7 +136,21 @@ function setPregnant(fatherId, motherId, callback) {
 			{
 				callback(err)
 			} else {
-				callback();
+	 		 	persons.getPerson(motherId, function(p) {
+		 			var pers = [];
+					pers.push(p);
+
+					var info = {
+						persons: pers,
+						eventType: 'pregnancy',
+						eventDate: curGameTime,
+						realworldDate: new Date()
+					}
+
+					personevents.add(info, function(doc) {
+						callback();
+					});
+				});
 			}
 
 		});
@@ -168,16 +184,17 @@ function giveBirth(motherId, callback) {
 		},
 		// Get Mom
 		function(gender, name, callback) {
-			getPerson(motherId, function(mom) {
+			persons.getPerson(motherId, function(mom) {
 				//console.log(mom._id + " " + mom.firstName + " " + mom.lastName);
 
 					callback(null, gender, name, mom);
+					//console.log(mom);
 
 			});
 		},	
 		// Get Dad	
 		function(gender, name, mom, callback) {
-			getPerson(mom.pregnancy.babyFatherId, function(dad) {
+			persons.getPerson(mom.pregnancy.babyFatherId, function(dad) {
 				//console.log(mom._id + " " + mom.firstName + " " + mom.lastName);
 				callback(null, gender, name, mom, dad);
 			});
@@ -195,7 +212,7 @@ function giveBirth(motherId, callback) {
 			looks.eye = "blue";
 
 			callback(null, gender, name, mom, dad, gameTime, looks);
-		}
+		},
 		// Update mom status
 		function(gender, name, mom, dad, gameTime, looks, callback) {
 			Person.update({_id: motherId }, { pregnancy: { pregnant: false, pregnancyDate: null, babyFatherId: null }}, function(err, doc) {
@@ -214,7 +231,7 @@ function giveBirth(motherId, callback) {
 				 			   placeOfBirth: null,
 							   dateOfDeath: null,
 							   headOfFamily: 0,
-							   fatherInfo: results.mother.pregnancy.babyFatherId, 
+							   fatherInfo: mom.pregnancy.babyFatherId, 
 							   motherInfo: motherId,
 							   attributes: {
 							   					married: false
@@ -238,11 +255,41 @@ function giveBirth(motherId, callback) {
 			if(err) {
 				callback(err);
 			} else {
-    			callback(per._id);				
+				gameSettings.getValueByKey('time', function(time) {
+					
+					curGameTime = moment(time.setvalue);
+					var pers = [];
+					pers.push(per);
+
+					var info = {
+						persons: pers,
+						eventType: 'birth',
+						eventDate: curGameTime,
+						realworldDate: new Date()
+					}
+
+					personevents.add(info, function(doc) {
+						callback(per._id);	
+					});
+				});		
 			}
 		});
 
 	});
 
 	
+}
+
+
+exports.pickGender = pickGender;
+function pickGender()
+{
+	var ranNum = (Math.floor(Math.random() * 100));
+
+	if(ranNum < 50) {
+		return 'M';
+	} else
+	{
+		return 'F';
+	}
 }

@@ -43,9 +43,11 @@ var walk = function(path) {
 walk(models_path);
 
 var persons = require('./controllers/persons');
+var babies = require('./controllers/babies');
 var families = require('./controllers/families');
 var relationships = require('./controllers/relationships');
 var gamesetting = require('./controllers/gamesettings');
+var personevents = require('./controllers/personevents');
 var time = require('./controllers/time');
 
 /////////////////////////////////
@@ -54,7 +56,7 @@ var startTime = argv.gamestart  || "Jan 1, 1918";
 
 
 var App = {
-	intervalTime: argv.clockinv || 1000,
+	intervalTime: argv.clockinv || 10000,
 	models: null,
 	gameClock: moment(startTime),
 	maxRunYears: argv.maxrun || '2100',
@@ -86,6 +88,7 @@ PersonsEngine.prototype.init = function() {
 			persons.removeAll(function(doc) { console.log("Clearing old population...")});
 			families.removeAll(function(doc) {});
 			relationships.removeAll(function(doc) {});
+			personevents.removeAll(function(doc) {});
 
 			createPeople.createPeople(120,50,0, function(doc) {
 				console.log("Creating initial population...");
@@ -143,14 +146,14 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	// Have Babies
 
 	// Check if any preg women are ready to pop
-	persons.getPregnantWomen(function(preg) {
+	babies.getPregnantWomen(function(preg) {
 		console.log("Pregnant Women: " + preg.length);
 
 		preg.forEach(function(p) {
 		 	var gestationTime = GetAge(p.pregnancy.pregnancyDate);
 		 	if(gestationTime.months >= 9) {
 		 		console.log(p._id + " => it's been 9 months!!");
-		 		persons.giveBirth(p._id, function(pp) {
+		 		babies.giveBirth(p._id, function(pp) {
 		 			//console.log(pp);
 		 		});
 		 	}		
@@ -168,7 +171,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 				//console.log("making babies: " + p._id);
 				if(c)
 				{
-					persons.breed(c.person1, c.person2, function(d) {
+					babies.breed(c.person1, c.person2, function(d) {
 					//console.log("OE: " + d.haveKid);
 					});
 				}
@@ -204,6 +207,25 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
  				if(kill) {
  					persons.killOff(p._id, function(r) {
  						console.log(r);
+
+ 						persons.get(p._id, function(p) {
+
+ 							var pers = [];
+ 							pers.push(p);
+
+ 							var info = {
+ 								persons: pers,
+ 								eventType: 'death',
+ 								eventDate: App.gameClock,
+ 								realworldDate: new Date()
+ 							}
+
+
+ 							personevents.add(info, function(doc) {
+
+ 							});
+ 						});
+ 						
  					});
  				}
  			});

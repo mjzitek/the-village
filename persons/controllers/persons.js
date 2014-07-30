@@ -16,6 +16,7 @@ var gameSettings = require('./gamesettings');
 var time = require('./time');
 var families = require('./families');
 var relationships = require('./relationships');
+var personevents = require('./personevents');
 
 
 /***************************************************************************************
@@ -49,6 +50,7 @@ exports.age = getAge;
 exports.getAge = getAge;
 function getAge(personId, callback) {
 	Person.findOne({_id: personId}, function(err, per) {
+		if(per) {
 			gameSettings.getValueByKey('time', function(time) {
 				curGameTime = moment(time.setvalue);
 				birthDate = moment(per.dateOfBirth);
@@ -57,18 +59,10 @@ function getAge(personId, callback) {
 
 				callback(curAge);
 			});
+		}
 	});
 }
 
-// var GetAge = function(gameClock, birthDate)
-// {
-// 	curGameTime = moment(gameClock);
-// 	birthDate = moment(birthDate);
-			
-// 	curAge = tMoment.getDifference(curGameTime, birthDate);
-
-// 	return curAge;
-// }
 
 exports.getSurname = getSurname;
 function getSurname(personId, callback) {
@@ -520,7 +514,28 @@ function performMarriage(callback) {
 										families.createFamilyRecord(mPer.lastName, function(familyId) {
 											
 											setMarried(mPer._id, familyId, "", function(d) { 
-												setMarried(fPer._id, familyId, mPer.lastName, function(d) {callback(d);});
+												setMarried(fPer._id, familyId, mPer.lastName, function(d) {
+													gameSettings.getValueByKey('time', function(time) {
+
+														curGameTime = moment(time.setvalue);
+
+							 							var pers = [];
+							 							pers.push(mPer);
+							 							pers.push(fPer);
+
+							 							var info = {
+							 								persons: pers,
+							 								eventType: 'marriage',
+							 								eventDate: curGameTime,
+							 								realworldDate: new Date()
+							 							}
+
+
+							 							personevents.add(info, function(doc) {
+															callback(d);
+							 							});
+													});
+												});
 											});	
 										});						
 					});
@@ -559,18 +574,6 @@ function killOff(personId, callback) {
 	});
 }
 
-exports.pickGender = pickGender;
-function pickGender()
-{
-	var ranNum = (Math.floor(Math.random() * 100));
-
-	if(ranNum < 50) {
-		return 'M';
-	} else
-	{
-		return 'F';
-	}
-}
 
 
 

@@ -30,6 +30,7 @@ walk(models_path);
 
 
 var persons = require('../controllers/persons');
+var babies = require('../controllers/babies');
 var families = require('../controllers/families');
 var gameSettings = require('../controllers/gamesettings');
 var time = require('../controllers/time');
@@ -171,7 +172,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				}, 
 				createPersons: function(callback)
 				{
-					var gender = persons.pickGender();
+					var gender = babies.pickGender();
 					var personName = names.getRandomName(gender);
 					var personId;
 

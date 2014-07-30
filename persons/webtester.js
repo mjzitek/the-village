@@ -35,7 +35,7 @@ var persons = require('./controllers/persons');
 var families = require('./controllers/families');
 var relationships = require('./controllers/relationships');
 var gamesetting = require('./controllers/gamesettings');
-
+var personevents = require('./controllers/personevents');
 
 /////////////////////////
 // Import the routes
@@ -60,6 +60,12 @@ app.get('/summary', function(req, res) {
 		return res.jsonp(data);
 	})
 
+});
+
+app.get('/events/:id/:amount', function(req, res) {
+	personevents.get(req.params.id, req.params.amount, function(events) {
+		return res.jsonp(events);
+	});
 });
 
 app.get('/details/:data', function(req, res) {
@@ -345,7 +351,7 @@ function getSummaryData(callback) {
 		function(data, callback) {
 			var c2 = moment(data.clock);
 
-			var childCutoffDate = c2.subtract("y", 12).format('YYYY-MM-DD');
+			var childCutoffDate = c2.subtract("y", 18).format('YYYY-MM-DD');
 			data.childCutoffDate = childCutoffDate;
 			callback(null, data)
 		},

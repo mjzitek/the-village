@@ -2,8 +2,11 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var PersonEventSchema = new mongoose.Schema({
-	personId:     { type: Schema.Types.ObjectId, ref: 'persons' },
-	eventDate:    Date
+	persons:     [{ type: Schema.Types.ObjectId, ref: 'persons' }],
+	eventType:    String,
+	eventInfo:    String,
+	eventDate:    Date,
+	realworldDate: Date
 });
 
 mongoose.model('personevents', PersonEventSchema);

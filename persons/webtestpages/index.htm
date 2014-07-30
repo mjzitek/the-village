@@ -10,7 +10,9 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css" />
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script  src="https://code.angularjs.org/1.3.0-beta.5/angular.js"></script>
+    <script src="js/moment.js"></script>
     <script src="js/main.js"></script>
   </head>
 
@@ -55,7 +57,17 @@
 		    </div>   
 	   </div>
 	   <div class='main-center col-md-8'>
-	   	<div class='main-center-data'>xx</div>
+	   	<div class='main-center-data'>
+		    <table id="eventsTable">
+		      <tbody>
+		        <tr ng-repeat="event in eventData" data-id={{event._id}}>
+		          <td>{{event.eventDate | date: 'mediumDate'}}</td>
+		          <td>{{event.eventInfo}}</td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <input type='hidden' id='lastEventId' value='{{eventData.data[0]._id}}' />
+	   	</div>
 	   </div>
 	   <div class='main-right col-md-2'>
 	   
@@ -63,7 +75,8 @@
 	   <footer>
 	   	<div></div>
 	   </footer>
-   </div>
+	   		
+	</div>
 
   </body>
 
