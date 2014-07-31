@@ -101,7 +101,7 @@ function loadEvents(events) {
 	$.each(events, function(index, event) {
 		var found = false;
 
-		$.each($('#eventsTable tr:lt(10)'), function(index, rows) {
+		$.each($('#eventsTable tr:lt(20)'), function(index, rows) {
 			if($(this).data("id") === event._id) {
 				found = true;
 			} 
@@ -152,9 +152,9 @@ function loadEventDetails(eventDetails) {
 		var details;
 
 		details = "<div class='main-right-details-box'>" +
-				  	"<div>Name: " + eventPerson.firstName + " " + eventPerson.lastName + "</div>" +
-		          	"<div>Birth Date: " + moment(eventPerson.dateOfBirth).format("MMM D, YYYY") + "</div>" +
-		          	"<div>Eye Color: " + eventPerson.genome.genes.eyes.color + "</div>"
+				  	"<div><label>Name:</label> " + eventPerson.firstName + " " + eventPerson.lastName + "</div>" +
+		          	"<div><label>Birth Date:</label> " + moment(eventPerson.dateOfBirth).format("MMM D, YYYY") + "</div>" +
+		          	"<div><label>Eye Color:</label> " + eventPerson.genome.genes.eyes.color + "</div>"
 		          "</div>";
 
 

@@ -26,6 +26,14 @@ footer {
 	height: 20px;
 }
 
+
+label {
+	font-weight: bold;
+	color: #000;
+	padding-right: 4px;
+	margin-bottom: 0;
+}
+
  .header-1 {
 	padding: 5px;
 	font-size: 1.4em;
@@ -92,9 +100,20 @@ footer {
 
 }
 
+.main-center-data table {
+	width: 100%;
+}
+
+.main-center-data tr:hover {
+	color: #000094;
+	background-color: #eee;
+	cursor: pointer;
+}
+
 .main-center-data td {
 	padding-left: 10px;
 	padding-right: 10px;
+	border-bottom: 1px solid #ccc;
 }
 
 .main-right {
@@ -106,9 +125,14 @@ footer {
 }
 
 .main-right-details {
-	padding: 5px;
+	padding: 0;
 }
 
 .main-right-details-box {
 	border-bottom: 2px solid #aaa;
+	padding: 4px;
+}
+
+.main-right-details-box div {
+	margin: 3px 0;
 }
