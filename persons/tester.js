@@ -56,11 +56,11 @@ var startTime = argv.gamestart  || "Jan 1, 1918";
 
 
 var App = {
-	intervalTime: argv.clockinv || 10000,
+	intervalTime: argv.clockinv || 1000,
 	models: null,
 	gameClock: moment(startTime),
 	maxRunYears: argv.maxrun || '2100',
-	babyRatioNum: 450, // Used with random number...rand num need 
+	babyRatioNum: 1450, // Used with random number...rand num need 
 					   // to be more than this (too tired for better name)
     numOfCouples: 1    // Num of couples to pull to try to make a baby
 };
@@ -125,7 +125,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 	console.log('=======================================');
 
-	App.gameClock.add('M', 1);
+	App.gameClock.add('days', 1);
 	console.log("Game Clock: " + App.gameClock.format('MMM D, YYYY'));
 
 
@@ -164,20 +164,26 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	///////////////////////////////////////////////
 	// Make some babies
 
-	persons.getRandomBabyReadyWomen(true, 1, function(pers) {
-		pers.forEach(function(p) {
-			//console.log(pers);
-			relationships.getCouple(p._id, function(c) {
-				//console.log("making babies: " + p._id);
-				if(c)
-				{
-					babies.breed(c.person1, c.person2, function(d) {
-					//console.log("OE: " + d.haveKid);
-					});
-				}
+	var randBabyNum = Math.random() * 5000;
+
+	if(randBabyNum > 4500) {
+		persons.getRandomBabyReadyWomen(true, 1, function(pers) {
+			pers.forEach(function(p) {
+				//console.log(pers);
+				relationships.getCouple(p._id, function(c) {
+					//console.log("making babies: " + p._id);
+					if(c)
+					{
+						babies.breed(c.person1, c.person2, function(d) {
+						//console.log("OE: " + d.haveKid);
+						});
+					}
+				});
 			});
 		});
-	})
+	}
+
+
 	
 
  	///////////////////////////////////////////////
@@ -196,12 +202,12 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
  				var age = GetAge(p.dateOfBirth).years;
  				var kill = false;
- 				var rndNum = (Math.floor(Math.random() * 1000))
+ 				var rndNum = (Math.floor(Math.random() * 5000))
  				//console.log('d: ' + rndNum);
  				if(age > 110) { kill = true;}
- 				else if(age > 90) { if(rndNum > 800 ) { kill = true; } }
-	 			else if(age > 70) { if(rndNum > 980 ) { kill = true; } }
- 				else if (age > 35) { if(rndNum > 998 ) { kill = true; } }
+ 				else if(age > 90) { if(rndNum > 4000 ) { kill = true; } }
+	 			else if(age > 70) { if(rndNum > 4680 ) { kill = true; } }
+ 				else if (age > 35) { if(rndNum > 4998 ) { kill = true; } }
  				//else { if(rndNum > 995 ) { kill = true; } }
 
  				if(kill) {
