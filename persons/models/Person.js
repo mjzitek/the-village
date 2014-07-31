@@ -22,6 +22,61 @@ var PersonSchema = new mongoose.Schema({
         			pregnancyDate: Date,
         			babyFatherId : { type: Schema.Types.ObjectId, ref: 'persons' }  
     },
+	genome : {
+				attributes: {
+					intelligence : {
+									value : Number
+					           },
+					strength : {
+									value : Number
+						   },
+					kindness : {
+									value : Number
+							},
+					furtility : {
+									 value : Number
+							}
+				},
+
+				genes : {
+					eyes: {
+								color: String,
+								bey2 : {
+											one: String, two: String
+									   },
+								gey :  {
+											one: String, two: String
+										}
+						  },
+					hair: {
+								color: String,
+								genes: {
+											father : String,
+											mother : String
+									   }
+					},
+					skin: {
+								shade: String,
+								father: String,
+								mother: String
+					},
+					height : {
+									value : Number,
+									father: Number,
+									mother: Number
+					},
+					bodytype : {
+									value :  Number,
+									father : Number,
+									mother : Number
+					},
+					attractiveness : {
+									value : Number,
+									father : Number,
+									mother : Number
+					}
+				}	       
+		 }
 });
 
 mongoose.model('persons', PersonSchema);

@@ -9,6 +9,7 @@ var config = require('../config/config');
 var tMoment = require('../helpers/time.js');
 var settings = require('../config/settings');
 var names = require('../helpers/names');
+var genetics = require('../helpers/genetics');
 
 var models_path = __dirname + '/../models';
 
@@ -98,6 +99,9 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				husband.attributes = { married : false };
 				husband.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
+
+				husband.genome = { genes : { eyes : generateRandomEyeColor()}};
+
 				persons.create(husband, function(perId) { 
 					husbandId = perId; 
 					callback(null, husbandId);
@@ -123,6 +127,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				wife.placeOfBirth = null;
 				wife.attributes = { married : false };
 				wife.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
+
+				wife.genome = { genes : { eyes : generateRandomEyeColor()}};
 
 				persons.create(wife, function(perId) { 
 					wifeId = perId; 
@@ -192,6 +198,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 					person.attributes = { married : false };
 					person.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
+					person.genome = { genes : { eyes : generateRandomEyeColor()}};
+
 					persons.create(person, function(per) { personId = per._id; callback(null, personId) });
 
 				}
@@ -211,6 +219,34 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 	}
 
 } 
+
+
+var bey2 = [
+		{ one: "brown", two: "brown" },
+		{ one: "brown", two: "blue" },
+		{ one: "blue", two: "blue" }
+	]
+
+var gey = [
+		{ one: "green", two: "green" },
+		{ one: "green", two: "blue" },
+		{ one: "blue", two: "blue" }
+]
+
+
+function generateRandomEyeColor() {
+
+	var eyes = {}
+
+	// Random bey2
+	eyes.bey2 = bey2[(Math.round(Math.random() * 2))];
+	eyes.gey = gey[(Math.round(Math.random() * 2))];
+
+	eyes.color = genetics.determineEyeColor(eyes.bey2, eyes.gey);
+    
+    return eyes;
+    
+}
 
 
 

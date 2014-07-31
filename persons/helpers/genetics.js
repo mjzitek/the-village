@@ -16,8 +16,16 @@ _.mixin({
 	}
 });
 
+exports.getRandomAllele = getRandomAllele
+function getRandomAllele() {
+	var randNum = Math.round(Math.random());
 
-
+	if(randNum === 0) {
+		return "one";
+	} else {
+		return "two";
+	}
+}
 
 exports.determineEyeColor = determineEyeColor;
 function determineEyeColor(bey2, gey) {
@@ -63,7 +71,7 @@ function determineDominance(input1, input2) {
 exports.pickRandomGeneSet = pickRandomGeneSet;
 function pickRandomGeneSet(set1, set2) {
 	// var ranNum = (Math.floor(Math.random() * 100));
-	if((Math.floor(Math.random() * 2) === 1) {
+	if((Math.floor(Math.random() * 2) === 1)) {
 		return set1;
 	} else {
 		return set2;

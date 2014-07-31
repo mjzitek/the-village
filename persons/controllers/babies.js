@@ -5,7 +5,7 @@ var async = require('async');
 var settings = require('../config/settings');
 var tMoment = require('../helpers/time');
 var names = require('../helpers/names');
-
+var genetics = require('../helpers/genetics');
 
  var mongoose = require('mongoose'),
 	Person = mongoose.model('persons');
@@ -18,6 +18,7 @@ var time = require('./time');
 var families = require('./families');
 var relationships = require('./relationships');
 var personevents = require('./personevents');
+
 
 
 exports.getPregnantWomen = getPregnantWomen;
@@ -44,9 +45,6 @@ function breed(fatherId, motherId, callback) {
 	async.series({
 		fatherAge: function(callback) {
 			persons.getAge(fatherId, function(a) {
-				//console.log("breed: " + fatherId);
-				//console.log("breed: ");
-				//console.log(a);
 				frAge = a.years;
 				callback(null, frAge);
 			});
@@ -96,13 +94,6 @@ function breed(fatherId, motherId, callback) {
 			//console.log("oldEnough: " + oldEnough + " | tooOld: " + tooOld + 
 			//			" | fatherStatus : " + fatherStatus + " | motherStatus: " + motherStatus)
 			if(oldEnough && !tooOld && fatherStatus && motherStatus) {
-				// giveBirth(fatherId, motherId, function() {
-				// 	callback();
-				
-				// });
-
-				// Get pregnant
-				//console.log(motherId + " => is pregnant!!");
 				
 				setPregnant(fatherId, motherId, function() {
 					//callback();
@@ -207,20 +198,51 @@ function giveBirth(motherId, callback) {
 		},
 		// Genetics
 		function(gender, name, mom, dad, gameTime, callback) {
-			var looks = {};
+			var genes = {};
 
-			looks.eye = "blue";
+			////////////////
+			// Eyes
+			
+				// Get random eye allele from Dad
+				dadEyeAlleleBey2 = dad.genome.genes.eyes.bey2[genetics.getRandomAllele()];
+				dadEyeAlleleGey  = dad.genome.genes.eyes.gey[genetics.getRandomAllele()];
+				
+				// Get random eye allele from Mom	
+				momEyeAlleleBey2 = mom.genome.genes.eyes.bey2[genetics.getRandomAllele()];
+				momEyeAlleleGey =  mom.genome.genes.eyes.gey[genetics.getRandomAllele()];
 
-			callback(null, gender, name, mom, dad, gameTime, looks);
+				var bey2 = {
+								one: dadEyeAlleleBey2,
+								two: momEyeAlleleBey2
+				}
+
+				var gey = {
+								one: dadEyeAlleleGey,
+								two: momEyeAlleleGey
+				}
+
+				var eyeColor = genetics.determineEyeColor(bey2, gey)
+
+
+
+				genes.eyes =  { 
+								color: eyeColor,
+								bey2:  bey2,
+							    gey:   gey
+							  }
+
+				callback(null, gender, name, mom, dad, gameTime, genes);
 		},
 		// Update mom status
-		function(gender, name, mom, dad, gameTime, looks, callback) {
+		function(gender, name, mom, dad, gameTime, genes, callback) {
 			Person.update({_id: motherId }, { pregnancy: { pregnant: false, pregnancyDate: null, babyFatherId: null }}, function(err, doc) {
-				callback(null, gender, name, mom, dad, gameTime);
+				callback(null, gender, name, mom, dad, gameTime, genes);
 			});
 		}
 	],
-	function(err, gender, name, mom, dad, gameTime, looks) {
+	function(err, gender, name, mom, dad, gameTime, genes) {
+
+		//console.log(looks);
 		var per = new Person({ 
 							   familyInfo: mom.familyInfo._id, 
 							   firstName: name.first,
@@ -241,7 +263,7 @@ function giveBirth(motherId, callback) {
 							   					pregnancyDate: null,
 							   					babyFatherId: null
 							   },
-							   appearances: 	looks
+							   genome: 	{ genes : genes }
 
 							});
 
