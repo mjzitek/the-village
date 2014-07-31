@@ -499,11 +499,15 @@ function setMarried(personId, familyId, familyName, callback) {
 }
 
 exports.performMarriage = performMarriage;
-function performMarriage(callback) {
+function performMarriage(callback) 
+{
+	console.log("performMarriage");
 	getMarriageEligibleSingle("M", "", function(mPer) {
+		//console.log(mPer);
 		if(mPer)
 		{
 			getMarriageEligibleSingle("F", mPer.familyInfo, function(fPer) {
+				//console.log(fPer)
 				if(fPer)
 				{
 					relationships.performMarriage(mPer._id, fPer._id, function() {
@@ -532,6 +536,7 @@ function performMarriage(callback) {
 
 
 							 							personevents.add(info, function(doc) {
+							 								console.log(doc);
 															callback(d);
 							 							});
 													});

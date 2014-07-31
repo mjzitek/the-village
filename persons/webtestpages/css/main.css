@@ -12,7 +12,7 @@ body {
 }
 
 header {
-		padding: 5px;
+	padding: 5px;
 	font-size: 1.4em;
 	font-weight: bold;
 	background-color: #000;
@@ -62,30 +62,42 @@ label {
 	background-color: #fff;
 }
 
+.main-left, .main-right {
+	background-color: #ebe7df;
+
+}
+
 .main-left {
 	padding-left: 0;
 	padding-right: 0;
 	border-right: 1px solid #444;
 	border-bottom: 1px solid #444;
 	height: 800px;
+
 }
 
 .main-left-header {
 	background-color: #444;
 	color: #eee;
 	height: 28px;
-	padding-left: 4px;
+	padding-left: 6px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: 2px;
 }
 
 .main-left-section {
 	font-size: .9em;
 	border-bottom: 2px solid #aaa;
-	padding-left: 6px;
+	padding-left: 10px;
 	padding-top: 4px;
 	padding-bottom: 4px;
+}
+
+.main-left-section, .main-right-details-section-person  {
+	background-color: #faf9f5;
 }
 
 .main-center {
@@ -126,13 +138,63 @@ label {
 
 .main-right-details {
 	padding: 0;
+	background-color: #fff;
 }
 
-.main-right-details-box {
+.main-right-details-section {
 	border-bottom: 2px solid #aaa;
 	padding: 4px;
 }
 
+
+.main-right-details-section-person {
+	margin: 1px;
+	padding: 2px;
+}
+
 .main-right-details-box div {
 	margin: 3px 0;
+}
+
+.event-date {
+	width: 90px;
+	margin-right: 4px;
+	display: inline-block;
+}
+
+.event-icon {
+	margin-right: 4px;
+	width: 30px;
+	text-align: center;
+	display: inline-block;	
+}
+
+.event-text {
+	left: 200px;
+}
+
+.fa-heart { 
+	color: #f00;
+	left: 100px;
+}
+
+.section-expand {
+	float: right;
+	margin-right: 8px;
+	margin-top: 2px;
+}
+
+.main-left-section-subsection {
+	margin-top: 4px;
+	margin-left: 12px;
+	padding: 2px 2px 2px 6px;
+	background-color: #fff;
+	display: none;
+	border: 1px solid #ebe7df;
+	width: 185px;
+
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+          border-radius: 3px;	
 }

@@ -275,6 +275,8 @@ function getSummaryData(callback) {
 			dead: null,
 			married: null,
 			singles: null,
+			singlesMen: null,
+			singlesWomen: null,
 			children: null,
 			adults: null,
 			recentBirths: null,
@@ -342,6 +344,32 @@ function getSummaryData(callback) {
 
 			persons.populationCountFiltered(filter, function(popSingle) {
 				data.singles = popSingle;
+				callback(null, data);
+			});
+		},
+		// singlesMen
+		function(data, callback) {
+			var filter = {
+				attributes : { married : false },
+				gender: "M",				
+				dateOfDeath: null
+			}
+
+			persons.populationCountFiltered(filter, function(popSingle) {
+				data.singlesMen = popSingle;
+				callback(null, data);
+			});
+		},
+		// singlesWomen
+		function(data, callback) {
+			var filter = {
+				attributes : { married : false },
+				gender: "F",				
+				dateOfDeath: null
+			}
+
+			persons.populationCountFiltered(filter, function(popSingle) {
+				data.singlesWomen = popSingle;
 				callback(null, data);
 			});
 		},
@@ -422,19 +450,6 @@ function getSummaryData(callback) {
 		}																						
 	],
 	function(err, data) {
-		// var data = {
-		// 		clock: clock,
-		// 		population: popCount,
-		// 		men: popCountMales,
-		// 		women: popCountFemales,
-		// 		dead: popCountDead,
-		// 		married: popMarried,
-		// 		singles: popSingle,
-		// 		children: children,
-		// 		adults: adults,
-		// 		recentBirths: recentBirths,
-		//      pregnant
-		// };
 
 		data.clock = data.clock.format('MMM DD, YYYY');
 

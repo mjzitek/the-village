@@ -72,6 +72,8 @@ function getEvents(lastId, limitAmount, callback) {
 
 	PersonEvents.find(filter).limit(limitAmount).sort({ _id: -1 }).exec(function(err, events) {
 		//console.log(events);
+
+		events.sort(compareDates);
 		callback(events);
 	});
 
@@ -99,4 +101,13 @@ function getEventDetails(eventId, callback) {
 	PersonEvents.findOne({ _id: eventId}).populate("persons").exec(function(err, events) {
 		callback(events);
 	});
+}
+
+
+function compareDates(a,b) {
+  if (a.eventDate < b.eventDate)
+     return -1;
+  if (a.eventDate > b.eventDate)
+    return 1;
+  return 0;
 }

@@ -189,8 +189,12 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
  	///////////////////////////////////////////////
  	// Marriage
 
-	persons.performMarriage(function(d) {});
-	
+	var randMarriageNum = Math.random() * 5000;
+
+	if(randMarriageNum > 3500) {
+		persons.performMarriage(function(d) {});
+	}
+
  	///////////////////////////////////////////////
  	// Kill off people
 

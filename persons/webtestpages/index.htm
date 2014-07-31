@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Eagle+Lake">
 	<link href="http://fonts.googleapis.com/css?family=Happy+Monkey" rel="stylesheet">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -40,7 +40,12 @@
 		    	<label>Dead:</label> {{summaryData.dead}}
 		    </div>
 		    <div class='main-left-section'>
-		    	<label>Singles:</label> {{summaryData.singles}}
+		    	<label>Singles:</label> {{summaryData.singles}} 
+		    		<span id='singles-expand-btn' class='section-expand fa fa-plus-square'></span>
+		    		<div id='singles-expanded' class='main-left-section-subsection'>
+		    			<div><label>Single Men:</label> {{summaryData.singlesMen}} </div>
+		    			<div><label>Single Women:</label> {{summaryData.singlesWomen}} </div>
+		    		</div>
 		    </div>
 		    <div class='main-left-section'>
 		    	<label>Married:</label> {{summaryData.married}}
@@ -64,14 +69,7 @@
 	   </div>
 	   <div class='main-center col-md-6'>
 	   	<div class='main-center-data'>
-		    <table id="eventsTable">
-		      <tbody>
-		        <tr ng-repeat="event in eventData" data-id={{event._id}}>
-		          <td>{{event.eventDate | date: 'mediumDate'}}</td>
-		          <td>{{event.eventInfo}}</td>
-		        </tr>
-		      </tbody>
-		    </table>
+
 		    <input type='hidden' id='lastEventId' value='{{eventData.data[0]._id}}' />
 	   	</div>
 	   </div>

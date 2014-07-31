@@ -9,6 +9,7 @@
 		}
 
 		var onSummaryComplete = function(response) {
+			console.log(response);
 			$scope.summaryData = response.data;
 		}
 
@@ -32,7 +33,7 @@
 
 		var summaryInterval = null;
 
-		summaryInterval = setInterval(getSummary, 1000);
+		summaryInterval = setInterval(getSummary, 10000);
 
 		getSummary();
 
@@ -42,8 +43,8 @@
 
 		var urlEvents = "http://" + Config.hostserver + ":" + Config.hostport + "/events/" + lastEventId + "/" + limitAmount + "?callback=JSON_CALLBACK"
 
-		$http.jsonp(urlEvents)
-			 .then(onEventsComplete, onError);
+		// $http.jsonp(urlEvents)
+		// 	 .then(onEventsComplete, onError);
 	}
 
 	app.controller("MainController", ["$scope", "$http", "$interval", MainController]);
@@ -53,11 +54,15 @@
 
 $(function() {
 
+	getEvents();
+
 	var loadEvents = setInterval(getEvents, 10000);
 
-	$(".main-center-data").on("click", "#eventsTable tr", function() {
+	$(".main-center").on("click", ".event-line", function() {
 		getEventDetails($(this).data("id"));
 	});
+
+	$("#singles-expand-btn").click(showSinglesExpanded);
 
 });
 
@@ -93,13 +98,15 @@ function getEvents() {
 }
 
 function loadEvents(events) {
+	console.log(events);
 
 	if(events[0]) {
-		$("#lastEventId").val(events[0]._id);
+		$("#lastEventId").val(events[events.length-1]._id);
 	}
 
 	$.each(events, function(index, event) {
 		var found = false;
+		var eventIcon = "";
 
 		$.each($('#eventsTable tr:lt(20)'), function(index, rows) {
 			if($(this).data("id") === event._id) {
@@ -110,12 +117,19 @@ function loadEvents(events) {
 		if(!found)
 		{
 			//console.log(event);
+			if(event.eventType === "marriage") {
+				eventIcon = "fa-heart";
+			} else if (event.eventType === "birth") {
+				eventIcon = "fa-child";
+			}
+
 			setTimeout(function() {
-				$("#eventsTable").prepend(
-					"<tr data-id='" + event._id +"'><td>" + moment(event.eventDate).format("MMM D, YYYY") + "</td>" +
-					"<td>" + event.eventInfo + "</td></tr>"
+				$(".main-center-data").append(
+					"<div class='event-line' data-id='" + event._id +"'><span class='event-date'>" + moment(event.eventDate).format("MMM D, YYYY") + "</span>" +
+					"<span class='event-icon fa " + eventIcon + "'></span><span class='event-text'>" + event.eventInfo + "</span></div>"
 				);
-			}, 500 * index);			
+				$(".main-center").animate({ scrollTop: $(".main-center-data")[0].scrollHeight}, 500);
+			}, 400 * index);			
 		}
  
 	});
@@ -151,13 +165,29 @@ function loadEventDetails(eventDetails) {
 	eventDetails.persons.forEach(function(eventPerson) {
 		var details;
 
-		details = "<div class='main-right-details-box'>" +
+		details = "<div class='main-right-details-section'><div class='main-right-details-section-person'>" +
 				  	"<div><label>Name:</label> " + eventPerson.firstName + " " + eventPerson.lastName + "</div>" +
 		          	"<div><label>Birth Date:</label> " + moment(eventPerson.dateOfBirth).format("MMM D, YYYY") + "</div>" +
 		          	"<div><label>Eye Color:</label> " + eventPerson.genome.genes.eyes.color + "</div>"
-		          "</div>";
+		          "</div></div>";
 
 
 		$('.main-right-details').append(details);
 	});
 }
+
+function showSinglesExpanded() {
+
+	if($("#singles-expand-btn").hasClass("fa-plus-square")) {
+		$("#singles-expand-btn").removeClass("fa-plus-square");
+		$("#singles-expand-btn").addClass("fa-minus-square");
+
+		$("#singles-expanded").show();
+	} else {
+		$("#singles-expand-btn").addClass("fa-plus-square");
+		$("#singles-expand-btn").removeClass("fa-minus-square");	
+		$("#singles-expanded").hide();	
+	}
+}
+
+
