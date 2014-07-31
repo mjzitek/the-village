@@ -81,7 +81,7 @@ footer {
 }
 
 .main-center {
-	min-width: 800px;
+	min-width: 600px;
 	height: 800px;
 	border-bottom: 1px solid #444;	
 	overflow-y: scroll;
@@ -103,4 +103,12 @@ footer {
 	border-left: 1px solid #444;
 	border-bottom: 1px solid #444;
 	height: 800px;
+}
+
+.main-right-details {
+	padding: 5px;
+}
+
+.main-right-details-box {
+	border-bottom: 2px solid #aaa;
 }

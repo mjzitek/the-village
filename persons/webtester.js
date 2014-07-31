@@ -62,16 +62,25 @@ app.get('/summary', function(req, res) {
 
 });
 
+app.get('/events/details/:eventid', function(req, res) {
+	personevents.getEventDetails(req.params.eventid, function(events) {
+		return res.jsonp(events);
+	});
+});
+
+
 app.get('/events/:id/:amount', function(req, res) {
 	personevents.get(req.params.id, req.params.amount, function(events) {
 		return res.jsonp(events);
 	});
 });
 
+
+
 app.get('/details/:data', function(req, res) {
 	console.log("Details requested for: " + req.params.data);
   	persons.getPerson(req.params.data, function(persons) {
-    return res.jsonp(persons);
+    	return res.jsonp(persons);
   });
 });
 
@@ -269,7 +278,8 @@ function getSummaryData(callback) {
 			children: null,
 			adults: null,
 			recentBirths: null,
-			childCutoffDate: null
+			childCutoffDate: null,
+			pregnant: null
 	};
 
 
@@ -397,6 +407,18 @@ function getSummaryData(callback) {
 				data.recentBirths = recentBirths
 				callback(null, data);
 			});
+		},
+		// pregnant
+		function(data, callback) {
+			var filter = {
+				dateOfDeath: null,
+				"pregnancy.pregnant" : true
+			}
+
+			persons.populationCountFiltered(filter, function(preg) {
+				data.pregnant = preg
+				callback(null, data);
+			});			
 		}																						
 	],
 	function(err, data) {
@@ -410,7 +432,8 @@ function getSummaryData(callback) {
 		// 		singles: popSingle,
 		// 		children: children,
 		// 		adults: adults,
-		// 		recentBirths: recentBirths
+		// 		recentBirths: recentBirths,
+		//      pregnant
 		// };
 
 		data.clock = data.clock.format('MMM DD, YYYY');

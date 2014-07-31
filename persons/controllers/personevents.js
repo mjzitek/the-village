@@ -91,3 +91,12 @@ function removeAllEventRecords(callback) {
 	});
 
 }
+
+exports.getEventDetails = getEventDetails;
+function getEventDetails(eventId, callback) {
+	console.log('Getting Event Details ' + eventId);
+
+	PersonEvents.findOne({ _id: eventId}).populate("persons").exec(function(err, events) {
+		callback(events);
+	});
+}

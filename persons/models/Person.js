@@ -50,30 +50,28 @@ var PersonSchema = new mongoose.Schema({
 						  },
 					hair: {
 								color: String,
-								genes: {
-											father : String,
-											mother : String
-									   }
+								one: String,
+								two: String
 					},
 					skin: {
 								shade: String,
-								father: String,
-								mother: String
+								one: String,
+								two: String
 					},
 					height : {
-									value : Number,
-									father: Number,
-									mother: Number
+								value : Number,
+								one: String,
+								two: String
 					},
 					bodytype : {
-									value :  Number,
-									father : Number,
-									mother : Number
+								value :  Number,
+								one: String,
+								two: String
 					},
 					attractiveness : {
-									value : Number,
-									father : Number,
-									mother : Number
+								value : Number,
+								one: String,
+								two: String
 					}
 				}	       
 		 }

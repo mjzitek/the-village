@@ -13,8 +13,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script  src="https://code.angularjs.org/1.3.0-beta.5/angular.js"></script>
     <script src="js/moment.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/main.js"></script>
   </head>
 
   <body ng-controller="MainController">
@@ -33,10 +31,10 @@
 		    	Population: {{summaryData.population}}
 		    </div>
 		    <div class='main-left-section'>
-		    	Total Men: {{summaryData.men}}
+		    	Men: {{summaryData.men}}
 		    </div>
 		    <div class='main-left-section'>
-		    	Total Women: {{summaryData.women}}
+		    	Women: {{summaryData.women}}
 		    </div>
 		    <div class='main-left-section'>
 		    	Dead: {{summaryData.dead}}
@@ -54,10 +52,14 @@
 		    	Adults: {{summaryData.adults}}
 		    </div>    
 		    <div class='main-left-section'>
+		    	Pregnant: {{summaryData.pregnant}}
+		    </div>  
+		    <div class='main-left-section'>
 		    	Recent Births: {{summaryData.recentBirths}}
 		    </div>   
+
 	   </div>
-	   <div class='main-center col-md-8'>
+	   <div class='main-center col-md-6'>
 	   	<div class='main-center-data'>
 		    <table id="eventsTable">
 		      <tbody>
@@ -70,15 +72,16 @@
 		    <input type='hidden' id='lastEventId' value='{{eventData.data[0]._id}}' />
 	   	</div>
 	   </div>
-	   <div class='main-right col-md-2'>
-	   
+	   <div class='main-right col-md-4'>
+	   	<div class='main-right-details'></div>
 	   </div>
 	   <footer>
 	   	<div></div>
 	   </footer>
 	   		
 	</div>
-
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
   </body>
 
 

@@ -55,13 +55,16 @@ $(function() {
 
 	var loadEvents = setInterval(getEvents, 10000);
 
+	$(".main-center-data").on("click", "#eventsTable tr", function() {
+		getEventDetails($(this).data("id"));
+	});
+
 });
 
 
 
 function getEvents() {
 
-	console.log("Getting events");
 		var limitAmount = 20;
 		var lastEventId = $("#lastEventId").val();
 
@@ -90,9 +93,10 @@ function getEvents() {
 }
 
 function loadEvents(events) {
-	$("#lastEventId").val(events[0]._id);
 
-	console.log(events);
+	if(events[0]) {
+		$("#lastEventId").val(events[0]._id);
+	}
 
 	$.each(events, function(index, event) {
 		var found = false;
@@ -105,6 +109,7 @@ function loadEvents(events) {
 
 		if(!found)
 		{
+			//console.log(event);
 			setTimeout(function() {
 				$("#eventsTable").prepend(
 					"<tr data-id='" + event._id +"'><td>" + moment(event.eventDate).format("MMM D, YYYY") + "</td>" +
@@ -113,5 +118,46 @@ function loadEvents(events) {
 			}, 500 * index);			
 		}
  
+	});
+}
+
+function getEventDetails(eventId) {
+		$.ajax({
+            dataType: 'jsonp',
+            //data: data,
+            type: "GET",
+            //jsonp: 'jsonp_callback',
+            url: "http://" + Config.hostserver + ":" + Config.hostport + "/events/details/" + eventId,
+            success: function (res) {
+               // console.log(res.text);
+                loadEventDetails(res);
+            },
+            error: function( xhr, status, errorThrown ) {
+                //alert( "Sorry, there was a problem!" );
+                console.log( "Error: " + errorThrown );
+               //console.log( "Status: " + status );
+                //console.dir( xhr );
+            } 
+        });
+}
+
+function loadEventDetails(eventDetails) {
+	console.log(eventDetails);
+
+	// #main-right
+	$('.main-right-details').html("");
+
+
+	eventDetails.persons.forEach(function(eventPerson) {
+		var details;
+
+		details = "<div class='main-right-details-box'>" +
+				  	"<div>Name: " + eventPerson.firstName + " " + eventPerson.lastName + "</div>" +
+		          	"<div>Birth Date: " + moment(eventPerson.dateOfBirth).format("MMM D, YYYY") + "</div>" +
+		          	"<div>Eye Color: " + eventPerson.genome.genes.eyes.color + "</div>"
+		          "</div>";
+
+
+		$('.main-right-details').append(details);
 	});
 }
