@@ -33,7 +33,7 @@
 
 		var summaryInterval = null;
 
-		summaryInterval = setInterval(getSummary, 10000);
+		summaryInterval = setInterval(getSummary, 5000);
 
 		getSummary();
 
@@ -63,6 +63,7 @@ $(function() {
 	});
 
 	$("#singles-expand-btn").click(showSinglesExpanded);
+	$("#eyecolors-expand-btn").click(showEyesExpanded);
 
 });
 
@@ -190,4 +191,16 @@ function showSinglesExpanded() {
 	}
 }
 
+function showEyesExpanded() {
 
+	if($("#eyecolors-expand-btn").hasClass("fa-plus-square")) {
+		$("#eyecolors-expand-btn").removeClass("fa-plus-square");
+		$("#eyecolors-expand-btn").addClass("fa-minus-square");
+
+		$("#eyecolors-expanded").show();
+	} else {
+		$("#eyecolors-expand-btn").addClass("fa-plus-square");
+		$("#eyecolors-expand-btn").removeClass("fa-minus-square");	
+		$("#eyecolors-expanded").hide();	
+	}
+}

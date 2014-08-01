@@ -78,14 +78,14 @@ app.get('/events/:id/:amount', function(req, res) {
 
 
 app.get('/details/:data', function(req, res) {
-	console.log("Details requested for: " + req.params.data);
+	//console.log("Details requested for: " + req.params.data);
   	persons.getPerson(req.params.data, function(persons) {
     	return res.jsonp(persons);
   });
 });
 
 app.get('/relationships/:data/:gender', function(req, res) {
-	console.log("Details requested for: " + req.params.data);
+	//console.log("Details requested for: " + req.params.data);
 	
 
 	if(req.params.gender == "M")
@@ -281,8 +281,11 @@ function getSummaryData(callback) {
 			adults: null,
 			recentBirths: null,
 			childCutoffDate: null,
-			pregnant: null
+			pregnant: null,
+			eyes: null
 	};
+
+	data.eyes = { brown: null, blue: null, green: null }
 
 
 	async.waterfall([
@@ -447,7 +450,43 @@ function getSummaryData(callback) {
 				data.pregnant = preg
 				callback(null, data);
 			});			
-		}																						
+		},
+		// Eye Color - Brown
+		function(data, callback) {
+			var filter = {
+				dateOfDeath: null,
+				"genome.genes.eyes.color" : "brown"
+			}
+
+			persons.populationCountFiltered(filter, function(eyesBrown) {
+				data.eyes.brown = eyesBrown;
+				callback(null, data);
+			});			
+		},		
+		// Eye Color - Green
+		function(data, callback) {
+			var filter = {
+				dateOfDeath: null,
+				"genome.genes.eyes.color" : "green"
+			}
+
+			persons.populationCountFiltered(filter, function(eyesGreen) {
+				data.eyes.green = eyesGreen;
+				callback(null, data);
+			});			
+		},
+		// Eye Color - Blue
+		function(data, callback) {
+			var filter = {
+				dateOfDeath: null,
+				"genome.genes.eyes.color" : "blue"
+			}
+
+			persons.populationCountFiltered(filter, function(eyesBlue) {
+				data.eyes.blue = eyesBlue;
+				callback(null, data);
+			});			
+		},																									
 	],
 	function(err, data) {
 

@@ -24,7 +24,7 @@
 	   		<div class='main-left-header'>
 	   			Information
 	   		</div>
-		    <div class='main-left-section'>
+		    <div class='main-left-section main-left-section-date'>
 		    	<label>Current Date:</label> {{summaryData.clock}}
 		    </div>
 		    <div class='main-left-section'>
@@ -65,7 +65,18 @@
 		    <div class='main-left-section'>
 		    	<a href='all-people.htm'>View People Listing</a>
 		    </div>   		    
-
+	   		<div class='main-left-header'>
+	   			Misc
+	   		</div>
+		    <div class='main-left-section'>
+		    	<label>Eye Colors:</label>
+		    		<span id='eyecolors-expand-btn' class='section-expand fa fa-plus-square'></span>
+		    		<div id='eyecolors-expanded' class='main-left-section-subsection'>
+		    			<div><label>Brown:</label> {{summaryData.eyes.brown}} </div>
+		    			<div><label>Green:</label> {{summaryData.eyes.green}} </div>
+		    			<div><label>Blue:</label> {{summaryData.eyes.blue}} </div>		    			
+		    		</div>		    	
+		    </div>  		    	   		
 	   </div>
 	   <div class='main-center col-md-6'>
 	   	<div class='main-center-data'>

@@ -46,7 +46,9 @@ label {
 .header-1 .title-text {
 	top: 6px;
 	position: relative;
-	padding-left: 3px;
+	padding-left: 6px;
+	font-family: 'Oxygen', Arial, 'Sans Serif';
+	letter-spacing: 6px;
 }
 
 .main {
@@ -98,6 +100,23 @@ label {
 
 .main-left-section, .main-right-details-section-person  {
 	background-color: #faf9f5;
+}
+
+.main-left-section label {
+	width: 140px;
+	display: inline-block;
+}
+
+.main-left-section-date label {
+	width: 115px;
+	display: inline-block;
+}
+
+main-left-section 
+
+.main-left-section-subsection label {
+	width: 120px;
+	display: inline-block;
 }
 
 .main-center {
