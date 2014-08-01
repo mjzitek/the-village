@@ -1,0 +1,88 @@
+<html>
+<head>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/united/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/graph.css">
+<link rel="stylesheet" href="css/popup.css">
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="shortcut icon" href="favicon.ico" />
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" scr="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
+<script src="js/jquery.simplemodal.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+</head>
+<body>
+
+<div id="header">
+	<div id="header-1"><img src="img/house1-inverted.png" /><span class='title-text'>The Village</span></div>
+	<div id="header-2">
+		<div id='summary'>Total: <span id='summary-total'></span> | End Date: <span id='game-clock'></span></div>
+		<hr />
+		<nav class="navbar" role="navigation">
+  			<div class="navbar-inner">
+    			<div class="container">
+    				<div class="navbar-header">
+    					<span class="navbar-filter" href="#">Filters</span>
+    				</div>
+    				<div class="nav-collaspe">
+    					<ul class="nav navbar-nav">
+    						<li><a href="#" id="filter-rows"><span class="fa fa-filter fa-2x"></span></a></li>
+    						<li><a href="#" id="filter-show-all-rows"><span class="fa fa-users fa-2x"></span></a></li>
+    						<li><a href="#" id="filter-show-men"><span class="fa fa-male fa-2x"></span></a></li>
+    						<li><a href="#" id="filter-show-women"><span class="fa fa-female fa-2x"></span></a></li>    		
+    						<li><a href="#" id="refresh"><span class="fa fa-refresh fa-2x"></span></a></li>  				    						
+    					</ul>
+    				</div>
+    			</div>
+    		</div>
+    	</nav>
+<!-- 		<input type='radio' name='filter-rows' value='filter' /> Filter selected<br />
+		<input type='radio' name='filter-rows' value='showall' /> Show all rows<br /> -->
+	</div>
+</div>
+<div id="main">
+	<div id="persons-listing"></div>
+	<div id="details">
+		<div id='details-body'>
+			<div class="details-section"><div id="details-part1"></div></div>
+			<div class="details-section"><div id="details-part2" class="details-section-info sel-person-spouse"></div></div>
+			<div class="details-section"><div id="details-part3" class="details-section-info sel-person-children"></div></div>
+			<div class="details-section"><div id="details-part4" class="details-section-info sel-person-siblings"></div></div>
+			<div class="details-section"><div id="details-part5" class="details-section-info sel-person-parents"></div></div>
+		</div>
+	</div>
+
+	<div id="chart_div">
+	</div>
+</div>
+	<div id="legend">
+			<table class='table-legend'>
+			<thead>
+				<tr><th>Legend</th></tr>
+			</thead>
+			<tbody>
+				<tr><td class='sel-person'>Selected Person</td></tr>		
+				<tr><td class='sel-person-spouse'>Spouse</td></tr>	
+				<tr><td class='sel-person-children'>Children</td></tr>	
+				<tr><td class='sel-person-siblings'>Sibling</td></tr>
+				<tr><td class='sel-person-parents'>Parents</td></tr>										
+			</tbody>	
+			</table>
+
+	</div>
+
+<div id='basic-modal-content'>
+
+</div>
+<script src="js/config.js"></script>
+<script src="js/graph.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

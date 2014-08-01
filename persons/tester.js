@@ -8,9 +8,9 @@ var async = require('async');
 //var memwatch = require('memwatch');
 
 var config = require('./config/config');
-var tMoment = require('./helpers/time.js');
+var tMoment = require('./lib/time.js');
 var settings = require('./config/settings');
-var createPeople = require('./runtests/createDefaultPeople');
+var createPeople = require('./tester_lib/createDefaultPeople');
 
 // var logging = require('./config/logger');
 // var debuglogger = logging.Logging().get('debug');
@@ -167,8 +167,9 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	// Make some babies
 
 	var randBabyNum = Math.random() * 5000;
-
+	console.log(randBabyNum + " / " + App.babyRatioNum);
 	if(randBabyNum > App.babyRatioNum) {
+
 		persons.getRandomBabyReadyWomen(true, 1, function(pers) {
 			pers.forEach(function(p) {
 				//console.log(pers);
@@ -189,7 +190,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
  	// Marriage
 
 	var randMarriageNum = Math.random() * 5000;
-
+	console.log(randMarriageNum + " / " + App.marriageRatioNum);
 	if(randMarriageNum > App.marriageRatioNum) {
 		persons.performMarriage(function(d) {});
 	}

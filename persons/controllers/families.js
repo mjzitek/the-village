@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var persons = require('./persons');
 
-var names = require('../helpers/names');
+var names = require('../lib/names');
 
 exports.get = getFamilyRecord;
 exports.getFamilyRecord = getFamilyRecord;

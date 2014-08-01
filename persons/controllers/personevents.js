@@ -3,7 +3,7 @@ var moment = require('moment');
 var async = require('async');
 
 var settings = require('../config/settings');
-var tMoment = require('../helpers/time');
+var tMoment = require('../lib/time');
 
  var mongoose = require('mongoose'),
 	PersonEvents = mongoose.model('personevents');

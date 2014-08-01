@@ -12,7 +12,7 @@ var argv = require('optimist').argv;
 //var memwatch = require('memwatch');
 
 var config = require('./config/config');
-var tMoment = require('./helpers/time.js');
+var tMoment = require('./lib/time.js');
 var settings = require('./config/settings');
 
 var createPeople = require('./runtests/createDefaultPeople');

@@ -3,9 +3,9 @@ var moment = require('moment');
 var async = require('async');
 
 var settings = require('../config/settings');
-var tMoment = require('../helpers/time');
-var names = require('../helpers/names');
-var genetics = require('../helpers/genetics');
+var tMoment = require('../lib/time');
+var names = require('../lib/names');
+var genetics = require('../lib/genetics');
 
  var mongoose = require('mongoose'),
 	Person = mongoose.model('persons');
