@@ -159,146 +159,142 @@ function giveBirth(motherId, callback) {
 	var curDate;
 	//console.log("++++++++++++++++++++++++++++++")
 	//console.log("Giving birth");
+	try {
+		async.waterfall([
+			function(callback) {
+				gender = pickGender();
+				//console.log(gender);
+				callback(null,gender);
+			},
+			// Get Gender
+			function(gender,callback) {
 
-	async.waterfall([
-		function(callback) {
-			gender = pickGender();
-			//console.log(gender);
-			callback(null,gender);
-		},
-		// Get Gender
-		function(gender,callback) {
+				name = names.getRandomName(gender);
+				//console.log(name);
+				callback(null, gender, name);
+			},
+			// Get Mom
+			function(gender, name, callback) {
+				persons.getPerson(motherId, function(mom) {
+					//console.log(mom._id + " " + mom.firstName + " " + mom.lastName);
 
-			name = names.getRandomName(gender);
-			//console.log(name);
-			callback(null, gender, name);
-		},
-		// Get Mom
-		function(gender, name, callback) {
-			persons.getPerson(motherId, function(mom) {
-				//console.log(mom._id + " " + mom.firstName + " " + mom.lastName);
+						callback(null, gender, name, mom);
+						//console.log(mom);
 
-					callback(null, gender, name, mom);
-					//console.log(mom);
+				});
+			},	
+			// Get Dad	
+			function(gender, name, mom, callback) {
+				persons.getPerson(mom.pregnancy.babyFatherId, function(dad) {
+					//console.log(mom._id + " " + mom.firstName + " " + mom.lastName);
+					callback(null, gender, name, mom, dad);
+				});
+			},
+			// Get current date
+			function(gender, name, mom, dad, callback) {
+				time.getGameClock(function(gameTime) {
+					callback(null, gender, name, mom, dad, gameTime);
+				});
+			},
+			// Genetics
+			function(gender, name, mom, dad, gameTime, callback) {
+				var genes = {};
 
-			});
-		},	
-		// Get Dad	
-		function(gender, name, mom, callback) {
-			persons.getPerson(mom.pregnancy.babyFatherId, function(dad) {
-				//console.log(mom._id + " " + mom.firstName + " " + mom.lastName);
-				callback(null, gender, name, mom, dad);
-			});
-		},
-		// Get current date
-		function(gender, name, mom, dad, callback) {
-			time.getGameClock(function(gameTime) {
-				callback(null, gender, name, mom, dad, gameTime);
-			});
-		},
-		// Genetics
-		function(gender, name, mom, dad, gameTime, callback) {
-			var genes = {};
-
-			////////////////
-			// Eyes
-			
-				// Get random eye allele from Dad
-				dadEyeAlleleBey2 = dad.genome.genes.eyes.bey2[genetics.getRandomAllele()];
-				dadEyeAlleleGey  = dad.genome.genes.eyes.gey[genetics.getRandomAllele()];
+				////////////////
+				// Eyes
 				
-				// Get random eye allele from Mom	
-				momEyeAlleleBey2 = mom.genome.genes.eyes.bey2[genetics.getRandomAllele()];
-				momEyeAlleleGey =  mom.genome.genes.eyes.gey[genetics.getRandomAllele()];
-
-				var bey2 = {
-								one: dadEyeAlleleBey2,
-								two: momEyeAlleleBey2
-				}
-
-				var gey = {
-								one: dadEyeAlleleGey,
-								two: momEyeAlleleGey
-				}
-
-				var eyeColor = genetics.determineEyeColor(bey2, gey)
-
-
-
-				genes.eyes =  { 
-								color: eyeColor,
-								bey2:  bey2,
-							    gey:   gey
-							  }
-
-				callback(null, gender, name, mom, dad, gameTime, genes);
-		},
-		// Update mom status
-		function(gender, name, mom, dad, gameTime, genes, callback) {
-			Person.update({_id: motherId }, { pregnancy: { pregnant: false, pregnancyDate: null, babyFatherId: null }}, function(err, doc) {
-				callback(null, gender, name, mom, dad, gameTime, genes);
-			});
-		}
-	],
-	function(err, gender, name, mom, dad, gameTime, genes) {
-
-		//console.log(looks);
-		var per = new Person({ 
-							   familyInfo: mom.familyInfo._id, 
-							   firstName: name.first,
-							   middleName:  name.middle,
-							   lastName: mom.lastName,
-							   gender: gender,
-							   dateOfBirth: gameTime,
-				 			   placeOfBirth: null,
-							   dateOfDeath: null,
-							   headOfFamily: 0,
-							   fatherInfo: mom.pregnancy.babyFatherId, 
-							   motherInfo: motherId,
-							   attributes: {
-							   					married: false
-							   			   },
-							   pregnancy: {
-							   					pregnant: false,
-							   					pregnancyDate: null,
-							   					babyFatherId: null
-							   },
-							   genome: 	{ genes : genes }
-
-							});
-
-		// console.log("***************************************************");
-		// console.log("** NEW BABY: " + results.name.first + " " + results.familyName + " / " + gender);
-		// console.log("***************************************************");
-
-
-
-		per.save(function (err) {
-			if(err) {
-				callback(err);
-			} else {
-				gameSettings.getValueByKey('time', function(time) {
+					// Get random eye allele from Dad
+					// dadEyeAlleleBey2 = dad.genome.genes.eyes.bey2[genetics.getRandomAllele()];
+					// dadEyeAlleleGey  = dad.genome.genes.eyes.gey[genetics.getRandomAllele()];
 					
-					curGameTime = moment(time.setvalue);
-					var pers = [];
-					pers.push(per);
+					// // Get random eye allele from Mom	
+					// momEyeAlleleBey2 = mom.genome.genes.eyes.bey2[genetics.getRandomAllele()];
+					// momEyeAlleleGey =  mom.genome.genes.eyes.gey[genetics.getRandomAllele()];
 
-					var info = {
-						persons: pers,
-						eventType: 'birth',
-						eventDate: curGameTime,
-						realworldDate: new Date()
-					}
 
-					personevents.add(info, function(doc) {
-						callback(per._id);	
-					});
-				});		
+
+					//var eyeColor = genetics.determineEyeColor(bey2, gey)
+
+					genes.eyes = genetics.eyeColor(dad, mom);
+					
+
+					callback(null, gender, name, mom, dad, gameTime, genes);
+			},
+			// Update mom status
+			function(gender, name, mom, dad, gameTime, genes, callback) {
+				Person.update({_id: motherId }, { pregnancy: { pregnant: false, pregnancyDate: null, babyFatherId: null }}, function(err, doc) {
+					callback(null, gender, name, mom, dad, gameTime, genes);
+				});
 			}
+		],
+		function(err, gender, name, mom, dad, gameTime, genes) {
+
+				//console.log(looks);
+				var per = new Person({ 
+									   familyInfo: mom.familyInfo._id, 
+									   firstName: name.first,
+									   middleName:  name.middle,
+									   lastName: mom.lastName,
+									   gender: gender,
+									   dateOfBirth: gameTime,
+						 			   placeOfBirth: null,
+									   dateOfDeath: null,
+									   headOfFamily: 0,
+									   fatherInfo: mom.pregnancy.babyFatherId, 
+									   motherInfo: motherId,
+									   attributes: {
+									   					married: false
+									   			   },
+									   pregnancy: {
+									   					pregnant: false,
+									   					pregnancyDate: null,
+									   					babyFatherId: null
+									   },
+									   genome: 	{ genes : genes }
+
+									});
+
+				// console.log("***************************************************");
+				// console.log("** NEW BABY: " + results.name.first + " " + results.familyName + " / " + gender);
+				// console.log("***************************************************");
+
+
+
+				per.save(function (err) {
+					if(err) {
+						callback(err);
+					} else {
+						gameSettings.getValueByKey('time', function(time) {
+							
+							curGameTime = moment(time.setvalue);
+							var pers = [];
+							pers.push(per);
+
+							var info = {
+								persons: pers,
+								eventType: 'birth',
+								eventDate: curGameTime,
+								realworldDate: new Date()
+							}
+
+							personevents.add(info, function(doc) {
+								callback(per._id);	
+							});
+						});		
+					}
+				});
+
+
+
 		});
+	} catch (err) {
+		console.log(err);
+		console.log("Mom:");
+		console.log(mom);
+		console.log("Dad:");
+		console.log(dad);
 
-	});
-
+	}
 	
 }
 

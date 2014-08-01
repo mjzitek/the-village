@@ -60,8 +60,10 @@ var App = {
 	models: null,
 	gameClock: moment(startTime),
 	maxRunYears: argv.maxrun || '2100',
-	babyRatioNum: 1450, // Used with random number...rand num need 
-					   // to be more than this (too tired for better name)
+	babyRatioNum: 4500, // out of 5000   
+	                    // Used with random number...rand num need 
+					    // to be more than this (too tired for better name)
+	marriageRatioNum: 2800,  // out of 5000		
     numOfCouples: 1    // Num of couples to pull to try to make a baby
 };
 
@@ -166,7 +168,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 	var randBabyNum = Math.random() * 5000;
 
-	if(randBabyNum > 4500) {
+	if(randBabyNum > App.babyRatioNum) {
 		persons.getRandomBabyReadyWomen(true, 1, function(pers) {
 			pers.forEach(function(p) {
 				//console.log(pers);
@@ -183,15 +185,12 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 		});
 	}
 
-
-	
-
  	///////////////////////////////////////////////
  	// Marriage
 
 	var randMarriageNum = Math.random() * 5000;
 
-	if(randMarriageNum > 3500) {
+	if(randMarriageNum > App.marriageRatioNum) {
 		persons.performMarriage(function(d) {});
 	}
 

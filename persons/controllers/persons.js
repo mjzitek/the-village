@@ -536,7 +536,7 @@ function performMarriage(callback)
 
 
 							 							personevents.add(info, function(doc) {
-							 								console.log(doc);
+							 								//console.log(doc);
 															callback(d);
 							 							});
 													});

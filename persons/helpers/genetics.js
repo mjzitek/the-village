@@ -17,14 +17,50 @@ _.mixin({
 });
 
 exports.getRandomAllele = getRandomAllele
-function getRandomAllele() {
+function getRandomAllele(alleles) {
+
 	var randNum = Math.round(Math.random());
 
 	if(randNum === 0) {
-		return "one";
+		return alleles.one;
 	} else {
-		return "two";
+		return alleles.two;
 	}
+}
+
+exports.eyeColor = eyeColor;
+function eyeColor(dad, mom) {
+	try {
+		var dadEyeAlleleBey2 = getRandomAllele(dad.genome.genes.eyes.bey2);
+		var dadEyeAlleleGey = getRandomAllele(dad.genome.genes.eyes.gey);
+
+		var momEyeAlleleBey2 = getRandomAllele(mom.genome.genes.eyes.bey2);
+		var momEyeAlleleGey = getRandomAllele(mom.genome.genes.eyes.gey);
+
+		var bey2 = {
+						one: dadEyeAlleleBey2,
+						two: momEyeAlleleBey2
+		}
+
+		var gey = {
+						one: dadEyeAlleleGey,
+						two: momEyeAlleleGey
+		}
+
+		var color = determineEyeColor(bey2, gey);
+
+		var eyes = { 
+						color : color,
+						bey2 : bey2,
+						gey : gey,
+			   }
+    } catch (err) {
+    	console.log(err);
+    	console.log(dad);
+    	console.log(mom);
+    }
+
+	return eyes;
 }
 
 exports.determineEyeColor = determineEyeColor;
