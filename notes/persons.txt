@@ -1,0 +1,15 @@
+persons\
+        -- \config
+           \controllers
+           \lib
+           \models
+           \test
+           \tester_lib
+           \tester_client
+                         -- \sass
+                            \website			(http://website/village-persons)
+                                    --\css
+                                      \img
+                                      \js
+                                      index.htm
+                                      all-people.htm

@@ -6,10 +6,10 @@ var fs = require("fs");
 
 
 var config = require('../config/config');
-var tMoment = require('../helpers/time.js');
+var tMoment = require('../lib/time.js');
 var settings = require('../config/settings');
 
-require('../models/Persons');
+require('../models/Person');
 
 var mockgoose = require('mockgoose');
 mockgoose(mongoose);
@@ -22,7 +22,7 @@ var persons = require('../controllers/persons');
 
 //mongoose.Types.ObjectId();
 
-describe.only("Game Session", function () {
+describe("Game Session", function () {
 
 	before(function(done) {
 		mockgoose.reset();
@@ -94,3 +94,5 @@ describe.only("Game Session", function () {
 			});
 		});
 	});	
+
+});

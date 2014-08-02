@@ -4,17 +4,17 @@
 	var MainController = function($scope, $http, $log, $interval) {
 
 		var onPersonComplete = function(response) {
-			console.log(response);
+			//console.log(response);
 			$scope.data = response.data;
 		}
 
 		var onSummaryComplete = function(response) {
-			console.log(response);
+			//console.log(response);
 			$scope.summaryData = response.data;
 		}
 
 		var onEventsComplete = function(response) {
-			console.log(response);
+			//console.log(response);
 			$scope.eventData = response.data;
 		}
 
@@ -99,7 +99,7 @@ function getEvents() {
 }
 
 function loadEvents(events) {
-	console.log(events);
+	//console.log(events);
 
 	if(events[0]) {
 		$("#lastEventId").val(events[events.length-1]._id);
@@ -157,7 +157,7 @@ function getEventDetails(eventId) {
 }
 
 function loadEventDetails(eventDetails) {
-	console.log(eventDetails);
+	//console.log(eventDetails);
 
 	// #main-right
 	$('.main-right-details').html("");

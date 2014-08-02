@@ -59,7 +59,7 @@ function addEvent(info, callback) {
 exports.get = getEvents;
 exports.getEvents = getEvents;
 function getEvents(lastId, limitAmount, callback) {
-	console.log('Getting Events ' + lastId + " | " + limitAmount)
+	//console.log('Getting Events ' + lastId + " | " + limitAmount)
 
 	var filter = {}
 
@@ -96,7 +96,7 @@ function removeAllEventRecords(callback) {
 
 exports.getEventDetails = getEventDetails;
 function getEventDetails(eventId, callback) {
-	console.log('Getting Event Details ' + eventId);
+	//console.log('Getting Event Details ' + eventId);
 
 	PersonEvents.findOne({ _id: eventId}).populate("persons").exec(function(err, events) {
 		callback(events);

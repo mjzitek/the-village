@@ -1,202 +1,1113 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
-1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
 1 verbose cli   'install',
-1 verbose cli   'memwatch',
+1 verbose cli   'mockgoose',
 1 verbose cli   '--save' ]
-2 info using npm@1.3.17
-3 info using node@v0.10.23
-4 verbose node symlink C:\Program Files\nodejs\\node.exe
-5 warn package.json the-village@0.0.1 No description
-6 warn package.json the-village@0.0.1 No README data
-7 warn package.json path@0.4.9 path is also the name of a node core module.
-8 warn package.json crypto@0.0.3 crypto is also the name of a node core module.
-9 verbose readDependencies using package.json deps
-10 verbose cache add [ 'memwatch@~0.2.2', null ]
-11 verbose cache add name=undefined spec="memwatch@~0.2.2" args=["memwatch@~0.2.2",null]
-12 verbose parsed url { protocol: null,
-12 verbose parsed url   slashes: null,
-12 verbose parsed url   auth: null,
-12 verbose parsed url   host: null,
-12 verbose parsed url   port: null,
-12 verbose parsed url   hostname: null,
-12 verbose parsed url   hash: null,
-12 verbose parsed url   search: null,
-12 verbose parsed url   query: null,
-12 verbose parsed url   pathname: 'memwatch@~0.2.2',
-12 verbose parsed url   path: 'memwatch@~0.2.2',
-12 verbose parsed url   href: 'memwatch@~0.2.2' }
-13 verbose cache add name="memwatch" spec="~0.2.2" args=["memwatch","~0.2.2"]
-14 verbose parsed url { protocol: null,
-14 verbose parsed url   slashes: null,
-14 verbose parsed url   auth: null,
-14 verbose parsed url   host: null,
-14 verbose parsed url   port: null,
-14 verbose parsed url   hostname: null,
-14 verbose parsed url   hash: null,
-14 verbose parsed url   search: null,
-14 verbose parsed url   query: null,
-14 verbose parsed url   pathname: '~0.2.2',
-14 verbose parsed url   path: '~0.2.2',
-14 verbose parsed url   href: '~0.2.2' }
-15 verbose addNamed [ 'memwatch', '~0.2.2' ]
-16 verbose addNamed [ null, '>=0.2.2-0 <0.3.0-0' ]
-17 silly lockFile c10dcf64-memwatch-0-2-2 memwatch@~0.2.2
-18 verbose lock memwatch@~0.2.2 C:\Users\mjzitek\AppData\Roaming\npm-cache\c10dcf64-memwatch-0-2-2.lock
-19 silly addNameRange { name: 'memwatch', range: '>=0.2.2-0 <0.3.0-0', hasData: false }
-20 verbose url raw memwatch
-21 verbose url resolving [ 'https://registry.npmjs.org/', './memwatch' ]
-22 verbose url resolved https://registry.npmjs.org/memwatch
-23 info trying registry request attempt 1 at 22:29:31
-24 verbose etag "1EYNNWGKNS17A5G3TJAA5AVFH"
-25 http GET https://registry.npmjs.org/memwatch
-26 http 304 https://registry.npmjs.org/memwatch
-27 silly registry.get cb [ 304,
-27 silly registry.get   { date: 'Thu, 19 Jun 2014 05:29:33 GMT',
-27 silly registry.get     server: 'Apache',
-27 silly registry.get     via: '1.1 varnish',
-27 silly registry.get     'last-modified': 'Thu, 19 Jun 2014 05:29:33 GMT',
-27 silly registry.get     'cache-control': 'max-age=30',
-27 silly registry.get     etag: '"1EYNNWGKNS17A5G3TJAA5AVFH"',
-27 silly registry.get     'x-served-by': 'cache-lax1420-LAX',
-27 silly registry.get     'x-cache': 'HIT',
-27 silly registry.get     'x-cache-hits': '1',
-27 silly registry.get     'x-timer': 'S1403155773.316196,VS0,VE0',
-27 silly registry.get     vary: 'Accept',
-27 silly registry.get     'content-length': '0',
-27 silly registry.get     'keep-alive': 'timeout=10, max=50',
-27 silly registry.get     connection: 'Keep-Alive' } ]
-28 verbose etag memwatch from cache
-29 silly addNameRange number 2 { name: 'memwatch', range: '>=0.2.2-0 <0.3.0-0', hasData: true }
-30 silly addNameRange versions [ 'memwatch',
-30 silly addNameRange   [ '0.1.0',
-30 silly addNameRange     '0.1.1',
-30 silly addNameRange     '0.1.2',
-30 silly addNameRange     '0.1.3',
-30 silly addNameRange     '0.1.4',
-30 silly addNameRange     '0.1.5',
-30 silly addNameRange     '0.2.0',
-30 silly addNameRange     '0.2.1',
-30 silly addNameRange     '0.2.2' ] ]
-31 verbose addNamed [ 'memwatch', '0.2.2' ]
-32 verbose addNamed [ '0.2.2', '0.2.2' ]
-33 silly lockFile de70a2ed-memwatch-0-2-2 memwatch@0.2.2
-34 verbose lock memwatch@0.2.2 C:\Users\mjzitek\AppData\Roaming\npm-cache\de70a2ed-memwatch-0-2-2.lock
-35 silly lockFile de70a2ed-memwatch-0-2-2 memwatch@0.2.2
-36 silly lockFile de70a2ed-memwatch-0-2-2 memwatch@0.2.2
-37 silly lockFile c10dcf64-memwatch-0-2-2 memwatch@~0.2.2
-38 silly lockFile c10dcf64-memwatch-0-2-2 memwatch@~0.2.2
-39 silly resolved [ { name: 'memwatch',
-39 silly resolved     description: 'Keep an eye on your memory usage, and discover and isolate leaks.',
-39 silly resolved     version: '0.2.2',
-39 silly resolved     author: { name: 'Lloyd Hilaiel', url: 'http://lloyd.io' },
-39 silly resolved     engines: { node: '>= 0.6.0' },
-39 silly resolved     repository:
-39 silly resolved      { type: 'git',
-39 silly resolved        url: 'https://github.com/lloyd/node-memwatch.git' },
-39 silly resolved     main: 'include.js',
-39 silly resolved     licenses: [ [Object] ],
-39 silly resolved     bugs: { url: 'https://github.com/lloyd/node-memwatch/issues' },
-39 silly resolved     scripts: { install: 'node-gyp rebuild', test: 'mocha tests' },
-39 silly resolved     devDependencies: { mocha: '1.2.2', should: '0.6.3', 'node-gyp': '0.5.7' },
-39 silly resolved     contributors: [ [Object], [Object], [Object] ],
-39 silly resolved     readme: '`node-memwatch`: Leak Detection and Heap Diffing for Node.JS\n============================================================\n\n[![Build Status](https://secure.travis-ci.org/lloyd/node-memwatch.png)](http://travis-ci.org/lloyd/node-memwatch)\n\n`node-memwatch` is here to help you detect and find memory leaks in\nNode.JS code.  It provides:\n\n- A `leak` event, emitted when it appears your code is leaking memory.\n\n- A `stats` event, emitted occasionally, giving you\n  data describing your heap usage and trends over time.\n\n- A `HeapDiff` class that lets you compare the state of your heap between\n  two points in time, telling you what has been allocated, and what\n  has been released.\n\n\nInstallation\n------------\n\n- `npm install memwatch`\n\nor\n\n- `git clone git://github.com/lloyd/node-memwatch.git`\n\n\nDescription\n-----------\n\nThere are a growing number of tools for debugging and profiling memory\nusage in Node.JS applications, but there is still a need for a\nplatform-independent native module that requires no special\ninstrumentation.  This module attempts to satisfy that need.\n\nTo get started, import `node-memwatch` like so:\n\n```javascript\nvar memwatch = require(\'memwatch\');\n```\n\n### Leak Detection\n\nYou can then subscribe to `leak` events.  A `leak` event will be\nemitted when your heap usage has increased for five consecutive\ngarbage collections:\n\n```javascript\nmemwatch.on(\'leak\', function(info) { ... });\n```\n\nThe `info` object will look something like:\n\n```javascript\n{ start: Fri, 29 Jun 2012 14:12:13 GMT,\n  end: Fri, 29 Jun 2012 14:12:33 GMT,\n  growth: 67984,\n  reason: \'heap growth over 5 consecutive GCs (20s) - 11.67 mb/hr\' }\n```\n\n\n### Heap Usage\n\nThe best way to evaluate your memory footprint is to look at heap\nusage right aver V8 performs garbage collection.  `memwatch` does\nexactly this - it checks heap usage only after GC to give you a stable\nbaseline of your actual memory usage.\n\nWhen V8 performs a garbage collection (technically, we\'re talking\nabout a full GC with heap compaction), `memwatch` will emit a `stats`\nevent.\n\n```javascript\nmemwatch.on(\'stats\', function(stats) { ... });\n```\n\nThe `stats` data will look something like this:\n\n```javascript\n{\n  "num_full_gc": 17,\n  "num_inc_gc": 8,\n  "heap_compactions": 8,\n  "estimated_base": 2592568,\n  "current_base": 2592568,\n  "min": 2499912,\n  "max": 2592568,\n  "usage_trend": 0\n}\n```\n\n`estimated_base` and `usage_trend` are tracked over time.  If usage\ntrend is consistently positive, it indicates that your base heap size\nis continuously growing and you might have a leak.\n\nV8 has its own idea of when it\'s best to perform a GC, and under a\nheavy load, it may defer this action for some time.  To aid in\nspeedier debugging, `memwatch` provides a `gc()` method to force V8 to\ndo a full GC and heap compaction.\n\n\n### Heap Diffing\n\nSo far we have seen how `memwatch` can aid in leak detection.  For\nleak isolation, it provides a `HeapDiff` class that takes two snapshots\nand computes a diff between them.  For example:\n\n```javascript\n// Take first snapshot\nvar hd = new memwatch.HeapDiff();\n\n// do some things ...\n\n// Take the second snapshot and compute the diff\nvar diff = hd.end();\n```\n\nThe contents of `diff` will look something like:\n\n```javascript\n{\n  "before": { "nodes": 11625, "size_bytes": 1869904, "size": "1.78 mb" },\n  "after":  { "nodes": 21435, "size_bytes": 2119136, "size": "2.02 mb" },\n  "change": { "size_bytes": 249232, "size": "243.39 kb", "freed_nodes": 197,\n    "allocated_nodes": 10007,\n    "details": [\n      { "what": "String",\n        "size_bytes": -2120,  "size": "-2.07 kb",  "+": 3,    "-": 62\n      },\n      { "what": "Array",\n        "size_bytes": 66687,  "size": "65.13 kb",  "+": 4,    "-": 78\n      },\n      { "what": "LeakingClass",\n        "size_bytes": 239952, "size": "234.33 kb", "+": 9998, "-": 0\n      }\n    ]\n  }\n```\n\nThe diff shows that during the sample period, the total number of\nallocated `String` and `Array` classes decreased, but `Leaking Class`\ngrew by 9998 allocations.  Hmmm.\n\nYou can use `HeapDiff` in your `on(\'stats\')` callback; even though it\ntakes a memory snapshot, which triggers a V8 GC, it will not trigger\nthe `stats` event itself.  Because that would be silly.\n\n\nFuture Work\n-----------\n\nPlease see the Issues to share suggestions and contribute!\n\n\nLicense\n-------\n\nhttp://wtfpl.org\n',
-39 silly resolved     readmeFilename: 'README.md',
-39 silly resolved     gypfile: true,
-39 silly resolved     homepage: 'https://github.com/lloyd/node-memwatch',
-39 silly resolved     _id: 'memwatch@0.2.2',
-39 silly resolved     _from: 'memwatch@~0.2.2' } ]
-40 info install memwatch@0.2.2 into C:\Users\mjzitek\Documents\GitHub\the-village\persons
-41 info installOne memwatch@0.2.2
-42 info C:\Users\mjzitek\Documents\GitHub\the-village\persons\node_modules\memwatch unbuild
-43 verbose tar unpack C:\Users\mjzitek\AppData\Roaming\npm-cache\memwatch\0.2.2\package.tgz
-44 silly lockFile c42b7e40-ge-persons-node-modules-memwatch tar://C:\Users\mjzitek\Documents\GitHub\the-village\persons\node_modules\memwatch
-45 verbose lock tar://C:\Users\mjzitek\Documents\GitHub\the-village\persons\node_modules\memwatch C:\Users\mjzitek\AppData\Roaming\npm-cache\c42b7e40-ge-persons-node-modules-memwatch.lock
-46 silly lockFile 3983aca0-cache-memwatch-0-2-2-package-tgz tar://C:\Users\mjzitek\AppData\Roaming\npm-cache\memwatch\0.2.2\package.tgz
-47 verbose lock tar://C:\Users\mjzitek\AppData\Roaming\npm-cache\memwatch\0.2.2\package.tgz C:\Users\mjzitek\AppData\Roaming\npm-cache\3983aca0-cache-memwatch-0-2-2-package-tgz.lock
-48 silly gunzTarPerm modes [ '755', '644' ]
-49 silly gunzTarPerm extractEntry package.json
-50 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
-51 silly gunzTarPerm extractEntry .npmignore
-52 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
-53 silly gunzTarPerm extractEntry README.md
-54 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
-55 silly gunzTarPerm extractEntry tests.js
-56 silly gunzTarPerm modified mode [ 'tests.js', 438, 420 ]
-57 silly gunzTarPerm extractEntry include.js
-58 silly gunzTarPerm modified mode [ 'include.js', 438, 420 ]
-59 silly gunzTarPerm extractEntry foo.js
-60 silly gunzTarPerm modified mode [ 'foo.js', 438, 420 ]
-61 silly gunzTarPerm extractEntry examples/basic_heapdiff.js
-62 silly gunzTarPerm modified mode [ 'examples/basic_heapdiff.js', 438, 420 ]
-63 silly gunzTarPerm extractEntry examples/do_nothing_server.js
-64 silly gunzTarPerm modified mode [ 'examples/do_nothing_server.js', 438, 420 ]
-65 silly gunzTarPerm extractEntry examples/slightly_leaky.js
-66 silly gunzTarPerm modified mode [ 'examples/slightly_leaky.js', 438, 420 ]
-67 silly gunzTarPerm extractEntry ChangeLog
-68 silly gunzTarPerm modified mode [ 'ChangeLog', 438, 420 ]
-69 silly gunzTarPerm extractEntry binding.gyp
-70 silly gunzTarPerm modified mode [ 'binding.gyp', 438, 420 ]
-71 silly gunzTarPerm extractEntry .travis.yml
-72 silly gunzTarPerm modified mode [ '.travis.yml', 438, 420 ]
-73 silly gunzTarPerm extractEntry src/heapdiff.cc
-74 silly gunzTarPerm modified mode [ 'src/heapdiff.cc', 438, 420 ]
-75 silly gunzTarPerm extractEntry src/heapdiff.hh
-76 silly gunzTarPerm modified mode [ 'src/heapdiff.hh', 438, 420 ]
-77 silly gunzTarPerm extractEntry src/init.cc
-78 silly gunzTarPerm modified mode [ 'src/init.cc', 438, 420 ]
-79 silly gunzTarPerm extractEntry src/memwatch.cc
-80 silly gunzTarPerm modified mode [ 'src/memwatch.cc', 438, 420 ]
-81 silly gunzTarPerm extractEntry src/memwatch.hh
-82 silly gunzTarPerm modified mode [ 'src/memwatch.hh', 438, 420 ]
-83 silly gunzTarPerm extractEntry src/platformcompat.hh
-84 silly gunzTarPerm modified mode [ 'src/platformcompat.hh', 438, 420 ]
-85 silly gunzTarPerm extractEntry src/util.cc
-86 silly gunzTarPerm modified mode [ 'src/util.cc', 438, 420 ]
-87 silly gunzTarPerm extractEntry src/util.hh
-88 silly gunzTarPerm modified mode [ 'src/util.hh', 438, 420 ]
-89 silly gunzTarPerm extractEntry #wscript#
-90 silly gunzTarPerm modified mode [ '#wscript#', 438, 420 ]
-91 silly lockFile c42b7e40-ge-persons-node-modules-memwatch tar://C:\Users\mjzitek\Documents\GitHub\the-village\persons\node_modules\memwatch
-92 silly lockFile c42b7e40-ge-persons-node-modules-memwatch tar://C:\Users\mjzitek\Documents\GitHub\the-village\persons\node_modules\memwatch
-93 silly lockFile 3983aca0-cache-memwatch-0-2-2-package-tgz tar://C:\Users\mjzitek\AppData\Roaming\npm-cache\memwatch\0.2.2\package.tgz
-94 silly lockFile 3983aca0-cache-memwatch-0-2-2-package-tgz tar://C:\Users\mjzitek\AppData\Roaming\npm-cache\memwatch\0.2.2\package.tgz
-95 info preinstall memwatch@0.2.2
-96 verbose readDependencies using package.json deps
-97 verbose readDependencies using package.json deps
-98 silly resolved []
-99 verbose about to build C:\Users\mjzitek\Documents\GitHub\the-village\persons\node_modules\memwatch
-100 info build C:\Users\mjzitek\Documents\GitHub\the-village\persons\node_modules\memwatch
-101 verbose linkStuff [ false,
-101 verbose linkStuff   false,
-101 verbose linkStuff   false,
-101 verbose linkStuff   'C:\\Users\\mjzitek\\Documents\\GitHub\\the-village\\persons\\node_modules' ]
-102 info linkStuff memwatch@0.2.2
-103 verbose linkBins memwatch@0.2.2
-104 verbose linkMans memwatch@0.2.2
-105 verbose rebuildBundles memwatch@0.2.2
-106 info install memwatch@0.2.2
-107 verbose unsafe-perm in lifecycle true
-108 info memwatch@0.2.2 Failed to exec install script
-109 info C:\Users\mjzitek\Documents\GitHub\the-village\persons\node_modules\memwatch unbuild
-110 info preuninstall memwatch@0.2.2
-111 info uninstall memwatch@0.2.2
-112 verbose true,C:\Users\mjzitek\Documents\GitHub\the-village\persons\node_modules,C:\Users\mjzitek\Documents\GitHub\the-village\persons\node_modules unbuild memwatch@0.2.2
-113 info postuninstall memwatch@0.2.2
-114 error memwatch@0.2.2 install: `node-gyp rebuild`
-114 error Exit status 1
-115 error Failed at the memwatch@0.2.2 install script.
-115 error This is most likely a problem with the memwatch package,
-115 error not with npm itself.
-115 error Tell the author that this fails on your system:
-115 error     node-gyp rebuild
-115 error You can get their info via:
-115 error     npm owner ls memwatch
-115 error There is likely additional logging output above.
-116 error System Windows_NT 6.2.9200
-117 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "memwatch" "--save"
-118 error cwd C:\Users\mjzitek\Documents\GitHub\the-village\persons
-119 error node -v v0.10.23
-120 error npm -v 1.3.17
-121 error code ELIFECYCLE
-122 verbose exit [ 1, true ]
+2 info using npm@1.2.25
+3 info using node@v0.11.3
+4 verbose read json /usr/share/code/javascript/the-village/persons/package.json
+5 warn package.json the-village@0.0.1 No readme data.
+6 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/async/package.json
+7 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/chai/package.json
+8 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/chance/package.json
+9 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/colors/package.json
+10 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/express/package.json
+11 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/lodash/package.json
+12 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/memwatch/package.json
+13 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/moment/package.json
+14 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/mongoose/package.json
+15 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/nodetime/package.json
+16 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/optimist/package.json
+17 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/should/package.json
+18 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/underscore/package.json
+19 verbose from cache /usr/share/code/javascript/the-village/persons/package.json
+20 verbose readDependencies using package.json deps
+21 verbose cache add [ 'mockgoose', null ]
+22 verbose cache add name=undefined spec="mockgoose" args=["mockgoose",null]
+23 verbose parsed url { protocol: null,
+23 verbose parsed url   slashes: null,
+23 verbose parsed url   auth: null,
+23 verbose parsed url   host: null,
+23 verbose parsed url   port: null,
+23 verbose parsed url   hostname: null,
+23 verbose parsed url   hash: null,
+23 verbose parsed url   search: null,
+23 verbose parsed url   query: null,
+23 verbose parsed url   pathname: 'mockgoose',
+23 verbose parsed url   path: 'mockgoose',
+23 verbose parsed url   href: 'mockgoose' }
+24 silly lockFile 4539753a-mockgoose mockgoose
+25 verbose lock mockgoose /home/mjzitek/.npm/4539753a-mockgoose.lock
+26 silly lockFile 4539753a-mockgoose mockgoose
+27 silly lockFile 4539753a-mockgoose mockgoose
+28 verbose addNamed [ 'mockgoose', '' ]
+29 verbose addNamed [ null, '' ]
+30 silly lockFile 9e49bfda-mockgoose mockgoose@
+31 verbose lock mockgoose@ /home/mjzitek/.npm/9e49bfda-mockgoose.lock
+32 silly addNameRange { name: 'mockgoose', range: '', hasData: false }
+33 verbose url raw mockgoose
+34 verbose url resolving [ 'https://registry.npmjs.org/', './mockgoose' ]
+35 verbose url resolved https://registry.npmjs.org/mockgoose
+36 info trying registry request attempt 1 at 13:34:21
+37 verbose etag "1ES12FMUFF30QOZVP80WW1AWJ"
+38 http GET https://registry.npmjs.org/mockgoose
+39 http 200 https://registry.npmjs.org/mockgoose
+40 silly registry.get cb [ 200,
+40 silly registry.get   { date: 'Fri, 01 Aug 2014 20:34:28 GMT',
+40 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+40 silly registry.get     etag: '"73OYHSR4NLUVUH60458ZC33PI"',
+40 silly registry.get     'content-type': 'application/json',
+40 silly registry.get     'cache-control': 'max-age=60',
+40 silly registry.get     'content-length': '98295',
+40 silly registry.get     'accept-ranges': 'bytes',
+40 silly registry.get     via: '1.1 varnish',
+40 silly registry.get     'x-served-by': 'cache-lax1430-LAX',
+40 silly registry.get     'x-cache': 'MISS',
+40 silly registry.get     'x-cache-hits': '0',
+40 silly registry.get     'x-timer': 'S1406925268.317672,VS0,VE50',
+40 silly registry.get     vary: 'Accept',
+40 silly registry.get     'keep-alive': 'timeout=10, max=50',
+40 silly registry.get     connection: 'Keep-Alive' } ]
+41 silly addNameRange number 2 { name: 'mockgoose', range: '', hasData: true }
+42 silly addNameRange versions [ 'mockgoose',
+42 silly addNameRange   [ '0.0.1',
+42 silly addNameRange     '0.0.2',
+42 silly addNameRange     '0.0.3',
+42 silly addNameRange     '0.0.4',
+42 silly addNameRange     '0.0.5',
+42 silly addNameRange     '0.0.6',
+42 silly addNameRange     '0.0.7',
+42 silly addNameRange     '0.0.8',
+42 silly addNameRange     '0.0.9',
+42 silly addNameRange     '0.0.10',
+42 silly addNameRange     '0.0.11',
+42 silly addNameRange     '0.0.12',
+42 silly addNameRange     '0.0.13',
+42 silly addNameRange     '0.0.14',
+42 silly addNameRange     '0.0.15',
+42 silly addNameRange     '0.0.16',
+42 silly addNameRange     '0.0.17',
+42 silly addNameRange     '0.0.18',
+42 silly addNameRange     '0.0.21',
+42 silly addNameRange     '0.2.0',
+42 silly addNameRange     '0.2.1',
+42 silly addNameRange     '0.2.2',
+42 silly addNameRange     '0.2.3',
+42 silly addNameRange     '0.2.4',
+42 silly addNameRange     '0.2.5',
+42 silly addNameRange     '0.2.7',
+42 silly addNameRange     '1.0.0',
+42 silly addNameRange     '1.0.1',
+42 silly addNameRange     '1.0.2',
+42 silly addNameRange     '1.0.3',
+42 silly addNameRange     '1.0.4',
+42 silly addNameRange     '1.0.5',
+42 silly addNameRange     '1.0.6',
+42 silly addNameRange     '1.1.0',
+42 silly addNameRange     '1.2.0',
+42 silly addNameRange     '1.2.1',
+42 silly addNameRange     '1.2.2',
+42 silly addNameRange     '1.3.0',
+42 silly addNameRange     '1.3.1',
+42 silly addNameRange     '1.3.2',
+42 silly addNameRange     '1.3.3',
+42 silly addNameRange     '1.4.3',
+42 silly addNameRange     '1.5.0',
+42 silly addNameRange     '1.6.0',
+42 silly addNameRange     '1.6.1',
+42 silly addNameRange     '1.7.0',
+42 silly addNameRange     '1.7.2',
+42 silly addNameRange     '1.7.3',
+42 silly addNameRange     '1.7.4',
+42 silly addNameRange     '1.7.6',
+42 silly addNameRange     '1.7.7',
+42 silly addNameRange     '1.7.8',
+42 silly addNameRange     '1.7.9',
+42 silly addNameRange     '1.7.10',
+42 silly addNameRange     '1.7.12',
+42 silly addNameRange     '1.8.0',
+42 silly addNameRange     '1.8.1',
+42 silly addNameRange     '1.9.0',
+42 silly addNameRange     '1.10.0',
+42 silly addNameRange     '1.10.1',
+42 silly addNameRange     '1.10.2' ] ]
+43 verbose addNamed [ 'mockgoose', '1.10.2' ]
+44 verbose addNamed [ '1.10.2', '1.10.2' ]
+45 silly lockFile 5c8c6cbb-mockgoose-1-10-2 mockgoose@1.10.2
+46 verbose lock mockgoose@1.10.2 /home/mjzitek/.npm/5c8c6cbb-mockgoose-1-10-2.lock
+47 silly lockFile 7d248b73-g-mockgoose-mockgoose-1-10-2-tgz https://registry.npmjs.org/mockgoose/-/mockgoose-1.10.2.tgz
+48 verbose lock https://registry.npmjs.org/mockgoose/-/mockgoose-1.10.2.tgz /home/mjzitek/.npm/7d248b73-g-mockgoose-mockgoose-1-10-2-tgz.lock
+49 verbose addRemoteTarball [ 'https://registry.npmjs.org/mockgoose/-/mockgoose-1.10.2.tgz',
+49 verbose addRemoteTarball   '6cfbed35b929425c31eb8c1c2ece7b93e39ee0fe' ]
+50 info retry fetch attempt 1 at 13:34:21
+51 verbose fetch to= /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/tmp.tgz
+52 http GET https://registry.npmjs.org/mockgoose/-/mockgoose-1.10.2.tgz
+53 http 200 https://registry.npmjs.org/mockgoose/-/mockgoose-1.10.2.tgz
+54 verbose tar unpack /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/tmp.tgz
+55 silly lockFile 67f71339-604-0-005853624315932393-package /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package
+56 verbose lock /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package /home/mjzitek/.npm/67f71339-604-0-005853624315932393-package.lock
+57 silly lockFile 10996fd3-604-0-005853624315932393-tmp-tgz /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/tmp.tgz
+58 verbose lock /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/tmp.tgz /home/mjzitek/.npm/10996fd3-604-0-005853624315932393-tmp-tgz.lock
+59 silly gunzTarPerm modes [ '755', '644' ]
+60 silly gunzTarPerm extractEntry package.json
+61 silly gunzTarPerm extractEntry .npmignore
+62 silly gunzTarPerm extractEntry README.md
+63 silly gunzTarPerm extractEntry Gruntfile.js
+64 silly gunzTarPerm extractEntry Mockgoose.js
+65 silly gunzTarPerm extractEntry .jshintrc
+66 silly gunzTarPerm extractEntry .travis.yml
+67 silly gunzTarPerm extractEntry lib/Collection.js
+68 silly gunzTarPerm extractEntry lib/Logger.js
+69 silly gunzTarPerm extractEntry lib/Model.js
+70 silly gunzTarPerm extractEntry lib/db.js
+71 silly gunzTarPerm extractEntry lib/utils.js
+72 silly gunzTarPerm extractEntry lib/operations/AddToSetOperation.js
+73 silly gunzTarPerm extractEntry lib/operations/IncOperation.js
+74 silly gunzTarPerm extractEntry lib/operations/Operations.js
+75 silly gunzTarPerm extractEntry lib/operations/OptionsOperation.js
+76 silly gunzTarPerm extractEntry lib/operations/ExistsOperation.js
+77 silly gunzTarPerm extractEntry lib/operations/AllOperation.js
+78 silly gunzTarPerm extractEntry lib/operations/PushAllOperation.js
+79 silly gunzTarPerm extractEntry lib/operations/PushOperation.js
+80 silly gunzTarPerm extractEntry lib/operations/SetOperation.js
+81 silly gunzTarPerm extractEntry lib/operations/UnsetOperation.js
+82 silly gunzTarPerm extractEntry lib/operations/ElemMatchOperation.js
+83 silly gunzTarPerm extractEntry lib/operations/UpdatePositionalOperator.js
+84 silly gunzTarPerm extractEntry lib/operations/PullAllOperation.js
+85 silly gunzTarPerm extractEntry lib/operations/PullOperation.js
+86 silly gunzTarPerm extractEntry lib/operations/comparison/GreaterThanOperation.js
+87 silly gunzTarPerm extractEntry lib/operations/comparison/GreaterThanOrEqualOperation.js
+88 silly gunzTarPerm extractEntry lib/operations/comparison/InOperation.js
+89 silly gunzTarPerm extractEntry lib/operations/comparison/LessThanOperation.js
+90 silly gunzTarPerm extractEntry lib/operations/comparison/LessThanOrEqualOperation.js
+91 silly gunzTarPerm extractEntry lib/operations/comparison/NEOperation.js
+92 silly gunzTarPerm extractEntry lib/operations/comparison/NINOperation.js
+93 silly gunzTarPerm extractEntry lib/operations/evaluation/RegExpOperation.js
+94 silly gunzTarPerm extractEntry lib/operations/logical/AndOperation.js
+95 silly gunzTarPerm extractEntry lib/operations/logical/NorOperation.js
+96 silly gunzTarPerm extractEntry lib/operations/logical/NotOperation.js
+97 silly gunzTarPerm extractEntry lib/operations/logical/OrOperation.js
+98 silly gunzTarPerm extractEntry lib/options/Filter.js
+99 silly gunzTarPerm extractEntry lib/options/Limit.js
+100 silly gunzTarPerm extractEntry lib/options/Options.js
+101 silly gunzTarPerm extractEntry lib/options/Skip.js
+102 silly gunzTarPerm extractEntry lib/options/Sort.js
+103 silly gunzTarPerm extractEntry lib/validation/Validation.js
+104 silly gunzTarPerm extractEntry test/Connection.spec.js
+105 silly gunzTarPerm extractEntry test/Find.spec.js
+106 silly gunzTarPerm extractEntry test/NestedReferences.spec.js
+107 silly gunzTarPerm extractEntry test/Populate.spec.js
+108 silly gunzTarPerm extractEntry test/Query.spec.js
+109 silly gunzTarPerm extractEntry test/Remove.spec.js
+110 silly gunzTarPerm extractEntry test/Count.spec.js
+111 silly gunzTarPerm extractEntry test/Validation.spec.js
+112 silly gunzTarPerm extractEntry test/mockgoose.spec.js
+113 silly gunzTarPerm extractEntry test/index.spec.js
+114 silly gunzTarPerm extractEntry test/Update.spec.js
+115 silly gunzTarPerm extractEntry test/collection/Distinct.spec.js
+116 silly gunzTarPerm extractEntry test/models/AccountModel.js
+117 silly gunzTarPerm extractEntry test/models/ChildModel.js
+118 silly gunzTarPerm extractEntry test/models/IndexModel.js
+119 silly gunzTarPerm extractEntry test/models/ParentModel.js
+120 silly gunzTarPerm extractEntry test/models/SimpleModel.js
+121 silly gunzTarPerm extractEntry test/operations/AddToSetOperation.spec.js
+122 silly gunzTarPerm extractEntry test/operations/ElemMatchOperation.spec.js
+123 silly gunzTarPerm extractEntry test/operations/ExistsOperation.spec.js
+124 silly gunzTarPerm extractEntry test/operations/IncOperation.spec.js
+125 silly gunzTarPerm extractEntry test/operations/PositionalOperation.spec.js
+126 silly gunzTarPerm extractEntry test/operations/PullAllOperation.spec.js
+127 silly gunzTarPerm extractEntry test/operations/AllOperation.spec.js
+128 silly gunzTarPerm extractEntry test/operations/PushAllOperation.spec.js
+129 silly gunzTarPerm extractEntry test/operations/PushOperation.spec.js
+130 silly gunzTarPerm extractEntry test/operations/UnsetOperation.spec.js
+131 silly gunzTarPerm extractEntry test/operations/PullOperation.spec.js
+132 silly gunzTarPerm extractEntry test/operations/array/positional.spec.js
+133 silly gunzTarPerm extractEntry test/operations/comparison/GreaterThanOperation.spec.js
+134 silly gunzTarPerm extractEntry test/operations/comparison/GreaterThanOrEqualOperation.spec.js
+135 silly gunzTarPerm extractEntry test/operations/comparison/InOperation.spec.js
+136 silly gunzTarPerm extractEntry test/operations/comparison/LessThanOperation.spec.js
+137 silly gunzTarPerm extractEntry test/operations/comparison/LessThanOrEqualOperation.spec.js
+138 silly gunzTarPerm extractEntry test/operations/comparison/NEOperation.spec.js
+139 silly gunzTarPerm extractEntry test/operations/comparison/NINOperation.spec.js
+140 silly gunzTarPerm extractEntry test/operations/evaluation/RegExpOperation.spec.js
+141 silly gunzTarPerm extractEntry test/operations/logical/AndOperation.spec.js
+142 silly gunzTarPerm extractEntry test/operations/logical/NorOperation.spec.js
+143 silly gunzTarPerm extractEntry test/operations/logical/NotOperation.spec.js
+144 silly gunzTarPerm extractEntry test/operations/logical/OrOperation.spec.js
+145 silly gunzTarPerm extractEntry test/options/Limit.spec.js
+146 silly gunzTarPerm extractEntry test/options/Skip.spec.js
+147 silly gunzTarPerm extractEntry test/options/Sort.spec.js
+148 silly gunzTarPerm extractEntry twittershare.png
+149 verbose read json /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package/package.json
+150 silly lockFile 67f71339-604-0-005853624315932393-package /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package
+151 silly lockFile 67f71339-604-0-005853624315932393-package /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package
+152 silly lockFile 10996fd3-604-0-005853624315932393-tmp-tgz /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/tmp.tgz
+153 silly lockFile 10996fd3-604-0-005853624315932393-tmp-tgz /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/tmp.tgz
+154 verbose from cache /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package/package.json
+155 verbose tar pack [ '/home/mjzitek/.npm/mockgoose/1.10.2/package.tgz',
+155 verbose tar pack   '/home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package' ]
+156 verbose tarball /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+157 verbose folder /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package
+158 silly lockFile 67f71339-604-0-005853624315932393-package /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package
+159 verbose lock /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package /home/mjzitek/.npm/67f71339-604-0-005853624315932393-package.lock
+160 silly lockFile 2ea06651-npm-mockgoose-1-10-2-package-tgz /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+161 verbose lock /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz /home/mjzitek/.npm/2ea06651-npm-mockgoose-1-10-2-package-tgz.lock
+162 silly lockFile 67f71339-604-0-005853624315932393-package /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package
+163 silly lockFile 67f71339-604-0-005853624315932393-package /home/mjzitek/tmp/npm-28301/1406925261604-0.005853624315932393/package
+164 silly lockFile 2ea06651-npm-mockgoose-1-10-2-package-tgz /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+165 silly lockFile 2ea06651-npm-mockgoose-1-10-2-package-tgz /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+166 silly lockFile 188dbce2-tek-npm-mockgoose-1-10-2-package /home/mjzitek/.npm/mockgoose/1.10.2/package
+167 verbose lock /home/mjzitek/.npm/mockgoose/1.10.2/package /home/mjzitek/.npm/188dbce2-tek-npm-mockgoose-1-10-2-package.lock
+168 silly lockFile 188dbce2-tek-npm-mockgoose-1-10-2-package /home/mjzitek/.npm/mockgoose/1.10.2/package
+169 silly lockFile 188dbce2-tek-npm-mockgoose-1-10-2-package /home/mjzitek/.npm/mockgoose/1.10.2/package
+170 verbose tar unpack /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+171 silly lockFile 188dbce2-tek-npm-mockgoose-1-10-2-package /home/mjzitek/.npm/mockgoose/1.10.2/package
+172 verbose lock /home/mjzitek/.npm/mockgoose/1.10.2/package /home/mjzitek/.npm/188dbce2-tek-npm-mockgoose-1-10-2-package.lock
+173 silly lockFile 2ea06651-npm-mockgoose-1-10-2-package-tgz /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+174 verbose lock /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz /home/mjzitek/.npm/2ea06651-npm-mockgoose-1-10-2-package-tgz.lock
+175 silly gunzTarPerm modes [ '755', '644' ]
+176 silly gunzTarPerm extractEntry package.json
+177 silly gunzTarPerm extractEntry .npmignore
+178 silly gunzTarPerm extractEntry README.md
+179 silly gunzTarPerm extractEntry Gruntfile.js
+180 silly gunzTarPerm extractEntry Mockgoose.js
+181 silly gunzTarPerm extractEntry .jshintrc
+182 silly gunzTarPerm extractEntry .travis.yml
+183 silly gunzTarPerm extractEntry lib/Collection.js
+184 silly gunzTarPerm extractEntry lib/Logger.js
+185 silly gunzTarPerm extractEntry lib/Model.js
+186 silly gunzTarPerm extractEntry lib/db.js
+187 silly gunzTarPerm extractEntry lib/utils.js
+188 silly gunzTarPerm extractEntry lib/operations/AddToSetOperation.js
+189 silly gunzTarPerm extractEntry lib/operations/IncOperation.js
+190 silly gunzTarPerm extractEntry lib/operations/Operations.js
+191 silly gunzTarPerm extractEntry lib/operations/OptionsOperation.js
+192 silly gunzTarPerm extractEntry lib/operations/ExistsOperation.js
+193 silly gunzTarPerm extractEntry lib/operations/AllOperation.js
+194 silly gunzTarPerm extractEntry lib/operations/PushAllOperation.js
+195 silly gunzTarPerm extractEntry lib/operations/PushOperation.js
+196 silly gunzTarPerm extractEntry lib/operations/SetOperation.js
+197 silly gunzTarPerm extractEntry lib/operations/UnsetOperation.js
+198 silly gunzTarPerm extractEntry lib/operations/ElemMatchOperation.js
+199 silly gunzTarPerm extractEntry lib/operations/UpdatePositionalOperator.js
+200 silly gunzTarPerm extractEntry lib/operations/PullAllOperation.js
+201 silly gunzTarPerm extractEntry lib/operations/PullOperation.js
+202 silly gunzTarPerm extractEntry lib/operations/comparison/GreaterThanOperation.js
+203 silly gunzTarPerm extractEntry lib/operations/comparison/GreaterThanOrEqualOperation.js
+204 silly gunzTarPerm extractEntry lib/operations/comparison/InOperation.js
+205 silly gunzTarPerm extractEntry lib/operations/comparison/LessThanOperation.js
+206 silly gunzTarPerm extractEntry lib/operations/comparison/LessThanOrEqualOperation.js
+207 silly gunzTarPerm extractEntry lib/operations/comparison/NEOperation.js
+208 silly gunzTarPerm extractEntry lib/operations/comparison/NINOperation.js
+209 silly gunzTarPerm extractEntry lib/operations/evaluation/RegExpOperation.js
+210 silly gunzTarPerm extractEntry lib/operations/logical/AndOperation.js
+211 silly gunzTarPerm extractEntry lib/operations/logical/NorOperation.js
+212 silly gunzTarPerm extractEntry lib/operations/logical/NotOperation.js
+213 silly gunzTarPerm extractEntry lib/operations/logical/OrOperation.js
+214 silly gunzTarPerm extractEntry lib/options/Filter.js
+215 silly gunzTarPerm extractEntry lib/options/Limit.js
+216 silly gunzTarPerm extractEntry lib/options/Options.js
+217 silly gunzTarPerm extractEntry lib/options/Skip.js
+218 silly gunzTarPerm extractEntry lib/options/Sort.js
+219 silly gunzTarPerm extractEntry lib/validation/Validation.js
+220 silly gunzTarPerm extractEntry test/Connection.spec.js
+221 silly gunzTarPerm extractEntry test/Find.spec.js
+222 silly gunzTarPerm extractEntry test/NestedReferences.spec.js
+223 silly gunzTarPerm extractEntry test/Populate.spec.js
+224 silly gunzTarPerm extractEntry test/Query.spec.js
+225 silly gunzTarPerm extractEntry test/Remove.spec.js
+226 silly gunzTarPerm extractEntry test/Count.spec.js
+227 silly gunzTarPerm extractEntry test/Validation.spec.js
+228 silly gunzTarPerm extractEntry test/mockgoose.spec.js
+229 silly gunzTarPerm extractEntry test/index.spec.js
+230 silly gunzTarPerm extractEntry test/Update.spec.js
+231 silly gunzTarPerm extractEntry test/collection/Distinct.spec.js
+232 silly gunzTarPerm extractEntry test/models/AccountModel.js
+233 silly gunzTarPerm extractEntry test/models/ChildModel.js
+234 silly gunzTarPerm extractEntry test/models/IndexModel.js
+235 silly gunzTarPerm extractEntry test/models/ParentModel.js
+236 silly gunzTarPerm extractEntry test/models/SimpleModel.js
+237 silly gunzTarPerm extractEntry test/operations/AddToSetOperation.spec.js
+238 silly gunzTarPerm extractEntry test/operations/ElemMatchOperation.spec.js
+239 silly gunzTarPerm extractEntry test/operations/ExistsOperation.spec.js
+240 silly gunzTarPerm extractEntry test/operations/IncOperation.spec.js
+241 silly gunzTarPerm extractEntry test/operations/PositionalOperation.spec.js
+242 silly gunzTarPerm extractEntry test/operations/PullAllOperation.spec.js
+243 silly gunzTarPerm extractEntry test/operations/AllOperation.spec.js
+244 silly gunzTarPerm extractEntry test/operations/PushAllOperation.spec.js
+245 silly gunzTarPerm extractEntry test/operations/PushOperation.spec.js
+246 silly gunzTarPerm extractEntry test/operations/UnsetOperation.spec.js
+247 silly gunzTarPerm extractEntry test/operations/PullOperation.spec.js
+248 silly gunzTarPerm extractEntry test/operations/array/positional.spec.js
+249 silly gunzTarPerm extractEntry test/operations/comparison/GreaterThanOperation.spec.js
+250 silly gunzTarPerm extractEntry test/operations/comparison/GreaterThanOrEqualOperation.spec.js
+251 silly gunzTarPerm extractEntry test/operations/comparison/InOperation.spec.js
+252 silly gunzTarPerm extractEntry test/operations/comparison/LessThanOperation.spec.js
+253 silly gunzTarPerm extractEntry test/operations/comparison/LessThanOrEqualOperation.spec.js
+254 silly gunzTarPerm extractEntry test/operations/comparison/NEOperation.spec.js
+255 silly gunzTarPerm extractEntry test/operations/comparison/NINOperation.spec.js
+256 silly gunzTarPerm extractEntry test/operations/evaluation/RegExpOperation.spec.js
+257 silly gunzTarPerm extractEntry test/operations/logical/AndOperation.spec.js
+258 silly gunzTarPerm extractEntry test/operations/logical/NorOperation.spec.js
+259 silly gunzTarPerm extractEntry test/operations/logical/NotOperation.spec.js
+260 silly gunzTarPerm extractEntry test/operations/logical/OrOperation.spec.js
+261 silly gunzTarPerm extractEntry test/options/Limit.spec.js
+262 silly gunzTarPerm extractEntry test/options/Skip.spec.js
+263 silly gunzTarPerm extractEntry test/options/Sort.spec.js
+264 silly gunzTarPerm extractEntry twittershare.png
+265 verbose read json /home/mjzitek/.npm/mockgoose/1.10.2/package/package.json
+266 silly lockFile 188dbce2-tek-npm-mockgoose-1-10-2-package /home/mjzitek/.npm/mockgoose/1.10.2/package
+267 silly lockFile 188dbce2-tek-npm-mockgoose-1-10-2-package /home/mjzitek/.npm/mockgoose/1.10.2/package
+268 silly lockFile 2ea06651-npm-mockgoose-1-10-2-package-tgz /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+269 silly lockFile 2ea06651-npm-mockgoose-1-10-2-package-tgz /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+270 verbose from cache /home/mjzitek/.npm/mockgoose/1.10.2/package/package.json
+271 verbose chmod /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz 644
+272 verbose chown /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz [ 1000, 1000 ]
+273 silly lockFile 7d248b73-g-mockgoose-mockgoose-1-10-2-tgz https://registry.npmjs.org/mockgoose/-/mockgoose-1.10.2.tgz
+274 silly lockFile 7d248b73-g-mockgoose-mockgoose-1-10-2-tgz https://registry.npmjs.org/mockgoose/-/mockgoose-1.10.2.tgz
+275 silly lockFile 5c8c6cbb-mockgoose-1-10-2 mockgoose@1.10.2
+276 silly lockFile 5c8c6cbb-mockgoose-1-10-2 mockgoose@1.10.2
+277 silly lockFile 9e49bfda-mockgoose mockgoose@
+278 silly lockFile 9e49bfda-mockgoose mockgoose@
+279 silly resolved [ { name: 'mockgoose',
+279 silly resolved     description: 'Mockgoose is an in memory database mock to allow for testing of applications that rely on Mongoose.',
+279 silly resolved     version: '1.10.2',
+279 silly resolved     author:
+279 silly resolved      { name: 'Anthony McCormick',
+279 silly resolved        email: 'anthony.mccormick AT gmail.com' },
+279 silly resolved     keywords:
+279 silly resolved      [ 'mongodb',
+279 silly resolved        'mongoose',
+279 silly resolved        'datastore',
+279 silly resolved        'nosql',
+279 silly resolved        'sql',
+279 silly resolved        'db',
+279 silly resolved        'database',
+279 silly resolved        'mock',
+279 silly resolved        'stub',
+279 silly resolved        'in memory' ],
+279 silly resolved     scripts: { test: './node_modules/jasmine-node/bin/jasmine-node test/ --verbose --color --captureExceptions && grunt jshint' },
+279 silly resolved     main: 'Mockgoose',
+279 silly resolved     engines: { node: '>=0.8.0' },
+279 silly resolved     dependencies:
+279 silly resolved      { mongoosemask: 'https://github.com/mccormicka/mongoosemask/archive/master.tar.gz',
+279 silly resolved        lodash: '~2.1.0',
+279 silly resolved        mongodb: '~1.3.19',
+279 silly resolved        bunyan: '~0.22.1',
+279 silly resolved        mongoose: '^3.8.9' },
+279 silly resolved     devDependencies:
+279 silly resolved      { mongoose: '~3.8.2',
+279 silly resolved        'mongoose-validator': '~0.2.1',
+279 silly resolved        bcrypt: '~0.7.5',
+279 silly resolved        grunt: '~0.4.4',
+279 silly resolved        'jasmine-node': 'https://github.com/mccormicka/jasmine-node/archive/exclusive-tests.tar.gz',
+279 silly resolved        'grunt-contrib-watch': '0.3.1',
+279 silly resolved        'grunt-contrib-jshint': '0.10.0',
+279 silly resolved        'grunt-jasmine-node': '0.1.0',
+279 silly resolved        'node-uuid': '~1.4.1',
+279 silly resolved        async: '~0.2.9',
+279 silly resolved        'grunt-cli': '~0.1.13' },
+279 silly resolved     bugs: { url: 'https://github.com/mccormicka/Mockgoose/issues' },
+279 silly resolved     repository: { type: 'git', url: 'https://github.com/mccormicka/Mockgoose' },
+279 silly resolved     homepage: 'https://github.com/mccormicka/Mockgoose',
+279 silly resolved     readmeFilename: 'README.md',
+279 silly resolved     readme: '[![Build Status](https://travis-ci.org/mccormicka/Mockgoose.png?branch=master)](https://travis-ci.org/mccormicka/Mockgoose)\n\nPlease Share on Twitter if you like #mockgoose\n<a href="https://twitter.com/intent/tweet?hashtags=mockgoose&amp;&amp;text=Check%20out%20this%20%23Mongoose%20%23MongoDB%20Mocking%20Framework&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Fbit.ly%2F19gcHwm&amp;via=omnipitence" style="float:right">\n<img src="https://raw.github.com/mccormicka/Mockgoose/master/twittershare.png">\n</a>\n\n##What is Mockgoose?\n\nMockgoose is a simplified in memory database that allows you to perform actions on Mongoose Models without having a running instance of MongoDB. \n\nThe main purpose of Mockgoose as you may have guessed from the name is to allow you to mock out your mongoose database during testing so that you do not have to spin up a new database for every test and teardown that same database afterwards.\n\n##Install\nTo install the latest official version, use NPM:\n\n    npm install mockgoose --save-dev\n\nTo run the tests and see what is supported by Mockgoose navigate to the Mockgoose folder and run the test suite\n\n    npm test\n\n##Usage\nYou simply require Mongoose and Mockgoose and wrap Mongoose with Mockgoose.\n\n    var mongoose = require(\'mongoose\');\n    var mockgoose = require(\'mockgoose\');\n\n    mockgoose(mongoose);\n\nOnce Mongoose has been wrapped by Mockgoose all calls to connect() and createConnection() will be intercepted by Mockgoose so that no MongoDB instance is created.\n\n###Options\n___mongoose___ ___required___ Instance of mongoose.\n\n___throwError___ ___optional___ Boolean true/false to throw errors on connection defaults to false.\n\n###Connection Events\nDispatches some but not all of the events supported by Mockgoose\nhttp://mongoosejs.com/docs/api.html#connection_Connection\n\nSupported Events\n```\nconnecting\nconnected\nopen\nerror\n```\n\nCurrently supported model operations are.\n\n    save();\n    create();\n    remove();\n    count();\n    find();\n    findById();\n    findByIdAndRemove();\n    findByIdAndUpdate();\n    findOne();\n    findOneAndRemove();\n    findOneAndUpdate();\n    Update();\n\n##Operators\n\n* [$](http://docs.mongodb.org/manual/reference/operator/update/positional/)\n* [$addToSet](http://docs.mongodb.org/manual/reference/operator/update/addToSet/),\n* [$all](http://docs.mongodb.org/manual/reference/operator/query/all/),\n* [$and](http://docs.mongodb.org/manual/reference/operator/query/and/),\n* [$elemMatch](http://docs.mongodb.org/manual/reference/operator/projection/elemMatch/),\n* [$exists](http://docs.mongodb.org/manual/reference/operator/projection/exists/),\n* [$gt](http://docs.mongodb.org/manual/reference/operator/query/gt/),\n* [$gte](http://docs.mongodb.org/manual/reference/operator/query/gte/),\n* [$in](http://docs.mongodb.org/manual/reference/operator/query/in/),\n* [$inc](http://docs.mongodb.org/manual/reference/operator/update/inc/),\n* [$lt](http://docs.mongodb.org/manual/reference/operator/query/lt/),\n* [$lte](http://docs.mongodb.org/manual/reference/operator/query/lte/),\n* [$ne](http://docs.mongodb.org/manual/reference/operator/query/ne/),\n* [$nin](http://docs.mongodb.org/manual/reference/operator/query/nin/),\n* [$nor](http://docs.mongodb.org/manual/reference/operator/query/nor/),\n* [$not](http://docs.mongodb.org/manual/reference/operator/query/not/),\n* [$or](http://docs.mongodb.org/manual/reference/operator/query/or/),\n* [$pull](http://docs.mongodb.org/manual/reference/operator/update/pull/),\n* [$pullAll](http://docs.mongodb.org/manual/reference/operator/update/pullAll/),\n* [$push](http://docs.mongodb.org/manual/reference/operator/update/push/),\n* [$pushAll](http://docs.mongodb.org/manual/reference/operator/update/pushAll/),\n* [$regex](http://docs.mongodb.org/manual/reference/operator/query/regex/),\n* [$set](http://docs.mongodb.org/manual/reference/operator/update/set/),\n* [$unset](http://docs.mongodb.org/manual/reference/operator/update/unset/)\n\n##Options\n\n* multi   : 0/1 defaults to 0\n* upsert  : true/false defaults to false\n* sort    : one level of sorting for find operations {sort: {name:1}}\n* [skip](http://docs.mongodb.org/manual/reference/method/db.collection.find/#set-the-starting-point-of-the-result-set)\n* [limit](http://docs.mongodb.org/manual/reference/method/db.collection.find/#limit-the-number-of-documents-to-return)\n\n##Validators\nMockgoose includes support for validators and the unique field key.\n\nMockgoose comes with a reset() method that allows you to reset the Mockgoose database\nsimply call \n\n    mockgoose.reset() \n\nto delete all the collections and models in the database\nor call \n    \n    mockgoose.reset(\'schema name\')*\n\nto delete all the associated models for a schema.\n*schema names are case sensitive\n',
+279 silly resolved     _id: 'mockgoose@1.10.2',
+279 silly resolved     dist: { shasum: '51b27c10f50c3cfbe1a3367d9515e4c4a4eb3875' },
+279 silly resolved     _from: 'mockgoose@',
+279 silly resolved     _resolved: 'https://registry.npmjs.org/mockgoose/-/mockgoose-1.10.2.tgz' } ]
+280 info install mockgoose@1.10.2 into /usr/share/code/javascript/the-village/persons
+281 info installOne mockgoose@1.10.2
+282 verbose from cache /home/mjzitek/.npm/mockgoose/1.10.2/package/package.json
+283 info /usr/share/code/javascript/the-village/persons/node_modules/mockgoose unbuild
+284 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/mockgoose/package.json
+285 verbose tar unpack /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+286 silly lockFile 66dc902f-e-persons-node-modules-mockgoose /usr/share/code/javascript/the-village/persons/node_modules/mockgoose
+287 verbose lock /usr/share/code/javascript/the-village/persons/node_modules/mockgoose /home/mjzitek/.npm/66dc902f-e-persons-node-modules-mockgoose.lock
+288 silly lockFile 2ea06651-npm-mockgoose-1-10-2-package-tgz /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+289 verbose lock /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz /home/mjzitek/.npm/2ea06651-npm-mockgoose-1-10-2-package-tgz.lock
+290 silly gunzTarPerm modes [ '755', '644' ]
+291 silly gunzTarPerm extractEntry package.json
+292 silly gunzTarPerm extractEntry .npmignore
+293 silly gunzTarPerm extractEntry README.md
+294 silly gunzTarPerm extractEntry Gruntfile.js
+295 silly gunzTarPerm extractEntry Mockgoose.js
+296 silly gunzTarPerm extractEntry .jshintrc
+297 silly gunzTarPerm extractEntry .travis.yml
+298 silly gunzTarPerm extractEntry lib/Collection.js
+299 silly gunzTarPerm extractEntry lib/Logger.js
+300 silly gunzTarPerm extractEntry lib/Model.js
+301 silly gunzTarPerm extractEntry lib/db.js
+302 silly gunzTarPerm extractEntry lib/utils.js
+303 silly gunzTarPerm extractEntry lib/operations/AddToSetOperation.js
+304 silly gunzTarPerm extractEntry lib/operations/IncOperation.js
+305 silly gunzTarPerm extractEntry lib/operations/Operations.js
+306 silly gunzTarPerm extractEntry lib/operations/OptionsOperation.js
+307 silly gunzTarPerm extractEntry lib/operations/ExistsOperation.js
+308 silly gunzTarPerm extractEntry lib/operations/AllOperation.js
+309 silly gunzTarPerm extractEntry lib/operations/PushAllOperation.js
+310 silly gunzTarPerm extractEntry lib/operations/PushOperation.js
+311 silly gunzTarPerm extractEntry lib/operations/SetOperation.js
+312 silly gunzTarPerm extractEntry lib/operations/UnsetOperation.js
+313 silly gunzTarPerm extractEntry lib/operations/ElemMatchOperation.js
+314 silly gunzTarPerm extractEntry lib/operations/UpdatePositionalOperator.js
+315 silly gunzTarPerm extractEntry lib/operations/PullAllOperation.js
+316 silly gunzTarPerm extractEntry lib/operations/PullOperation.js
+317 silly gunzTarPerm extractEntry lib/operations/comparison/GreaterThanOperation.js
+318 silly gunzTarPerm extractEntry lib/operations/comparison/GreaterThanOrEqualOperation.js
+319 silly gunzTarPerm extractEntry lib/operations/comparison/InOperation.js
+320 silly gunzTarPerm extractEntry lib/operations/comparison/LessThanOperation.js
+321 silly gunzTarPerm extractEntry lib/operations/comparison/LessThanOrEqualOperation.js
+322 silly gunzTarPerm extractEntry lib/operations/comparison/NEOperation.js
+323 silly gunzTarPerm extractEntry lib/operations/comparison/NINOperation.js
+324 silly gunzTarPerm extractEntry lib/operations/evaluation/RegExpOperation.js
+325 silly gunzTarPerm extractEntry lib/operations/logical/AndOperation.js
+326 silly gunzTarPerm extractEntry lib/operations/logical/NorOperation.js
+327 silly gunzTarPerm extractEntry lib/operations/logical/NotOperation.js
+328 silly gunzTarPerm extractEntry lib/operations/logical/OrOperation.js
+329 silly gunzTarPerm extractEntry lib/options/Filter.js
+330 silly gunzTarPerm extractEntry lib/options/Limit.js
+331 silly gunzTarPerm extractEntry lib/options/Options.js
+332 silly gunzTarPerm extractEntry lib/options/Skip.js
+333 silly gunzTarPerm extractEntry lib/options/Sort.js
+334 silly gunzTarPerm extractEntry lib/validation/Validation.js
+335 silly gunzTarPerm extractEntry test/Connection.spec.js
+336 silly gunzTarPerm extractEntry test/Find.spec.js
+337 silly gunzTarPerm extractEntry test/NestedReferences.spec.js
+338 silly gunzTarPerm extractEntry test/Populate.spec.js
+339 silly gunzTarPerm extractEntry test/Query.spec.js
+340 silly gunzTarPerm extractEntry test/Remove.spec.js
+341 silly gunzTarPerm extractEntry test/Count.spec.js
+342 silly gunzTarPerm extractEntry test/Validation.spec.js
+343 silly gunzTarPerm extractEntry test/mockgoose.spec.js
+344 silly gunzTarPerm extractEntry test/index.spec.js
+345 silly gunzTarPerm extractEntry test/Update.spec.js
+346 silly gunzTarPerm extractEntry test/collection/Distinct.spec.js
+347 silly gunzTarPerm extractEntry test/models/AccountModel.js
+348 silly gunzTarPerm extractEntry test/models/ChildModel.js
+349 silly gunzTarPerm extractEntry test/models/IndexModel.js
+350 silly gunzTarPerm extractEntry test/models/ParentModel.js
+351 silly gunzTarPerm extractEntry test/models/SimpleModel.js
+352 silly gunzTarPerm extractEntry test/operations/AddToSetOperation.spec.js
+353 silly gunzTarPerm extractEntry test/operations/ElemMatchOperation.spec.js
+354 silly gunzTarPerm extractEntry test/operations/ExistsOperation.spec.js
+355 silly gunzTarPerm extractEntry test/operations/IncOperation.spec.js
+356 silly gunzTarPerm extractEntry test/operations/PositionalOperation.spec.js
+357 silly gunzTarPerm extractEntry test/operations/PullAllOperation.spec.js
+358 silly gunzTarPerm extractEntry test/operations/AllOperation.spec.js
+359 silly gunzTarPerm extractEntry test/operations/PushAllOperation.spec.js
+360 silly gunzTarPerm extractEntry test/operations/PushOperation.spec.js
+361 silly gunzTarPerm extractEntry test/operations/UnsetOperation.spec.js
+362 silly gunzTarPerm extractEntry test/operations/PullOperation.spec.js
+363 silly gunzTarPerm extractEntry test/operations/array/positional.spec.js
+364 silly gunzTarPerm extractEntry test/operations/comparison/GreaterThanOperation.spec.js
+365 silly gunzTarPerm extractEntry test/operations/comparison/GreaterThanOrEqualOperation.spec.js
+366 silly gunzTarPerm extractEntry test/operations/comparison/InOperation.spec.js
+367 silly gunzTarPerm extractEntry test/operations/comparison/LessThanOperation.spec.js
+368 silly gunzTarPerm extractEntry test/operations/comparison/LessThanOrEqualOperation.spec.js
+369 silly gunzTarPerm extractEntry test/operations/comparison/NEOperation.spec.js
+370 silly gunzTarPerm extractEntry test/operations/comparison/NINOperation.spec.js
+371 silly gunzTarPerm extractEntry test/operations/evaluation/RegExpOperation.spec.js
+372 silly gunzTarPerm extractEntry test/operations/logical/AndOperation.spec.js
+373 silly gunzTarPerm extractEntry test/operations/logical/NorOperation.spec.js
+374 silly gunzTarPerm extractEntry test/operations/logical/NotOperation.spec.js
+375 silly gunzTarPerm extractEntry test/operations/logical/OrOperation.spec.js
+376 silly gunzTarPerm extractEntry test/options/Limit.spec.js
+377 silly gunzTarPerm extractEntry test/options/Skip.spec.js
+378 silly gunzTarPerm extractEntry test/options/Sort.spec.js
+379 silly gunzTarPerm extractEntry twittershare.png
+380 verbose read json /usr/share/code/javascript/the-village/persons/node_modules/mockgoose/package.json
+381 silly lockFile 66dc902f-e-persons-node-modules-mockgoose /usr/share/code/javascript/the-village/persons/node_modules/mockgoose
+382 silly lockFile 66dc902f-e-persons-node-modules-mockgoose /usr/share/code/javascript/the-village/persons/node_modules/mockgoose
+383 silly lockFile 2ea06651-npm-mockgoose-1-10-2-package-tgz /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+384 silly lockFile 2ea06651-npm-mockgoose-1-10-2-package-tgz /home/mjzitek/.npm/mockgoose/1.10.2/package.tgz
+385 info preinstall mockgoose@1.10.2
+386 verbose from cache /usr/share/code/javascript/the-village/persons/node_modules/mockgoose/package.json
+387 verbose readDependencies using package.json deps
+388 verbose from cache /usr/share/code/javascript/the-village/persons/node_modules/mockgoose/package.json
+389 verbose readDependencies using package.json deps
+390 verbose cache add [ 'mongodb@~1.3.19', null ]
+391 verbose cache add name=undefined spec="mongodb@~1.3.19" args=["mongodb@~1.3.19",null]
+392 verbose parsed url { protocol: null,
+392 verbose parsed url   slashes: null,
+392 verbose parsed url   auth: null,
+392 verbose parsed url   host: null,
+392 verbose parsed url   port: null,
+392 verbose parsed url   hostname: null,
+392 verbose parsed url   hash: null,
+392 verbose parsed url   search: null,
+392 verbose parsed url   query: null,
+392 verbose parsed url   pathname: 'mongodb@~1.3.19',
+392 verbose parsed url   path: 'mongodb@~1.3.19',
+392 verbose parsed url   href: 'mongodb@~1.3.19' }
+393 verbose cache add name="mongodb" spec="~1.3.19" args=["mongodb","~1.3.19"]
+394 verbose parsed url { protocol: null,
+394 verbose parsed url   slashes: null,
+394 verbose parsed url   auth: null,
+394 verbose parsed url   host: null,
+394 verbose parsed url   port: null,
+394 verbose parsed url   hostname: null,
+394 verbose parsed url   hash: null,
+394 verbose parsed url   search: null,
+394 verbose parsed url   query: null,
+394 verbose parsed url   pathname: '~1.3.19',
+394 verbose parsed url   path: '~1.3.19',
+394 verbose parsed url   href: '~1.3.19' }
+395 verbose addNamed [ 'mongodb', '~1.3.19' ]
+396 verbose addNamed [ null, '>=1.3.19- <1.4.0-' ]
+397 silly lockFile dfbec363-mongodb-1-3-19 mongodb@~1.3.19
+398 verbose lock mongodb@~1.3.19 /home/mjzitek/.npm/dfbec363-mongodb-1-3-19.lock
+399 verbose cache add [ 'bunyan@~0.22.1', null ]
+400 verbose cache add name=undefined spec="bunyan@~0.22.1" args=["bunyan@~0.22.1",null]
+401 verbose parsed url { protocol: null,
+401 verbose parsed url   slashes: null,
+401 verbose parsed url   auth: null,
+401 verbose parsed url   host: null,
+401 verbose parsed url   port: null,
+401 verbose parsed url   hostname: null,
+401 verbose parsed url   hash: null,
+401 verbose parsed url   search: null,
+401 verbose parsed url   query: null,
+401 verbose parsed url   pathname: 'bunyan@~0.22.1',
+401 verbose parsed url   path: 'bunyan@~0.22.1',
+401 verbose parsed url   href: 'bunyan@~0.22.1' }
+402 verbose cache add name="bunyan" spec="~0.22.1" args=["bunyan","~0.22.1"]
+403 verbose parsed url { protocol: null,
+403 verbose parsed url   slashes: null,
+403 verbose parsed url   auth: null,
+403 verbose parsed url   host: null,
+403 verbose parsed url   port: null,
+403 verbose parsed url   hostname: null,
+403 verbose parsed url   hash: null,
+403 verbose parsed url   search: null,
+403 verbose parsed url   query: null,
+403 verbose parsed url   pathname: '~0.22.1',
+403 verbose parsed url   path: '~0.22.1',
+403 verbose parsed url   href: '~0.22.1' }
+404 verbose addNamed [ 'bunyan', '~0.22.1' ]
+405 verbose addNamed [ null, '>=0.22.1- <0.23.0-' ]
+406 silly lockFile afe3c512-bunyan-0-22-1 bunyan@~0.22.1
+407 verbose lock bunyan@~0.22.1 /home/mjzitek/.npm/afe3c512-bunyan-0-22-1.lock
+408 verbose cache add [ 'mongoose@^3.8.9', null ]
+409 verbose cache add name=undefined spec="mongoose@^3.8.9" args=["mongoose@^3.8.9",null]
+410 verbose parsed url { protocol: null,
+410 verbose parsed url   slashes: null,
+410 verbose parsed url   auth: null,
+410 verbose parsed url   host: null,
+410 verbose parsed url   port: null,
+410 verbose parsed url   hostname: null,
+410 verbose parsed url   hash: null,
+410 verbose parsed url   search: null,
+410 verbose parsed url   query: null,
+410 verbose parsed url   pathname: 'mongoose@%5E3.8.9',
+410 verbose parsed url   path: 'mongoose@%5E3.8.9',
+410 verbose parsed url   href: 'mongoose@%5E3.8.9' }
+411 verbose cache add name="mongoose" spec="^3.8.9" args=["mongoose","^3.8.9"]
+412 verbose parsed url { protocol: null,
+412 verbose parsed url   slashes: null,
+412 verbose parsed url   auth: null,
+412 verbose parsed url   host: null,
+412 verbose parsed url   port: null,
+412 verbose parsed url   hostname: null,
+412 verbose parsed url   hash: null,
+412 verbose parsed url   search: null,
+412 verbose parsed url   query: null,
+412 verbose parsed url   pathname: '%5E3.8.9',
+412 verbose parsed url   path: '%5E3.8.9',
+412 verbose parsed url   href: '%5E3.8.9' }
+413 verbose addNamed [ 'mongoose', '^3.8.9' ]
+414 verbose addNamed [ null, null ]
+415 silly lockFile c3d822b3-mongoose-3-8-9 mongoose@^3.8.9
+416 verbose lock mongoose@^3.8.9 /home/mjzitek/.npm/c3d822b3-mongoose-3-8-9.lock
+417 verbose cache add [ 'mongoosemask@https://github.com/mccormicka/mongoosemask/archive/master.tar.gz',
+417 verbose cache add   null ]
+418 verbose cache add name=undefined spec="mongoosemask@https://github.com/mccormicka/mongoosemask/archive/master.tar.gz" args=["mongoosemask@https://github.com/mccormicka/mongoosemask/archive/master.tar.gz",null]
+419 verbose parsed url { protocol: null,
+419 verbose parsed url   slashes: null,
+419 verbose parsed url   auth: null,
+419 verbose parsed url   host: null,
+419 verbose parsed url   port: null,
+419 verbose parsed url   hostname: null,
+419 verbose parsed url   hash: null,
+419 verbose parsed url   search: null,
+419 verbose parsed url   query: null,
+419 verbose parsed url   pathname: 'mongoosemask@https://github.com/mccormicka/mongoosemask/archive/master.tar.gz',
+419 verbose parsed url   path: 'mongoosemask@https://github.com/mccormicka/mongoosemask/archive/master.tar.gz',
+419 verbose parsed url   href: 'mongoosemask@https://github.com/mccormicka/mongoosemask/archive/master.tar.gz' }
+420 verbose cache add name="mongoosemask" spec="https://github.com/mccormicka/mongoosemask/archive/master.tar.gz" args=["mongoosemask","https://github.com/mccormicka/mongoosemask/archive/master.tar.gz"]
+421 verbose parsed url { protocol: 'https:',
+421 verbose parsed url   slashes: true,
+421 verbose parsed url   auth: null,
+421 verbose parsed url   host: 'github.com',
+421 verbose parsed url   port: null,
+421 verbose parsed url   hostname: 'github.com',
+421 verbose parsed url   hash: null,
+421 verbose parsed url   search: null,
+421 verbose parsed url   query: null,
+421 verbose parsed url   pathname: '/mccormicka/mongoosemask/archive/master.tar.gz',
+421 verbose parsed url   path: '/mccormicka/mongoosemask/archive/master.tar.gz',
+421 verbose parsed url   href: 'https://github.com/mccormicka/mongoosemask/archive/master.tar.gz' }
+422 silly lockFile ae155806-ngoosemask-archive-master-tar-gz https://github.com/mccormicka/mongoosemask/archive/master.tar.gz
+423 verbose lock https://github.com/mccormicka/mongoosemask/archive/master.tar.gz /home/mjzitek/.npm/ae155806-ngoosemask-archive-master-tar-gz.lock
+424 verbose cache add [ 'lodash@~2.1.0', null ]
+425 verbose cache add name=undefined spec="lodash@~2.1.0" args=["lodash@~2.1.0",null]
+426 verbose parsed url { protocol: null,
+426 verbose parsed url   slashes: null,
+426 verbose parsed url   auth: null,
+426 verbose parsed url   host: null,
+426 verbose parsed url   port: null,
+426 verbose parsed url   hostname: null,
+426 verbose parsed url   hash: null,
+426 verbose parsed url   search: null,
+426 verbose parsed url   query: null,
+426 verbose parsed url   pathname: 'lodash@~2.1.0',
+426 verbose parsed url   path: 'lodash@~2.1.0',
+426 verbose parsed url   href: 'lodash@~2.1.0' }
+427 verbose cache add name="lodash" spec="~2.1.0" args=["lodash","~2.1.0"]
+428 verbose parsed url { protocol: null,
+428 verbose parsed url   slashes: null,
+428 verbose parsed url   auth: null,
+428 verbose parsed url   host: null,
+428 verbose parsed url   port: null,
+428 verbose parsed url   hostname: null,
+428 verbose parsed url   hash: null,
+428 verbose parsed url   search: null,
+428 verbose parsed url   query: null,
+428 verbose parsed url   pathname: '~2.1.0',
+428 verbose parsed url   path: '~2.1.0',
+428 verbose parsed url   href: '~2.1.0' }
+429 verbose addNamed [ 'lodash', '~2.1.0' ]
+430 verbose addNamed [ null, '>=2.1.0- <2.2.0-' ]
+431 silly lockFile bf0db6e7-lodash-2-1-0 lodash@~2.1.0
+432 verbose lock lodash@~2.1.0 /home/mjzitek/.npm/bf0db6e7-lodash-2-1-0.lock
+433 silly addNameRange { name: 'mongodb', range: '>=1.3.19- <1.4.0-', hasData: false }
+434 silly addNameRange { name: 'bunyan', range: '>=0.22.1- <0.23.0-', hasData: false }
+435 info addNameTag [ 'mongoose', '^3.8.9' ]
+436 verbose addRemoteTarball [ 'https://github.com/mccormicka/mongoosemask/archive/master.tar.gz',
+436 verbose addRemoteTarball   null ]
+437 silly addNameRange { name: 'lodash', range: '>=2.1.0- <2.2.0-', hasData: false }
+438 info retry fetch attempt 1 at 13:34:22
+439 verbose fetch to= /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/tmp.tgz
+440 http GET https://github.com/mccormicka/mongoosemask/archive/master.tar.gz
+441 verbose url raw bunyan
+442 verbose url resolving [ 'https://registry.npmjs.org/', './bunyan' ]
+443 verbose url resolved https://registry.npmjs.org/bunyan
+444 info trying registry request attempt 1 at 13:34:22
+445 verbose etag "9VCANO1MHC4CTARG4N5F992EF"
+446 http GET https://registry.npmjs.org/bunyan
+447 verbose url raw mongodb
+448 verbose url resolving [ 'https://registry.npmjs.org/', './mongodb' ]
+449 verbose url resolved https://registry.npmjs.org/mongodb
+450 info trying registry request attempt 1 at 13:34:22
+451 verbose etag "BV6MM3YG72WCKHYNFTUAH2QRK"
+452 http GET https://registry.npmjs.org/mongodb
+453 verbose url raw mongoose
+454 verbose url resolving [ 'https://registry.npmjs.org/', './mongoose' ]
+455 verbose url resolved https://registry.npmjs.org/mongoose
+456 info trying registry request attempt 1 at 13:34:23
+457 verbose etag "3EGTL37H66DNF4J0VO9GAZYVA"
+458 http GET https://registry.npmjs.org/mongoose
+459 verbose url raw lodash
+460 verbose url resolving [ 'https://registry.npmjs.org/', './lodash' ]
+461 verbose url resolved https://registry.npmjs.org/lodash
+462 info trying registry request attempt 1 at 13:34:23
+463 verbose etag "ERSK8I5R7NUIWHJHTZYYRVNEP"
+464 http GET https://registry.npmjs.org/lodash
+465 http 200 https://registry.npmjs.org/bunyan
+466 silly registry.get cb [ 200,
+466 silly registry.get   { date: 'Fri, 01 Aug 2014 20:34:30 GMT',
+466 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+466 silly registry.get     etag: '"9VRCFGCXKM1VQG1TLBV880SQU"',
+466 silly registry.get     'content-type': 'application/json',
+466 silly registry.get     'cache-control': 'max-age=60',
+466 silly registry.get     'content-length': '120044',
+466 silly registry.get     'accept-ranges': 'bytes',
+466 silly registry.get     via: '1.1 varnish',
+466 silly registry.get     'x-served-by': 'cache-lax1433-LAX',
+466 silly registry.get     'x-cache': 'MISS',
+466 silly registry.get     'x-cache-hits': '0',
+466 silly registry.get     'x-timer': 'S1406925270.072670,VS0,VE113',
+466 silly registry.get     vary: 'Accept',
+466 silly registry.get     'keep-alive': 'timeout=10, max=50',
+466 silly registry.get     connection: 'Keep-Alive' } ]
+467 silly addNameRange number 2 { name: 'bunyan', range: '>=0.22.1- <0.23.0-', hasData: true }
+468 silly addNameRange versions [ 'bunyan',
+468 silly addNameRange   [ '0.1.0',
+468 silly addNameRange     '0.2.0',
+468 silly addNameRange     '0.3.0',
+468 silly addNameRange     '0.4.0',
+468 silly addNameRange     '0.5.0',
+468 silly addNameRange     '0.5.1',
+468 silly addNameRange     '0.5.2',
+468 silly addNameRange     '0.5.3',
+468 silly addNameRange     '0.6.0',
+468 silly addNameRange     '0.6.1',
+468 silly addNameRange     '0.6.2',
+468 silly addNameRange     '0.6.3',
+468 silly addNameRange     '0.6.4',
+468 silly addNameRange     '0.6.5',
+468 silly addNameRange     '0.6.6',
+468 silly addNameRange     '0.6.7',
+468 silly addNameRange     '0.6.8',
+468 silly addNameRange     '0.6.9',
+468 silly addNameRange     '0.7.0',
+468 silly addNameRange     '0.8.0',
+468 silly addNameRange     '0.9.0',
+468 silly addNameRange     '0.10.0',
+468 silly addNameRange     '0.11.0',
+468 silly addNameRange     '0.11.2',
+468 silly addNameRange     '0.11.3',
+468 silly addNameRange     '0.12.0',
+468 silly addNameRange     '0.13.0',
+468 silly addNameRange     '0.13.1',
+468 silly addNameRange     '0.13.2',
+468 silly addNameRange     '0.13.3',
+468 silly addNameRange     '0.13.4',
+468 silly addNameRange     '0.13.5',
+468 silly addNameRange     '0.14.0',
+468 silly addNameRange     '0.14.1',
+468 silly addNameRange     '0.14.2',
+468 silly addNameRange     '0.14.4',
+468 silly addNameRange     '0.14.5',
+468 silly addNameRange     '0.14.6',
+468 silly addNameRange     '0.15.0',
+468 silly addNameRange     '0.16.0',
+468 silly addNameRange     '0.16.1',
+468 silly addNameRange     '0.16.2',
+468 silly addNameRange     '0.16.3',
+468 silly addNameRange     '0.16.4',
+468 silly addNameRange     '0.16.5',
+468 silly addNameRange     '0.16.6',
+468 silly addNameRange     '0.16.7',
+468 silly addNameRange     '0.16.8',
+468 silly addNameRange     '0.17.0',
+468 silly addNameRange     '0.18.0',
+468 silly addNameRange     '0.18.1',
+468 silly addNameRange     '0.18.2',
+468 silly addNameRange     '0.18.3',
+468 silly addNameRange     '0.19.0',
+468 silly addNameRange     '0.20.0',
+468 silly addNameRange     '0.21.0',
+468 silly addNameRange     '0.21.1',
+468 silly addNameRange     '0.21.2',
+468 silly addNameRange     '0.21.3',
+468 silly addNameRange     '0.21.4',
+468 silly addNameRange     '0.22.0',
+468 silly addNameRange     '0.22.1',
+468 silly addNameRange     '0.22.2',
+468 silly addNameRange     '0.22.3',
+468 silly addNameRange     '0.23.0',
+468 silly addNameRange     '0.23.1' ] ]
+469 verbose addNamed [ 'bunyan', '0.22.3' ]
+470 verbose addNamed [ '0.22.3', '0.22.3' ]
+471 silly lockFile 70281d94-bunyan-0-22-3 bunyan@0.22.3
+472 verbose lock bunyan@0.22.3 /home/mjzitek/.npm/70281d94-bunyan-0-22-3.lock
+473 http 200 https://registry.npmjs.org/mongodb
+474 silly registry.get cb [ 200,
+474 silly registry.get   { date: 'Fri, 01 Aug 2014 20:34:30 GMT',
+474 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+474 silly registry.get     etag: '"5YKDQLLFV9BGE1KZFIR9JRAMM"',
+474 silly registry.get     'content-type': 'application/json',
+474 silly registry.get     'cache-control': 'max-age=60',
+474 silly registry.get     'content-length': '341775',
+474 silly registry.get     'accept-ranges': 'bytes',
+474 silly registry.get     via: '1.1 varnish',
+474 silly registry.get     'x-served-by': 'cache-sjc3129-SJC',
+474 silly registry.get     'x-cache': 'MISS',
+474 silly registry.get     'x-cache-hits': '0',
+474 silly registry.get     'x-timer': 'S1406925270.098175,VS0,VE108',
+474 silly registry.get     vary: 'Accept',
+474 silly registry.get     'keep-alive': 'timeout=10, max=50',
+474 silly registry.get     connection: 'Keep-Alive' } ]
+475 verbose read json /home/mjzitek/.npm/bunyan/0.22.3/package/package.json
+476 silly addNameRange number 2 { name: 'mongodb', range: '>=1.3.19- <1.4.0-', hasData: true }
+477 silly addNameRange versions [ 'mongodb',
+477 silly addNameRange   [ '0.9.4',
+477 silly addNameRange     '0.9.4-4',
+477 silly addNameRange     '0.9.3',
+477 silly addNameRange     '0.9.1',
+477 silly addNameRange     '0.9.2',
+477 silly addNameRange     '0.9.6-7',
+477 silly addNameRange     '0.9.6-8',
+477 silly addNameRange     '0.9.6-9',
+477 silly addNameRange     '0.9.6-10',
+477 silly addNameRange     '0.9.6-11',
+477 silly addNameRange     '0.9.6-12',
+477 silly addNameRange     '0.9.6-13',
+477 silly addNameRange     '0.9.6-14',
+477 silly addNameRange     '0.9.6-15',
+477 silly addNameRange     '0.9.6-16',
+477 silly addNameRange     '0.9.6-17',
+477 silly addNameRange     '0.9.6-18',
+477 silly addNameRange     '0.9.6-19',
+477 silly addNameRange     '0.9.6-20',
+477 silly addNameRange     '0.9.6-21',
+477 silly addNameRange     '0.9.6-22',
+477 silly addNameRange     '0.9.6-23',
+477 silly addNameRange     '0.9.7',
+477 silly addNameRange     '0.9.7-0',
+477 silly addNameRange     '0.9.7-1',
+477 silly addNameRange     '0.9.7-1.1',
+477 silly addNameRange     '0.9.7-1.2',
+477 silly addNameRange     '0.9.7-1.3',
+477 silly addNameRange     '0.9.7-1.4',
+477 silly addNameRange     '0.9.7-2',
+477 silly addNameRange     '0.9.7-2-1',
+477 silly addNameRange     '0.9.7-2-2',
+477 silly addNameRange     '0.9.7-2-3',
+477 silly addNameRange     '0.9.7-2-4',
+477 silly addNameRange     '0.9.7-2-5',
+477 silly addNameRange     '0.9.7-3',
+477 silly addNameRange     '0.9.7-3-1',
+477 silly addNameRange     '0.9.7-3-2',
+477 silly addNameRange     '0.9.7-3-3',
+477 silly addNameRange     '0.9.7-3-4',
+477 silly addNameRange     '0.9.7-3-5',
+477 silly addNameRange     '0.9.8',
+477 silly addNameRange     '0.9.8-1',
+477 silly addNameRange     '0.9.8-2',
+477 silly addNameRange     '0.9.8-3',
+477 silly addNameRange     '0.9.8-4',
+477 silly addNameRange     '0.9.8-5',
+477 silly addNameRange     '0.9.8-6',
+477 silly addNameRange     '0.9.8-7',
+477 silly addNameRange     '0.9.9',
+477 silly addNameRange     '0.9.9-1',
+477 silly addNameRange     '0.9.9-2',
+477 silly addNameRange     '0.9.9-3',
+477 silly addNameRange     '0.9.9-4',
+477 silly addNameRange     '0.9.9-5',
+477 silly addNameRange     '0.9.9-6',
+477 silly addNameRange     '0.9.9-7',
+477 silly addNameRange     '0.9.9-8',
+477 silly addNameRange     '1.0.0',
+477 silly addNameRange     '1.0.1',
+477 silly addNameRange     '1.0.2',
+477 silly addNameRange     '1.1.0-beta',
+477 silly addNameRange     '1.1.0',
+477 silly addNameRange     '1.1.1',
+477 silly addNameRange     '1.1.2',
+477 silly addNameRange     '1.1.3',
+477 silly addNameRange     '1.1.4',
+477 silly addNameRange     '1.1.5',
+477 silly addNameRange     '1.1.6',
+477 silly addNameRange     '1.1.7',
+477 silly addNameRange     '1.1.8',
+477 silly addNameRange     '1.1.9',
+477 silly addNameRange     '1.1.10',
+477 silly addNameRange     '1.1.11',
+477 silly addNameRange     '1.2.0',
+477 silly addNameRange     '1.2.1',
+477 silly addNameRange     '1.2.2',
+477 silly addNameRange     '1.2.3',
+477 silly addNameRange     '1.2.4',
+477 silly addNameRange     '1.2.5',
+477 silly addNameRange     '1.2.6',
+477 silly addNameRange     '1.2.7',
+477 silly addNameRange     '1.2.8',
+477 silly addNameRange     '1.2.9',
+477 silly addNameRange     '1.2.10',
+477 silly addNameRange     '1.2.11',
+477 silly addNameRange     '1.2.12',
+477 silly addNameRange     '1.2.13',
+477 silly addNameRange     '1.2.14',
+477 silly addNameRange     '1.3.0',
+477 silly addNameRange     '1.3.1',
+477 silly addNameRange     '1.3.2',
+477 silly addNameRange     '1.3.3',
+477 silly addNameRange     '1.3.4',
+477 silly addNameRange     '1.3.5',
+477 silly addNameRange     '1.3.6',
+477 silly addNameRange     '1.3.7',
+477 silly addNameRange     '1.3.8',
+477 silly addNameRange     '1.3.9',
+477 silly addNameRange     '1.3.10',
+477 silly addNameRange     '1.3.11',
+477 silly addNameRange     '1.3.12',
+477 silly addNameRange     '1.3.14',
+477 silly addNameRange     '1.3.15',
+477 silly addNameRange     '1.3.17',
+477 silly addNameRange     '1.3.18',
+477 silly addNameRange     '1.3.19',
+477 silly addNameRange     '1.4.0-rc2',
+477 silly addNameRange     '1.3.20',
+477 silly addNameRange     '1.4.0-rc3',
+477 silly addNameRange     '1.3.21',
+477 silly addNameRange     '1.3.22',
+477 silly addNameRange     '1.3.23',
+477 silly addNameRange     '1.4.0-rc4',
+477 silly addNameRange     '1.4.0-rc5',
+477 silly addNameRange     '1.4.0-rc6',
+477 silly addNameRange     '1.4.0-rc7',
+477 silly addNameRange     '1.4.0-rc8',
+477 silly addNameRange     '1.4.0-rc9',
+477 silly addNameRange     '1.4.0-rc10',
+477 silly addNameRange     '1.4.0',
+477 silly addNameRange     '1.4.1',
+477 silly addNameRange     '1.4.2',
+477 silly addNameRange     '1.4.3',
+477 silly addNameRange     '1.4.4',
+477 silly addNameRange     '1.4.5',
+477 silly addNameRange     '1.4.6',
+477 silly addNameRange     '1.4.7',
+477 silly addNameRange     '1.4.8' ] ]
+478 verbose addNamed [ 'mongodb', '1.3.23' ]
+479 verbose addNamed [ '1.3.23', '1.3.23' ]
+480 silly lockFile 130bb479-mongodb-1-3-23 mongodb@1.3.23
+481 verbose lock mongodb@1.3.23 /home/mjzitek/.npm/130bb479-mongodb-1-3-23.lock
+482 silly lockFile 70281d94-bunyan-0-22-3 bunyan@0.22.3
+483 silly lockFile 70281d94-bunyan-0-22-3 bunyan@0.22.3
+484 silly lockFile afe3c512-bunyan-0-22-1 bunyan@~0.22.1
+485 silly lockFile afe3c512-bunyan-0-22-1 bunyan@~0.22.1
+486 verbose read json /home/mjzitek/.npm/mongodb/1.3.23/package/package.json
+487 silly lockFile 130bb479-mongodb-1-3-23 mongodb@1.3.23
+488 silly lockFile 130bb479-mongodb-1-3-23 mongodb@1.3.23
+489 silly lockFile dfbec363-mongodb-1-3-19 mongodb@~1.3.19
+490 silly lockFile dfbec363-mongodb-1-3-19 mongodb@~1.3.19
+491 http 200 https://github.com/mccormicka/mongoosemask/archive/master.tar.gz
+492 verbose tar unpack /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/tmp.tgz
+493 silly lockFile 79cae5c1-62792-0-4433168121613562-package /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/package
+494 verbose lock /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/package /home/mjzitek/.npm/79cae5c1-62792-0-4433168121613562-package.lock
+495 silly lockFile c8c6eea1-62792-0-4433168121613562-tmp-tgz /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/tmp.tgz
+496 verbose lock /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/tmp.tgz /home/mjzitek/.npm/c8c6eea1-62792-0-4433168121613562-tmp-tgz.lock
+497 silly gunzTarPerm modes [ '755', '644' ]
+498 silly gunzTarPerm extractEntry
+499 silly gunzTarPerm modified mode [ '', 509, 493 ]
+500 silly gunzTarPerm extractEntry .DS_Store
+501 silly gunzTarPerm modified mode [ '.DS_Store', 436, 420 ]
+502 silly gunzTarPerm extractEntry .gitignore
+503 silly gunzTarPerm modified mode [ '.gitignore', 436, 420 ]
+504 silly gunzTarPerm extractEntry .jshintrc
+505 silly gunzTarPerm modified mode [ '.jshintrc', 436, 420 ]
+506 silly gunzTarPerm extractEntry Gruntfile.js
+507 silly gunzTarPerm modified mode [ 'Gruntfile.js', 436, 420 ]
+508 silly gunzTarPerm extractEntry README.md
+509 silly gunzTarPerm modified mode [ 'README.md', 436, 420 ]
+510 silly gunzTarPerm extractEntry index.js
+511 silly gunzTarPerm modified mode [ 'index.js', 436, 420 ]
+512 silly gunzTarPerm extractEntry package.json
+513 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+514 silly gunzTarPerm extractEntry test/
+515 silly gunzTarPerm modified mode [ 'test/', 509, 493 ]
+516 silly gunzTarPerm extractEntry test/Index.spec.js
+517 silly gunzTarPerm modified mode [ 'test/Index.spec.js', 436, 420 ]
+518 silly gunzTarPerm extractEntry test/Model.js
+519 silly gunzTarPerm modified mode [ 'test/Model.js', 436, 420 ]
+520 http 200 https://registry.npmjs.org/lodash
+521 silly registry.get cb [ 200,
+521 silly registry.get   { date: 'Fri, 01 Aug 2014 20:34:30 GMT',
+521 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+521 silly registry.get     etag: '"ADXNN9HCRGOG3UMHC6B2UA1KE"',
+521 silly registry.get     'content-type': 'application/json',
+521 silly registry.get     'cache-control': 'max-age=60',
+521 silly registry.get     'content-length': '72132',
+521 silly registry.get     'accept-ranges': 'bytes',
+521 silly registry.get     via: '1.1 varnish',
+521 silly registry.get     'x-served-by': 'cache-ord1727-ORD',
+521 silly registry.get     'x-cache': 'MISS',
+521 silly registry.get     'x-cache-hits': '0',
+521 silly registry.get     'x-timer': 'S1406925270.333889,VS0,VE182',
+521 silly registry.get     vary: 'Accept',
+521 silly registry.get     'keep-alive': 'timeout=10, max=50',
+521 silly registry.get     connection: 'Keep-Alive' } ]
+522 silly gunzTarPerm extractEntry test/ModelNested.js
+523 silly gunzTarPerm modified mode [ 'test/ModelNested.js', 436, 420 ]
+524 silly addNameRange number 2 { name: 'lodash', range: '>=2.1.0- <2.2.0-', hasData: true }
+525 silly addNameRange versions [ 'lodash',
+525 silly addNameRange   [ '0.1.0',
+525 silly addNameRange     '0.2.0',
+525 silly addNameRange     '0.2.1',
+525 silly addNameRange     '0.2.2',
+525 silly addNameRange     '0.3.0',
+525 silly addNameRange     '0.3.1',
+525 silly addNameRange     '0.3.2',
+525 silly addNameRange     '0.4.0',
+525 silly addNameRange     '0.4.1',
+525 silly addNameRange     '0.4.2',
+525 silly addNameRange     '0.5.0-rc.1',
+525 silly addNameRange     '0.5.0',
+525 silly addNameRange     '0.5.1',
+525 silly addNameRange     '0.5.2',
+525 silly addNameRange     '0.6.0',
+525 silly addNameRange     '0.6.1',
+525 silly addNameRange     '0.7.0',
+525 silly addNameRange     '0.8.0',
+525 silly addNameRange     '0.8.1',
+525 silly addNameRange     '0.8.2',
+525 silly addNameRange     '0.9.0',
+525 silly addNameRange     '0.9.1',
+525 silly addNameRange     '0.9.2',
+525 silly addNameRange     '0.10.0',
+525 silly addNameRange     '1.0.0-rc.1',
+525 silly addNameRange     '1.0.0-rc.2',
+525 silly addNameRange     '1.0.0-rc.3',
+525 silly addNameRange     '1.0.0',
+525 silly addNameRange     '1.0.1',
+525 silly addNameRange     '1.1.0',
+525 silly addNameRange     '1.1.1',
+525 silly addNameRange     '1.2.0',
+525 silly addNameRange     '1.2.1',
+525 silly addNameRange     '1.3.0',
+525 silly addNameRange     '1.3.1',
+525 silly addNameRange     '2.0.0',
+525 silly addNameRange     '2.1.0',
+525 silly addNameRange     '2.2.0',
+525 silly addNameRange     '2.2.1',
+525 silly addNameRange     '2.3.0',
+525 silly addNameRange     '2.4.0',
+525 silly addNameRange     '2.4.1' ] ]
+526 verbose addNamed [ 'lodash', '2.1.0' ]
+527 verbose addNamed [ '2.1.0', '2.1.0' ]
+528 silly lockFile 3e1bc879-lodash-2-1-0 lodash@2.1.0
+529 verbose lock lodash@2.1.0 /home/mjzitek/.npm/3e1bc879-lodash-2-1-0.lock
+530 http 200 https://registry.npmjs.org/mongoose
+531 silly registry.get cb [ 200,
+531 silly registry.get   { date: 'Fri, 01 Aug 2014 20:34:30 GMT',
+531 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+531 silly registry.get     etag: '"AIRQ5WONL2BETXXFJM52N6RK5"',
+531 silly registry.get     'content-type': 'application/json',
+531 silly registry.get     'cache-control': 'max-age=60',
+531 silly registry.get     'content-length': '259682',
+531 silly registry.get     'accept-ranges': 'bytes',
+531 silly registry.get     via: '1.1 varnish',
+531 silly registry.get     'x-served-by': 'cache-lax1429-LAX',
+531 silly registry.get     'x-cache': 'MISS',
+531 silly registry.get     'x-cache-hits': '0',
+531 silly registry.get     'x-timer': 'S1406925270.093128,VS0,VE355',
+531 silly registry.get     vary: 'Accept',
+531 silly registry.get     'keep-alive': 'timeout=10, max=50',
+531 silly registry.get     connection: 'Keep-Alive' } ]
+532 verbose read json /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/package/package.json
+533 silly lockFile c3d822b3-mongoose-3-8-9 mongoose@^3.8.9
+534 silly lockFile c3d822b3-mongoose-3-8-9 mongoose@^3.8.9
+535 verbose about to build /usr/share/code/javascript/the-village/persons/node_modules/mockgoose
+536 info /usr/share/code/javascript/the-village/persons/node_modules/mockgoose unbuild
+537 verbose from cache /usr/share/code/javascript/the-village/persons/node_modules/mockgoose/package.json
+538 info preuninstall mockgoose@1.10.2
+539 verbose read json /home/mjzitek/.npm/lodash/2.1.0/package/package.json
+540 info uninstall mockgoose@1.10.2
+541 verbose true,/usr/share/code/javascript/the-village/persons/node_modules,/usr/share/code/javascript/the-village/persons/node_modules unbuild mockgoose@1.10.2
+542 info postuninstall mockgoose@1.10.2
+543 silly lockFile 79cae5c1-62792-0-4433168121613562-package /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/package
+544 silly lockFile 79cae5c1-62792-0-4433168121613562-package /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/package
+545 silly lockFile c8c6eea1-62792-0-4433168121613562-tmp-tgz /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/tmp.tgz
+546 silly lockFile c8c6eea1-62792-0-4433168121613562-tmp-tgz /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/tmp.tgz
+547 verbose from cache /home/mjzitek/tmp/npm-28301/1406925262792-0.4433168121613562/package/package.json
+548 error Error: No compatible version found: mongoose@'^3.8.9'
+548 error Valid install targets:
+548 error ["0.0.1","0.0.2","0.0.3","0.0.4","0.0.5","1.0.0","1.0.1","1.0.2","0.0.6","1.0.3","1.0.4","1.0.5","1.0.6","1.0.7","1.0.8","1.0.10","1.0.11","1.0.12","1.0.13","1.0.14","1.0.15","1.0.16","1.1.0","1.1.1","1.1.2","1.1.3","1.1.4","1.1.5","1.1.6","1.1.7","1.1.8","1.1.9","1.1.10","1.1.11","1.1.12","1.1.13","1.1.14","1.1.15","1.1.16","1.1.17","1.1.18","1.1.19","1.1.20","1.1.21","1.1.22","1.1.23","1.1.24","1.1.25","1.2.0","1.3.0","1.3.1","1.3.2","1.3.3","1.3.4","1.3.5","1.3.6","1.3.7","1.4.0","1.5.0","1.6.0","1.7.2","1.7.3","1.7.4","1.8.0","1.8.1","1.8.2","1.8.3","1.8.4","2.0.0","2.0.1","2.0.2","2.0.3","2.0.4","2.1.0","2.1.1","2.1.2","2.1.3","2.1.4","2.2.0","2.2.1","2.2.2","2.2.3","2.2.4","2.3.0","2.3.1","2.3.2","2.3.3","2.3.4","2.3.5","2.3.6","2.3.7","2.3.8","2.3.9","2.3.10","2.3.11","2.3.12","2.3.13","2.4.0","2.4.1","2.4.2","2.4.3","2.4.4","2.4.5","2.4.6","2.4.7","2.4.8","2.4.9","2.4.10","2.5.0","2.5.1","2.5.2","2.5.3","2.5.4","2.5.5","2.5.6","2.5.7","2.5.8","2.5.9","2.5.10","2.5.11","2.5.12","2.5.13","2.5.14","2.6.0","2.6.1","2.6.2","2.6.3","2.6.4","2.6.5","2.6.6","2.6.7","2.6.8","2.7.0","2.7.1","2.7.2","2.7.4","2.7.3","3.0.0","3.0.1","3.0.2","2.8.0","3.0.3","3.1.0","2.8.1","3.1.1","2.8.2","2.8.3","2.9.0","3.2.0","2.9.1","3.2.1","2.9.2","3.2.2","3.3.0","3.3.1","2.9.3","3.4.0","2.9.4","2.9.5","3.5.0","3.5.1","3.5.2","3.5.3","2.9.6","2.9.7","3.5.4","3.5.5","2.9.8","2.9.9","3.5.6","3.5.7","3.5.8","2.9.10","3.5.9","3.6.2","3.5.10","3.6.3","3.5.11","3.6.4","3.6.5","3.6.6","3.6.7","3.5.12","3.6.8","3.6.9","3.6.10","3.5.13","3.5.14","3.6.11","3.6.12","3.6.13","3.6.14","3.6.15","3.5.15","3.7.0","3.6.16","3.5.16","3.6.17","3.7.2","3.0.0-alpha1","3.0.0-alpha2","3.0.0-rc0","3.6.0-rc0","3.6.0-rc1","3.6.18","3.7.3","3.6.19","3.6.20","3.7.4","3.8.0","3.8.1","3.8.2","3.8.3","3.8.4","3.8.5","3.8.6","3.8.7","3.8.8","3.8.9","3.8.10","3.8.11","3.9.0","3.8.12","3.8.13","3.8.14"]
+548 error     at installTargetsError (/usr/local/lib/node_modules/npm/lib/cache.js:709:10)
+548 error     at /usr/local/lib/node_modules/npm/lib/cache.js:631:10
+548 error     at saved (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/get.js:138:7)
+548 error     at Object.oncomplete (fs.js:94:15)
+549 error If you need help, you may report this log at:
+549 error     <http://github.com/isaacs/npm/issues>
+549 error or email it to:
+549 error     <npm-@googlegroups.com>
+550 error System Linux 3.13.0-29-generic
+551 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "mockgoose" "--save"
+552 error cwd /usr/share/code/javascript/the-village/persons
+553 error node -v v0.11.3
+554 error npm -v 1.2.25
+555 verbose exit [ 1, true ]

@@ -36,6 +36,7 @@ var families = require('./controllers/families');
 var relationships = require('./controllers/relationships');
 var gamesetting = require('./controllers/gamesettings');
 var personevents = require('./controllers/personevents');
+var statshistory = require('./controllers/statshistory');
 
 // other libs
 var stats = require('./lib/stats');
@@ -45,6 +46,12 @@ var familyInfo = require('./lib/familyInfo');
 /////////////////////////////////////////////////////////////////////////
 //
 // Routes
+
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
 
 app.get('/', function(req, res) {
  
@@ -74,6 +81,11 @@ app.get('/events/:id/:amount', function(req, res) {
 	});
 });
 
+app.get('/stats/:statType', function(req, res) {
+	statshistory.getStatHistory(req.params.statType, function(stats) {
+		return res.jsonp(stats);
+	})
+})
 
 
 app.get('/details/:data', function(req, res) {
@@ -165,8 +177,7 @@ app.get('/graphdata/:data', function(req, res) {
 
 });
 
-
-
+var statEngine = setInterval(statshistory.recordStats, 14000);
 
 ///////////////////////////////////////////////////
 var server = app.listen(8989, function() {

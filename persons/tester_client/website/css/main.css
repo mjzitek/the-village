@@ -217,3 +217,28 @@ main-left-section
       -ms-border-radius: 3px;
           border-radius: 3px;	
 }
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+#population-chart {
+	font-size: .8em;
+	border: 1px solid #888;
+	background-color: #fff;
+	margin: 4px;
+}

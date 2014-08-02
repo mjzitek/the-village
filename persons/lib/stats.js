@@ -2,16 +2,16 @@ var async = require('async'),
 	fs = require('fs'),
 	moment = require('moment');
 
-var persons = require('./controllers/persons');
-var families = require('./controllers/families');
-var relationships = require('./controllers/relationships');
-var gamesetting = require('./controllers/gamesettings');
-var personevents = require('./controllers/personevents');
+var persons = require('../controllers/persons');
+var families = require('../controllers/families');
+var relationships = require('../controllers/relationships');
+var gamesetting = require('../controllers/gamesettings');
+var personevents = require('../controllers/personevents');
 
 
 
 
-exports.getSummaryData;
+exports.getSummaryData = getSummaryData;
 function getSummaryData(callback) {
 	var data = {
 			clock: null,

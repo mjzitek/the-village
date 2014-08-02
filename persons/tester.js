@@ -49,6 +49,7 @@ var relationships = require('./controllers/relationships');
 var gamesetting = require('./controllers/gamesettings');
 var personevents = require('./controllers/personevents');
 var time = require('./controllers/time');
+var statshistory = require('./controllers/statshistory');
 
 /////////////////////////////////
 
@@ -91,6 +92,7 @@ PersonsEngine.prototype.init = function() {
 			families.removeAll(function(doc) {});
 			relationships.removeAll(function(doc) {});
 			personevents.removeAll(function(doc) {});
+			statshistory.removeAll(function(doc) {});
 
 			createPeople.createPeople(120,50,0, function(doc) {
 				console.log("Creating initial population...");
