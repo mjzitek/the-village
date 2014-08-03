@@ -33,7 +33,7 @@ function loadPopulationChart() {
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.json("http://localhost:8989/stats/population", function(error, data) {
+  d3.json("http://" + Config.hostserver + ":" + Config.hostport + "/stats/population", function(error, data) {
     data.forEach(function(d) {
       //console.log(d);
       d.date = parseDate(d.date);
