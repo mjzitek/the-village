@@ -105,6 +105,24 @@ function getRandomPerson(query, fields, callback) {
 
 }
 
+exports.getRandomPeople = getRandomPeople;
+function getRandomPeople(query, fields, count,callback) {
+
+	//console.log(query);
+
+	populationCountFiltered(query, function (persCount) {
+
+
+			var ranNum = (Math.floor(Math.random() * persCount))
+			//console.log(ranNum);
+			Person.find(query, fields).skip(ranNum).limit(count).exec(function(err, per) {
+					callback(per);
+			});
+
+	});
+
+}
+
 
 // Return a random marriage eligible single person based on gender given
 exports.getMarriageEligibleSingle = getMarriageEligibleSingle

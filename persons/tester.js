@@ -127,124 +127,195 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 	var that = this;
 
-	console.log('=======================================');
-
-	App.gameClock.add('days', 1);
-	console.log("Game Clock: " + App.gameClock.format('MMM D, YYYY'));
 
 
-	if(App.gameClock.format('YYYY') == App.maxRunYears)
-	{
-		process.kill(0);
-	}
+	async.series({
 
-	gamesetting.setValueByKey('time', App.gameClock, function() {});
+		gameClock: function(callback) {
+			App.gameClock.add('days', 1);
+			
 
+			if(App.gameClock.format('YYYY') == App.maxRunYears)
+			{
+				process.kill(0);
+			}
 
-	persons.populationCountAlive(function(c) {
-		console.log('Total Population: ' + c);
-	});
+			gamesetting.setValueByKey('time', App.gameClock, function() {
+				callback(null, App.gameClock);
 
+			});
 
-	/////////////////////////////////////////////////////////////
-	// Have Babies
+		},
+		popCount: function(callback) {
+			persons.populationCountAlive(function(popCount) {
 
-	// Check if any preg women are ready to pop
-	babies.getPregnantWomen(function(preg) {
-		console.log("Pregnant Women: " + preg.length);
+				callback(null,popCount);
+			});
+		},
+		/////////////////////////////////////////////////////////////
+		// Have Babies
 
-		preg.forEach(function(p) {
-		 	var gestationTime = GetAge(p.pregnancy.pregnancyDate);
-		 	if(gestationTime.months >= 9) {
-		 		console.log(p._id + " => it's been 9 months!!");
-		 		babies.giveBirth(p._id, function(pp) {
-		 			//console.log(pp);
-		 		});
-		 	}		
-		});
+		// Check if any preg women are ready to pop		
+		haveBabies: function(callback) {
+			babies.getPregnantWomen(function(preg) {
+				console.log("Pregnant Women: " + preg.length);
+				var pregCount = preg.length;
 
-	});
+				while(pregCount > 0) {
+					preg.forEach(function(p) {
+					 	var gestationTime = GetAge(p.pregnancy.pregnancyDate);
+					 	if(gestationTime.months >= 9) {
+					 		console.log(p._id + " => it's been 9 months!!");
+					 		babies.giveBirth(p._id, function(pp) {});
+					 	}		
+					 	pregCount--;
+					});
+				}	
 
-	///////////////////////////////////////////////
-	// Make some babies
+				if(pregCount === 0) {
+					callback(null, preg.length);	
+				}	
+			});
+		},
+		///////////////////////////////////////////////
+		// Make some babies
+		makeBabies: function(callback) {
+			console.log("makeBabies");
+			var randBabyNum = Math.random() * 5000;
+			//console.log(randBabyNum + " / " + App.babyRatioNum);
+			if(randBabyNum > App.babyRatioNum) {
 
-	var randBabyNum = Math.random() * 5000;
-	console.log(randBabyNum + " / " + App.babyRatioNum);
-	if(randBabyNum > App.babyRatioNum) {
+				persons.getRandomBabyReadyWomen(true, 1, function(pers) {
+					console.log("Baby Ready Women: " + pers.length);
+					var persCount = pers.length;
 
-		persons.getRandomBabyReadyWomen(true, 1, function(pers) {
-			pers.forEach(function(p) {
-				//console.log(pers);
-				relationships.getCouple(p._id, function(c) {
-					//console.log("making babies: " + p._id);
-					if(c)
-					{
-						babies.breed(c.person1, c.person2, function(d) {
-						//console.log("OE: " + d.haveKid);
+					while(persCount > 0) {
+						pers.forEach(function(p) {
+							persCount--;
+							//console.log(pers);
+							relationships.getCouple(p._id, function(c) {
+								//console.log("making babies: " + p._id);
+								if(c)
+								{
+									babies.breed(c.person1, c.person2, function(d) {
+										callback(null, d);
+									});
+								} else {
+									callback(null,"");
+								}
+							});
 						});
 					}
+
+					if(persCount === 0) {
+						callback(null, null);
+					}
 				});
-			});
-		});
-	}
+			} else {
+				callback(null, null);
+			}
+		},
+	 	///////////////////////////////////////////////
+	 	// Marriage
+	 	performMarriage : function(callback) {
 
- 	///////////////////////////////////////////////
- 	// Marriage
+			var randMarriageNum = Math.random() * 5000;
+			//console.log(randMarriageNum + " / " + App.marriageRatioNum);
+			if(randMarriageNum > App.marriageRatioNum) {
+				persons.performMarriage(function(d) {
+					callback(null, d);
+				});
+			} else {
+				callback(null,null);
+			}
+		},
+	 	///////////////////////////////////////////////
+	 	// Kill off people
+	 	killPeople: function(callback) {
+	 		console.log("killPeople");
 
-	var randMarriageNum = Math.random() * 5000;
-	console.log(randMarriageNum + " / " + App.marriageRatioNum);
-	if(randMarriageNum > App.marriageRatioNum) {
-		persons.performMarriage(function(d) {});
-	}
+	 		var filter = {
+	 			dateOfDeath: null
+	 		}
 
- 	///////////////////////////////////////////////
- 	// Kill off people
+	 		var fields = {};
 
- 	persons.getPersonsAlive(function(pers) {
- 		//console.log(pers.length);
- 		if(pers)
- 		{
- 			pers.forEach(function(p) {
+	 		var count = 20;
 
- 				var age = GetAge(p.dateOfBirth).years;
- 				var kill = false;
- 				var rndNum = (Math.floor(Math.random() * 5000))
- 				//console.log('d: ' + rndNum);
- 				if(age > 110) { kill = true;}
- 				else if(age > 90) { if(rndNum > 4000 ) { kill = true; } }
-	 			else if(age > 70) { if(rndNum > 4680 ) { kill = true; } }
- 				else if (age > 35) { if(rndNum > 4998 ) { kill = true; } }
- 				//else { if(rndNum > 995 ) { kill = true; } }
+		 	persons.getRandomPeople(filter, fields, count, function(pers) {
+		 		//console.log(pers.length);
+		 		if(pers)
+		 		{
+		 			console.log("Persons to kill: " + pers.length);
+		 			var persCount = pers.length;
 
- 				if(kill) {
- 					persons.killOff(p._id, function(r) {
- 						console.log(r);
+		 			while(persCount > 0) {
 
- 						persons.get(p._id, function(p) {
+			 			pers.forEach(function(p) {
 
- 							var pers = [];
- 							pers.push(p);
+		 					persCount--;
 
- 							var info = {
- 								persons: pers,
- 								eventType: 'death',
- 								eventDate: App.gameClock,
- 								realworldDate: new Date()
- 							}
+			 				var age = GetAge(p.dateOfBirth).years;
+			 				var kill = false;
+			 				var rndNum = (Math.floor(Math.random() * 5000))
+			 				//console.log('d: ' + rndNum);
+			 				if(age > 110) { kill = true;}
+			 				else if(age > 90) { if(rndNum > 4000 ) { kill = true; } }
+				 			else if(age > 70) { if(rndNum > 4680 ) { kill = true; } }
+			 				else if (age > 35) { if(rndNum > 4998 ) { kill = true; } }
+			 				//else { if(rndNum > 995 ) { kill = true; } }
 
+			 				if(kill) {
+			 					persons.killOff(p._id, function(r) {
+			 						console.log(r);
 
- 							personevents.add(info, function(doc) {
+			 						persons.get(p._id, function(p) {
 
- 							});
- 						});
- 						
- 					});
- 				}
- 			});
- 		}
- 	});
+			 							var pers = [];
+			 							pers.push(p);
+
+			 							var info = {
+			 								persons: pers,
+			 								eventType: 'death',
+			 								eventDate: App.gameClock,
+			 								realworldDate: new Date()
+			 							}
 
 
+			 							personevents.add(info, function(doc) {
+
+			 							});
+			 						});
+			 						
+			 					});
+			 				}
+			 			});
+					}
+
+					if(persCount === 0) {
+						callback(null, null);
+					}
+		 		} else {
+		 			callback(null, null);
+		 		}
+		 	});
+		}
+	},
+	function(err, results) {
+		//console.log(results);
+
+		console.log('=======================================');
+		console.log("Game Clock: " + results.gameClock.format('MMM D, YYYY'));
+		console.log('Total Population: ' + results.popCount);
+    	//console.log(results);
+    	if(err) {
+    		console.log(err);
+    	} else
+    	{
+			   		
+    	}
+
+	});
 
 }
 
