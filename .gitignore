@@ -3,5 +3,5 @@ persons/node_modules
 webapp/node_modules
 persons/output.txt
 persons/_bak
-persons/webtestpages/js/config.js
+persons/tester_client/website/js/config.js
 persons/npm-debug.log
