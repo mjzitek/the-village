@@ -158,7 +158,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 		// Check if any preg women are ready to pop		
 		haveBabies: function(callback) {
 			babies.getPregnantWomen(function(preg) {
-				console.log("Pregnant Women: " + preg.length);
+				//console.log("Pregnant Women: " + preg.length);
 				var pregCount = preg.length;
 
 				while(pregCount > 0) {
@@ -180,7 +180,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 		///////////////////////////////////////////////
 		// Make some babies
 		makeBabies: function(callback) {
-			console.log("makeBabies");
+			//console.log("makeBabies");
 			var randBabyNum = Math.random() * 5000;
 			//console.log(randBabyNum + " / " + App.babyRatioNum);
 			if(randBabyNum > App.babyRatioNum) {
@@ -232,7 +232,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 	 	///////////////////////////////////////////////
 	 	// Kill off people
 	 	killPeople: function(callback) {
-	 		console.log("killPeople");
+	 		//console.log("killPeople");
 
 	 		var filter = {
 	 			dateOfDeath: null
@@ -240,13 +240,13 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 
 	 		var fields = {};
 
-	 		var count = 20;
+	 		var count = 50;
 
 		 	persons.getRandomPeople(filter, fields, count, function(pers) {
 		 		//console.log(pers.length);
 		 		if(pers)
 		 		{
-		 			console.log("Persons to kill: " + pers.length);
+		 			//console.log("Persons to kill: " + pers.length);
 		 			var persCount = pers.length;
 
 		 			while(persCount > 0) {
@@ -260,9 +260,9 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 			 				var rndNum = (Math.floor(Math.random() * 5000))
 			 				//console.log('d: ' + rndNum);
 			 				if(age > 110) { kill = true;}
-			 				else if(age > 90) { if(rndNum > 4000 ) { kill = true; } }
-				 			else if(age > 70) { if(rndNum > 4680 ) { kill = true; } }
-			 				else if (age > 35) { if(rndNum > 4998 ) { kill = true; } }
+			 				else if(age > 90) { if(rndNum > 2500 ) { kill = true; } }
+				 			else if(age > 70) { if(rndNum > 4000 ) { kill = true; } }
+			 				else if (age > 35) { if(rndNum > 4900 ) { kill = true; } }
 			 				//else { if(rndNum > 995 ) { kill = true; } }
 
 			 				if(kill) {

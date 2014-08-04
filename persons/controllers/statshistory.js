@@ -18,6 +18,8 @@ var relationships = require('./relationships');
 exports.recordStats = recordStats;
 function recordStats() {
 	updatePopulation(function() {});
+	updatePopulationMen(function() {});
+	updatePopulationAgeGroups(function() {});
 }
 
 function updatePopulation(callback) {
@@ -39,6 +41,53 @@ function updatePopulation(callback) {
 
 	});
 } 
+
+function updatePopulationMen(callback) {
+	gameSettings.getValueByKey('time', function(time) {				
+		curGameTime = moment(time.setvalue);
+
+		var filter = {
+			gender: "M"
+		}
+
+		persons.populationCountFiltered(filter, function(popCount) {
+			var stat = new StatsHistory({
+					statType: "populationMen",
+					statValue: popCount, 
+					statDate: curGameTime 
+			})
+
+			stat.save(function(doc) {
+				callback(doc);
+			});		
+		});
+	});
+}
+
+function updatePopulationAgeGroups(callback) {
+	gameSettings.getValueByKey('time', function(time) {				
+		curGameTime = moment(time.setvalue);
+
+		var d1 = curGameTime.add('y', -75);
+
+		var filter = {
+			dateOfDeath: null,
+			dateOfBirth: { $lt : d1}
+		}
+
+		persons.populationCountFiltered(filter, function(popCount) {
+			var stat = new StatsHistory({
+					statType: "populationGroup1",
+					statValue: popCount, 
+					statDate: curGameTime 
+			})
+
+			stat.save(function(doc) {
+				callback(doc);
+			});		
+		});
+	});
+}
 
 /////////////////////////////////////////////////////////////
 

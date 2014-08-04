@@ -33,7 +33,7 @@
 
 		var summaryInterval = null;
 
-		summaryInterval = setInterval(getSummary, 5000);
+		summaryInterval = setInterval(getSummary, 1000);
 
 		getSummary();
 
