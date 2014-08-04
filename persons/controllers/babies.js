@@ -228,6 +228,7 @@ function giveBirth(motherId, callback) {
 			}
 		],
 		function(err, gender, name, mom, dad, gameTime, genes) {
+			if(mom && dad) {
 
 				//console.log(looks);
 				var per = new Person({ 
@@ -284,7 +285,15 @@ function giveBirth(motherId, callback) {
 					}
 				});
 
+			} else {
+				console.log("****** MISSING MOM OR DAD ********")
+				console.log(motherId);
+				console.log(mom);
+				console.log(dad);
 
+				console.log("**********************************");
+				process.kill(0);
+			}
 
 		});
 	} catch (err) {

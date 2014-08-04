@@ -122,7 +122,7 @@ function getStatHistory(statType, range, callback) {
 
 	console.log(filter);
 
-	StatsHistory.find(filter).sort({'statDate' : -1}).exec(function(err,stats) {
+	StatsHistory.find(filter).sort({'statDate' : -1}).limit(500).exec(function(err,stats) {
 		var statsData = [];
 
 		stats.forEach(function(stat) {
