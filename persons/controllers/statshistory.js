@@ -19,7 +19,7 @@ exports.recordStats = recordStats;
 function recordStats() {
 	updatePopulation(function() {});
 	updatePopulationMen(function() {});
-	updatePopulationAgeGroups(function() {});
+	//updatePopulationAgeGroups(function() {});
 }
 
 function updatePopulation(callback) {
