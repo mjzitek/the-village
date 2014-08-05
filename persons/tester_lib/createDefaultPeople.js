@@ -100,7 +100,13 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				husband.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
 
-				husband.genome = { genes : { eyes : generateRandomEyeColor()}};
+				husband.genome = { 
+						genes : { 
+							eyes : generateRandomEyeColor(),
+							skin : generateRandomSkinColor()
+						}
+				};
+
 
 				persons.create(husband, function(perId) { 
 					husbandId = perId; 
@@ -128,7 +134,12 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				wife.attributes = { married : false };
 				wife.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
-				wife.genome = { genes : { eyes : generateRandomEyeColor()}};
+				wife.genome = { 
+						genes : { 
+							eyes : generateRandomEyeColor(),
+							skin : generateRandomSkinColor()
+						}
+				};
 
 				persons.create(wife, function(perId) { 
 					wifeId = perId; 
@@ -198,7 +209,12 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 					person.attributes = { married : false };
 					person.pregnancy = { pregnant : false, pregnancyDate: null, babyFatherId: null}
 
-					person.genome = { genes : { eyes : generateRandomEyeColor()}};
+					person.genome = { 
+						genes : { 
+							eyes : generateRandomEyeColor(),
+							skin : generateRandomSkinColor()
+						}
+					};
 
 					persons.create(person, function(per) { personId = per._id; callback(null, personId) });
 
@@ -248,5 +264,16 @@ function generateRandomEyeColor() {
     
 }
 
+function generateRandomSkinColor() {
+	var skin = {};
 
+	skin.one = genetics.skinColors(Math.floor(Math.random() * 17));
+	skin.two = genetics.skinColors(Math.floor(Math.random() * 17));
+
+	skin.color = genetics.determineSkinColor(skin.one, skin.two);
+
+	//console.log(skin);
+
+	return skin;
+}
 

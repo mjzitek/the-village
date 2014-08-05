@@ -203,20 +203,15 @@ function giveBirth(motherId, callback) {
 				////////////////
 				// Eyes
 				
-					// Get random eye allele from Dad
-					// dadEyeAlleleBey2 = dad.genome.genes.eyes.bey2[genetics.getRandomAllele()];
-					// dadEyeAlleleGey  = dad.genome.genes.eyes.gey[genetics.getRandomAllele()];
-					
-					// // Get random eye allele from Mom	
-					// momEyeAlleleBey2 = mom.genome.genes.eyes.bey2[genetics.getRandomAllele()];
-					// momEyeAlleleGey =  mom.genome.genes.eyes.gey[genetics.getRandomAllele()];
-
-
-
-					//var eyeColor = genetics.determineEyeColor(bey2, gey)
-
 					genes.eyes = genetics.eyeColor(dad, mom);
 					
+					var skin = genetics.skinColor(dad, mom);	
+
+					genes.skin = {
+									color : skin.color,
+									one: { R: skin.one.R, G: skin.one.G, B: skin.one.B},
+									two: { R: skin.two.R, G: skin.two.R, B: skin.two.B}
+					}
 
 					callback(null, gender, name, mom, dad, gameTime, genes);
 			},

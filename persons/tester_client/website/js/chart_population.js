@@ -46,7 +46,7 @@ function loadPopulationChart() {
     var a = moment(dateRange[0]);
     var b = moment(dateRange[1]);
 
-    if(b.diff(a, 'years') < 10) {
+    if(b.diff(a, 'years') < 15) {
         xTickInterval = 1; 
     } else {
         xTickInterval = 5;

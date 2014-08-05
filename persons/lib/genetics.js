@@ -16,6 +16,8 @@ _.mixin({
 	}
 });
 
+
+
 exports.getRandomAllele = getRandomAllele
 function getRandomAllele(alleles) {
 
@@ -60,6 +62,8 @@ function eyeColor(dad, mom) {
     	console.log(mom);
     }
 
+    //console.log(eyes);
+
 	return eyes;
 }
 
@@ -84,6 +88,72 @@ function determineEyeColor(bey2, gey) {
 
 }
 
+exports.skinColors = skinColors;
+function skinColors(num) {
+	var colors = [
+		{ R: 45, G: 34, B: 30 },		// 0
+		{ R: 60, G: 46, B: 40 },		// 1
+		{ R: 75, G: 57, B: 50 },		// 2
+		{ R: 90, G: 69, B: 60 },		// 3
+		{ R: 105, G: 80, B: 70 },		// 4
+		{ R: 120, G: 92, B: 80 },		// 5
+		{ R: 135, G: 103, B: 90 },		// 6
+		{ R: 150, G: 114, B: 100 },		// 7
+		{ R: 165, G: 126, B: 110 },		// 8
+		{ R: 180, G: 138, B: 120 },		// 9
+		{ R: 195, G: 149, B: 130 },		// 10
+		{ R: 210, G: 161, B: 140 },		// 11
+		{ R: 225, G: 172, B: 150 },		// 12
+		{ R: 240, G: 184, B: 160 },		// 13
+		{ R: 255, G: 195, B: 170 },		// 14
+		{ R: 255, G: 206, B: 180 },		// 15
+		{ R: 255, G: 218, B: 190 },		// 16
+		{ R: 255, G: 229, B: 200 },		// 17
+	];
+
+
+	return colors[num];	
+}
+
+exports.skinColor = skinColor;
+function skinColor(dad, mom) {
+	var dadSkinAllele = getRandomAllele(dad.genome.genes.skin);
+	var momSkinAllele = getRandomAllele(mom.genome.genes.skin);
+
+	var skin = {};
+
+	skin.one = dadSkinAllele;
+	skin.two = momSkinAllele;
+	skin.color = determineSkinColor(dadSkinAllele, momSkinAllele);
+
+	//console.log(skin);
+
+	return skin;
+}
+
+
+exports.determineSkinColor = determineSkinColor
+function determineSkinColor(input1, input2) {
+
+
+	var newBlueValue = (input1.B + input2.B) / 2
+
+    var skin = {};
+    
+    skin.R = Math.floor(newBlueValue * 1.5);
+    skin.G = Math.floor(newBlueValue * 1.15);
+    skin.B = newBlueValue;
+    
+    if(skin.R > 255) skin.R = 255;
+    if(skin.G > 255) skin.G = 255;
+    if(skin.B > 255) skin.B = 255;
+    
+
+    return skin;
+
+}
+
+
 
 exports.determineDominance = determineDominance;
 function determineDominance(input1, input2) {
@@ -97,6 +167,8 @@ function determineDominance(input1, input2) {
 		return input1;
 	}
 }
+
+
 
 /**
 *  Picks a random set given two inputs 
@@ -113,3 +185,4 @@ function pickRandomGeneSet(set1, set2) {
 		return set2;
 	}
 }
+

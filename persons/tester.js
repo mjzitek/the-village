@@ -93,9 +93,11 @@ PersonsEngine.prototype.init = function() {
 			relationships.removeAll(function(doc) {});
 			personevents.removeAll(function(doc) {});
 			statshistory.removeAll(function(doc) {});
-
+			
+			console.log("Creating initial population...");
+			
 			createPeople.createPeople(120,50,0, function(doc) {
-				console.log("Creating initial population...");
+
 			});
 			callback(null,null);
 		},
@@ -164,7 +166,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 				while(pregCount > 0) {
 					preg.forEach(function(p) {
 					 	var gestationTime = GetAge(p.pregnancy.pregnancyDate);
-					 	if(gestationTime.months >= 9) {
+					 	if(gestationTime.months >= 1) {
 					 		console.log(p._id + " => it's been 9 months!!");
 					 		babies.giveBirth(p._id, function(pp) {});
 					 	}		

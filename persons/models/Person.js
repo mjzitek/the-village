@@ -49,14 +49,14 @@ var PersonSchema = new mongoose.Schema({
 										}
 						  },
 					hair: {
-								color: String,
-								one: String,
-								two: String
+								color:  { R: Number, G: Number, B: Number },
+								one:  { R: Number, G: Number, B: Number },
+								two:  { R: Number, G: Number, B: Number },
 					},
 					skin: {
-								shade: String,
-								one: String,
-								two: String
+								color: { R: Number, G: Number, B: Number },
+								one:  { R: Number, G: Number, B: Number },
+								two:  { R: Number, G: Number, B: Number },
 					},
 					height : {
 								value : Number,
