@@ -177,6 +177,7 @@ app.get('/graphdata/:data', function(req, res) {
 
 });
 
+statshistory.recordStats();
 var statEngine = setInterval(statshistory.recordStats, 30000);
 
 ///////////////////////////////////////////////////

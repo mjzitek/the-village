@@ -228,7 +228,7 @@ function giveBirth(motherId, callback) {
 			}
 		],
 		function(err, gender, name, mom, dad, gameTime, genes) {
-			if(mom && dad) {
+			if(mom && dad && mom.familyInfo && dad.familyInfo) {
 
 				//console.log(looks);
 				var per = new Person({ 
@@ -292,7 +292,7 @@ function giveBirth(motherId, callback) {
 				console.log(dad);
 
 				console.log("**********************************");
-				process.kill(0);
+				callback(null);
 			}
 
 		});

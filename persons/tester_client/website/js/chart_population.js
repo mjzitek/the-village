@@ -2,6 +2,8 @@
 function loadPopulationChart() {
   $("#population-chart").html("");
 
+  var xTickInterval = 5;
+
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
       width = 450 - margin.left - margin.right,
       height = 200 - margin.top - margin.bottom;
@@ -14,10 +16,9 @@ function loadPopulationChart() {
   var y = d3.scale.linear()
       .range([height, 0]);
 
-  var xAxis = d3.svg.axis()
-      .scale(x)
-      .ticks(d3.time.years, 5)    
-      .orient("bottom");
+
+
+
 
   var yAxis = d3.svg.axis()
       .scale(y)
@@ -40,8 +41,26 @@ function loadPopulationChart() {
       //d.value = +d.value;
     });
 
+    var dateRange = d3.extent(data, function(d) { return d.date; });
+
+    var a = moment(dateRange[0]);
+    var b = moment(dateRange[1]);
+
+    if(b.diff(a, 'years') < 10) {
+        xTickInterval = 1; 
+    } else {
+        xTickInterval = 5;
+    }
+
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain(d3.extent(data, function(d) { return d.value; }));
+
+    var maxDataPoint = d3.max(dateRange[1]);
+
+    var xAxis = d3.svg.axis()
+      .scale(x)
+      .ticks(d3.time.years, xTickInterval)    
+      .orient("bottom");
 
     svg.append("g")
         .attr("class", "x axis")

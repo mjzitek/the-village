@@ -19,7 +19,7 @@ exports.recordStats = recordStats;
 function recordStats() {
 	updatePopulation(function() {});
 	updatePopulationMen(function() {});
-	//updatePopulationAgeGroups(function() {});
+	updatePopulationAgeGroups(function() {});
 }
 
 function updatePopulation(callback) {
@@ -68,7 +68,8 @@ function updatePopulationAgeGroups(callback) {
 	gameSettings.getValueByKey('time', function(time) {				
 		curGameTime = moment(time.setvalue);
 
-		var d1 = curGameTime.add('y', -75);
+		var d1 = moment(curGameTime);
+		d1.add('y', -75);
 
 		var filter = {
 			dateOfDeath: null,
@@ -120,9 +121,9 @@ function getStatHistory(statType, range, callback) {
 
 	filter.statType = statType;
 
-	console.log(filter);
+	//console.log(filter);
 
-	StatsHistory.find(filter).sort({'statDate' : -1}).limit(250).exec(function(err,stats) {
+	StatsHistory.find(filter).sort({'statDate' : -1}).limit(1000).exec(function(err,stats) {
 		var statsData = [];
 
 		stats.forEach(function(stat) {
