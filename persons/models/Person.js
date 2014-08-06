@@ -59,7 +59,7 @@ var PersonSchema = new mongoose.Schema({
 								two:  { R: Number, G: Number, B: Number },
 					},
 					height : {
-								value : Number,
+								height : Number,
 								one: String,
 								two: String
 					},

@@ -195,6 +195,32 @@ function hairColor(dad, mom) {
 
 }
 
+exports.height = height;
+function height(dad, mom) {
+	var dadHeightAllele = getRandomAllele(dad.genome.genes.height);
+	var momHeightAllele = getRandomAllele(mom.genome.genes.height);	
+
+
+	var height = {};
+
+	height.one = dadHeightAllele;
+	height.two = momHeightAllele;
+	height.height = determineHeight(dadHeightAllele, momHeightAllele);
+
+	return height;
+}
+
+exports.determineHeight = determineHeight;
+function determineHeight(input1, input2) {
+
+	var height = (parseInt(input1) + parseInt(input2)) / 2;
+	var heightBias = Math.floor(getBaseLog((Math.floor(Math.random() * 13)+2), 10));
+
+	height = height + heightBias;
+
+	return height;
+
+}
 
 exports.determineDominance = determineDominance;
 function determineDominance(input1, input2) {
@@ -208,6 +234,8 @@ function determineDominance(input1, input2) {
 		return input1;
 	}
 }
+
+
 
 
 
@@ -227,3 +255,8 @@ function pickRandomGeneSet(set1, set2) {
 	}
 }
 
+
+
+function getBaseLog(x, y) {
+    return Math.log(y) / Math.log(x);
+}

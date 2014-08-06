@@ -188,6 +188,9 @@ function loadEventDetails(eventDetails) {
 				break;
 		}
 
+		var height = convertInchesToFeet((eventPerson.genome.genes.height ? eventPerson.genome.genes.height.height : 0));
+
+		console.log(height);
 
 		details = "<div class='main-right-details-section'><div class='main-right-details-section-person'>" +
 				  	"<div><label>Name:</label> " + eventPerson.firstName + " " + eventPerson.lastName + "</div>" +
@@ -212,7 +215,10 @@ function loadEventDetails(eventDetails) {
 		          												eventPerson.genome.genes.hair.color.G + ", " +
 		          												eventPerson.genome.genes.hair.color.B + ")'" +
 		          		"></span>" +
-		            "</div>" +		            
+		            "</div>" +	
+		          	"<div><label>Height:</label>" + 
+		          		"<span>" + height.feet + " ft, " + height.inches  + " in</span>" +
+		            "</div>" +			            	            
 		          "</div>";
 
 
@@ -296,5 +302,18 @@ function getDifference(olderDate, newerDate) {
     timeDiff.seconds = Math.floor(moment.duration(ms).asSeconds());
 
     return timeDiff;
+
+  }
+
+
+ function convertInchesToFeet(input) {
+    var output = {};
+    
+    output.feet = Math.floor(input / 12);
+    output.inches =  input % 12;
+
+    return output;
+
+
 
   }

@@ -223,6 +223,14 @@ function giveBirth(motherId, callback) {
 									two: { R: hair.two.R, G: hair.two.R, B: hair.two.B}
 					}
 
+					var height = genetics.height(dad, mom);
+
+					genes.height = {
+									height : height.height,
+									one : height.one,
+									two : height.two
+					}
+
 					callback(null, gender, name, mom, dad, gameTime, genes);
 			},
 			// Update mom status

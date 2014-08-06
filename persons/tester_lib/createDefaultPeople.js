@@ -104,7 +104,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 						genes : { 
 							eyes : generateRandomEyeColor(),
 							skin : generateRandomSkinColor(),
-							hair : generateRandomHairColor()
+							hair : generateRandomHairColor(),
+							height: generateRandomHeight()
 						}
 				};
 
@@ -139,7 +140,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 						genes : { 
 							eyes : generateRandomEyeColor(),
 							skin : generateRandomSkinColor(),
-							hair : generateRandomHairColor()
+							hair : generateRandomHairColor(),
+							height: generateRandomHeight()
 						}
 				};
 
@@ -215,7 +217,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 						genes : { 
 							eyes : generateRandomEyeColor(),
 							skin : generateRandomSkinColor(),
-							hair : generateRandomHairColor()
+							hair : generateRandomHairColor(),
+							height: generateRandomHeight()
 						}
 					};
 
@@ -292,3 +295,36 @@ function generateRandomHairColor() {
 
 }
 
+function generateRandomHeight() {
+
+	var height = {};
+
+	height.one = randomHeight(68);
+	height.two = randomHeight(66);
+	height.height = genetics.determineHeight(height.one, height.two);
+
+	console.log(height);
+
+	return height;
+
+}
+
+function randomHeight(meanHeight) {
+	var height;
+
+	if(!meanHeight) meanHeight = 68;
+
+	var bias = (Math.floor(getBaseLog((Math.floor(Math.random() * 13)+2), 10)) * 2) - 4;
+
+	var height = meanHeight + bias;
+
+	return height;
+
+}
+
+
+
+
+function getBaseLog(x, y) {
+    return Math.log(y) / Math.log(x);
+}
