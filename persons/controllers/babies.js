@@ -213,6 +213,16 @@ function giveBirth(motherId, callback) {
 									two: { R: skin.two.R, G: skin.two.R, B: skin.two.B}
 					}
 
+					var hair = genetics.hairColor(dad, mom);
+
+					console.log(hair);
+
+					genes.hair = {
+									color : { R: hair.color.R, G: hair.color.G, B: hair.color.B},
+									one: { R: hair.one.R, G: hair.one.G, B: hair.one.B},
+									two: { R: hair.two.R, G: hair.two.R, B: hair.two.B}
+					}
+
 					callback(null, gender, name, mom, dad, gameTime, genes);
 			},
 			// Update mom status

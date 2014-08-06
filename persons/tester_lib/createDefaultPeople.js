@@ -103,7 +103,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				husband.genome = { 
 						genes : { 
 							eyes : generateRandomEyeColor(),
-							skin : generateRandomSkinColor()
+							skin : generateRandomSkinColor(),
+							hair : generateRandomHairColor()
 						}
 				};
 
@@ -137,7 +138,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				wife.genome = { 
 						genes : { 
 							eyes : generateRandomEyeColor(),
-							skin : generateRandomSkinColor()
+							skin : generateRandomSkinColor(),
+							hair : generateRandomHairColor()
 						}
 				};
 
@@ -212,7 +214,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 					person.genome = { 
 						genes : { 
 							eyes : generateRandomEyeColor(),
-							skin : generateRandomSkinColor()
+							skin : generateRandomSkinColor(),
+							hair : generateRandomHairColor()
 						}
 					};
 
@@ -275,5 +278,17 @@ function generateRandomSkinColor() {
 	//console.log(skin);
 
 	return skin;
+}
+
+function generateRandomHairColor() {
+	var hair = {};
+
+	hair.one = genetics.hairColors(Math.floor(Math.random() * 10));
+	hair.two = genetics.hairColors(Math.floor(Math.random() * 10));
+
+	hair.color = genetics.getRandomAllele(hair);	
+
+	return hair;
+
 }
 

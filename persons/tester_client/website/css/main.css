@@ -242,3 +242,10 @@ main-left-section
 	background-color: #fff;
 	margin: 4px;
 }
+
+.skin-color-box { 
+	width: 100px;
+	height: 12px;
+	border: 1px solid #ccc;
+	display: inline-block;
+}

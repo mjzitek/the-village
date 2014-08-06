@@ -166,11 +166,54 @@ function loadEventDetails(eventDetails) {
 	eventDetails.persons.forEach(function(eventPerson) {
 		var details;
 
+		var bd =  moment(eventPerson.dateOfBirth);
+
+		var gameClock = $(".main-left-section-date").html();
+
+		// Blue: 1a66ae
+		// Brown: 2c1608
+		// Green: 468017
+
+		var eyeColor;
+
+		switch(eventPerson.genome.genes.eyes.color) {
+			case "blue":
+				eyeColor = '#1a66ae';
+				break;
+			case "brown":
+				eyeColor = '#2c1608';
+				break;
+			case "green":
+				eyeColor = '#468017';
+				break;
+		}
+
+
 		details = "<div class='main-right-details-section'><div class='main-right-details-section-person'>" +
 				  	"<div><label>Name:</label> " + eventPerson.firstName + " " + eventPerson.lastName + "</div>" +
-		          	"<div><label>Birth Date:</label> " + moment(eventPerson.dateOfBirth).format("MMM D, YYYY") + "</div>" +
-		          	"<div><label>Eye Color:</label> " + eventPerson.genome.genes.eyes.color + "</div>"
-		          "</div></div>";
+		          	"<div><label>Birth Date:</label> " + bd.format("MMM D, YYYY") + 
+                      " (" + (eventPerson.dateOfDeath == null ? getDifference(gameClock, bd).years : getDifference(eventPerson.dateOfDeath, bd).years ) +
+                      ")" +
+                      (eventPerson.dateOfDeath != null ? " - Deceased" : "") +
+                    "</div>" +
+		          	"<div><label>Eye Color:</label> " + 		          		
+		          		"<span class='skin-color-box' style='background-color: " + eyeColor + "'></span>" +
+		          	"</div>" +
+		          	"<div><label>Skin Color:</label>" + 
+		          		"<span class='skin-color-box' style='background-color: rgb(" +
+		          												eventPerson.genome.genes.skin.color.R + ", " +
+		          												eventPerson.genome.genes.skin.color.G + ", " +
+		          												eventPerson.genome.genes.skin.color.B + ")'" +
+		          		"></span>" +
+		            "</div>" +
+		          	"<div><label>Hair Color:</label>" + 
+		          		"<span class='skin-color-box' style='background-color: rgb(" +
+		          												eventPerson.genome.genes.hair.color.R + ", " +
+		          												eventPerson.genome.genes.hair.color.G + ", " +
+		          												eventPerson.genome.genes.hair.color.B + ")'" +
+		          		"></span>" +
+		            "</div>" +		            
+		          "</div>";
 
 
 		$('.main-right-details').append(details);
@@ -204,3 +247,54 @@ function showEyesExpanded() {
 		$("#eyecolors-expanded").hide();	
 	}
 }
+
+function getDifference(olderDate, newerDate) {
+
+	var then = moment(olderDate);
+	var to = moment(newerDate);
+
+	//console.log('Then: ' + then);
+
+	var timeDiff = {};
+
+    // get the difference from now to then in ms
+    ms = then.diff(to, 'milliseconds', true);
+
+    //console.log('ms: ' + ms);
+
+    // Years
+    timeDiff.years = Math.floor(moment.duration(ms).asYears());
+    then = then.subtract('years', timeDiff.years);
+
+    ms = then.diff(to, 'milliseconds', true);
+
+    // Months
+    timeDiff.months = Math.floor(moment.duration(ms).asMonths());
+    then = then.subtract('months', timeDiff.months).subtract('days', 1);
+
+    ms = then.diff(to, 'milliseconds', true);
+
+    // Days
+    timeDiff.days = Math.floor(moment.duration(ms).asDays());
+    then = then.subtract('days', timeDiff.days);
+
+
+    ms = then.diff(to, 'milliseconds', true);
+
+    // Hours
+    timeDiff.hours = Math.floor(moment.duration(ms).asHours());
+    then = then.subtract('hours', timeDiff.hours);
+
+
+    ms = then.diff(to, 'milliseconds', true);
+
+    // Minutes
+    timeDiff.minutes = Math.floor(moment.duration(ms).asMinutes());
+    then = then.subtract('minutes', timeDiff.minutes);
+
+    ms = then.diff(to, 'milliseconds', true);
+    timeDiff.seconds = Math.floor(moment.duration(ms).asSeconds());
+
+    return timeDiff;
+
+  }

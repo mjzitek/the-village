@@ -166,7 +166,7 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 				while(pregCount > 0) {
 					preg.forEach(function(p) {
 					 	var gestationTime = GetAge(p.pregnancy.pregnancyDate);
-					 	if(gestationTime.months >= 1) {
+					 	if(gestationTime.months >= 9) {
 					 		console.log(p._id + " => it's been 9 months!!");
 					 		babies.giveBirth(p._id, function(pp) {});
 					 	}		

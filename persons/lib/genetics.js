@@ -115,6 +115,27 @@ function skinColors(num) {
 	return colors[num];	
 }
 
+exports.hairColors = hairColors;
+function hairColors(num) {
+
+	var colors = [
+		{ R: 9,   G: 8,   B:6   },	
+		{ R: 59,  G: 48,  B:36  },	
+		{ R: 78,  G: 67,  B:63  },	
+		{ R: 85,  G: 72,  B:56  },
+		{ R: 106, G: 78,  B:66  },
+		{ R: 167, G: 133, B:106 },
+		{ R: 149, G: 83,  B:52	},
+		{ R: 109, G: 41,  B:6	},
+		{ R: 229, G: 110, B:51  },
+		{ R: 242, G: 245, B:193 },
+	];
+
+
+	return colors[num];
+}
+
+
 exports.skinColor = skinColor;
 function skinColor(dad, mom) {
 	var dadSkinAllele = getRandomAllele(dad.genome.genes.skin);
@@ -136,7 +157,11 @@ exports.determineSkinColor = determineSkinColor
 function determineSkinColor(input1, input2) {
 
 
-	var newBlueValue = (input1.B + input2.B) / 2
+	var newBlueValue = Math.floor((input1.B + input2.B) / 2);
+
+	var randSkinBias = Math.floor(Math.random() * 10);
+	var newBlueValue = newBlueValue - randSkinBias;
+
 
     var skin = {};
     
@@ -153,6 +178,22 @@ function determineSkinColor(input1, input2) {
 
 }
 
+
+exports.hairColor = hairColor;
+function hairColor(dad, mom) {
+
+	var dadHairAllele = getRandomAllele(dad.genome.genes.hair);
+	var momHairAllele = getRandomAllele(mom.genome.genes.hair);	
+
+	var hair = {};
+
+	hair.one = dadHairAllele;
+	hair.two = momHairAllele;
+	hair.color = getRandomAllele(hair);	
+
+	return hair;
+
+}
 
 
 exports.determineDominance = determineDominance;
