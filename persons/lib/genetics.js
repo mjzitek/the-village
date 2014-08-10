@@ -18,6 +18,11 @@ _.mixin({
 
 
 
+/**
+*  Picks a random allele out of one or two
+*  @param {Object} alleles Set of two alleles (one and two) 
+*  @return {Object} Returns a random allete
+*/
 exports.getRandomAllele = getRandomAllele
 function getRandomAllele(alleles) {
 
@@ -30,6 +35,13 @@ function getRandomAllele(alleles) {
 	}
 }
 
+/**
+*  Gets an eye color and two alleles from parent's alleles 
+*  based on the parent's alleles
+*  @param {Object} dad 
+*  @param {Object} mom
+*  @return {Object} Returns eyes (color, bey2, gey)
+*/
 exports.eyeColor = eyeColor;
 function eyeColor(dad, mom) {
 	try {
@@ -67,6 +79,12 @@ function eyeColor(dad, mom) {
 	return eyes;
 }
 
+/**
+*  Determines the eye color based on 2 alleles (bey2 and gey)
+*  @param {Object} bey2 (one and two)
+*  @param {Object} gey (one and two)
+*  @return {String} Returns eye color
+*/
 exports.determineEyeColor = determineEyeColor;
 function determineEyeColor(bey2, gey) {
 
@@ -88,6 +106,11 @@ function determineEyeColor(bey2, gey) {
 
 }
 
+/**
+*  Gets the skin color based on array number
+*  @param {Integer} num 
+*  @return {Object} Returns the RBG values for skin color
+*/
 exports.skinColors = skinColors;
 function skinColors(num) {
 	var colors = [
@@ -115,6 +138,11 @@ function skinColors(num) {
 	return colors[num];	
 }
 
+/**
+*  Gets the hair color based on array number
+*  @param {Integer} num 
+*  @return {Object} Returns the RBG values for hair color
+*/
 exports.hairColors = hairColors;
 function hairColors(num) {
 
@@ -135,7 +163,13 @@ function hairColors(num) {
 	return colors[num];
 }
 
-
+/**
+*  Gets an skin color and two alleles from parent's alleles 
+*  based on the parent's alleles
+*  @param {Object} dad 
+*  @param {Object} mom
+*  @return {Object} Returns eyes (color, bey2, gey)
+*/
 exports.skinColor = skinColor;
 function skinColor(dad, mom) {
 	var dadSkinAllele = getRandomAllele(dad.genome.genes.skin);
@@ -153,6 +187,12 @@ function skinColor(dad, mom) {
 }
 
 
+/**
+*  Determines the skin color based on 2 skin color inputs
+*  @param {Object} input1 RGB color value for skin  
+*  @param {Object} input2 RGB color value for skin
+*  @return {Object} Returns skin color (RGB)
+*/
 exports.determineSkinColor = determineSkinColor
 function determineSkinColor(input1, input2) {
 
@@ -178,7 +218,13 @@ function determineSkinColor(input1, input2) {
 
 }
 
-
+/**
+*  Gets an hair color and two alleles from parent's alleles 
+*  based on the parent's alleles
+*  @param {Object} dad 
+*  @param {Object} mom
+*  @return {Object} Returns hair (color, one, two)
+*/
 exports.hairColor = hairColor;
 function hairColor(dad, mom) {
 
@@ -195,6 +241,13 @@ function hairColor(dad, mom) {
 
 }
 
+/**
+*  Gets an height from parent's height
+*  based on the parent's alleles
+*  @param {Object} dad 
+*  @param {Object} mom
+*  @return {Object} Returns height value (height, one, two)
+*/
 exports.height = height;
 function height(dad, mom) {
 	var dadHeightAllele = getRandomAllele(dad.genome.genes.height);
@@ -210,6 +263,12 @@ function height(dad, mom) {
 	return height;
 }
 
+/**
+*  Picks a random set given two inputs 
+*  @param {String} input1 a height in inches
+*  @param {String} input2 a height in inches
+*  @return {String} Returns one of the two inputed objects
+*/
 exports.determineHeight = determineHeight;
 function determineHeight(input1, input2) {
 
@@ -222,6 +281,12 @@ function determineHeight(input1, input2) {
 
 }
 
+/**
+*  Picks the dominate gene based on capital letters
+*  @param {String} input1 A gene
+*  @param {String} input
+*  @return {String} Returns one of the two inputed objects
+*/
 exports.determineDominance = determineDominance;
 function determineDominance(input1, input2) {
 	if(_(input1).isCapital() && !_(input2).isCapital)
@@ -260,3 +325,16 @@ function pickRandomGeneSet(set1, set2) {
 function getBaseLog(x, y) {
     return Math.log(y) / Math.log(x);
 }
+
+function getBMI(height, weight) {
+
+	// [Weight in Pounds ÷ (Height in inches)2] × 703
+
+	// 	<18.5 = Underweight
+	// 18.5 - 24.9 = Normal Weight
+	// 25 - 29.9 = Overweight
+	// BMI of 30 or greater = Obesity
+}
+
+
+ 

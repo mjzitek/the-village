@@ -1,6 +1,6 @@
 var expect = require("chai").expect;
 
-var names = require('../helpers/names');
+var names = require('../lib/names');
 
 
 describe("Helpers - Names", function() {

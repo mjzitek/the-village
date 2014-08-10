@@ -60,18 +60,25 @@ var PersonSchema = new mongoose.Schema({
 					},
 					height : {
 								height : Number,
-								one: String,
-								two: String
+								heightBias: Number,
+								one: Number,
+								two: Number
+					},
+					weight : {
+								weight : Number,
+								weightBias: Number,
+								one: Number,
+								two: Number
 					},
 					bodytype : {
 								value :  Number,
-								one: String,
-								two: String
+								one: Number,
+								two: Number
 					},
 					attractiveness : {
 								value : Number,
-								one: String,
-								two: String
+								one: Number,
+								two: Number
 					}
 				}	       
 		 }

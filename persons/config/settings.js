@@ -4,6 +4,8 @@
 
 var settings = {};
 
+
+settings.clockTick = 1000;
 settings.minBreedAge = 14;
 settings.maxBreedAgeFemale = 40;
 settings.maxBreedAgeMale = 80;
