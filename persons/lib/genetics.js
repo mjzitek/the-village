@@ -282,6 +282,41 @@ function determineHeight(input1, input2) {
 }
 
 /**
+*  Determine a person's height bias based on parents' height
+*  Returns a value of 1-10, with 5 being average height, 10 being really tall
+*  and 1 being really short
+*  @param {Integer} dadBias 
+*  @param {Integer} momBias
+*  @param {Object} height Returns an object with heightBias, dadBias, and momBias
+*/
+function determineHeightBias(dadBias, momBias)
+{
+	var height = {};
+	var heightBias;
+
+    var parentsBias = (dadBias + momBias) / 2;    
+    var logBias = getBaseLog((Math.random() * 50) + 2, 9);
+    var negRandNum = Math.round(Math.random());
+    
+    if(negRandNum === 1) { logBias *= -1}    	
+
+    heightBias = parentsBias + logBias;
+
+	if(heightBias < 1 ) heightBias = 1;
+	if(heightBias > 10 ) heightBias = 10; 
+
+	height = { 
+		heightBias: heightBias,
+		dadBias: dadBias,
+		momBias: momBias
+
+	}
+
+	return height;
+}
+
+
+/**
 *  Picks the dominate gene based on capital letters
 *  @param {String} input1 A gene
 *  @param {String} input
