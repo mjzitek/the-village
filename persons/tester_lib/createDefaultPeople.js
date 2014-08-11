@@ -299,9 +299,10 @@ function generateRandomHeight() {
 
 	var height = {};
 
-	height.one = randomHeight(68);
-	height.two = randomHeight(66);
-	height.height = genetics.determineHeight(height.one, height.two);
+	height.one = randomHeightBias();
+	height.two = randomHeightBias();
+	height.heightBias = genetics.determineHeightBias(height.one, height.two);
+	height.currentHeight = 0;
 
 	console.log(height);
 
@@ -309,17 +310,21 @@ function generateRandomHeight() {
 
 }
 
-function randomHeight(meanHeight) {
-	var height;
+function randomHeightBias() {
+	var heightBias = 5;
 
-	if(!meanHeight) meanHeight = 68;
+	var bias = (Math.floor(getBaseLog((Math.floor(Math.random() * 13)+2), 90)));
 
-	var bias = (Math.floor(getBaseLog((Math.floor(Math.random() * 13)+2), 10)) * 2) - 4;
+	var randDirection = Math.round(Math.random());
 
-	var height = meanHeight + bias;
+	if(randDirection === 1) bias *= -1;
 
-	return height;
+	if(bias > 5) bias = 5;
+	if(bias < -4) bias = -4;
 
+	heightBias += bias;
+
+	return heightBias;
 }
 
 

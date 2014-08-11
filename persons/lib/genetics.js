@@ -312,14 +312,9 @@ function determineHeightBias(dadBias, momBias)
 	if(heightBias < 1 ) heightBias = 1;
 	if(heightBias > 10 ) heightBias = 10; 
 
-	height = { 
-		heightBias: Math.floor(heightBias),
-		dadBias: dadBias,
-		momBias: momBias
+	heightBias = Math.floor(heightBias);
 
-	}
-
-	return height;
+	return heightBias;
 }
 
 /**

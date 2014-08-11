@@ -59,7 +59,7 @@ var PersonSchema = new mongoose.Schema({
 								two:  { R: Number, G: Number, B: Number },
 					},
 					height : {
-								height : Number,
+								currentHeight : Number,
 								heightBias: Number,
 								one: Number,
 								two: Number
