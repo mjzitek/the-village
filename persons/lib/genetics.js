@@ -9,6 +9,7 @@
 var fs = require('fs');
 var _ = require('underscore');
 
+var readJSON = require('../lib/readJSON');
 
 _.mixin({
 	isCapital : function(char) {
@@ -242,43 +243,48 @@ function hairColor(dad, mom) {
 }
 
 /**
-*  Gets an height from parent's height
-*  based on the parent's alleles
-*  @param {Object} dad 
-*  @param {Object} mom
-*  @return {Object} Returns height value (height, one, two)
+*  Determine the amount of growth
+*  @param {Integer} heightBias 
+*  @param {Integer} averageDelta
+*  @return {Integer} growth Returns the amount of growth
 */
-exports.height = height;
-function height(dad, mom) {
-	var dadHeightAllele = getRandomAllele(dad.genome.genes.height);
-	var momHeightAllele = getRandomAllele(mom.genome.genes.height);	
-
-
-	var height = {};
-
-	height.one = dadHeightAllele;
-	height.two = momHeightAllele;
-	height.height = determineHeight(dadHeightAllele, momHeightAllele);
-
-	return height;
-}
-
-/**
-*  Picks a random set given two inputs 
-*  @param {String} input1 a height in inches
-*  @param {String} input2 a height in inches
-*  @return {String} Returns one of the two inputed objects
-*/
-exports.determineHeight = determineHeight;
-function determineHeight(input1, input2) {
-
-	var height = (parseInt(input1) + parseInt(input2)) / 2;
-	var heightBias = Math.floor(getBaseLog((Math.floor(Math.random() * 13)+2), 10));
-
-	height = height + heightBias;
-
-	return height;
-
+function getHeightGrowth(heightBias, averageDelta) {
+    var growth = 0;
+    
+     switch(heightBias) {
+        case 1:       
+            growth =  averageDelta + (-1 * (averageDelta * .25));
+            break;
+        case 2:
+            growth =  averageDelta + (-1 * (averageDelta * .16));
+            break;
+        case 3:
+            growth =  averageDelta + (-1 * (averageDelta * .15));
+            break;
+        case 4:
+            growth =  averageDelta + (-1 * (averageDelta * .09));
+            break;
+        case 5:
+            growth = averageDelta;
+            break;
+        case 6:
+            growth = averageDelta + (averageDelta * .15);
+            break;
+        case 7:
+            growth =  averageDelta + (averageDelta * .168);
+            break;
+        case 8:
+            growth =  averageDelta + (averageDelta * .22) + .045;
+            break;
+        case 9:
+            growth =  averageDelta + (averageDelta * .25);
+            break;
+        case 10:
+            growth =  averageDelta + (averageDelta * .5);
+            break;
+    }   
+    
+    return growth;
 }
 
 /**
@@ -287,8 +293,9 @@ function determineHeight(input1, input2) {
 *  and 1 being really short
 *  @param {Integer} dadBias 
 *  @param {Integer} momBias
-*  @param {Object} height Returns an object with heightBias, dadBias, and momBias
+*  @return {Object} height Returns an object with heightBias, dadBias, and momBias
 */
+exports.determineHeightBias = determineHeightBias;
 function determineHeightBias(dadBias, momBias)
 {
 	var height = {};
@@ -306,7 +313,7 @@ function determineHeightBias(dadBias, momBias)
 	if(heightBias > 10 ) heightBias = 10; 
 
 	height = { 
-		heightBias: heightBias,
+		heightBias: Math.floor(heightBias),
 		dadBias: dadBias,
 		momBias: momBias
 
@@ -314,6 +321,62 @@ function determineHeightBias(dadBias, momBias)
 
 	return height;
 }
+
+/**
+ *  Determine the next height based on previous height, gender, height chart,
+ *  health factors, etc (Rather simple algorithm right now)
+ *  @param {Integer} currentHeight
+ *  @param {Integer} heightBias
+ *  @param {Integer} age
+ *  @param {Integer} gender
+ *  @param {Integer} healthBias Health bias is used to affect ability to grow
+ *  @return {Integer} newHeight
+ *
+ */
+ exports.determineNewHeight = determineNewHeight;
+function determineNewHeight(currentHeight,heightBias,age,gender,healthBias, callback) {
+	var newHeight = 0;
+    var averageHeight = 0;
+    var previousAverageHeight = 0;
+    var averageDelta = 0;
+    var growth = 0;
+    
+    readJSON.getData('heightToWeight.json', function(data) {
+	    //console.log(data);
+	    if(gender === "M") {
+	        averageHeight = data.men[age].height;
+	        previousAverageHeight = data.men[age-1].height;
+	    } else if (gender === "F") {
+	        averageHeight = data.women[age].height;
+	        previousAverageHeight = data.women[age-1].height; 
+	    }
+	    
+	    //console.log(averageHeight);
+	    var averageDelta = averageHeight - previousAverageHeight;
+
+	    heightBias += healthBias;
+
+	    growth = getHeightGrowth(heightBias, averageDelta);
+	            
+	    newHeight = currentHeight + Math.round(growth);    
+	    
+	    // A few checks to make sure weird stuff doesn't happen
+	    if((newHeight - currentHeight) > 4 && (age > 1)) {
+	        newHeight = currentHeight + 4; 
+	    }
+	    
+	    if(newHeight < currentHeight) {
+	        newHeight = currentHeight;   
+	    }
+	    
+	    //console.log("New Height: " + newHeight);
+		callback(newHeight);    	
+    });
+
+
+
+}
+
 
 
 /**

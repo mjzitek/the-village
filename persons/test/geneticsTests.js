@@ -36,21 +36,58 @@ describe.only("Genetics", function() {
 
 	});
 
-	describe("determineHeight()", function() {
-		checkResults(160, 170, 150, 180);
-		checkResults(100, 200, 150, 180);
-		checkResults(170, 180, 165, 185);		
 
-		function checkResults(height1, height2, resultsLower, resultsHigher) {
-			describe(height1 + " " + height2, function() {
-				it("should return between " + resultsLower + " and " + resultsHigher, function() {
-					var val = genetics.determineHeight(height1, height2);
-					expect(val).to.be.within(resultsLower, resultsHigher);
+	describe("determineHeightBias()", function() {
+		checkResults(1,10);
+		checkResults(5,5);
+		checkResults(8,5);
+		checkResults(10,1);
+		checkResults(7,3);
+		checkResults(1,1);
+		checkResults(0,40);  // Way outside the max bias level
+				
+
+		function checkResults(dadBias, momBias) {
+			describe(dadBias + " " + momBias, function() {
+				it("should return between 1 and 10", function() {
+					var height = genetics.determineHeightBias(dadBias, momBias);
+					expect(height.heightBias).to.be.within(1, 10);
 				});
 			});
 
 		}
+	});
 
+	describe("determineNewHeight()", function() {
+
+		describe("** Average Heights", function() {
+			checkResults(20,5,1,"M",0,30);
+			checkResults(70,5,19,"M",0,70);
+			checkResults(64,5,19,"F",0,64);
+		});
+
+		describe("** Extreme Heights", function() {
+			checkResults(60,1,19,"M",0,60);
+			checkResults(90,10,19,"M",0,90);
+		});
+
+		describe("** Misc Heights", function() {
+			checkResults(56,5,12,"M",0,58);
+			checkResults(68,5,16,"M",0,70);
+		});		
+
+
+		function checkResults(currentHeight,heightBias,age,gender,healthBias, result) {
+			describe("  " + gender + " => Current Height: " + currentHeight + "/ Age: " + age, function() {
+				it("should return ~" + result, function(done) {
+					genetics.determineNewHeight(currentHeight,heightBias,age,gender,healthBias, function(newHeight) {
+						expect(newHeight).to.be.within(result-2,result+2);
+						done();
+					});
+					
+				});
+			})
+		}
 
 	});
 
