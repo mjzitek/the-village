@@ -50,8 +50,8 @@ describe.only("Genetics", function() {
 		function checkResults(dadBias, momBias) {
 			describe(dadBias + " " + momBias, function() {
 				it("should return between 1 and 10", function() {
-					var height = genetics.determineHeightBias(dadBias, momBias);
-					expect(height.heightBias).to.be.within(1, 10);
+					var heightBias = genetics.determineHeightBias(dadBias, momBias);
+					expect(heightBias).to.be.within(1, 10);
 				});
 			});
 
@@ -74,11 +74,12 @@ describe.only("Genetics", function() {
 		describe("** Misc Heights", function() {
 			checkResults(56,5,12,"M",0,58);
 			checkResults(68,5,16,"M",0,70);
+			checkResults(0,5,12,"M",0,58);
 		});		
 
 
 		function checkResults(currentHeight,heightBias,age,gender,healthBias, result) {
-			describe("  " + gender + " => Current Height: " + currentHeight + "/ Age: " + age, function() {
+			describe("  " + gender + " => Current Height: " + currentHeight + " / Age: " + age, function() {
 				it("should return ~" + result, function(done) {
 					genetics.determineNewHeight(currentHeight,heightBias,age,gender,healthBias, function(newHeight) {
 						expect(newHeight).to.be.within(result-2,result+2);

@@ -5,7 +5,7 @@ var async = require('async');
 var settings = require('../config/settings');
 var tMoment = require('../lib/time');
 var names = require('../lib/names');
-
+var genetics = require('../lib/genetics');
 
  var mongoose = require('mongoose'),
 	Person = mongoose.model('persons');
@@ -17,6 +17,7 @@ var time = require('./time');
 var families = require('./families');
 var relationships = require('./relationships');
 var personevents = require('./personevents');
+
 
 
 /***************************************************************************************
@@ -82,6 +83,16 @@ function getSurname(personId, callback) {
 exports.getPersons = getPersons;
 function getPersons(callback) {
 	Person.find({}).populate('familyInfo').sort( { dateOfBirth: 1 } ).exec(function(err, doc) {
+		callback (doc);
+	});
+
+}
+
+exports.getPersonsFiltered = getPersonsFiltered
+function getPersonsFiltered(query, fields, callback) {
+
+
+	Person.find(query, fields).populate('familyInfo').exec(function(err, doc) {
 		callback (doc);
 	});
 
@@ -639,5 +650,30 @@ function removeAllPersons(callback) {
 		{
 			callback();
 		}		
+	});
+}
+
+exports.updateHeight = updateHeight;
+function updateHeight(personId, newHeight, callback) {
+	// var updates = {};
+	// updates.genome = { genes : { height : { "$set" : { currentHeight: newHeight } } } };
+
+	// console.log(personId);
+	// console.log(updates);
+
+	Person.update( { _id: personId} , {
+		$set : { "genome.genes.height.currentHeight" : newHeight }
+
+	}, function (err, doc) {
+		if(err)
+		{
+			console.log(err);
+			callback(err);
+		} else 
+		{
+			//console.log("New Height: " + personId + " / " + newHeight + " / " + doc);
+			callback(doc);
+		}
+		
 	});
 }

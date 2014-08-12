@@ -241,6 +241,34 @@ function hairColor(dad, mom) {
 	return hair;
 
 }
+/**
+*  Used to get height info for a new born
+*  @param {Object} dad 
+*  @param {Object} mom
+*  @return {Object} Returns height (currHeight, heightBias, one, two)
+*/
+exports.height = height;
+function height(dad, mom, gender, callback) {
+	var heightInfo = {}
+
+	var dadHeightBias = getRandomAllele(dad.genome.genes.height);
+	var momHeightBias = getRandomAllele(mom.genome.genes.height);
+
+	var heightBias = determineHeightBias(dadHeightBias, momHeightBias);
+
+	determineNewHeight(0,heightBias,0,gender,0, function(h) {
+		heightInfo.one = dadHeightBias;
+		heightInfo.two = momHeightBias;
+		heightInfo.heightBias = heightBias;
+		heightInfo.currentHeight = h;
+
+		callback(heightInfo);
+
+
+	});
+
+}
+
 
 /**
 *  Determine the amount of growth
@@ -335,17 +363,20 @@ function determineNewHeight(currentHeight,heightBias,age,gender,healthBias, call
     var previousAverageHeight = 0;
     var averageDelta = 0;
     var growth = 0;
-    
+
+
     readJSON.getData('heightToWeight.json', function(data) {
 	    //console.log(data);
 	    if(gender === "M") {
 	        averageHeight = data.men[age].height;
-	        previousAverageHeight = data.men[age-1].height;
+	        if(age > 0) previousAverageHeight = data.men[age-1].height;
 	    } else if (gender === "F") {
 	        averageHeight = data.women[age].height;
-	        previousAverageHeight = data.women[age-1].height; 
+	        if(age > 0) previousAverageHeight = data.women[age-1].height; 
 	    }
 	    
+	    if(currentHeight === 0) currentHeight = averageHeight;
+
 	    //console.log(averageHeight);
 	    var averageDelta = averageHeight - previousAverageHeight;
 
@@ -363,6 +394,11 @@ function determineNewHeight(currentHeight,heightBias,age,gender,healthBias, call
 	    if(newHeight < currentHeight) {
 	        newHeight = currentHeight;   
 	    }
+	    console.log("CurrentHeight: " + currentHeight + " / New Height: " + newHeight + 
+	    	" / Bias: " + heightBias +
+	    	" / Age: " + age +
+	    	" / Gender: " + gender
+		);
 	    
 	    //console.log("New Height: " + newHeight);
 		callback(newHeight);    	

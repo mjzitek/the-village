@@ -147,7 +147,7 @@ function getSummaryData(callback) {
 
 			var filter = {
 				dateOfDeath: null,
-				dateOfBirth: { $lt : data.childCutoffDate}
+				dateOfBirth: { $gt : data.childCutoffDate}
 			}
 
 			persons.populationCountFiltered(filter, function(children) {
@@ -160,7 +160,7 @@ function getSummaryData(callback) {
 
 			var filter = {
 				dateOfDeath: null,
-				dateOfBirth: { $gte : data.childCutoffDate}
+				dateOfBirth: { $lte : data.childCutoffDate}
 			}
 
 			persons.populationCountFiltered(filter, function(adults) {

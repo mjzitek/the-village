@@ -188,7 +188,7 @@ function loadEventDetails(eventDetails) {
 				break;
 		}
 
-		var height = convertInchesToFeet((eventPerson.genome.genes.height ? eventPerson.genome.genes.height.height : 0));
+		var height = convertInchesToFeet((eventPerson.genome.genes.height ? eventPerson.genome.genes.height.currentHeight : 0));
 
 		console.log(height);
 

@@ -8,7 +8,8 @@ var async = require('async');
 //var memwatch = require('memwatch');
 
 var config = require('./config/config');
-var tMoment = require('./lib/time.js');
+var tMoment = require('./lib/time');
+var genetics = require('./lib/genetics');
 var settings = require('./config/settings');
 var createPeople = require('./tester_lib/createDefaultPeople');
 
@@ -85,21 +86,37 @@ PersonsEngine.prototype.init = function() {
 	async.series({
 		setUp: function(callback) {
 			time.set(App.gameClock, function(doc) {
-				console.log("Setting game clock to " + App.gameClock);
+				console.log("Setting game clock to " + App.gameClock.format('MMM DD, YYYY'));
+				callback(null,null);
 			});
 
+		},
+		cleanUp: function(callback) {
 			persons.removeAll(function(doc) { console.log("Clearing old population...")});
 			families.removeAll(function(doc) {});
 			relationships.removeAll(function(doc) {});
 			personevents.removeAll(function(doc) {});
 			statshistory.removeAll(function(doc) {});
+			callback(null, null);			
+		},
+		createInitialPopulation: function(callback) {
 			
 			console.log("Creating initial population...");
 			
-			createPeople.createPeople(120,50,0, function(doc) {
-
+			createPeople.createPeople(120,50,0, App.gameClock, function(doc) {
+				callback(null, null);
 			});
-			callback(null,null);
+		},
+		settingInitialHeights: function(callback) {
+			persons.getPersons(function(persons){
+				if(persons) {
+					persons.forEach(function(person) {
+						createPeople.setInitalHeights(person, App.gameClock, function(doc) {});
+					});
+				}
+
+				callback(null,null);
+			});			
 		},
 		setAutoInterval: function(callback) {
 			that.setAutoInterval();
@@ -301,7 +318,61 @@ PersonsEngine.prototype.automatedWorkers = function(models) {
 		 			callback(null, null);
 		 		}
 		 	});
-		}
+		},
+		updateHeights: function(callback) {
+			if(App.gameClock.format("MMM DD") == "Dec 31")
+			{
+				console.log("** Updating Heights")
+				var c2 = moment(App.gameClock);
+				var c3 = moment(App.gameClock);
+
+				var date20yo = c2.subtract("y", 20).format('YYYY-MM-DD');
+				var date1yo = c2.subtract("y", 1).format('YYYY-MM-DD');
+
+				//console.log(date20yo);
+
+				var filter = {
+		 			dateOfDeath: null,
+		 			dateOfBirth: { $gte : date20yo }
+		 		}
+
+		 		var fields = {};
+
+		 		persons.getPersonsFiltered(filter, fields, function(pers) {
+		 			//console.log(pers.length);
+		 			var persCount = pers.length;
+
+		 			if(pers) {
+		 				pers.forEach(function(person) {
+		 					persCount--;
+
+		 					var age = GetAge(person.dateOfBirth,App.gameClock).years;
+							if(age > 20) age = 20;
+		 					
+							if(age >= 1) {
+		 					genetics.determineNewHeight(
+		 						person.genome.genes.height.currentHeight,
+								person.genome.genes.height.heightBias,
+								age,person.gender,0, function(newHeight) {
+									persons.updateHeight(person._id, newHeight, function(doc){
+									});
+								});
+		 					}
+
+		 					//console.log(persCount);			
+							if(persCount <= 0) {
+								callback(null, null);
+							}
+						});
+		 			}
+	 			});
+			} else {
+				callback(null, null);
+			}
+
+
+
+		} 
 	},
 	function(err, results) {
 		//console.log(results);

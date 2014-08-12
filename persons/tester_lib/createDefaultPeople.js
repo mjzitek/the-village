@@ -57,7 +57,7 @@ var relationships = require('../controllers/relationships');
 
 
 exports.createPeople = createPeople;
-function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
+function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, gameClock, callback) {
 
 	for(var i = 0; i < numOfCouples; i++) 
 	{
@@ -82,6 +82,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 			{
 				// Create Husband
 				var husbandName = names.getRandomName("M");
+				var dateOfBirth = tMoment.randomDate("1-1-1900", "1-1-1907");
 
 				var husband = {};
 
@@ -90,7 +91,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				husband.middleName = husbandName.middle;
 				husband.lastName = familyName;
 				husband.gender = "M";
-				husband.dateOfBirth = tMoment.randomDate("1-1-1900", "1-1-1907");
+				husband.dateOfBirth = dateOfBirth;
 				husband.dateOfDeath = null;
 				husband.headOfFamily = 1;
 				husband.fatherInfo = null;
@@ -119,6 +120,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 			{
 				// Create Wife
 				var wifeName = names.getRandomName("F");
+				var dateOfBirth = tMoment.randomDate("1-1-1900", "1-1-1907");
 
 				var wife = {};
 
@@ -127,7 +129,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				wife.middleName = wifeName.middle;
 				wife.lastName = familyName;
 				wife.gender = "F";
-				wife.dateOfBirth = tMoment.randomDate("1-1-1900", "1-1-1907");
+				wife.dateOfBirth = dateOfBirth;
 				wife.dateOfDeath = null;
 				wife.headOfFamily = 0;
 				wife.fatherInfo = null;
@@ -195,6 +197,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 				{
 					var gender = babies.pickGender();
 					var personName = names.getRandomName(gender);
+					var dateOfBirth = tMoment.randomDate("1-1-1900", "1-1-1907");					
 					var personId;
 
 					var person = {};
@@ -204,7 +207,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 					person.middleName = personName.middle;
 					person.lastName = familyName;
 					person.gender = gender;
-					person.dateOfBirth = tMoment.randomDate("1-1-1900", "1-1-1907");
+					person.dateOfBirth = dateOfBirth;
 					person.dateOfDeath = null;
 					person.headOfFamily = 1;
 					person.fatherInfo = null;
@@ -242,6 +245,28 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, callback) {
 
 } 
 
+exports.setInitalHeights = setInitalHeights;
+function setInitalHeights(person,gameClock,callback) {
+	//console.log(person);
+
+	var age = GetAge(person.dateOfBirth,gameClock).years;
+
+	if(age > 20) age = 20;
+
+	// console.log("******* DOB: " + person.dateBirth);
+	// console.log(gameClock);
+	// console.log("***********AGE: " + age);
+
+	genetics.determineNewHeight(
+		person.genome.genes.height.currentHeight,
+		person.genome.genes.height.heightBias,
+		age,person.gender,0, function(newHeight) {
+			//console.log(newHeight);
+			persons.updateHeight(person._id, newHeight, function(doc){});
+	});
+	
+
+}
 
 var bey2 = [
 		{ one: "brown", two: "brown" },
@@ -295,7 +320,7 @@ function generateRandomHairColor() {
 
 }
 
-function generateRandomHeight() {
+function generateRandomHeight(dateOfBirth, gameClock, gender) {
 
 	var height = {};
 
@@ -304,9 +329,8 @@ function generateRandomHeight() {
 	height.heightBias = genetics.determineHeightBias(height.one, height.two);
 	height.currentHeight = 0;
 
-	console.log(height);
-
 	return height;
+
 
 }
 
@@ -333,3 +357,17 @@ function randomHeightBias() {
 function getBaseLog(x, y) {
     return Math.log(y) / Math.log(x);
 }
+
+
+
+
+function GetAge(birthDate, gameClock)
+{
+	curGameTime = moment(gameClock);
+	birthDate = moment(birthDate);
+			
+	curAge = tMoment.getDifference(curGameTime, birthDate);
+
+	return curAge;
+}
+
