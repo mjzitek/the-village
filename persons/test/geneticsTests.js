@@ -61,6 +61,7 @@ describe.only("Genetics", function() {
 	describe("determineNewHeight()", function() {
 
 		describe("** Average Heights", function() {
+			checkResults(0,5,0,"M",0,20);
 			checkResults(20,5,1,"M",0,30);
 			checkResults(70,5,19,"M",0,70);
 			checkResults(64,5,19,"F",0,64);

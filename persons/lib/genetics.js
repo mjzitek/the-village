@@ -364,46 +364,49 @@ function determineNewHeight(currentHeight,heightBias,age,gender,healthBias, call
     var averageDelta = 0;
     var growth = 0;
 
+    if(age > 0 || currentHeight === 0) {
+	    readJSON.getData('heightToWeight.json', function(data) {
+		    //console.log(data);
 
-    readJSON.getData('heightToWeight.json', function(data) {
-	    //console.log(data);
-	    if(gender === "M") {
-	        averageHeight = data.men[age].height;
-	        if(age > 0) previousAverageHeight = data.men[age-1].height;
-	    } else if (gender === "F") {
-	        averageHeight = data.women[age].height;
-	        if(age > 0) previousAverageHeight = data.women[age-1].height; 
-	    }
-	    
-	    if(currentHeight === 0) currentHeight = averageHeight;
+		    if(gender === "M") {
+		        averageHeight = data.men[age].height;
+		        if(age > 0) previousAverageHeight = data.men[age-1].height;
+		    } else if (gender === "F") {
+		        averageHeight = data.women[age].height;
+		        if(age > 0) previousAverageHeight = data.women[age-1].height; 
+		    }
+		    
+		    if(currentHeight === 0 && age != 0) currentHeight = averageHeight;
 
-	    //console.log(averageHeight);
-	    var averageDelta = averageHeight - previousAverageHeight;
+		    //console.log(averageHeight);
+		    var averageDelta = averageHeight - previousAverageHeight;
 
-	    heightBias += healthBias;
+		    heightBias += healthBias;
 
-	    growth = getHeightGrowth(heightBias, averageDelta);
-	            
-	    newHeight = currentHeight + Math.round(growth);    
-	    
-	    // A few checks to make sure weird stuff doesn't happen
-	    if((newHeight - currentHeight) > 4 && (age > 1)) {
-	        newHeight = currentHeight + 4; 
-	    }
-	    
-	    if(newHeight < currentHeight) {
-	        newHeight = currentHeight;   
-	    }
-	    console.log("CurrentHeight: " + currentHeight + " / New Height: " + newHeight + 
-	    	" / Bias: " + heightBias +
-	    	" / Age: " + age +
-	    	" / Gender: " + gender
-		);
-	    
-	    //console.log("New Height: " + newHeight);
-		callback(newHeight);    	
-    });
-
+		    growth = getHeightGrowth(heightBias, averageDelta);
+		            
+		    newHeight = currentHeight + Math.round(growth);    
+		    
+		    // A few checks to make sure weird stuff doesn't happen
+		    if((newHeight - currentHeight) > 4 && (age > 1)) {
+		        newHeight = currentHeight + 4; 
+		    }
+		    
+		    if(newHeight < currentHeight) {
+		        newHeight = currentHeight;   
+		    }
+		 //    console.log("CurrentHeight: " + currentHeight + " / New Height: " + newHeight + 
+		 //    	" / Bias: " + heightBias +
+		 //    	" / Age: " + age +
+		 //    	" / Gender: " + gender
+			// );
+		    
+		    //console.log("New Height: " + newHeight);
+			callback(newHeight);    	
+	    });
+	} else {
+		callback(currentHeight);
+	}
 
 
 }
