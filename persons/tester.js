@@ -92,12 +92,31 @@ PersonsEngine.prototype.init = function() {
 
 		},
 		cleanUp: function(callback) {
-			persons.removeAll(function(doc) { console.log("Clearing old population...")});
-			families.removeAll(function(doc) {});
-			relationships.removeAll(function(doc) {});
-			personevents.removeAll(function(doc) {});
-			statshistory.removeAll(function(doc) {});
-			callback(null, null);			
+			async.series({
+				persons: function(callback) {
+					persons.removeAll(function(doc) {
+						callback(null,null);
+					} );
+				},
+				families: function(callback) {
+					families.removeAll(function(doc) {callback(null,null);});
+				},
+				relationships: function(callback) {
+					relationships.removeAll(function(doc) {callback(null,null);});
+				},
+				personevents: function(callback) {
+					personevents.removeAll(function(doc) {callback(null,null);});
+				},
+				statshistory: function(callback) {
+					statshistory.removeAll(function(doc) {callback(null,null);});
+				}
+			},
+			function(err,results) {
+				console.log("Clearing old population...");
+				callback(null, null);	
+			});
+			
+						
 		},
 		createInitialPopulation: function(callback) {
 			
@@ -108,14 +127,18 @@ PersonsEngine.prototype.init = function() {
 			});
 		},
 		settingInitialHeights: function(callback) {
-			persons.getPersons(function(persons){
-				if(persons) {
-					persons.forEach(function(person) {
+			persons.getPersons(function(pers){
+				console.log(pers.length);
+				if(pers) {
+					var persCount = pers.length;
+
+					pers.forEach(function(person) {
+						persCount--;
 						createPeople.setInitalHeights(person, App.gameClock, function(doc) {});
 					});
 				}
 
-				callback(null,null);
+				if(pers <= 0) callback(null,null);
 			});			
 		},
 		setAutoInterval: function(callback) {

@@ -59,6 +59,8 @@ var relationships = require('../controllers/relationships');
 exports.createPeople = createPeople;
 function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, gameClock, callback) {
 
+	var peopleLeft = numOfPeople;
+
 	for(var i = 0; i < numOfCouples; i++) 
 	{
 
@@ -80,6 +82,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, gameClock, ca
 			}, 
 			createHusband: function(callback)
 			{
+				peopleLeft--;
+
 				// Create Husband
 				var husbandName = names.getRandomName("M");
 				var dateOfBirth = tMoment.randomDate("1-1-1900", "1-1-1907");
@@ -118,6 +122,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, gameClock, ca
 			},
 			createWife: function(callback)
 			{
+				peopleLeft--;
+
 				// Create Wife
 				var wifeName = names.getRandomName("F");
 				var dateOfBirth = tMoment.randomDate("1-1-1900", "1-1-1907");
@@ -167,7 +173,7 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, gameClock, ca
 				relationships.performMarriage(results.createHusband, results.createWife, function(doc) {
 					persons.setMarried(results.createHusband, results.familyInfo._id, "", function(d) { 
 						persons.setMarried(results.createWife, results.familyInfo._id, results.familyInfo.familyName, function(d) {callback(d);});
-							callback(doc);
+							
 					});	
 					
 				});  		
@@ -195,6 +201,8 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, gameClock, ca
 				}, 
 				createPersons: function(callback)
 				{
+					peopleLeft--;
+
 					var gender = babies.pickGender();
 					var personName = names.getRandomName(gender);
 					var dateOfBirth = tMoment.randomDate("1-1-1900", "1-1-1907");					
@@ -236,12 +244,14 @@ function createPeople(numOfPeople, numOfCouples, maxNumOfChildren, gameClock, ca
 		    		callback(err);
 		    	} else
 		    	{
-		    		callback(results);    		
+ 		
 		    	}
 
 			});
 		}
 	}
+
+	if(peopleLeft <= 0) callback();
 
 } 
 
@@ -257,11 +267,14 @@ function setInitalHeights(person,gameClock,callback) {
 	// console.log(gameClock);
 	// console.log("***********AGE: " + age);
 
+	//console.log(person._id);
+
 	genetics.determineNewHeight(
 		person.genome.genes.height.currentHeight,
 		person.genome.genes.height.heightBias,
 		age,person.gender,0, function(newHeight) {
 			//console.log(newHeight);
+			//console.log(person._id + " => " + newHeight);
 			persons.updateHeight(person._id, newHeight, function(doc){});
 	});
 	

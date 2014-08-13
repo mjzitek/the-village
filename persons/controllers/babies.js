@@ -198,45 +198,53 @@ function giveBirth(motherId, callback) {
 			},
 			// Genetics
 			function(gender, name, mom, dad, gameTime, callback) {
-				var genes = {};
-
-				////////////////
-				// Eyes
+				var genes = {};				
 				
-					genes.eyes = genetics.eyeColor(dad, mom);
+				if(mom && dad) {
+
+
+					////////////////
+					// Eyes
 					
-					var skin = genetics.skinColor(dad, mom);	
+						genes.eyes = genetics.eyeColor(dad, mom);
+						
+						var skin = genetics.skinColor(dad, mom);	
 
-					genes.skin = {
-									color : skin.color,
-									one: { R: skin.one.R, G: skin.one.G, B: skin.one.B},
-									two: { R: skin.two.R, G: skin.two.R, B: skin.two.B}
-					}
+						genes.skin = {
+										color : skin.color,
+										one: { R: skin.one.R, G: skin.one.G, B: skin.one.B},
+										two: { R: skin.two.R, G: skin.two.R, B: skin.two.B}
+						}
 
-					var hair = genetics.hairColor(dad, mom);
+						var hair = genetics.hairColor(dad, mom);
 
-					console.log(hair);
+						console.log(hair);
 
-					genes.hair = {
-									color : { R: hair.color.R, G: hair.color.G, B: hair.color.B},
-									one: { R: hair.one.R, G: hair.one.G, B: hair.one.B},
-									two: { R: hair.two.R, G: hair.two.R, B: hair.two.B}
-					}
+						genes.hair = {
+										color : { R: hair.color.R, G: hair.color.G, B: hair.color.B},
+										one: { R: hair.one.R, G: hair.one.G, B: hair.one.B},
+										two: { R: hair.two.R, G: hair.two.R, B: hair.two.B}
+						}
 
-					var height = genetics.height(dad, mom, gender,function(heightInfo) {
-						console.log(heightInfo);
-						genes.height = heightInfo;
+						var height = genetics.height(dad, mom, gender,function(heightInfo) {
+							console.log(heightInfo);
+							genes.height = heightInfo;
 
-						callback(null, gender, name, mom, dad, gameTime, genes);						
-					});
-
+							callback(null, gender, name, mom, dad, gameTime, genes);						
+						});
+				} else {
+					callback(null, gender, name, mom, dad, gameTime, genes);
+				}
 
 			},
 			// Update mom status
 			function(gender, name, mom, dad, gameTime, genes, callback) {
-				Person.update({_id: motherId }, { pregnancy: { pregnant: false, pregnancyDate: null, babyFatherId: null }}, function(err, doc) {
-					callback(null, gender, name, mom, dad, gameTime, genes);
-				});
+				if(gender && name && mom && dad) {
+					Person.update({_id: motherId }, { pregnancy: { pregnant: false, pregnancyDate: null, babyFatherId: null }}, function(err, doc) {
+						callback(null, gender, name, mom, dad, gameTime, genes);
+					});					
+				}
+
 			}
 		],
 		function(err, gender, name, mom, dad, gameTime, genes) {
