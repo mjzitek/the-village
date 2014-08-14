@@ -22,6 +22,16 @@ var PersonSchema = new mongoose.Schema({
         			pregnancyDate: Date,
         			babyFatherId : { type: Schema.Types.ObjectId, ref: 'persons' }  
     },
+    health : {
+    	hunger : 		Number,
+    	thirst : 		Number,
+    	stamina:        Number,
+    	bmi:            Number,
+    	inShape:        Number,
+    	illness: 		Number,
+    	bodyTemp:  		Number,
+    	sleepiness: 	Number
+    }
 	genome : {
 				attributes: {
 					intelligence : {

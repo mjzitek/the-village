@@ -62,10 +62,10 @@ var App = {
 	models: null,
 	gameClock: moment(startTime),
 	maxRunYears: argv.maxrun || '2100',
-	babyRatioNum: 4500, // out of 5000   
+	babyRatioNum: 4000, // out of 5000   
 	                    // Used with random number...rand num need 
 					    // to be more than this (too tired for better name)
-	marriageRatioNum: 2800,  // out of 5000		
+	marriageRatioNum: 2400,  // out of 5000		
     numOfCouples: 1    // Num of couples to pull to try to make a baby
 };
 
@@ -128,7 +128,7 @@ PersonsEngine.prototype.init = function() {
 		},
 		settingInitialHeights: function(callback) {
 			persons.getPersons(function(pers){
-				console.log(pers.length);
+				//console.log(pers.length);
 				if(pers) {
 					var persCount = pers.length;
 
