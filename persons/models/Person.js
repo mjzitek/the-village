@@ -43,7 +43,7 @@ var PersonSchema = new mongoose.Schema({
 					kindness : {
 									value : Number
 							},
-					furtility : {
+					fertility : {
 									 value : Number
 							}
 				},

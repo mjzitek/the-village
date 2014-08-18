@@ -326,7 +326,7 @@ function getHeightGrowth(heightBias, averageDelta) {
 exports.determineHeightBias = determineHeightBias;
 function determineHeightBias(dadBias, momBias)
 {
-	var height = {};
+    var height = {};
 	var heightBias;
 
     var parentsBias = (dadBias + momBias) / 2;    
