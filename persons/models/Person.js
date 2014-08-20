@@ -31,7 +31,7 @@ var PersonSchema = new mongoose.Schema({
     	illness: 		Number,
     	bodyTemp:  		Number,
     	sleepiness: 	Number
-    }
+    },
 	genome : {
 				attributes: {
 					intelligence : {

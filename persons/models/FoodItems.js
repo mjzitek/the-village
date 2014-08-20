@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var FoodItemSchema = new mongoose.Schema({
 		name:        String,
 		nameFormal:  String,
-		portions:    Number
+		portions:    Number,
 		stats:  {
 					hunger: 			Number,
 					thirst:				Number,
@@ -22,4 +22,4 @@ var FoodItemSchema = new mongoose.Schema({
 			]
 });
 
-mongoose.model('fooditems', FoodItems);
+mongoose.model('fooditems', FoodItemSchema);
