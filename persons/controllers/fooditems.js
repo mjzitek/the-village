@@ -49,3 +49,22 @@ function getById(itemId, callback) {
 
 }
 
+/**
+ *  Creates new FoodItem
+ *  @param {Object} FoodItem object
+ *  @return {Object/Int} callback is either err message, 0, or 1
+ */
+exports addItem = addItem;
+function addItem(foodItem, callback) {
+
+	var food = new FoodItems(foodItem);
+
+	food.save(function (err, doc) {
+		if(err) {
+			callback(err);
+		} else {
+			callback(doc);
+		}
+	});
+
+}
