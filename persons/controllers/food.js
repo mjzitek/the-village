@@ -17,3 +17,21 @@ function eatFoodItem() {}
 function addToStructuresInventory() {}
 
 function removeFromStructuresInventory() {}
+
+/**
+ *  "Prepares" a food item (cook)
+ *  @param {ObjectId} personId
+ *  @param {ObjectId} foodItem
+ *  @param {Object} ingredients items needed to make foodItem
+ *  @return {Array/Object} Returns FoodItem object
+ */
+function prepareFoodItem(personId, foodItem, ingredients, callback) {
+
+	// Check receipe for needed items and compare to ingredients passed
+	// if not all ingredients that are needed are passed, return false
+
+
+
+
+}
+
