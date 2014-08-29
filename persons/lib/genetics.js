@@ -1,10 +1,8 @@
-/*
-
-	Functions used to set and get values having to do with the
-	"genetics" of a person....appearance, attributes, etc
-
-
-*/
+/**
+ * Provides functions related to person genetics
+ *
+ * @module genetics
+ */
 
 var fs = require('fs');
 var _ = require('underscore');
@@ -21,6 +19,8 @@ _.mixin({
 
 /**
 *  Picks a random allele out of one or two
+*
+*  @method getRandomAllele
 *  @param {Object} alleles Set of two alleles (one and two) 
 *  @return {Object} Returns a random allete
 */
@@ -39,6 +39,7 @@ function getRandomAllele(alleles) {
 /**
 *  Gets an eye color and two alleles from parent's alleles 
 *  based on the parent's alleles
+*  @method eyeColor
 *  @param {Object} dad 
 *  @param {Object} mom
 *  @return {Object} Returns eyes (color, bey2, gey)
