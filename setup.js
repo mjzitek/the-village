@@ -1,0 +1,6 @@
+/*
+
+	Script to setup new game
+
+
+*/
